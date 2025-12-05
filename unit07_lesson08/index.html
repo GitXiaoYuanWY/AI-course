@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实战课:文案自动化创作工作流 | N8N自动化教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景特效 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程内容</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>8.实战课：文案自动化创作工作流</h1>
+                    <p class="subtitle">实战案例 | 案例分析 | 案例实现步骤</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 板块一-课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3>一、课程回顾</h3>
+                            <ol>
+                                <li>飞书的导出节点应用</li>
+                                <li>谷歌账号的配置</li>
+                                <li>循环节点的具体应用</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>二、学习目标</h3>
+                            <ol>
+                                <li>理解搜索与爬虫的API应用</li>
+                                <li>HTTP请求节点的应用</li>
+                                <li>复杂工作流的拆分与理解</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程内容 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>三、课程内容</h3>
+                            <ol>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    1、完成文案自动化创造的工作流
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程内容页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二:课程内容</h1>
+                    <p class="subtitle">实战案例 | 案例分析 | 案例实现步骤</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 一、案例实战 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、案例实战</h2>
+                            <h3>(一)案例主题</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.8;">
+                                制作一个<strong class="neon-text-cyan">根据文章主题与写作风格</strong>在浏览器上<strong class="neon-text-pink">自动搜索相关网页并爬取资料</strong>,后根据资料<strong class="neon-text-purple">撰写风格化文章</strong>,并根据关键词<strong class="neon-text-cyan">搜索图像</strong>,<strong class="neon-text-pink">集成在知识库中</strong>的自动化工作流
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 二、案例分析(一) -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 二、案例分析</h2>
+                            <h3>(一)工作流逻辑分析</h3>
+                            <ol>
+                                <li><strong class="neon-text-cyan">查询需求</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>利用<span class="node-tag">飞书多维表格</span>做<span class="value-highlight">知识集成</span>,将<span class="config-field">主题</span>、<span class="config-field">风格</span>、<span class="config-field">写作内容</span>、<span class="config-field">参考资料链接</span>等存放在飞书多维表格中</li>
+                                        <li>可以<span class="value-highlight">多任务执行</span></li>
+                                        <li>完成任务后在群聊机器人中<span class="value-highlight">通知消息</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-pink">自动搜索</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>根据<span class="config-field">标题</span>/<span class="config-field">主题</span>/<span class="config-field">关键词</span>搜索网页资料并<span class="value-highlight">爬取网页</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-purple">撰写文章</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>根据<span class="config-field">主题</span>/<span class="config-field">写作风格</span>/<span class="config-field">文章素材</span>写作文章</li>
+                                        <li>导出飞书(符合多维表格的<span class="value-highlight">json格式</span>)</li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-cyan">图片搜索</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>根据<span class="config-field">标题</span>/<span class="config-field">主题</span>/<span class="config-field">关键词</span>搜索<span class="config-field">图片url</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-pink">上传飞书</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>所有资料<span class="action-keyword">上传</span>飞书,且保证<span class="value-highlight">格式正确</span></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 二、案例分析(二) -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)工作流技术选型</h3>
+                            <ol>
+                                <li><strong class="neon-text-cyan">查询需求(多任务生成)</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li><span class="node-tag">飞书节点</span>+<span class="node-tag">拆分节点</span>+<span class="node-tag">循环节点</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-pink">自动搜索(根据关键词)</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>根据关键词搜索内容:<span class="node-tag">llm节点</span>+<span class="node-tag">searchapi节点</span>/<span class="node-tag">tavily节点</span></li>
+                                        <li>爬取网页内容并合并:<span class="node-tag">拆分节点</span>+<span class="node-tag">循环节点</span>+<span class="node-tag">http请求</span>+<span class="node-tag">llm节点</span>+<span class="node-tag">聚合节点</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-purple">撰写文章(根据主题/风格/资料)</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>生成内容并优化格式:<span class="node-tag">AI Agent节点</span>+<span class="node-tag">code节点</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-cyan">图片搜索</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>搜索图片并获取url:<span class="node-tag">searchapi节点</span>/<span class="node-tag">tavily节点</span></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-pink">上传飞书</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>所有资料<span class="action-keyword">上传</span>飞书:<span class="node-tag">set节点</span>+<span class="node-tag">飞书节点</span></li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 三、案例实现步骤 (一)飞书节点+拆分节点+循环节点 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、案例实现步骤</h2>
+                            <h3>(一)飞书节点+拆分节点+循环节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section4', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用说明</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">新建飞书多维表格</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">添加应用与输入主题</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">添加N8N节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">飞书节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 5)">
+                                        <div class="step-button-number">6</div>
+                                        <div class="step-button-title">拆分节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 6)">
+                                        <div class="step-button-number">7</div>
+                                        <div class="step-button-title">循环节点设置</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 节点作用说明 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">节点作用说明</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用:</strong><br>
+                                            通过<span class="node-tag">飞书多维表格</span>管理<span class="config-field">文章创作任务</span>,实现<span class="value-highlight">多任务批量处理</span>和<span class="value-highlight">知识库集成</span>。
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2: 新建飞书多维表格 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">新建飞书多维表格</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">字段设置:</strong><br>
+                                            依次设置字段名称:<br>
+                                            • <span class="config-field">re_id</span>(公式)<br>
+                                            • <span class="config-field">生成状态</span>(单选)<br>
+                                            • <span class="config-field">文章主题</span>(文本)<br>
+                                            • <span class="config-field">文章风格</span>(单选)<br>
+                                            • <span class="config-field">文章内容</span>(文本)<br>
+                                            • <span class="config-field">文章评分</span>(文本)<br>
+                                            • <span class="config-field">图片url</span>(文本)<br>
+                                            • <span class="config-field">参考文章url</span>(文本)<br>
+                                            • <span class="config-field">写作时间</span>(文本)
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step1/2.新建飞书多维表格.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: 添加应用与输入主题 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">添加应用与输入主题</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">操作步骤:</strong><br>
+                                            1. 给多维表格<span class="action-keyword">添加</span>文档应用<br>
+                                            2. 在第一行<span class="action-keyword">输出</span>自己想要写作的<span class="config-field">文章主题</span><br>
+                                            3. <span class="config-field">生成状态</span><span class="action-keyword">设置</span>成<span class="value-highlight">"未生成"</span><br>
+                                            4. 敲定一个<span class="config-field">文章风格</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step1/3.添加应用与输入主题.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: 添加N8N节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">添加N8N节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">节点配置:</strong><br>
+                                            返回n8n,依次<span class="action-keyword">添加</span>:<br>
+                                            • <span class="node-tag">飞书读取记录节点</span><br>
+                                            • <span class="node-tag">拆分节点</span><br>
+                                            • <span class="node-tag">循环节点</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step1/4.添加N8N节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5: 飞书节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">飞书节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">配置说明:</strong><br>
+                                            • <span class="action-keyword">复制</span>Token与ID<br>
+                                            • 请求体json的书写:构建查询<span class="config-field">字段名称</span><span class="value-highlight">"生成状态"</span>为<span class="value-highlight">"未生成"</span>的记录<br>
+                                            • <span class="action-keyword">执行节点</span>
+                                        </p>
+                                        <div class="code-block">
+                                            <pre>{
+  "filter": {
+    "conjunction": "and",
+    "conditions": [
+      {
+        "<span class="code-emphasis">field_name</span>": "<span class="code-emphasis">生成状态</span>",
+        "<span class="code-emphasis">operator</span>": "is",
+        "<span class="code-emphasis">value</span>": ["<span class="code-emphasis">未生成</span>"]
+      }
+    ]
+  }
+}</pre>
+                                        </div>
+                                        <div class="step-image-container" data-images='["images/step1/5.飞书节点设置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤6: 拆分节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">拆分节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置说明:</strong><br>
+                                            • <span class="config-field">Fields To Split Out</span>处<span class="action-keyword">填写</span><span class="value-highlight">data.items</span><br>
+                                            • 其余<span class="action-keyword">保持不变</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step1/6.拆分节点设置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤7: 循环节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">循环节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">配置说明:</strong><br>
+                                            无需修改,保持默认配置即可<br>
+                                            执行节点验证配置
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step1/7.循环节点设置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 三、案例实现步骤 (二)LLM+searchAPI+拆分节点 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)LLM+searchAPI+拆分节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section5', 0)">
+                                        <div class="step-button-number">8</div>
+                                        <div class="step-button-title">节点作用说明</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 1)">
+                                        <div class="step-button-number">9</div>
+                                        <div class="step-button-title">安装SearchAPI节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 2)">
+                                        <div class="step-button-number">10</div>
+                                        <div class="step-button-title">添加节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 3)">
+                                        <div class="step-button-number">11</div>
+                                        <div class="step-button-title">LLM节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 4)">
+                                        <div class="step-button-number">12</div>
+                                        <div class="step-button-title">SearchAPI设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 5)">
+                                        <div class="step-button-number">13</div>
+                                        <div class="step-button-title">拆分节点设置</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤8: 节点作用说明 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">节点作用说明</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用:</strong><br>
+                                            提取关键词并根据关键词搜索网页,然后将搜索到的url分开成单个item
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤9: 安装SearchAPI节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">安装SearchAPI节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">安装步骤:</strong><br>
+                                            在<span class="action-keyword">添加节点</span>处<span class="action-keyword">搜索</span><span class="node-tag">searchapi</span>,<span class="action-keyword">点击</span>installed node,这是官方出的社区节点
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step2/9.安装SearchAPI节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤10: 添加节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">添加节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">节点配置:</strong><br>
+                                            在循环的loop后方依次<span class="action-keyword">添加</span>:<br>
+                                            • <span class="node-tag">LLM节点</span><br>
+                                            • <span class="node-tag">searchAPI节点</span><br>
+                                            • <span class="node-tag">拆分节点</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step2/10.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤11: LLM节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">LLM节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置说明:</strong><br>
+                                            • 书写根据<span class="config-field">主题</span>提取<span class="value-highlight">关键词</span>的提示词<br>
+                                            • 可以用前面几节课做的工作流,也可以直接用<span class="value-highlight">Prompt Optimizer</span><br>
+                                            • <span class="action-keyword">粘贴</span>提示词并<span class="action-keyword">拖拽</span><span class="node-tag">飞书节点</span>查询到的<span class="config-field">主题变量</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step2/11.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤12: SearchAPI设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">SearchAPI设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">配置说明:</strong><br>
+                                            • <span class="action-keyword">登录</span>官网<span class="action-keyword">获取</span>APIkeys配置账户<br>
+                                            • <span class="config-field">query</span>处:<span class="action-keyword">拖拽</span><span class="node-tag">LLM节点</span>的输出变量<br>
+                                            • <span class="config-field">location settings</span>处,<span class="action-keyword">选择</span><span class="value-highlight">China</span><br>
+                                            • <span class="config-field">Language Settings</span>处,<span class="action-keyword">选择</span><span class="value-highlight">Chinese (Simplified)</span><br>
+                                            • <span class="config-field">time filters</span>处,<span class="action-keyword">选择</span><span class="value-highlight">Last week</span><br>
+                                            • <span class="config-field">Pagination</span>处,<span class="action-keyword">输入</span><span class="value-highlight">5</span><br>
+                                            • <span class="action-keyword">执行节点</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step2/12.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤13: 拆分节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">拆分节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">配置说明:</strong><br>
+                                            • <span class="config-field">Fields To Split Out</span>处<span class="action-keyword">输入</span><span class="value-highlight">organic_results</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step2/13.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 三、案例实现步骤 (三)循环节点+http请求节点 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(三)循环节点+http请求节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section6', 0)">
+                                        <div class="step-button-number">14</div>
+                                        <div class="step-button-title">节点作用说明</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 1)">
+                                        <div class="step-button-number">15</div>
+                                        <div class="step-button-title">添加节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 2)">
+                                        <div class="step-button-number">16</div>
+                                        <div class="step-button-title">HTTP请求节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 3)">
+                                        <div class="step-button-number">17</div>
+                                        <div class="step-button-title">JSON请求体配置</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤14: 节点作用说明 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">节点作用说明</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用:</strong><br>
+                                            循环获取网页的内容信息
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤15: 添加节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">添加节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">节点配置:</strong><br>
+                                            依次<span class="action-keyword">添加</span>:<br>
+                                            • <span class="node-tag">循环节点</span><br>
+                                            • <span class="node-tag">HTTP请求节点</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step3/15.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤16: HTTP请求节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">HTTP请求节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">配置说明:</strong><br>
+                                            • <span class="action-keyword">使用</span>exa.ai的<span class="value-highlight">http请求功能</span><br>
+                                            • 根据exa.ai的api文档<span class="action-keyword">查看</span>curl,<span class="action-keyword">配置</span><span class="node-tag">HTTP请求节点</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step3/16.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤17: JSON请求体配置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">JSON请求体配置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置说明:</strong><br>
+                                            <span class="config-field">json请求体</span>配置示例,其中{{ $json.link }}为<span class="node-tag">循环节点</span>中的<span class="config-field">url变量</span>
+                                        </p>
+                                        <div class="code-block">
+                                            <pre>{
+  "urls": [
+    "{{ $json.link }}"
+  ],
+  "text": true,
+  "context": true
+}</pre>
+                                        </div>
+                                        <div class="step-image-container" data-images='["images/step3/17.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 三、案例实现步骤 (四)Gemini节点+Aggregate节点 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(四)Gemini节点+Aggregate节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section7', 0)">
+                                        <div class="step-button-number">18</div>
+                                        <div class="step-button-title">节点作用说明</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 1)">
+                                        <div class="step-button-number">19</div>
+                                        <div class="step-button-title">Gemini节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 2)">
+                                        <div class="step-button-number">20</div>
+                                        <div class="step-button-title">模型与提示词配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 3)">
+                                        <div class="step-button-number">21</div>
+                                        <div class="step-button-title">Aggregate节点设置</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤18: 节点作用说明 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">节点作用说明</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用:</strong><br>
+                                            使用谷歌<span class="node-tag">Gemini</span>清除提取的网页内容,然后使用<span class="node-tag">aggregate</span>将内容聚合在一起,供后续使用
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤19: Gemini节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">Gemini节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">配置说明:</strong><br>
+                                            • <span class="action-keyword">设置</span><span class="node-tag">gemini节点</span><br>
+                                            • <span class="config-field">operation</span>处<span class="action-keyword">选择</span><span class="value-highlight">message a model</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step4/19.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤20: 模型与提示词配置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">模型与提示词配置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">配置说明:</strong><br>
+                                            • <span class="config-field">model</span><span class="action-keyword">选择</span><span class="value-highlight">2.5flash</span><br>
+                                            • <span class="config-field">prompt</span><span class="action-keyword">选择</span>上一个节点的<span class="config-field">context变量</span><br>
+                                            • <span class="action-keyword">填写</span><span class="config-field">系统提示词</span>,需求是清除不必要的url、评论和与主题不相关的信息
+                                        </p>
+                                        <div class="code-block">
+                                            <pre>1. 你的任务是摘取用户输入中,主题相关的正文
+2. 去除非必要信息,如url、评论、与主题不相关的信息等
+主题:{{ $('关键词提取').item.json.text }}</pre>
+                                        </div>
+                                        <div class="step-image-container" data-images='["images/step4/20.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤21: Aggregate节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">Aggregate节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置说明:</strong><br>
+                                            • <span class="config-field">Input Field Name</span>处<span class="action-keyword">输入</span><span class="value-highlight">content</span><br>
+                                            • <span class="action-keyword">执行节点</span><span class="action-keyword">验证</span>配置
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step4/21.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 三、案例实现步骤 (五)AI Agent节点+code节点 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(五)AI Agent节点+code节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section8', 0)">
+                                        <div class="step-button-number">22</div>
+                                        <div class="step-button-title">节点作用说明</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 1)">
+                                        <div class="step-button-number">23</div>
+                                        <div class="step-button-title">节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 2)">
+                                        <div class="step-button-number">24</div>
+                                        <div class="step-button-title">AI Agent节点配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 3)">
+                                        <div class="step-button-number">25</div>
+                                        <div class="step-button-title">Code节点配置(清除格式)</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 4)">
+                                        <div class="step-button-number">26</div>
+                                        <div class="step-button-title">Code节点配置(格式转换)</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤22: 节点作用说明 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">节点作用说明</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用:</strong><br>
+                                            生成文本后使用<span class="node-tag">code节点</span>处理格式
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤23: 节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">操作：</strong><br>
+                                            依次新建一个agent节点以及两个code节点
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step5/23.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤24: AI Agent节点配置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">AI Agent节点配置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink"><span class="config-field">System Message</span>配置:</strong><br>
+                                            详细的提示词包含Role、Profile、Skills、Rules、Workflows等部分,主要用于创建10万+阅读量的微信公众号爆文。
+                                        </p>
+                                        <div class="highlight-box">
+                                            <strong>用户提示词示例:</strong><br>
+                                            请根据{{ $('Bitable:table:record:search bitable1').item.json.data.items[0].fields['文章风格'] }}的写作风格,基于提供{{ $json.content[0].parts[0] }}的素材进行爆款微信公众号文章的创作,目标是撰写10万+的爆文。
+                                        </div>
+                                        <p style="margin-top: 15px; color: var(--neon-cyan);">
+                                            注意:详细的系统提示词包含了专业的文章创作要求,包括格式、字数、风格等控制。完整提示词请参考课程文档。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step5/24.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤25: Code节点配置(清除格式) -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">Code节点配置(清除格式)</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">配置说明:</strong><br>
+                                            去除上一个节点的会导致输出有问题的内容,并将标题与文本分开输出
+                                        </p>
+                                        <div class="code-block">
+                                            <pre>// 获取上一个节点的 output
+let raw = $json.output;
+
+// 去掉 Markdown 代码块标记
+raw = raw.replace(/```json\n?/g, '').replace(/```$/, '');
+
+// 解析 JSON
+const obj = JSON.parse(raw);
+
+// 返回所需字段
+return [
+  {
+    json: {
+      title: obj.title,
+      body: obj.body
+    }
+  }
+];</pre>
+                                        </div>
+                                        <div class="step-image-container" data-images='["images/step5/25.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤26: Code节点配置(格式转换) -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">Code节点配置(格式转换)</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置说明:</strong><br>
+                                            清理文本中的控制字符和特殊字符,确保输出格式正确
+                                        </p>
+                                        <div class="code-block">
+                                            <pre>// -------- helpers --------
+function cleanText(text) {
+  if (!text) return '';
+
+  // 清除控制字符
+  let cleanedText = String(text)
+    .replace(/\u0000|\u2028|\u2029/g, '')  // 去除控制字符
+    .replace(/\s+/g, ' ')                // 将多个空格替换成一个空格
+    .replace(/"/g, '"')             // 替换所有双引号为 HTML 实体
+    .trim();                            // 去除首尾空格
+
+  return cleanedText;
+}
+
+// 获取上一个节点的所有输入数据
+const inputData = $input.all();  // 获取所有输入项
+
+// 检查输入数据是否正确
+if (!inputData || !inputData.length) {
+  return [{ json: { error: '没有找到输入数据' } }];
+}
+
+// 从输入数据中提取 title 和 body 字段
+const title = inputData[0]?.json?.title || '';
+const body = inputData[0]?.json?.body || '';
+
+// 清理文本
+const cleanedTitle = cleanText(title);
+const cleanedBody = cleanText(body);
+
+// 返回清理后的内容
+return [
+  {
+    json: {
+      title: cleanedTitle,
+      body: cleanedBody
+    }
+  }
+];</pre>
+                                        </div>
+                                        <div class="step-image-container" data-images='["images/step5/26.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 三、案例实现步骤 (六)searchAPI节点+set节点+飞书导出节点 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(六)searchAPI节点+set节点+飞书导出节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section9', 0)">
+                                        <div class="step-button-number">27</div>
+                                        <div class="step-button-title">节点作用说明</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 1)">
+                                        <div class="step-button-number">28</div>
+                                        <div class="step-button-title">节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 2)">
+                                        <div class="step-button-number">29</div>
+                                        <div class="step-button-title">Search节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 3)">
+                                        <div class="step-button-number">30</div>
+                                        <div class="step-button-title">Set节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 4)">
+                                        <div class="step-button-number">31</div>
+                                        <div class="step-button-title">飞书节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 5)">
+                                        <div class="step-button-number">32</div>
+                                        <div class="step-button-title">飞书导出验证</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 6)">
+                                        <div class="step-button-number">33</div>
+                                        <div class="step-button-title">节点总览</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤27: 节点作用说明 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">节点作用说明</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用:</strong><br>
+                                            搜索图片,使用<span class="node-tag">set节点</span>快速编辑变量并使用飞书导出
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤28: 节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">操作：</strong><br>
+                                            依次新建search、set以及飞书节点
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step6/28.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤29: Search节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">Search节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">配置说明:</strong><br>
+                                            • <span class="config-field">Resource</span>处<span class="action-keyword">选择</span><span class="value-highlight">Google images</span><br>
+                                            • <span class="config-field">Operation Name</span>处<span class="action-keyword">选择</span><span class="value-highlight">search</span><br>
+                                            • <span class="config-field">Query</span>处<span class="action-keyword">选择</span>第一个<span class="node-tag">循环</span>的变量<br>
+                                            • <span class="config-field">country</span>处<span class="action-keyword">选择</span><span class="value-highlight">china</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step6/29.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤30: Set节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">Set节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">配置说明:</strong><br>
+                                            • 给<span class="node-tag">图片搜索节点</span>的<span class="config-field">original link</span><span class="action-keyword">添加</span>名为<span class="config-field">图片</span>的<span class="config-field">变量</span>,数量随自己喜好而定<br>
+                                            • 给<span class="node-tag">聚合节点</span>的搜索内容<span class="action-keyword">添加</span>名称为<span class="value-highlight">url</span>的<span class="config-field">变量</span>
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/step6/30.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤31: 飞书节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">飞书节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置说明:</strong><br>
+                                            • <span class="config-field">记录id</span><span class="action-keyword">填写</span><span class="node-tag">循环节点</span>中的<span class="config-field">re_id</span><br>
+                                            • <span class="config-field">请求体json</span>参考如下
+                                        </p>
+                                        <div class="code-block">
+                                            <pre>{
+  "fields": {
+    "生成状态": "已生成",
+    "文章标题": "{{ $('格式转换').item.json.title }}",
+    "文章内容": "{{ $('格式转换').item.json.body }}",
+    "图片url1": "{{ $json['图片1'] }}",
+    "图片url2": "{{ $json['图片2'] }}",
+    "图片url3": "{{ $json['图片3'] }}",
+    "图片url4": "{{ $json['图片4'] }}",
+    "图片url5": "{{ $json['图片5'] }}",
+    "写作时间": "{{ new Date().toLocaleString() }}"
+  }
+}</pre>
+                                        </div>
+                                        <div class="step-image-container" data-images='["images/step6/31.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤32: 飞书导出验证 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">飞书导出验证</h4>
+                                        <div class="step-image-container" data-images='["images/step6/32.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤33: 节点总览 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">节点总览</h4>
+                                        <div class="step-image-container" data-images='["images/step6/33.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 右侧章节导航 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、案例实战
+                    </button>
+
+                    <!-- Section 2-3: 主标题 + 子项 -->
+                    <button class="nav-item" onclick="courseScrollToSection(2)">
+                        二、案例分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        (一)工作流逻辑分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        (二)工作流技术选型
+                    </button>
+
+                    <!-- Section 4-9: 主标题 + 子项 -->
+                    <button class="nav-item" onclick="courseScrollToSection(4)">
+                        三、案例实现步骤
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        (一)飞书节点+拆分+循环
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        (二)LLM+searchAPI+拆分
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        (三)循环+http请求
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        (四)Gemini+Aggregate
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">
+                        (五)AI Agent+code
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">
+                        (六)searchAPI+set+飞书
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课后作业</h1>
+                    <p class="subtitle">动手实践,巩固知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">📝 课后作业</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px;">
+                                    请按照课程所学内容,完成以下作业:
+                                </p>
+                                <ol style="margin-top: 20px;">
+                                    <li>还原本节课工作流,实现文案自动化创作功能</li>
+                                    <li>尝试使用不同的写作风格和主题进行测试</li>
+                                    <li>提交工作流截图和生成的文章样例</li>
+                                    <li>思考:如何优化工作流以提升文章质量?</li>
+                                </ol>
+
+                                <!-- 课程源文件下载区域 -->
+                                <div class="download-section">
+                                    <h3 style="color: var(--neon-cyan); font-size: 1.5rem; margin-bottom: 20px;">
+                                        📦 本节课课程源文件
+                                    </h3>
+                                    <p style="color: var(--cyber-dark-200); margin-bottom: 20px;">
+                                        点击下方按钮下载本节课的N8N工作流JSON文件，可直接导入到N8N中使用
+                                    </p>
+                                    <a href="案例三：自动化创作文章并配图.json"
+                                       download="N8N文案自动化工作流.json"
+                                       class="download-button">
+                                        <i class="fas fa-download"></i>
+                                        下载工作流文件
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

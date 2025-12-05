@@ -1,0 +1,675 @@
+{
+  "name": "案例三：自动化创作文章并配图",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        -352
+      ],
+      "id": "f6ed6f85-92b2-44c9-a9d6-2ac7cb4635fb",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "q": "={{ $('关键词提取').item.json.text }}",
+        "locationSettings": {
+          "gl": "cn"
+        },
+        "languageSettings": {
+          "hl": "zh-cn"
+        },
+        "searchOptions": {},
+        "timeFilters": {
+          "time_period": "last_week"
+        },
+        "pagination": {
+          "num": "5"
+        },
+        "advancedOptions": {
+          "kgmid": ""
+        },
+        "requestOptions": {}
+      },
+      "type": "@searchapi/n8n-nodes-searchapi.searchApi",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -352
+      ],
+      "id": "7ae221fb-1b5f-419a-a886-5217ec04f907",
+      "name": "Search google",
+      "credentials": {
+        "searchApi": {
+          "id": "SEn4EO6dD3JQGeJT",
+          "name": "SearchApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "bitable",
+        "operation": "bitable:table:record:search",
+        "app_toke": "Qgpmb0MgRamCzps1S3TcGfBEnCs",
+        "table_id": "tblbTu0mh1aWnFUh",
+        "body": "{\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"生成状态\",\n        \"operator\": \"is\",\n        \"value\": [\"未生成\"]\n      }\n    ]\n  }\n}"
+      },
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        -352
+      ],
+      "id": "a568be1f-0253-445a-89cf-470a00a28b2b",
+      "name": "Bitable:table:record:search bitable1",
+      "credentials": {
+        "feishuCredentialsApi": {
+          "id": "N7bd8fmpdWtBa3SZ",
+          "name": "测试测试"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        624,
+        -128
+      ],
+      "id": "8f53be54-86c1-46b3-9aee-d02ad59af31e",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "eolMXEAvpyITESem",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=# Role: 关键词提取专家\n\n## Profile\n- language: 中文\n- description: 专门从文章标题中提取最相关关键词的AI专家，通过语义分析和关键词识别技术，确保输出关键词准确代表文章主题内容，并优化用于搜索引擎搜索。\n- background: 基于自然语言处理和文本分析技术开发，专注于信息检索和关键词优化领域。\n- personality: 精确、高效、细致、可靠\n- expertise: 关键词提取、文本语义分析、搜索引擎优化、信息检索\n- target_audience: 研究人员、内容创作者、学生、编辑人员、任何需要快速提取文章关键词的用户\n\n## Skills\n\n1. 核心关键词提取技能\n   - 语义分析: 深入理解文章标题的语义结构和主题焦点\n   - 关键词识别: 准确识别名词、动词和关键短语，代表核心内容\n   - 相关性评估: 评估每个关键词与文章主题的相关性，确保高度匹配\n   - 格式优化: 输出逗号分隔的关键词，无多余符号或文字\n\n2. 辅助支持技能\n   - 语言处理: 高效处理中文文本，适应多种语言风格\n   - 搜索适配: 考虑谷歌搜索习惯，优化关键词选择\n   - 上下文推断: 在必要时基于标题推断隐含主题\n   - 质量控制: 自动检查并避免无关或重复关键词\n\n## Rules\n\n1. 基本原则：\n   - 准确性优先: 关键词必须精确反映文章标题的核心主题，避免误导\n   - 高度相关性: 只提取与主题直接相关的关键词，排除次要信息\n   - 输出简洁性: 确保输出仅包含关键词，无额外解释或符号\n   - 实用性导向: 关键词适用于谷歌浏览器搜索，提高搜索效率\n\n2. 行为准则：\n   - 标题分析: 系统分析输入的文章标题，识别关键元素和结构\n   - 术语提取: 基于语义权重提取最相关的术语，优先名词和核心短语\n   - 验证过程: 对每个关键词进行相关性验证，确保代表主题\n   - 格式化处理: 严格用逗号分隔关键词，并去除任何非关键词内容\n\n3. 限制条件：\n   - 不添加额外信息: 输出仅限于关键词列表，不提供解释或背景\n   - 不修改原标题: 基于原始标题提取，不添加、删除或改变内容\n   - 不处理非文本输入: 仅接受文本格式的文章标题，拒绝其他类型输入\n   - 不保证绝对唯一性: 关键词可能略有重叠，但力求简洁和代表性\n\n## Workflows\n- 目标: 从用户提供的文章标题中提取最相关的关键词，用于谷歌浏览器搜索，确保关键词准确代表主题内容。\n- 步骤 1: 接收用户输入的文章标题，并进行初步语义解析。\n- 步骤 2: 识别标题中的关键术语，评估其与主题的相关性和代表性。\n- 步骤 3: 选择最核心的关键词，格式化输出为逗号分隔的字符串。\n- 预期结果: 输出一个简洁、准确的关键词列表，可直接用于搜索引擎查询，提升信息检索效率。\n\n## Initialization\n作为关键词提取专家，你必须遵守上述Rules，按照Workflows执行任务。\n\n文章标题：{{ $json.data.items[0].fields['文章主题'][0].text }}\n\n",
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        544,
+        -352
+      ],
+      "id": "aa45eb86-e857-4aed-95dc-4d9208a74e8b",
+      "name": "关键词提取"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "organic_results",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1120,
+        -352
+      ],
+      "id": "ea5709a5-8931-4222-971f-340d559d6d87",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1344,
+        -352
+      ],
+      "id": "5e4894c7-c3b9-47dd-9eb2-e4daee34658a",
+      "name": "Loop Over Items1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.exa.ai/contents",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-api-key",
+              "value": "541c99a2-51b7-4eae-8129-2b6f35e74d0e"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"urls\": [\n    \"{{ $json.link }}\"\n  ],\n  \"text\": true,\n  \"context\": true\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1568,
+        -352
+      ],
+      "id": "0249296a-97b7-480a-a7cf-6fca97c38faa",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "={{ $json.context }}"
+            }
+          ]
+        },
+        "options": {
+          "systemMessage": "=1. 你的任务是摘取用户输入中，主题相关的正文\n2. 去除非必要信息，如url、评论、与主题不相关的信息等\n主题：{{ $('关键词提取').item.json.text }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        1792,
+        -256
+      ],
+      "id": "eee18119-958c-4b9d-9a6d-d5d5a703b873",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WCLvPMRKaI6qqVVF",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "content"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1568,
+        -608
+      ],
+      "id": "b25fe575-b0b1-4eed-a4c0-8f91f0d007da",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=文章主题：{{ $('Bitable:table:record:search bitable1').item.json.data.items[0].fields['文章主题'][0].text }}\n写作风格：{{ $('Bitable:table:record:search bitable1').item.json.data.items[0].fields['文章风格'] }}\n文章素材：{{ JSON.stringify($json.content[0].parts[0]) }}",
+        "options": {
+          "systemMessage": "=请根据{{ $('Bitable:table:record:search bitable1').item.json.data.items[0].fields['文章风格'] }}的写作风格,基于提供{{ $json.content[0].parts[0] }}的素材进行爆款微信公众号文章的创作,目标是撰写10万+的爆文。\n\n# Role: 微信公众号爆文创作专家\n\n## Profile\n- language: 中文\n- description: 一个专业的AI助手，专门基于用户提供的写作风格和素材，创作高阅读量的微信公众号文章。目标是通过严谨的内容规划和格式控制，生成10万+阅读量的爆文，确保文章真实可信、结构清晰、语言吸引人。\n- background: 设计用于辅助内容创作者和营销人员快速生成优质文章，提升公众号影响力和用户 engagement，基于大量数据训练，熟悉爆文写作技巧和平台规范。\n- personality: 严谨、创新、高效、专注、专业\n- expertise: 微信公众号文章创作、内容优化、爆文策略、Markdown格式化、真实内容提炼\n- target_audience: 公众号运营者、内容营销人员、自媒体创作者、企业品牌推广人员\n\n## Skills\n\n1. 核心内容创作技能\n   - Markdown格式化: 严格遵循Markdown规范输出文章，包括标题、段落和列表，确保结构清晰易读。\n   - 字数精准控制: 自动监控文章字数，确保在1000-1300字范围内，避免过长或过短。\n   - 真实内容提炼: 基于提供的素材提取核心信息，杜绝虚构，增强文章可信度和传播力。\n   - 结构优化设计: 使用章节切分和多分段方式，提升文章可读性和逻辑性，符合爆文写作习惯。\n\n2. 辅助语言处理技能\n   - 短句简练表达: 多用简短句子，语言精炼，避免冗长，提高读者阅读流畅度。\n   - 信息筛选整合: 自动忽略素材中的不相关信息，聚焦主体内容，确保文章主题突出。\n   - 标题创意生成: 参考素材内容创建吸引人的标题，提升点击率和分享率。\n   - JSON结构维护: 确保输出内容为可解析的JSON格式，避免语法错误，便于自动化处理。\n\n## Rules\n\n1. 基本原则：\n   - 格式严格遵守: 输出必须为Markdown格式，仅包含标题和正文，无额外元素如作者信息。\n   - 内容真实可靠: 严格基于提供素材创作，不添加虚构内容，确保信息准确性和权威性。\n   - 字数精确执行: 文章正文字数必须控制在1000-1300字之间，通过分段和内容调整实现。\n   - 语言风格一致: 遵循提供的写作风格，使用短句和分段规则，保持整体语言简练生动。\n\n2. 行为准则：\n   - 输出简洁高效: 不包含任何创作说明或解释，直接输出文章标题和正文内容。\n   - 结构清晰明了: 多用章节标题和段落划分，确保文章易于扫描和理解。\n   - 聚焦核心主题: 在创作过程中始终围绕素材主体，忽略无关细节，提升内容相关性。\n   - 错误预防处理: 在输出前检查JSON结构，确保无解析错误，如键值对格式正确。\n\n3. 限制条件：\n   - 内容来源限制: 仅使用提供的素材作为创作基础，不引入外部信息或个人观点。\n   - 输出格式限制: 输出必须为纯文本JSON结构，键为\"title\"和\"body\"，值对应文章标题和正文。\n   - 字数硬性限制: 严格禁止超出1000-1300字范围，通过内容裁剪或扩展自动调整。\n   - 风格适配限制: 必须符合用户指定的写作风格，包括句子长度和分段方式，不随意变更。\n\n## Workflows\n- 目标: 创作一篇10万+阅读量的微信公众号爆文，基于提供的写作风格和素材，确保内容真实、格式规范。\n- 步骤 1: 分析提供的写作风格和素材内容，识别核心主题和关键信息，忽略不相关部分。\n- 步骤 2: 规划文章结构，设计标题和章节划分，使用Markdown格式，确保字数预估在目标范围内。\n- 步骤 3: 撰写正文内容，采用短句和多分段方式，基于素材真实创作，并检查JSON结构可解析性。\n- 预期结果: 输出一篇结构清晰、内容真实、语言简练的Markdown格式文章，字数1000-1300字，标题和正文以JSON键值对形式呈现。\n\n## Initialization\n作为微信公众号爆文创作专家，你必须遵守上述Rules，按照Workflows执行任务。\n\n## 输出示例:\n\"title\":\"星巴克被收购\"\n\"body\":\"近日,星巴克传出被收购,你有多久没有喝星巴克了...\""
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        1792,
+        -704
+      ],
+      "id": "b757ae3b-3565-48e4-859f-962a77d9be64",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        -480
+      ],
+      "id": "f2d1b385-e20b-4708-8cdc-b7e53d21bfce",
+      "name": "DeepSeek Chat Model1",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "eolMXEAvpyITESem",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "google_images",
+        "q": "={{ $('Loop Over Items').item.json.fields['文章主题'][0].text }}",
+        "locationLanguageSettings": {
+          "gl": "cn"
+        },
+        "searchFilters": {},
+        "imageOptions": {},
+        "technicalSettings": {},
+        "requestOptions": {}
+      },
+      "type": "@searchapi/n8n-nodes-searchapi.searchApi",
+      "typeVersion": 1,
+      "position": [
+        2592,
+        -608
+      ],
+      "id": "ca2024b9-6a9e-4e68-9cf0-ec1f13ab88e7",
+      "name": "Search google_images",
+      "credentials": {
+        "searchApi": {
+          "id": "SEn4EO6dD3JQGeJT",
+          "name": "SearchApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "bitable",
+        "operation": "bitable:table:record:update",
+        "app_toke": "Qgpmb0MgRamCzps1S3TcGfBEnCs",
+        "table_id": "tblbTu0mh1aWnFUh",
+        "record_id": "={{ $('文章循环').item.json.fields.re_id.value[0].text }}",
+        "body": "={\n  \"fields\": {\n    \"生成状态\": \"已生成\",\n    \"文章标题\": \"{{ $('格式转换').item.json.title }}\",\n    \"文章内容\": \"{{ $('格式转换').item.json.body }}\",\n    \"图片url\": \"{{ $json['图片1'] }},{{ $json['图片2'] }},{{ $json['图片3'] }},{{ $json['图片4'] }},{{ $json['图片5'] }}\",\n    \"参考文章url\": \"{{ $json.url }}\",\n    \"写作时间\": \"{{ new Date().toLocaleString() }}\"\n  }\n}\n"
+      },
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        3040,
+        -208
+      ],
+      "id": "7cc784dd-652d-4044-980c-53c1146db93e",
+      "name": "Bitable:table:record:update bitable",
+      "credentials": {
+        "feishuCredentialsApi": {
+          "id": "N7bd8fmpdWtBa3SZ",
+          "name": "测试测试"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        320,
+        -352
+      ],
+      "id": "aea3a444-f348-4bb3-ae0d-592ad662c3f3",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data.items",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -352
+      ],
+      "id": "527a56fb-22d9-4f10-9ad6-6f165d7b40fe",
+      "name": "文章循环"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "message:send",
+        "receive_id_type": "chat_id",
+        "receive_id": "oc_2a98cca97d58b8737ed03c67242e1afc",
+        "content": "{\"text\":\"内容已生成完成，前往多维表格查看；多维表格链接：https://za9wufpqv9.feishu.cn/base/Qgpmb0MgRamCzps1S3TcGfBEnCs?table=tblbTu0mh1aWnFUh&view=vewjqZFsxR\"}"
+      },
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        608,
+        -656
+      ],
+      "id": "60f909b2-4c85-40ae-a39b-e76e6707a994",
+      "name": "Message:send message",
+      "credentials": {
+        "feishuCredentialsApi": {
+          "id": "tsy9PaN3QF57FyzS",
+          "name": "机器人"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "46d60294-97da-43e9-af3f-42fc3a20a53e",
+              "name": "图片1",
+              "value": "={{ $json.images[0].original.link }}",
+              "type": "string"
+            },
+            {
+              "id": "025a1a0c-dbdd-4ec4-b9de-2611bd78fedf",
+              "name": "图片2",
+              "value": "={{ $json.images[1].original.link }}",
+              "type": "string"
+            },
+            {
+              "id": "ff853165-60b3-48e0-a01e-fed0dda60fd5",
+              "name": "图片3",
+              "value": "={{ $json.images[2].original.link }}",
+              "type": "string"
+            },
+            {
+              "id": "9fc1bfe7-2744-4e91-b272-eaf739181e01",
+              "name": "图片4",
+              "value": "={{ $json.images[3].original.link }}",
+              "type": "string"
+            },
+            {
+              "id": "bc1d51ea-698b-4769-ba6d-6f91287ebba4",
+              "name": "图片5",
+              "value": "={{ $json.images[4].original.link }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2816,
+        -608
+      ],
+      "id": "4c184529-dccf-4217-8bda-01773826a91e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "// -------- helpers --------\nfunction cleanText(text) {\n  if (!text) return '';\n\n  // 清除控制字符\n  let cleanedText = String(text)\n    .replace(/\\u0000|\\u2028|\\u2029/g, '')  // 去除控制字符\n    .replace(/\\s+/g, ' ')                // 将多个空格替换成一个空格\n    .replace(/\"/g, '“')             // 替换所有双引号为 HTML 实体 &quot;\n    .trim();                            // 去除首尾空格\n\n  return cleanedText;\n}\n\n// 获取上一个节点的所有输入数据\nconst inputData = $input.all();  // 获取所有输入项\n\n// 检查输入数据是否正确\nif (!inputData || !inputData.length) {\n  return [{ json: { error: '没有找到输入数据' } }];\n}\n\n// 假设我们从输入数据中提取 title 和 body 字段\nconst title = inputData[0]?.json?.title || '';  // 获取标题\nconst body = inputData[0]?.json?.body || '';    // 获取正文\n\n// 清理文本\nconst cleanedTitle = cleanText(title);\nconst cleanedBody = cleanText(body);\n\n// 返回清理后的内容\nreturn [\n  {\n    json: {\n      title: cleanedTitle,  // 清理后的标题\n      body: cleanedBody    // 清理后的正文\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2368,
+        -608
+      ],
+      "id": "569216ae-83f6-46f1-8d6a-9bbf0f0890b1",
+      "name": "格式转换"
+    },
+    {
+      "parameters": {
+        "jsCode": "// 获取上一个节点的 output\nlet raw = $json.output;\n\n// 去掉 Markdown 代码块标记\nraw = raw.replace(/```json\\n?/g, '').replace(/```$/, '');\n\n// 解析 JSON\nconst obj = JSON.parse(raw);\n\n// 返回所需字段\nreturn [\n  {\n    json: {\n      title: obj.title,\n      body: obj.body\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        -608
+      ],
+      "id": "29a637f2-9452-433f-801a-b857cb272714",
+      "name": "文章归类"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Bitable:table:record:search bitable1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bitable:table:record:search bitable1": {
+      "main": [
+        [
+          {
+            "node": "文章循环",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search google": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "关键词提取",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "关键词提取": {
+      "main": [
+        [
+          {
+            "node": "Search google",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "文章归类",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search google_images": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Message:send message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "关键词提取",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "文章循环": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Bitable:table:record:update bitable": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Bitable:table:record:update bitable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "格式转换": {
+      "main": [
+        [
+          {
+            "node": "Search google_images",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "文章归类": {
+      "main": [
+        [
+          {
+            "node": "格式转换",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ad53eb99-eaad-4891-983e-7233818ddb5b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2bffef4c1039f25669b24228a07cf4a2c2a97cc0fa0a49ab5160919210852fa8"
+  },
+  "id": "6I9NFVA3DzaDCNDz",
+  "tags": [
+    {
+      "updatedAt": "2025-11-11T07:23:46.281Z",
+      "createdAt": "2025-11-11T07:23:46.281Z",
+      "id": "t6KAAjU5BTNB7gcq",
+      "name": "案例"
+    }
+  ]
+}

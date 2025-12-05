@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9.N8N 还有这些隐藏神器？最后一课带你全解锁 | N8N自动化教学</title>
+
+    <!-- 外部CSS库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- 自定义CSS样式 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>9.N8N 还有这些隐藏神器？最后一课带你全解锁</h1>
+                    <p class="subtitle">MCP自动化生成 | 自定义节点开发 | 经验分享</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 板块一课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card" style="background: linear-gradient(135deg, rgba(10, 10, 10, 0.5) 0%, rgba(23, 23, 23, 0.4) 100%);">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">一、课程回顾</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">基础节点的认知</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">复杂节点的认知</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">基础与复杂工作流的制作</li>
+                            </ol>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">二、学习目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">自动化生成工作流的步骤以及注意要点</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解什么是自定义节点</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">后续的学习步骤与课程链接</li>
+                            </ol>
+
+                            <h3 class="neon-text-pink" style="margin-top: 35px; font-size: 1.5rem;">三、章节内容</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">使用MCP自动化生成工作流</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">自定义节点的开发与拓展</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">一些节点与经验分享</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程内容</h1>
+                    <p class="subtitle">MCP自动化 | 自定义节点 | 实践经验</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: MCP是什么 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔌 一、使用MCP自动化生成工作流</h2>
+
+                            <h3>（一）MCP是什么?</h3>
+                            <div class="content-card">
+                                <h4><strong class="neon-text-cyan">MCP概述</strong></h4>
+                                <ul style="margin-top: 15px;">
+                                    <li><strong>定义:</strong> 推出的一种开放标准,旨在统一大模型与外部数据源和工具之间的通信协议。</li>
+                                    <li style="margin-top: 20px;"><strong class="neon-text-purple">核心功能:</strong></li>
+                                    <li style="margin-left: 20px;">• 让大模型能像人一样"调用软件工具";</li>
+                                    <li style="margin-left: 20px;">• 让开发者可以轻松扩展模型的能力(如访问数据库、API、文件系统);</li>
+                                    <li style="margin-left: 20px;">• 让大模型能直接与自动化系统(如 N8N)交互,实现"AI 调度自动化"。</li>
+                                </ul>
+                            </div>
+
+                            <!-- MCP概念流程图 SVG -->
+                            <svg class="svg-diagram" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <filter id="glow">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                </defs>
+
+                                <!-- 大模型框 -->
+                                <rect x="50" y="100" width="180" height="100" rx="15" fill="rgba(244, 63, 94, 0.2)"
+                                      stroke="#f43f5e" stroke-width="2" filter="url(#glow)"/>
+                                <text x="140" y="140" text-anchor="middle" fill="#f43f5e" font-size="18" font-weight="bold">大模型</text>
+                                <text x="140" y="165" text-anchor="middle" fill="#d4d4d4" font-size="14">AI Model</text>
+
+                                <!-- MCP协议框 -->
+                                <rect x="310" y="100" width="180" height="100" rx="15" fill="rgba(168, 85, 247, 0.2)"
+                                      stroke="#a855f7" stroke-width="2" filter="url(#glow)"/>
+                                <text x="400" y="140" text-anchor="middle" fill="#a855f7" font-size="18" font-weight="bold">MCP协议</text>
+                                <text x="400" y="165" text-anchor="middle" fill="#d4d4d4" font-size="14">统一通信标准</text>
+
+                                <!-- N8N框 -->
+                                <rect x="570" y="100" width="180" height="100" rx="15" fill="rgba(6, 182, 212, 0.2)"
+                                      stroke="#06b6d4" stroke-width="2" filter="url(#glow)"/>
+                                <text x="660" y="140" text-anchor="middle" fill="#06b6d4" font-size="18" font-weight="bold">N8N</text>
+                                <text x="660" y="165" text-anchor="middle" fill="#d4d4d4" font-size="14">自动化工作流</text>
+
+                                <!-- 双向箭头1 -->
+                                <defs>
+                                    <marker id="arrowhead1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#f43f5e" filter="url(#glow)"/>
+                                    </marker>
+                                    <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#a855f7" filter="url(#glow)"/>
+                                    </marker>
+                                </defs>
+
+                                <line x1="230" y1="130" x2="310" y2="130" stroke="#f43f5e" stroke-width="2"
+                                      marker-end="url(#arrowhead1)" filter="url(#glow)"/>
+                                <line x1="310" y1="170" x2="230" y2="170" stroke="#f43f5e" stroke-width="2"
+                                      marker-end="url(#arrowhead1)" filter="url(#glow)"/>
+
+                                <!-- 双向箭头2 -->
+                                <line x1="490" y1="130" x2="570" y2="130" stroke="#a855f7" stroke-width="2"
+                                      marker-end="url(#arrowhead2)" filter="url(#glow)"/>
+                                <line x1="570" y1="170" x2="490" y2="170" stroke="#a855f7" stroke-width="2"
+                                      marker-end="url(#arrowhead2)" filter="url(#glow)"/>
+
+                                <!-- 标注 -->
+                                <text x="270" y="120" text-anchor="middle" fill="#06b6d4" font-size="12">调用</text>
+                                <text x="270" y="190" text-anchor="middle" fill="#06b6d4" font-size="12">响应</text>
+                                <text x="530" y="120" text-anchor="middle" fill="#06b6d4" font-size="12">控制</text>
+                                <text x="530" y="190" text-anchor="middle" fill="#06b6d4" font-size="12">执行</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: MCP应用场景 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）MCP 在 N8N 中的应用场景</h3>
+
+                            <!-- 5个应用场景图标卡片 -->
+                            <div class="grid" style="margin-top: 30px;">
+                                <div class="icon-card">
+                                    <i class="fas fa-magic neon-text-cyan"></i>
+                                    <h4 style="color: var(--neon-cyan);">智能生成工作流</h4>
+                                    <p style="margin-top: 15px; text-align: left; font-size: 1rem;">
+                                        通过 MCP,AI 模型可以直接调用 N8N 的接口自动创建节点与流程。
+                                    </p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-cogs neon-text-purple"></i>
+                                    <h4 style="color: var(--neon-purple);">动态任务执行</h4>
+                                    <p style="margin-top: 15px; text-align: left; font-size: 1rem;">
+                                        让 AI 根据实时指令动态修改节点参数(如更换 API、调整触发条件)。
+                                    </p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-exchange-alt neon-text-pink"></i>
+                                    <h4 style="color: var(--cyber-pink);">跨平台自动化</h4>
+                                    <p style="margin-top: 15px; text-align: left; font-size: 1rem;">
+                                        通过 MCP,N8N 不仅能与本地工具连接,还能与云端模型双向交互。
+                                    </p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-robot" style="color: var(--neon-yellow);"></i>
+                                    <h4 style="color: var(--neon-yellow);">AI 助理与工作流共生</h4>
+                                    <p style="margin-top: 15px; text-align: left; font-size: 1rem;">
+                                        例如,AI 助理在 MCP 框架下可以直接"生成、运行、修改" N8N 工作流。
+                                    </p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-comment-dots" style="color: #10b981;"></i>
+                                    <h4 style="color: #10b981;">自然语言创建工作流</h4>
+                                    <p style="margin-top: 15px; text-align: left; font-size: 1rem;">
+                                        "帮我创建一个工作流,每天早上抓取微博热搜前10并发到飞书群。" AI 就能直接用 MCP 调用 N8N API,自动构建出完整工作流。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: MCP工作流流程(左右分栏布局) -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）使用MCP自动生成工作流的流程</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0 40px 0;">接下来我们将介绍如何配置MCP服务来实现自动化生成工作流。</p>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧按钮栏 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showMCPStep(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">安装Node.js</div>
+                                    </button>
+                                    <button class="step-button" onclick="showMCPStep(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">应用本地安装</div>
+                                    </button>
+                                    <button class="step-button" onclick="showMCPStep(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">在trae中配置MCP</div>
+                                    </button>
+                                    <button class="step-button" onclick="showMCPStep(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">其他工具配置</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1：安装Node.js -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">步骤1：安装Node.js(20版本以上)</h4>
+                                        <p class="step-content-description">
+                                            首先需要安装Node.js运行环境,版本要求为20或以上。这是运行MCP服务的基础环境。
+                                        </p>
+                                        <div class="step-image-container" style="margin-top: 20px;">
+                                            <div class="step-image-box">
+                                                <img src="images/step1/1.安装node js.jpeg" alt="安装Node.js" style="width: 100%; height: 100%; object-fit: contain;">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2：应用本地安装 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤2：应用本地安装</h4>
+                                        <p class="step-content-description">进入你本地要安装这个项目的文件夹，在搜索栏处输出cmd，之后回车</p>
+
+                                        <div class="step-image-container"
+                                             data-images='["images/step2/1.输入cmd.jpeg","images/step2/2.克隆.jpeg","images/step2/3.删除8行.jpg","images/step2/4.检查状态.jpeg","images/step2/5.安装.jpg","images/step2/6.启动.jpg"]'
+                                             data-descriptions='["进入你本地要安装这个项目的文件夹，在搜索栏处输出cmd，之后回车","进入cmd后，输出 <code style=\"background: rgba(6, 182, 212, 0.2); padding: 2px 8px; border-radius: 4px; color: var(--neon-cyan);\">git clone https://github.com/leonardsellem/n8n-mcp-server.git</code>；将安装包克隆到本地","打开package.json文件，删除第8行的tsc后的内容，之后保存","返回到cmd，输入 <code style=\"background: rgba(6, 182, 212, 0.2); padding: 2px 8px; border-radius: 4px; color: var(--neon-cyan);\">cd 你的本地文件夹</code> 用来确认文件","之后输入 <code style=\"background: rgba(6, 182, 212, 0.2); padding: 2px 8px; border-radius: 4px; color: var(--neon-cyan);\">npm install</code>","之后输入 <code style=\"background: rgba(6, 182, 212, 0.2); padding: 2px 8px; border-radius: 4px; color: var(--neon-cyan);\">npm run build</code> 就可以在本地使用了"]'
+                                             style="margin-top: 20px;">
+
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image" style="font-size: 3rem; opacity: 0.3;"></i>
+                                                <p style="margin-top: 15px; opacity: 0.6;">图片占位符 - 待添加实际截图</p>
+                                            </div>
+
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">6</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3：在trae中配置MCP服务 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤3：在trae中配置MCP服务</h4>
+                                        <p class="step-content-description">回到浏览器页面，复制示例配置</p>
+
+                                        <div class="step-image-container"
+                                             data-images='["images/step3/1.复制示例配置.jpeg","images/step3/2.添加mcp.jpeg","images/step3/3.粘贴内容.jpeg","images/step3/4.配置mcp1.jpeg","images/step3/5.修改第九行.jpeg","images/step3/6.开启n8n的api.jpeg","images/step3/7.设置权限及时长.jpeg","images/step3/8.复制并保存.jpeg"]'
+                                             data-descriptions='["回到浏览器页面，复制示例配置","打开trae，点击mcp；点击添加—手动添加","将复制的内容粘贴到里面","修改第六行：从/build/index.js前输出你安装的本地文件夹，将前面的\\\\修改成/","修改第九行：修改成 <code style=\"background: rgba(6, 182, 212, 0.2); padding: 2px 8px; border-radius: 4px; color: var(--neon-cyan);\">http://localhost:5678/api/v1</code>","打开n8n→setting→n8n API→create an API Key","命名之后将有效时长改为永久","复制API Keys粘贴到trae的第十行就结束了"]'
+                                             style="margin-top: 20px;">
+
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image" style="font-size: 3rem; opacity: 0.3;"></i>
+                                                <p style="margin-top: 15px; opacity: 0.6;">图片占位符 - 待添加实际截图</p>
+                                            </div>
+
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">8</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4：其他工具配置说明 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤4：其他工具配置</h4>
+                                        <p class="step-content-description">
+                                            根据相同的步骤你可以在任何支持mcp的工具上配置N8N的mcp。
+                                        </p>
+
+                                        <div class="highlight-box">
+                                            <p style="font-size: 1.2rem; text-align: center;">
+                                                <strong>通用配置流程</strong><br><br>
+                                                只要工具支持MCP协议,都可以按照上述步骤进行配置:<br>
+                                                安装环境 → 克隆项目 → 配置连接 → 添加API密钥
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 自定义节点 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 二、自定义节点的开发与拓展</h2>
+
+                            <h3>（一）什么是自定义节点</h3>
+                            <div class="content-card">
+                                <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                                    自定义节点是由开发者自行创建的功能模块,用于扩展 N8N 的能力,让它支持更多场景或接口。
+                                </p>
+                                <p style="font-size: 1.1rem; margin-bottom: 20px;">
+                                    它本质上是一个<strong class="neon-text-cyan">封装了特定逻辑的 JavaScript 模块</strong>。
+                                </p>
+                            </div>
+
+                            <!-- 自定义节点对比图 -->
+                            <div class="grid-2" style="margin: 30px 0;">
+                                <div class="icon-card" style="border-color: rgba(6, 182, 212, 0.4);">
+                                    <i class="fas fa-box neon-text-cyan"></i>
+                                    <h4 style="color: var(--neon-cyan);">官方节点</h4>
+                                    <p style="margin-top: 15px; text-align: center; font-size: 1.1rem;">
+                                        = 工厂标准件
+                                    </p>
+                                    <p style="margin-top: 10px; text-align: left; font-size: 0.95rem; opacity: 0.8;">
+                                        由N8N官方提供,功能稳定,开箱即用,适用于常见场景。
+                                    </p>
+                                </div>
+
+                                <div class="icon-card" style="border-color: rgba(168, 85, 247, 0.4);">
+                                    <i class="fas fa-puzzle-piece neon-text-purple"></i>
+                                    <h4 style="color: var(--neon-purple);">自定义节点</h4>
+                                    <p style="margin-top: 15px; text-align: center; font-size: 1.1rem;">
+                                        = 特制零件
+                                    </p>
+                                    <p style="margin-top: 10px; text-align: left; font-size: 0.95rem; opacity: 0.8;">
+                                        由开发者自行创建,满足特定需求,灵活度高,可定制化。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">（二）自定义节点的开发</h3>
+                            <div class="content-card">
+                                <h4 style="margin-top: 0;"><strong class="neon-text-cyan">前置条件</strong></h4>
+                                <ul style="margin-top: 15px;">
+                                    <li>具备基本的 Node.js 开发环境;</li>
+                                    <li>安装 n8n-node-dev 工具;</li>
+                                    <li>创建新的节点模板。</li>
+                                </ul>
+                            </div>
+
+                            <h3 style="margin-top: 30px;">（三）NPM包集成</h3>
+                            <div class="content-card">
+                                <ul style="margin-top: 15px;">
+                                    <li>所有自定义节点最终都可以发布为 NPM 包(如 <code style="background: rgba(6, 182, 212, 0.2); padding: 2px 8px; border-radius: 4px; color: var(--neon-cyan);">n8n-nodes-yourplugin</code>)。</li>
+                                    <li>发布后可通过 N8N 的 <strong class="neon-text-purple">Community Nodes</strong> 功能一键安装。</li>
+                                    <li>这样,你的节点不仅能自己用,还能共享给全球社区。</li>
+                                </ul>
+                            </div>
+
+                            <h3 style="margin-top: 30px;">（四）Code节点</h3>
+                            <div class="highlight-box">
+                                <ul style="margin-top: 15px;">
+                                    <li>Code节点本身也可以理解为"轻量级自定义节点"。</li>
+                                    <li>当你的逻辑仅需几行脚本时,无需打包NPM。</li>
+                                    <li>可以直接在Code节点中用JavaScript实现复杂数据处理、API调用或逻辑判断。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 一些没有讲到的自动化工作流 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">💡 三、一些节点与经验分享</h2>
+
+                            <h3>（一）一些没有讲到的自动化工作流</h3>
+                            <div class="grid-2" style="margin: 30px 0;">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-image neon-text-cyan" style="margin-right: 10px;"></i>自动化创作视频封面与标题的节点</h4>
+                                    <p style="margin-top: 15px; opacity: 0.8;">
+                                        利用AI模型自动生成吸引眼球的视频封面和标题,提升内容创作效率。
+                                    </p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-video neon-text-purple" style="margin-right: 10px;"></i>自动化生成AI短视频的节点</h4>
+                                    <p style="margin-top: 15px; opacity: 0.8;">
+                                        从脚本撰写到视频生成的全流程自动化,快速产出高质量短视频内容。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 一些经验分享 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 （二）一些经验分享</h2>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-robot neon-text-cyan" style="margin-right: 10px;"></i>1. 多问AI,多用AI</h4>
+                                <ul style="margin-top: 15px;">
+                                    <li>不懂的问题,先问AI,它往往能帮你生成思路或初版节点逻辑。</li>
+                                    <li><strong class="neon-text-purple">"AI + 自动化"</strong> 是提升学习与效率的最佳组合。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-book neon-text-purple" style="margin-right: 10px;"></i>2. 多看API文档与开发文档</h4>
+                                <ul style="margin-top: 15px;">
+                                    <li>任何新功能的核心都在官方文档;</li>
+                                    <li>学会快速查文档比死记命令更重要。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-project-diagram neon-text-pink" style="margin-right: 10px;"></i>3. 工作流拆分/分布式执行(解耦)</h4>
+                                <ul style="margin-top: 15px;">
+                                    <li>将大工作流拆分为若干"子流程"(Sub-workflow);</li>
+                                    <li>每个子流程只处理单一任务,彼此通过Webhook触发;</li>
+                                    <li><strong class="neon-text-cyan">优点:</strong> 便于维护、减少出错、执行更快。</li>
+                                </ul>
+                            </div>
+
+                            <!-- 工作流拆分示意图 SVG -->
+                            <svg class="svg-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <filter id="glow2">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <marker id="arrowhead3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" filter="url(#glow2)"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 主工作流 -->
+                                <rect x="50" y="150" width="200" height="100" rx="15" fill="rgba(244, 63, 94, 0.2)"
+                                      stroke="#f43f5e" stroke-width="3" filter="url(#glow2)"/>
+                                <text x="150" y="190" text-anchor="middle" fill="#f43f5e" font-size="20" font-weight="bold">主工作流</text>
+                                <text x="150" y="215" text-anchor="middle" fill="#d4d4d4" font-size="14">Main Workflow</text>
+
+                                <!-- 子流程1 -->
+                                <rect x="400" y="30" width="180" height="80" rx="12" fill="rgba(168, 85, 247, 0.2)"
+                                      stroke="#a855f7" stroke-width="2" filter="url(#glow2)"/>
+                                <text x="490" y="60" text-anchor="middle" fill="#a855f7" font-size="16" font-weight="bold">子流程 1</text>
+                                <text x="490" y="85" text-anchor="middle" fill="#d4d4d4" font-size="12">单一任务A</text>
+
+                                <!-- 子流程2 -->
+                                <rect x="400" y="160" width="180" height="80" rx="12" fill="rgba(6, 182, 212, 0.2)"
+                                      stroke="#06b6d4" stroke-width="2" filter="url(#glow2)"/>
+                                <text x="490" y="190" text-anchor="middle" fill="#06b6d4" font-size="16" font-weight="bold">子流程 2</text>
+                                <text x="490" y="215" text-anchor="middle" fill="#d4d4d4" font-size="12">单一任务B</text>
+
+                                <!-- 子流程3 -->
+                                <rect x="400" y="290" width="180" height="80" rx="12" fill="rgba(234, 179, 8, 0.2)"
+                                      stroke="#eab308" stroke-width="2" filter="url(#glow2)"/>
+                                <text x="490" y="320" text-anchor="middle" fill="#eab308" font-size="16" font-weight="bold">子流程 3</text>
+                                <text x="490" y="345" text-anchor="middle" fill="#d4d4d4" font-size="12">单一任务C</text>
+
+                                <!-- Webhook连接箭头(虚线) -->
+                                <line x1="250" y1="180" x2="400" y2="70" stroke="#06b6d4" stroke-width="2"
+                                      stroke-dasharray="5,5" marker-end="url(#arrowhead3)" filter="url(#glow2)"/>
+                                <line x1="250" y1="200" x2="400" y2="200" stroke="#06b6d4" stroke-width="2"
+                                      stroke-dasharray="5,5" marker-end="url(#arrowhead3)" filter="url(#glow2)"/>
+                                <line x1="250" y1="220" x2="400" y2="330" stroke="#06b6d4" stroke-width="2"
+                                      stroke-dasharray="5,5" marker-end="url(#arrowhead3)" filter="url(#glow2)"/>
+
+                                <!-- 标注 -->
+                                <text x="325" y="115" text-anchor="middle" fill="#06b6d4" font-size="11">Webhook触发</text>
+                                <text x="325" y="195" text-anchor="middle" fill="#06b6d4" font-size="11">Webhook触发</text>
+                                <text x="325" y="285" text-anchor="middle" fill="#06b6d4" font-size="11">Webhook触发</text>
+
+                                <!-- 优点标注 -->
+                                <text x="650" y="100" fill="#a855f7" font-size="14" font-weight="bold">✓ 便于维护</text>
+                                <text x="650" y="200" fill="#06b6d4" font-size="14" font-weight="bold">✓ 减少出错</text>
+                                <text x="650" y="300" fill="#eab308" font-size="14" font-weight="bold">✓ 执行更快</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 课程小结 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📝 课程小结</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong class="neon-text-cyan">本节课我们学习了:</strong></p>
+                                <ol class="no-marker-list" style="list-style: none; padding-left: 0; font-size: 1.1rem;">
+                                    <li style="margin: 15px 0; padding-left: 0;">MCP协议的概念与在N8N中的应用</li>
+                                    <li style="margin: 15px 0; padding-left: 0;">如何配置MCP服务实现自动化生成工作流</li>
+                                    <li style="margin: 15px 0; padding-left: 0;">自定义节点的开发方法与NPM发布</li>
+                                    <li style="margin: 15px 0; padding-left: 0;">工作流拆分与实践经验分享</li>
+                                </ol>
+                            </div>
+
+                            <div class="grid-2" style="margin-top: 40px;">
+                                <div class="icon-card">
+                                    <i class="fas fa-check-circle neon-text-cyan"></i>
+                                    <h4>掌握的技能</h4>
+                                    <p style="margin-top: 15px; text-align: left;">
+                                        ✓ 理解MCP协议原理<br>
+                                        ✓ 配置MCP自动化服务<br>
+                                        ✓ 了解自定义节点开发<br>
+                                        ✓ 掌握工作流优化技巧
+                                    </p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-rocket neon-text-purple"></i>
+                                    <h4>下一步学习</h4>
+                                    <p style="margin-top: 15px; text-align: left;">
+                                        → 深入学习自定义节点开发<br>
+                                        → 探索更多MCP应用场景<br>
+                                        → 实践复杂工作流设计<br>
+                                        → 参与社区节点贡献
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px; border-left-color: var(--neon-cyan);">
+                                <p style="font-size: 1.3rem; text-align: center; line-height: 2;">
+                                    <strong style="color: var(--neon-cyan);">"自动化的终极目标是让技术为人服务,而不是让人被技术束缚。"</strong>
+                                </p>
+                                <p style="text-align: center; margin-top: 20px; font-size: 1.1rem; color: var(--cyber-dark-200);">
+                                    希望通过本次课程,你能够掌握更多N8N的高级功能,<br>
+                                    持续优化你的自动化工作流!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、MCP自动化生成
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">
+                        （一）MCP是什么?
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （二）应用场景
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （三）流程步骤
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">
+                        二、自定义节点开发
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">
+                        三、节点与经验分享
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （一）自动化工作流
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        （二）经验分享
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">
+                        课程小结
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 引用外部JavaScript文件 -->
+    <script src="js/script.js"></script>
+</body>
+</html>
