@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进阶功能太强！AI音乐可控度爆表 | Suno AI教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">Suno AI 进阶教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>进阶功能太强！AI音乐可控度爆表</h1>
+                    <p class="subtitle">Suno AI 音乐生成进阶教程 | 解锁高级功能</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 一、课程回顾</h2>
+                            <ul>
+                                <li>如何登录以及账号问题</li>
+                                <li>主页介绍</li>
+                                <li>创作页面介绍</li>
+                                <li>自定义模式</li>
+                                <li>续写功能</li>
+                                <li>局部编辑</li>
+                                <li>角色功能介绍</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 二、课程目标</h2>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-microphone neon-text-cyan"></i>
+                                    <h4>音频处理能力</h4>
+                                    <p>具备处理音频输入的能力</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-music neon-text-purple"></i>
+                                    <h4>翻唱功能</h4>
+                                    <p>掌握翻唱功能的应用方式</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-edit neon-text-pink"></i>
+                                    <h4>音频编辑</h4>
+                                    <p>熟练掌握基础音频编辑工具</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-share-alt" style="color: var(--neon-yellow);"></i>
+                                    <h4>作品公开</h4>
+                                    <p>理解作品公开机制与评论系统</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-folder neon-text-cyan"></i>
+                                    <h4>作品管理</h4>
+                                    <p>具备作品整理与分类管理能力</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-search neon-text-purple"></i>
+                                    <h4>灵感探索</h4>
+                                    <p>能通过探索页寻找风格与内容参考</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 三、课程目录</h2>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">上传音频功能</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">翻唱功能（Cover Song）</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">音频编辑基础功能</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">公开与评论功能</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">作品管理与整理功能</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">点赞、歌单、关注</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">探索页 & 搜索页</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 Suno AI 音乐生成的进阶功能</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 上传音频功能 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎵 一、上传音频功能</h2>
+
+                            <h3>1. 上传入口与限制</h3>
+                            <div class="content-card">
+                                <ul>
+                                    <li>文件长度：6–120 秒</li>
+                                    <li>不能与已有歌曲版权冲突</li>
+                                    <li>网络差时上传会很慢 → 保持耐心</li>
+                                </ul>
+                            </div>
+
+                            <h3>2. 上传音频的特殊规则</h3>
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem;">
+                                    <strong>⚠️ 最重要：</strong>用上传音频衍生的所有歌曲都不能公开（public/personal）。
+                                </p>
+                            </div>
+
+                            <h3>3. 上传后可做的操作</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-forward neon-text-cyan"></i> 续写（Continuation）</h4>
+                                    <p>在原有音频基础上继续创作</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-random neon-text-purple"></i> 翻唱（Cover）</h4>
+                                    <p>保持旋律、替换音色</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-sliders-h neon-text-pink"></i> 分轨</h4>
+                                    <p>分离人声与伴奏</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-magic" style="color: var(--neon-yellow);"></i> ReMarks</h4>
+                                    <p>音质优化与降噪</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p><strong>💡 课堂例子：</strong>上传一段哼唱 → 用来生成正式旋律。</p>
+                            </div>
+
+                            <!-- 上传音频功能截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/上传音频.png" alt="上传音频功能界面" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 翻唱功能 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎤 二、翻唱功能（Cover Song）</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                                翻唱功能的核心机制是<strong class="neon-text-cyan">"保持旋律、替换音色"</strong>。系统分析上传音频或平台内已有音频的旋律结构，通过合成方式生成新的声线版本。
+                            </p>
+
+                            <h3>1. 翻唱的核心特征</h3>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-music neon-text-cyan"></i> 旋律保持</h4>
+                                    <p>系统对输入音频的音高、节奏与句法进行建模，输出旋律与原始旋律基本一致。</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-microphone neon-text-purple"></i> 音色替换</h4>
+                                    <p>翻唱可更换为女性、男性或中性音色，也可以形成更标准化的合成声音。</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-guitar neon-text-pink"></i> 伴奏变化</h4>
+                                    <p>翻唱过程中模型会重新构建音乐背景，伴奏会呈现新的配器结构。</p>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">2. 翻唱的常见用途</h3>
+                            <div class="content-card">
+                                <ul>
+                                    <li><strong class="neon-text-cyan">性别转换：</strong>将原男声旋律重新演唱为女声或反向转换，用于形成风格差异。</li>
+                                    <li><strong class="neon-text-purple">哼唱正式化：</strong>对模糊的哼唱样本进行降噪与音色重建，使旋律更为清晰。</li>
+                                    <li><strong class="neon-text-pink">版本对比：</strong>在同一旋律基础上生成多种音色版本，用于选择最终作品的声音设计。</li>
+                                </ul>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">3. 抽卡机制的存在</h3>
+                            <div class="highlight-box">
+                                <p>
+                                    翻唱中存在一定随机性。例如，在提示中指定 <code>female</code>，但生成结果可能仍输出 <code>male</code> 声线。
+                                    这与模型的采样机制、概率选择及音色匹配度有关。<strong class="neon-text-cyan">通常只需多生成几次，即可稳定得到期望音色版本。</strong>
+                                </p>
+                            </div>
+
+                            <!-- 翻唱功能截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/翻唱功能.png" alt="翻唱功能界面" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 音频编辑基础功能 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✂️ 三、音频编辑基础功能</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                                音频编辑功能包含裁剪、淡出、分轨与 ReMarks 等四类工具，用于对生成作品进行结构调整与品质提升。
+                            </p>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>裁剪（Crop）</h4>
+                                    <p>裁剪功能用于删除音频多余部分或调整片段长度，常用于以下情境：</p>
+                                    <ul>
+                                        <li>尾部存在空拍或错误内容</li>
+                                        <li>生成的歌曲时长超出使用需求</li>
+                                        <li>希望截取某一特定段落</li>
+                                    </ul>
+                                    <p style="margin-top: 15px;">
+                                        裁剪通过拖动时间轴或输入具体时间点实现，裁剪后作品会标记为"Crop"，便于筛选与管理。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>淡出（Fade Out）</h4>
+                                    <p>淡出用于处理音频结尾，使音量平滑下降而非突然结束。淡出可提升作品的听感完整性，在短片、视频配乐与成品歌曲中最为常见。</p>
+                                    <p style="margin-top: 10px;"><strong class="neon-text-cyan">💡 提示：</strong>淡出通常与裁剪一同使用，形成更自然的收尾结构。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>分轨（Stems）</h4>
+                                    <p>分轨功能能将音频拆分成独立轨道：</p>
+                                    <ul>
+                                        <li><strong class="neon-text-purple">人声轨：</strong>提取主唱部分</li>
+                                        <li><strong class="neon-text-pink">伴奏轨：</strong>去除人声，保留背景音乐</li>
+                                    </ul>
+                                    <p style="margin-top: 15px;"><strong>适用场景：</strong></p>
+                                    <ul>
+                                        <li>制作翻唱版本</li>
+                                        <li>混音实验</li>
+                                        <li>获取伴奏作为二次创作用素材</li>
+                                    </ul>
+                                    <p style="margin-top: 10px; font-style: italic;">
+                                        注：分轨质量取决于源音频的音质、混音方式与噪声程度。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>ReMarks（重新生成优化）</h4>
+                                    <p>ReMarks 利用最新模型引擎对作品进行整体提升，常见提升包括：</p>
+                                    <div class="grid-2" style="margin-top: 15px;">
+                                        <div class="badge-container">
+                                            <span class="badge">✨ 降噪</span>
+                                            <span class="badge">🎯 清晰度增强</span>
+                                            <span class="badge">🎵 人声与伴奏分离度提升</span>
+                                            <span class="badge">🎤 音色更自然</span>
+                                            <span class="badge">⏱️ 节奏更稳定</span>
+                                        </div>
+                                    </div>
+                                    <p style="margin-top: 15px;">
+                                        <strong class="neon-text-cyan">💡 适用场景：</strong>上传素材质量较低或需要进一步提升音质的场景。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 音频编辑基础功能截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/音频编辑.png" alt="音频编辑功能界面" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 公开与评论功能 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🌐 四、公开与评论功能</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 30px;">
+                                公开机制是平台内容分发的基础结构，用于控制作品在社区中的曝光方式、可见性与可搜索性。
+                            </p>
+
+                            <h3>1. 公开（Public）的作用与规则</h3>
+                            <div class="content-card">
+                                <p>公开状态使作品进入平台的内容池，包括：</p>
+                                <ul>
+                                    <li><strong class="neon-text-cyan">New Songs</strong> 推荐列表</li>
+                                    <li><strong class="neon-text-purple">Search</strong> 搜索可见范围</li>
+                                    <li><strong class="neon-text-pink">创作者主页</strong>对外可见内容</li>
+                                    <li><strong style="color: var(--neon-yellow);">歌单引用</strong>与他人收藏可能性</li>
+                                </ul>
+                                <p style="margin-top: 15px;">
+                                    公开后的作品具备被浏览、收藏与互动的潜力，是内容传播的核心条件。
+                                </p>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">2. 评论系统</h3>
+                            <div class="content-card">
+                                <p>评论系统为作品提供互动渠道，包含留言、回复与管理三类功能。</p>
+                                <h4 style="margin-top: 20px;">评论的结构</h4>
+                                <ul>
+                                    <li>主评论</li>
+                                    <li>嵌套回复</li>
+                                    <li>评论时间与用户信息</li>
+                                    <li>删除、举报、拉黑选项</li>
+                                </ul>
+                                <p style="margin-top: 15px;">
+                                    评论主要承担作品交流、意见记录与互动反馈功能。
+                                </p>
+                            </div>
+
+                            <!-- 评论系统截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/image.png" alt="评论系统界面" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 作品管理与整理功能 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📁 五、作品管理与整理功能</h2>
+
+                            <h3>1. 筛选器（Filter）</h3>
+                            <div class="content-card">
+                                <p>筛选器是根据特定标签快速定位作品的工具。常见可筛选标签包括：</p>
+                                <div class="badge-container" style="margin-top: 15px;">
+                                    <span class="badge">❤️ 点过赞的作品</span>
+                                    <span class="badge">➡️ 已续写的作品</span>
+                                    <span class="badge">✂️ 裁剪后作品</span>
+                                    <span class="badge">🎵 分轨作品</span>
+                                    <span class="badge">📤 上传音频作品</span>
+                                </div>
+                                <p style="margin-top: 20px;">这些标签由系统自动添加，帮助用户快速区分不同操作阶段的内容。</p>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 style="margin-top: 0;">筛选器的两类作用域</h4>
+                                <ul>
+                                    <li><strong class="neon-text-cyan">创作页面筛选器：</strong>仅作用于"当前工作区"</li>
+                                    <li><strong class="neon-text-purple">Library 筛选器：</strong>基于"所有作品"进行筛选</li>
+                                </ul>
+                                <p style="margin-top: 10px;">这种区分方式确保创作者能够在不同规模的作品集里快捷查找内容。</p>
+                            </div>
+
+                            <!-- 筛选器界面截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/image 1.png" alt="筛选器功能界面" loading="lazy">
+                            </div>
+
+                            <h3 style="margin-top: 40px;">2. 工作区（Workspace）</h3>
+                            <div class="content-card">
+                                <p>工作区的功能类似"项目文件夹"，用于按主题、用途或状态分类整理作品。</p>
+                                <h4 style="margin-top: 20px;">常见使用方式</h4>
+                                <ul>
+                                    <li>将成品作品放入"成品区"</li>
+                                    <li>将参考音频或上传音频相关作品放入"素材区"</li>
+                                    <li>将翻唱作品集中于"翻唱区"</li>
+                                    <li>管理不同风格实验作品，如"电子实验区""民谣草稿区"</li>
+                                </ul>
+
+                                <h4 style="margin-top: 20px;">工作区的典型操作</h4>
+                                <div class="grid">
+                                    <div class="icon-card">
+                                        <i class="fas fa-mouse-pointer neon-text-cyan"></i>
+                                        <h4>Shift 多选</h4>
+                                        <p>批量选择作品</p>
+                                    </div>
+                                    <div class="icon-card">
+                                        <i class="fas fa-folder-open neon-text-purple"></i>
+                                        <h4>移动到工作区</h4>
+                                        <p>右键或菜单选择</p>
+                                    </div>
+                                    <div class="icon-card">
+                                        <i class="fas fa-plus-circle neon-text-pink"></i>
+                                        <h4>新建工作区</h4>
+                                        <p>用于分类整理</p>
+                                    </div>
+                                </div>
+
+                                <p style="margin-top: 20px; font-style: italic;">
+                                    💡 工作区并不复制作品，而是将作品的显示位置重新分类组织，因此不占额外存储空间。
+                                </p>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">3. 垃圾桶（Trash）</h3>
+                            <div class="content-card">
+                                <ul>
+                                    <li>删除后的作品会进入垃圾桶</li>
+                                    <li>可恢复、可彻底删除（需要二次确认）</li>
+                                    <li><strong class="neon-text-cyan">💡 说明：</strong>找不到作品时，第一步检查垃圾桶</li>
+                                </ul>
+                            </div>
+
+                            <!-- 垃圾桶界面截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/image 2.png" alt="垃圾桶功能界面" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 点赞、歌单、关注 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">💝 六、点赞、歌单、关注</h2>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h3><i class="fas fa-heart neon-text-pink"></i> 1. 点赞（Like）</h3>
+                                    <ul>
+                                        <li>所有点赞歌曲会自动进入 Like Songs 歌单</li>
+                                        <li>Like 是整理灵感的重要手段</li>
+                                    </ul>
+
+                                    <!-- 点赞功能截图 -->
+                                    <div class="screenshot-container" style="margin-top: 20px;">
+                                        <img src="images/点赞.png" alt="点赞功能界面" loading="lazy">
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h3><i class="fas fa-list-ul neon-text-cyan"></i> 2. 歌单（Playlist）</h3>
+                                    <ul>
+                                        <li>可创建主题歌单（如抒情、摇滚）</li>
+                                        <li>歌单可设为 Public，别人能看到</li>
+                                    </ul>
+
+                                    <!-- 歌单功能截图 -->
+                                    <div class="screenshot-container" style="margin-top: 20px;">
+                                        <img src="images/歌单.png" alt="歌单功能界面" loading="lazy">
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h3><i class="fas fa-user-plus neon-text-purple"></i> 3. 关注与粉丝系统</h3>
+                                    <ul>
+                                        <li>关注作者可收到新作提醒</li>
+                                        <li>可查看粉丝列表并回访</li>
+                                        <li>理解 Suno 的"轻社交玩法"</li>
+                                    </ul>
+
+                                    <!-- 关注功能截图 -->
+                                    <div class="screenshot-container" style="margin-top: 20px;">
+                                        <img src="images/关注.png" alt="关注与粉丝系统界面" loading="lazy">
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h3><i class="fas fa-history" style="color: var(--neon-yellow);"></i> 4. 历史记录（History）</h3>
+                                    <ul>
+                                        <li>找回刚听过却没收藏的作品</li>
+                                    </ul>
+
+                                    <!-- 历史记录功能截图 -->
+                                    <div class="screenshot-container" style="margin-top: 20px;">
+                                        <img src="images/历史记录.png" alt="历史记录功能界面" loading="lazy">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 探索页 & 搜索页 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 七、探索页 & 搜索页</h2>
+
+                            <h3>1. 探索页（Explore）</h3>
+                            <div class="content-card">
+                                <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                                    探索页相当于<strong class="neon-text-cyan">"音乐风格灵感库"</strong>
+                                </p>
+                                <ul>
+                                    <li>支持：随机（骰子） / 风格切换</li>
+                                    <li>每个风格下有多首示例可听</li>
+                                    <li>可复制风格标签用于创作</li>
+                                </ul>
+                            </div>
+
+                            <!-- 探索页界面截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/image 3.png" alt="探索页功能界面" loading="lazy">
+                            </div>
+
+                            <h3 style="margin-top: 40px;">2. 搜索页（Search）</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>搜索范围</h4>
+                                    <p>搜索系统可以进行以下类型的内容匹配：</p>
+                                    <ul>
+                                        <li><strong class="neon-text-cyan">歌曲名匹配：</strong>以名称为标签的作品检索优先级最高</li>
+                                        <li><strong class="neon-text-purple">风格名匹配：</strong>如搜索"rock""8bit"等</li>
+                                        <li><strong class="neon-text-pink">歌词关键词匹配：</strong>检索歌词中出现的语言文本</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>搜索排序与"Trending Now"</h4>
+                                    <p>搜索结果通常按照匹配度排序，而"Trending Now"则优先展示近期生成的作品。Trending 提供时间维度的排序逻辑，使学习者能够观察最新的风格版本或当前流行的创作方向。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>搜索辅助技巧</h4>
+                                    <p>平台支持通过浏览器自身功能优化检索：</p>
+                                    <ul>
+                                        <li>使用 <code>Ctrl + F</code> 高亮风格名称，可快速浏览大量风格列表</li>
+                                        <li>当某风格在 Explore 中不易找到（如 8bit），可直接在 Search 中检索</li>
+                                        <li>在 Search 中进入单首作品的详情页，可观察其发布时间，用于判断示例是否为最新版本</li>
+                                    </ul>
+                                    <p style="margin-top: 15px;">
+                                        <strong class="neon-text-cyan">💡 提示：</strong>这些技巧可提升风格查找效率与提示词学习的准确性。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- 搜索页界面截图 -->
+                            <div class="screenshot-container">
+                                <img src="images/image 4.png" alt="搜索页功能界面" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、上传音频功能</button>
+                    <button class="nav-item" onclick="courseScrollToSection(2)">二、翻唱功能</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">三、音频编辑</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">四、公开与评论</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">五、作品管理</button>
+                    <button class="nav-item" onclick="courseScrollToSection(6)">六、点赞歌单</button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">七、探索搜索</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 板块三：课后作业</h1>
+                    <p class="subtitle">测试你对进阶功能的掌握程度</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 选择题 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✅ 选择题（5 题）</h2>
+
+                            <div class="homework-question">
+                                <h3>1. 上传音频衍生作品无法公开的主要原因是：</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">A. 系统未开启公开功能</div>
+                                    <div class="homework-option homework-answer">B. 版权风险无法确定 ✓</div>
+                                    <div class="homework-option">C. 上传音频音质通常较差</div>
+                                    <div class="homework-option">D. 上传音频会自动被删除</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>答案：B。</strong>上传音频来源不明，平台无法判断其版权状态，因此禁止公开。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>2. 分轨功能的核心作用是：</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">A. 生成新的旋律</div>
+                                    <div class="homework-option homework-answer">B. 将音频拆分为人声与伴奏 ✓</div>
+                                    <div class="homework-option">C. 替换歌词内容</div>
+                                    <div class="homework-option">D. 修改混响效果</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>答案：B。</strong>分轨是一种音频分离技术，用于提取人声与伴奏。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>3. 以下哪项属于探索页（Explore）的主要用途：</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">A. 删除历史记录</div>
+                                    <div class="homework-option homework-answer">B. 生成随机风格示例 ✓</div>
+                                    <div class="homework-option">C. 提高账号等级</div>
+                                    <div class="homework-option">D. 创建歌单</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>答案：B。</strong>探索页通过风格随机抽样提供灵感示例。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>4. 工作区（Workspace）常用于：</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">A. 调整作品音调</div>
+                                    <div class="homework-option homework-answer">B. 分类整理不同主题作品 ✓</div>
+                                    <div class="homework-option">C. 随机生成旋律</div>
+                                    <div class="homework-option">D. 更换封面图</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>答案：B。</strong>工作区类似文件夹，用于归档与整理。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>5. ReMarks 的功能是：</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">A. 修改作品公开等级</div>
+                                    <div class="homework-option homework-answer">B. 优化音质、清理噪声 ✓</div>
+                                    <div class="homework-option">C. 生成新歌曲封面</div>
+                                    <div class="homework-option">D. 添加新段落</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>答案：B。</strong>ReMarks 通过重新生成方式提升音频质量。
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 判断题 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✔️ 判断题（5 题）</h2>
+
+                            <div class="homework-question">
+                                <h3>1. 上传音频的长度可以超过 120 秒。</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">✓ 正确</div>
+                                    <div class="homework-option homework-answer">✗ 错误</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>错误。</strong>上传音频限制为 6–120 秒。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>2. 翻唱功能会完整复制原伴奏。</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">✓ 正确</div>
+                                    <div class="homework-option homework-answer">✗ 错误</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>错误。</strong>翻唱保留旋律但伴奏会重新生成。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>3. 垃圾桶中的作品可以恢复。</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option homework-answer">✓ 正确</div>
+                                    <div class="homework-option">✗ 错误</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>正确。</strong>垃圾桶保存删除作品，可进行恢复操作。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>4. 点赞的作品会自动进入 Like Songs 歌单。</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option homework-answer">✓ 正确</div>
+                                    <div class="homework-option">✗ 错误</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>正确。</strong>平台会将所有点赞作品统一归档。
+                                </div>
+                            </div>
+
+                            <div class="homework-question">
+                                <h3>5. Search 页只能搜索歌曲名。</h3>
+                                <div class="homework-options">
+                                    <div class="homework-option">✓ 正确</div>
+                                    <div class="homework-option homework-answer">✗ 错误</div>
+                                </div>
+                                <div class="homework-explanation">
+                                    <strong>错误。</strong>可搜索歌曲名、风格名与歌词关键词。
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer" style="margin-top: 60px;">
+                            <p>© 2024 Suno AI 音乐生成进阶教程 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 图片放大模态框 -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <div class="image-modal-close" onclick="closeImageModal()">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="放大图片" id="modalImage">
+            <div class="image-modal-hint">
+                <i class="fas fa-mouse-pointer"></i>
+                点击任意位置关闭 / 按 ESC 键关闭
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
