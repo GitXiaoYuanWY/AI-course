@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五课：理解AI生成的网页逻辑</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>5.理解AI生成的网页逻辑</h1>
+                    <p class="subtitle">掌握三层结构整合 | 提升AI代码阅读与修改能力</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 课程回顾</h2>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-code neon-text-cyan"></i>
+                                    <h4>JavaScript基础</h4>
+                                    <p>变量、函数、条件判断、循环</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-sitemap neon-text-purple"></i>
+                                    <h4>DOM操作</h4>
+                                    <p>获取元素、修改内容、添加事件</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-mouse-pointer neon-text-pink"></i>
+                                    <h4>事件处理</h4>
+                                    <p>点击、输入、表单提交等交互</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 学习目标</h2>
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>看懂AI生成的代码</h4>
+                                    <p>学会阅读和理解AI生成的网页代码，识别HTML、CSS、JavaScript三层结构</p>
+                                </div>
+                            </div>
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>理解三层协作关系</h4>
+                                    <p>掌握网页三层结构的职责分工和协作方式，知道"谁负责什么"</p>
+                                </div>
+                            </div>
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>培养批判性思维</h4>
+                                    <p>学会识别AI代码中的问题和不足，能够主动优化和改进代码</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 课程目录</h2>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(1);">看看AI能做什么</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(2);">网页是怎么工作的</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(3);">读懂HTML代码</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(4);">读懂CSS代码</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(5);">读懂JavaScript代码</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(6);">AI也会犯错</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(7);">AI的多样性</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>一起探索网页的秘密</h1>
+                    <p class="subtitle">AI生成代码很神奇，但我们要学会理解它</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 看看AI能做什么 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🤖 一、看看AI能做什么</h2>
+
+                            <p style="font-size: 1.2rem; text-align: center; margin: 30px 0;">
+                                我对AI说："<strong class="neon-text-cyan">请生成一个智能手表产品展示页</strong>"
+                            </p>
+
+                            <div class="highlight-box" style="margin: 40px 0;">
+                                <strong><i class="fas fa-magic"></i> AI生成的完整页面效果</strong>
+                                <p style="margin-top: 15px;">几秒钟后，AI就生成了一个包含以下功能的产品页：</p>
+                                <ul>
+                                    <li>✅ 产品图片和标题</li>
+                                    <li>✅ 产品特性列表（防水、心率监测、路线配速等）</li>
+                                    <li>✅ 价格显示（¥6499起）</li>
+                                    <li>✅ 表带材质选择（硅胶/皮质）</li>
+                                    <li>✅ 立即购买按钮</li>
+                                </ul>
+                            </div>
+
+                            <!-- 产品页效果展示 -->
+                            <div class="product-demo">
+                                <div class="demo-window">
+                                    <div class="demo-header">
+                                        <span class="demo-dot"></span>
+                                        <span class="demo-dot"></span>
+                                        <span class="demo-dot"></span>
+                                        <span class="demo-title">智能手表产品页.html</span>
+                                    </div>
+                                    <div class="demo-content">
+                                        <div class="product-display">
+                                            <img class="product-watch-image" src="web_image/apple watch.jpg" alt="Apple Watch Ultra 3">
+                                            <div class="product-details">
+                                                <h3>Apple Watch Ultra 3 <span style="color: var(--neon-purple); font-size: 0.8em;">· 幻彩特别版</span></h3>
+                                                <div class="product-features">
+                                                    <div class="feature-item"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> 各种防水，一只手表全满足</div>
+                                                    <div class="feature-item"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> 监测你的心率区间</div>
+                                                    <div class="feature-item"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> 路线覆盖配速员功能，陪你全力跑</div>
+                                                    <div class="feature-item"><i class="fas fa-circle" style="font-size: 0.5rem;"></i> 体能训练媒体，声音燃起你步调</div>
+                                                </div>
+                                                <div class="product-price" id="watchPrice">¥6499 <span style="font-size: 0.6em; font-weight: normal;">起</span></div>
+                                                <div class="product-options">
+                                                    <span class="option-tag selected" id="siliconBand" onclick="selectBand('silicon')">硅胶表带</span>
+                                                    <span class="option-tag" id="leatherBand" onclick="selectBand('leather')">皮质表带 (+¥300)</span>
+                                                </div>
+                                                <button class="product-buy-btn">立即购买</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px; background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(249, 115, 22, 0.2));">
+                                <strong><i class="fas fa-question-circle"></i> 但是...这个页面是怎么工作的呢？</strong>
+                                <p style="margin-top: 15px; font-size: 1.1rem;">
+                                    点击按钮，价格会变化<br>
+                                    选择表带，总价会更新<br>
+                                    <strong class="neon-text-pink">这背后藏着什么秘密？</strong>
+                                </p>
+                                <p style="margin-top: 20px; text-align: center;">
+                                    👇 继续向下滚动，一起揭开网页的神秘面纱！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 网页是怎么工作的 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🏗️ 二、网页是怎么工作的？</h2>
+
+                            <p style="font-size: 1.2rem; text-align: center; margin: 30px 0;">
+                                网页就像一栋房子，由<strong class="neon-text-cyan">三层</strong>组成：
+                            </p>
+
+                            <!-- 三层结构关系图 -->
+                            <div class="diagram-container">
+                                <div class="three-layer-diagram">
+                                    <div class="layer layer-html">
+                                        <div class="layer-icon"><i class="fab fa-html5"></i></div>
+                                        <div class="layer-title">HTML 结构层</div>
+                                        <div class="layer-desc">"有什么" - 房子的骨架</div>
+                                    </div>
+                                    <div class="layer-arrow">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>协作</span>
+                                    </div>
+                                    <div class="layer layer-css">
+                                        <div class="layer-icon"><i class="fab fa-css3-alt"></i></div>
+                                        <div class="layer-title">CSS 样式层</div>
+                                        <div class="layer-desc">"长什么样" - 房子的装修</div>
+                                    </div>
+                                    <div class="layer-arrow">
+                                        <i class="fas fa-arrow-down"></i>
+                                        <span>协作</span>
+                                    </div>
+                                    <div class="layer layer-js">
+                                        <div class="layer-icon"><i class="fab fa-js"></i></div>
+                                        <div class="layer-title">JavaScript 行为层</div>
+                                        <div class="layer-desc">"能做什么" - 房子的电路系统</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid" style="margin-top: 40px;">
+                                <div class="icon-card">
+                                    <i class="fab fa-html5 neon-text-cyan"></i>
+                                    <h4>HTML - 内容</h4>
+                                    <p>定义页面有什么：标题、图片、按钮等</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fab fa-css3-alt neon-text-purple"></i>
+                                    <h4>CSS - 外观</h4>
+                                    <p>控制页面长什么样：颜色、大小、位置等</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fab fa-js neon-text-pink"></i>
+                                    <h4>JavaScript - 交互</h4>
+                                    <p>实现页面能做什么：点击、计算、更新等</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px;">
+                                <strong><i class="fas fa-lightbulb"></i> 理解这三层</strong>
+                                <p style="margin-top: 15px;">
+                                    就像盖房子：<br>
+                                    • 先搭骨架（HTML）- 决定有几个房间<br>
+                                    • 再装修（CSS）- 决定墙面颜色、家具摆放<br>
+                                    • 最后接电路（JavaScript）- 决定开关灯、调温度
+                                </p>
+                                <p style="margin-top: 15px;">
+                                    <strong class="neon-text-cyan">三层分工明确，互相配合，才能做出完美的网页！</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 读懂HTML -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 三、第一层：HTML - 找到内容在哪</h2>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                让我们一起在代码中<strong class="neon-text-cyan">"寻宝"</strong>，找到产品页的各个部分！
+                            </p>
+
+                            <div class="code-block">
+<pre><code>&lt;section id="product-hero"&gt;
+  &lt;div class="product-image"&gt;
+    &lt;img src="watch.jpg" alt="Aurora Watch S1"&gt;
+  &lt;/div&gt;
+  &lt;div class="product-info"&gt;
+    &lt;h1&gt;Aurora Watch S1 智能手表&lt;/h1&gt;
+    &lt;div class="price"&gt;¥6499&lt;/div&gt;
+    &lt;ul class="options"&gt;
+      &lt;li data-price="0"&gt;硅胶表带&lt;/li&gt;
+      &lt;li data-price="100"&gt;皮革表带&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;button id="buyBtn"&gt;立即购买&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                            </div>
+
+                            <div class="highlight-box">
+                                <strong><i class="fas fa-search"></i> 寻宝任务：找到这些内容</strong>
+                                <div class="grid-2" style="margin-top: 20px;">
+                                    <div class="treasure-item">
+                                        <strong>1. 找产品标题</strong>
+                                        <div class="code-snippet" style="margin-top: 10px;">
+                                            <code>&lt;h1&gt;Aurora Watch S1 智能手表&lt;/h1&gt;</code>
+                                        </div>
+                                        <p>✅ 在 <code>&lt;h1&gt;</code> 标签里</p>
+                                    </div>
+                                    <div class="treasure-item">
+                                        <strong>2. 找价格显示</strong>
+                                        <div class="code-snippet" style="margin-top: 10px;">
+                                            <code>&lt;div class="price"&gt;¥6499&lt;/div&gt;</code>
+                                        </div>
+                                        <p>✅ 在 class="price" 的div里</p>
+                                    </div>
+                                    <div class="treasure-item">
+                                        <strong>3. 找表带选项</strong>
+                                        <div class="code-snippet" style="margin-top: 10px;">
+                                            <code>&lt;li data-price="100"&gt;皮革表带&lt;/li&gt;</code>
+                                        </div>
+                                        <p>✅ 在 <code>&lt;li&gt;</code> 标签里，还有价格数据</p>
+                                    </div>
+                                    <div class="treasure-item">
+                                        <strong>4. 找购买按钮</strong>
+                                        <div class="code-snippet" style="margin-top: 10px;">
+                                            <code>&lt;button id="buyBtn"&gt;立即购买&lt;/button&gt;</code>
+                                        </div>
+                                        <p>✅ 在 <code>&lt;button&gt;</code> 标签里</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong><i class="fas fa-lightbulb"></i> 小知识：语义化标签</strong>
+                                <div class="semantic-tags-grid" style="margin-top: 15px;">
+                                    <div class="tag-item"><code>&lt;header&gt;</code> 头部</div>
+                                    <div class="tag-item"><code>&lt;section&gt;</code> 章节</div>
+                                    <div class="tag-item"><code>&lt;h1&gt;</code> 标题</div>
+                                    <div class="tag-item"><code>&lt;button&gt;</code> 按钮</div>
+                                </div>
+                                <p style="margin-top: 15px;">
+                                    用有意义的标签，代码更容易理解！就像给房间起名字一样。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 读懂CSS -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎨 四、第二层：CSS - 颜色和布局从哪来</h2>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                为什么页面这么<strong class="neon-text-purple">漂亮</strong>？秘密就在CSS里！
+                            </p>
+
+                            <div class="code-block">
+<pre><code>.price {
+  color: #ff3b30;      /* 红色价格 */
+  font-size: 32px;     /* 大字号 */
+  font-weight: bold;   /* 加粗 */
+}
+
+.product-info {
+  display: flex;       /* 横向排列 */
+  gap: 40px;          /* 间距40px */
+  padding: 60px;      /* 内边距 */
+}</code></pre>
+                            </div>
+
+                            <div class="highlight-box">
+                                <strong><i class="fas fa-palette"></i> CSS的三大作用</strong>
+                                <div class="grid" style="margin-top: 20px;">
+                                    <div class="icon-card">
+                                        <i class="fas fa-fill-drip neon-text-pink"></i>
+                                        <h4>控制颜色</h4>
+                                        <p>文字颜色、背景颜色</p>
+                                    </div>
+                                    <div class="icon-card">
+                                        <i class="fas fa-text-height neon-text-purple"></i>
+                                        <h4>控制大小</h4>
+                                        <p>字体大小、元素宽高</p>
+                                    </div>
+                                    <div class="icon-card">
+                                        <i class="fas fa-grip-horizontal neon-text-cyan"></i>
+                                        <h4>控制布局</h4>
+                                        <p>元素位置、排列方式</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="diagram-container" style="margin-top: 40px;">
+                                <h4>💡 CSS变量：一处修改，处处生效</h4>
+                                <div class="code-block">
+<pre><code>:root {
+  --primary-color: #0a84ff;  /* 定义品牌色 */
+}
+
+.button {
+  background: var(--primary-color);  /* 使用品牌色 */
+}
+
+.link {
+  color: var(--primary-color);       /* 使用品牌色 */
+}</code></pre>
+                                </div>
+                                <p style="margin-top: 15px; text-align: center;">
+                                    改一次 <code>--primary-color</code>，所有用到它的地方都会变！
+                                </p>
+                            </div>
+
+                            <!-- 保留之前创建的互动CSS变量演示 -->
+                            <div class="diagram-container">
+                                <h4>🧪 实践：修改CSS变量观察颜色变化</h4>
+                                <div class="interactive-demo">
+                                    <div class="demo-controls">
+                                        <label for="brandColorPicker">品牌主色：</label>
+                                        <input type="color" id="brandColorPicker" value="#0a84ff">
+                                        <button class="demo-apply-btn" onclick="applyBrandColor()">应用</button>
+                                        <button class="demo-reset-btn" onclick="resetBrandColor()">重置</button>
+                                    </div>
+                                    <div class="demo-preview">
+                                        <button class="demo-btn" id="demoButton">示例按钮</button>
+                                        <a class="demo-link" id="demoLink">示例链接</a>
+                                        <span class="demo-badge" id="demoBadge">示例徽章</span>
+                                    </div>
+                                    <p class="demo-hint">
+                                        <i class="fas fa-lightbulb"></i>
+                                        修改颜色后点击"应用"，观察按钮、链接、徽章的颜色如何<strong class="neon-text-cyan">同步变化</strong>。
+                                        这就是CSS变量"一处定义、处处使用"的威力！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 读懂JavaScript -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚡ 五、第三层：JavaScript - 点击后会发生什么</h2>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                点击按钮，价格为什么会变？<strong class="neon-text-pink">魔法</strong>就在JavaScript里！
+                            </p>
+
+                            <!-- 事件流程简化版 -->
+                            <div class="diagram-container">
+                                <h4>事件处理流程</h4>
+                                <div class="event-flow">
+                                    <div class="flow-step step-1">
+                                        <div class="step-icon"><i class="fas fa-hand-pointer"></i></div>
+                                        <div class="step-title">用户操作</div>
+                                        <div class="step-desc">点击按钮</div>
+                                    </div>
+                                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="flow-step step-2">
+                                        <div class="step-icon"><i class="fas fa-ear-listen"></i></div>
+                                        <div class="step-title">事件监听</div>
+                                        <div class="step-desc">addEventListener</div>
+                                    </div>
+                                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="flow-step step-3">
+                                        <div class="step-icon"><i class="fas fa-cog"></i></div>
+                                        <div class="step-title">函数执行</div>
+                                        <div class="step-desc">处理逻辑</div>
+                                    </div>
+                                    <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="flow-step step-4">
+                                        <div class="step-icon"><i class="fas fa-sync"></i></div>
+                                        <div class="step-title">DOM更新</div>
+                                        <div class="step-desc">页面刷新</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 价格计算步骤演示 -->
+                            <div class="diagram-container" style="margin-top: 40px;">
+                                <h4>📊 完整示例：价格动态计算的过程</h4>
+                                <div class="price-calc-steps">
+                                    <div class="calc-step">
+                                        <div class="step-badge">步骤1</div>
+                                        <div class="step-detail">
+                                            <h5>用户点击"皮革表带"选项</h5>
+                                            <div class="code-snippet">
+                                                <code>&lt;li data-price="100"&gt;皮革表带&lt;/li&gt;</code>
+                                            </div>
+                                            <p>HTML中存储了价格数据</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="calc-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                    <div class="calc-step">
+                                        <div class="step-badge">步骤2</div>
+                                        <div class="step-detail">
+                                            <h5>JavaScript获取data-price属性</h5>
+                                            <div class="code-snippet">
+                                                <code>const bandPrice = this.dataset.price; // "100"</code>
+                                            </div>
+                                            <p>从HTML元素中读取价格</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="calc-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                    <div class="calc-step">
+                                        <div class="step-badge">步骤3</div>
+                                        <div class="step-detail">
+                                            <h5>计算总价</h5>
+                                            <div class="code-snippet">
+                                                <code>const basePrice = 6499;<br>
+                                                const total = basePrice + Number(bandPrice);<br>
+                                                // 6499 + 300 = 6799</code>
+                                            </div>
+                                            <p>基础价 + 表带价 = 总价</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="calc-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                    <div class="calc-step">
+                                        <div class="step-badge">步骤4</div>
+                                        <div class="step-detail">
+                                            <h5>更新页面显示</h5>
+                                            <div class="code-snippet">
+                                                <code>priceDisplay.textContent = '¥' + total;<br>
+                                                // 页面显示：¥6799</code>
+                                            </div>
+                                            <p>用户立即看到价格变化！</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="highlight-box" style="margin-top: 30px;">
+                                    <strong><i class="fas fa-star"></i> 关键理解</strong>
+                                    <p>这个过程展示了JavaScript如何让网页"<strong class="neon-text-pink">动起来</strong>"：</p>
+                                    <ul>
+                                        <li>HTML存储数据（data-price）</li>
+                                        <li>CSS美化样式（.active高亮）</li>
+                                        <li>JavaScript处理逻辑（读取、计算、更新）</li>
+                                    </ul>
+                                    <p><strong class="neon-text-cyan">三层结构完美协作！</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: AI也会犯错 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚠️ 六、AI也会犯错！</h2>
+
+                            <p style="font-size: 1.2rem; text-align: center; margin: 30px 0;">
+                                AI很强大，但<strong class="neon-text-pink">不是完美的</strong>！<br>
+                                学会<strong class="neon-text-cyan">找出问题</strong>是重要技能。
+                            </p>
+
+                            <!-- 错误代码对比 - validateForm漏洞 -->
+                            <div class="diagram-container">
+                                <h4>案例：学会识别AI代码中的漏洞</h4>
+                                <p>不要盲目相信AI生成的代码！让我们来找找问题：</p>
+
+                                <div class="grid-2" style="margin-top: 30px;">
+                                    <div class="content-card error-code">
+                                        <h5><span style="color: #ff3b30;">❌ AI生成的代码（有漏洞）</span></h5>
+                                        <div class="code-block">
+<pre><code>function validateForm() {
+  const name = document.querySelector('#name').value;
+  if (name.length > 0) {
+    return true;
+  }
+}</code></pre>
+                                        </div>
+                                        <div class="error-hints">
+                                            <strong>问题清单：</strong>
+                                            <ul>
+                                                <li>❌ 未使用 <code>trim()</code> 去除空格</li>
+                                                <li>❌ 没有返回 <code>false</code></li>
+                                                <li>❌ 缺少错误提示</li>
+                                                <li>❌ 只输入空格也能通过验证</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="content-card success-code">
+                                        <h5><span class="neon-text-cyan">✅ 改进后的代码</span></h5>
+                                        <div class="code-block">
+<pre><code>function validateForm() {
+  const name = document.querySelector('#name').value.trim();
+  if (name.length > 0) {
+    return true;
+  }
+  alert('请输入姓名！');
+  return false;
+}</code></pre>
+                                        </div>
+                                        <div class="success-hints">
+                                            <strong>改进点：</strong>
+                                            <ul>
+                                                <li>✅ 使用 <code>trim()</code> 去除首尾空格</li>
+                                                <li>✅ 明确返回 <code>false</code></li>
+                                                <li>✅ 添加友好的错误提示</li>
+                                                <li>✅ 逻辑更完整严谨</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="highlight-box" style="margin-top: 20px;">
+                                    <strong><i class="fas fa-search"></i> 思考练习</strong>
+                                    <p>这段代码还可以怎么改进？</p>
+                                    <ul>
+                                        <li>可以增加邮箱格式验证吗？</li>
+                                        <li>可以检查姓名长度上限吗？</li>
+                                        <li>可以用更友好的方式显示错误（而不是alert）吗？</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px; background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(249, 115, 22, 0.2));">
+                                <strong><i class="fas fa-lightbulb"></i> 重要提醒</strong>
+                                <p style="margin-top: 15px; font-size: 1.1rem;">
+                                    AI生成的代码可能存在：<br>
+                                    • 逻辑漏洞（如上面的例子）<br>
+                                    • 安全问题（XSS、SQL注入等）<br>
+                                    • 性能问题（循环嵌套过深）<br>
+                                    • 兼容性问题（某些浏览器不支持）
+                                </p>
+                                <p style="margin-top: 20px; text-align: center;">
+                                    <strong class="neon-text-pink">永远保持批判性思维，理解每一行代码！</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: AI的多样性 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔄 七、AI的多样性</h2>
+
+                            <p style="font-size: 1.2rem; text-align: center; margin: 30px 0;">
+                                同样的问题，AI可能给出<strong class="neon-text-purple">不同的答案</strong>！<br>
+                                这既是<strong class="neon-text-cyan">优势</strong>，也需要<strong class="neon-text-pink">你做选择</strong>。
+                            </p>
+
+                            <h4>多次生成的代码对比</h4>
+                            <p>使用同样的提示词，AI可能生成不同实现方式：</p>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><span class="neon-text-cyan">第一次生成</span></h4>
+                                    <div class="code-block">
+<pre><code>// 使用内联事件
+&lt;button onclick="buyNow()"&gt;
+  购买
+&lt;/button&gt;</code></pre>
+                                    </div>
+                                </div>
+                                <div class="content-card">
+                                    <h4><span class="neon-text-purple">第二次生成</span></h4>
+                                    <div class="code-block">
+<pre><code>// 使用addEventListener
+const btn = document.querySelector('#buyBtn');
+btn.addEventListener('click', buyNow);</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- AI多次生成对比表格 -->
+                            <div class="diagram-container" style="margin-top: 50px;">
+                                <h4>实验：同一提示词的不同生成结果</h4>
+                                <div class="highlight-box">
+                                    <strong>提示词：</strong>"请生成一个智能手表的产品下单页"
+                                </div>
+
+                                <div class="comparison-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>对比项</th>
+                                                <th>第一次生成</th>
+                                                <th>第二次生成</th>
+                                                <th>评价</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>HTML结构</strong></td>
+                                                <td>使用 <code>&lt;div&gt;</code> 标签</td>
+                                                <td>使用 <code>&lt;section&gt;</code> 标签</td>
+                                                <td><span class="neon-text-cyan">第二次更语义化 ✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>CSS布局</strong></td>
+                                                <td>Grid布局</td>
+                                                <td>Flex布局</td>
+                                                <td>都合理，各有优势</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>事件绑定</strong></td>
+                                                <td>内联 <code>onclick</code></td>
+                                                <td><code>addEventListener</code></td>
+                                                <td><span class="neon-text-cyan">第二次更符合分离原则 ✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>表单验证</strong></td>
+                                                <td>有完整验证</td>
+                                                <td>无验证</td>
+                                                <td><span class="neon-text-pink">第一次更完善 ✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>CSS变量</strong></td>
+                                                <td>未使用</td>
+                                                <td>使用了 <code>:root</code></td>
+                                                <td><span class="neon-text-cyan">第二次更易维护 ✅</span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>代码注释</strong></td>
+                                                <td>详细注释</td>
+                                                <td>较少注释</td>
+                                                <td><span class="neon-text-pink">第一次更易理解 ✅</span></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="highlight-box" style="margin-top: 30px;">
+                                    <strong><i class="fas fa-comments"></i> 深入讨论</strong>
+                                    <ol>
+                                        <li><strong class="neon-text-cyan">为什么同样的提示词会生成不同的代码？</strong><br>
+                                        AI的生成具有随机性，每次会从多种实现方式中选择一种。</li>
+
+                                        <li><strong class="neon-text-purple">AI是否有"记忆"？</strong><br>
+                                        AI 没有长期记忆，每次生成都只依赖当前提供的提示，而不会自动引用之前的输出。</li>
+
+                                        <li><strong class="neon-text-pink">哪个版本更符合最佳实践？</strong><br>
+                                        可以取各自优点：语义化标签 + addEventListener + 完整验证 + CSS变量。</li>
+
+                                        <li><strong class="neon-text-cyan">如何获得更好的结果？</strong><br>
+                                        改进提示词，明确要求：使用语义化标签、addEventListener、CSS变量等。</li>
+                                    </ol>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.2), rgba(168, 85, 247, 0.2));">
+                                <strong><i class="fas fa-star"></i> 关键总结</strong>
+                                <p>学会阅读和修正AI代码是一项重要技能。我们要：</p>
+                                <ul>
+                                    <li>✅ 理解代码的运行逻辑</li>
+                                    <li>✅ 识别不合理的实现方式</li>
+                                    <li>✅ 主动优化和改进代码</li>
+                                    <li>✅ 保持批判性思维</li>
+                                </ul>
+                                <p style="margin-top: 20px; text-align: center;">
+                                    <strong class="neon-text-cyan">恭喜你完成了这节课的学习！🎉</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(1)">一、AI能做什么</button>
+                    <button class="nav-item" onclick="courseScrollToSection(2)">二、网页三层结构</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">三、读懂HTML</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">四、读懂CSS</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">五、读懂JavaScript</button>
+                    <button class="nav-item" onclick="courseScrollToSection(6)">六、AI也会犯错</button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">七、AI的多样性</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">实践AI代码分析与优化</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+
+                                <div class="step-container">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>使用AI生成产品页面</h4>
+                                        <p>选择一个你感兴趣的产品（如耳机、相机、书包等），使用AI工具生成一个完整的产品展示页面。</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>提交三层结构标注图</h4>
+                                        <p>对生成的代码进行分析，用不同颜色标注出：</p>
+                                        <ul>
+                                            <li><strong class="neon-text-cyan">蓝色：</strong>HTML结构部分</li>
+                                            <li><strong class="neon-text-purple">紫色：</strong>CSS样式部分</li>
+                                            <li><strong class="neon-text-pink">粉色：</strong>JavaScript交互部分</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>编写功能说明文档</h4>
+                                        <p>说明页面实现了哪些功能，三层结构如何协作完成这些功能。</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>分析AI生成的不足</h4>
+                                        <p>找出至少2个AI代码中的问题或可改进之处，并提出优化方案。</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <h4>添加新交互功能</h4>
+                                        <p>自己动手为页面添加一个新功能（如图片切换、数量选择、颜色选择等）。</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">6</div>
+                                    <div class="step-content">
+                                        <h4>撰写学习心得</h4>
+                                        <p>总结使用AI生成网页的体会，以及如何更好地与AI协作开发。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
