@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第十课:AI 作品集网页实战(上) | 统一模板与结构解析</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>10.AI 作品集网页实战(上)</h1>
+                    <p class="subtitle">统一模板与结构解析 | 从零到一构建专业作品集</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 一、课程回顾</h2>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">作品集网页的基础结构设计(首页/关于/技能/项目/联系等模块),多次使用 AI 生成网页片段和完整页面</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解结构层(HTML)、样式层(CSS)、行为层(JavaScript)的基本分工,以及阅读 AI 生成代码的大致方法</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">完成内容完善、样式统一、基础交互添加</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">系统性的进行了一次GitHub Pages 部署演练</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 二、学习目标</h2>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-file-code neon-text-cyan"></i>
+                                    <h4>了解教学模板</h4>
+                                    <p>知道页面包含哪些模块,整体长什么样</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-th-large neon-text-purple"></i>
+                                    <h4>理解页面分区</h4>
+                                    <p>将页面分成清晰的板块(Hero/About/Skills/Projects/Contact/Footer)</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-code neon-text-pink"></i>
+                                    <h4>认识HTML结构</h4>
+                                    <p>在index.html中找到各个模块对应的section结构,理解关键id的作用</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-palette" style="color: var(--neon-yellow);"></i>
+                                    <h4>了解CSS分段</h4>
+                                    <p>知道主题颜色、圆角、阴影等信息大致放在哪里</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-lock-open neon-text-cyan"></i>
+                                    <h4>区分固定与可改</h4>
+                                    <p>理解"固定骨架"与"可修改区域"的区别</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-rocket neon-text-purple"></i>
+                                    <h4>实战准备</h4>
+                                    <p>为下一节的内容修改和个性化调整做好准备</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 三、课程目录</h2>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">统一模板说明与文件结构简介</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">浏览器中的整体页面结构认知</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">在Trae中认识HTML结构骨架</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">在Trae中找到样式入口与主题控制</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">教学版模板中的"固定/可改"标注说明</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">下节课实战预告:从内容到风格的修改方向</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习作品集网页的模板结构与解析方法</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 一、统一模板说明 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📂 一、统一模板说明与文件结构简介</h2>
+                            <h3>(一)本节使用的模板类型</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-code neon-text-cyan"></i> 实战版模板文件(个人版模板)</h4>
+                                    <ul>
+                                        <li>用于后续实际修改和个性化</li>
+                                        <li>页面是一个完整的作品集示例页面,没有额外提示文字</li>
+                                        <li>代码中保留必要的注释(comment),说明哪些结构建议保留</li>
+                                    </ul>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-book neon-text-purple"></i> 教学版模板文件(带标注模板)</h4>
+                                    <ul>
+                                        <li>用于直播讲解和结构解析</li>
+                                        <li>页面中额外出现一些提示文字</li>
+                                        <li>代码中注释更加详细,方便对照浏览器画面与源码</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 文件结构 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)文件结构示意(统一规范)</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">本节模板采用简化且统一的文件结构,方便后续部署与维护:</p>
+
+                            <!-- 文件结构示意图 -->
+                            <div class="file-structure-diagram">
+                                <div class="file-tree">
+                                    <div class="file-item file-item--html">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>index.html</span>
+                                        <span class="file-desc">← 网页入口文件(首页)</span>
+                                    </div>
+                                    <div class="file-item file-item--css">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>styles.css</span>
+                                        <span class="file-desc">← 样式文件(页面外观)</span>
+                                    </div>
+                                    <div class="file-item file-item--js">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>main.js</span>
+                                        <span class="file-desc">← 行为脚本(基础交互)</span>
+                                    </div>
+                                    <div class="file-item file-item--folder">
+                                        <i class="fas fa-folder"></i>
+                                        <span>assets/</span>
+                                        <span class="file-desc">← 静态资源总文件夹</span>
+                                    </div>
+                                    <div class="file-item file-item--sub">
+                                        <i class="fas fa-folder"></i>
+                                        <span>img/</span>
+                                        <span class="file-desc">← 图片资源(头像、项目封面等)</span>
+                                    </div>
+                                    <div class="file-item file-item--sub">
+                                        <i class="fas fa-folder"></i>
+                                        <span>icons/</span>
+                                        <span class="file-desc">← 图标资源(社交媒体图标)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; text-align: center; margin: 0;">
+                                    <strong>💡 重点:</strong>先看懂这些文件分别负责什么,不要求记住全部细节
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 二、页面结构认知 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🌐 二、浏览器中的整体页面结构认知</h2>
+                            <h3>(一)从上到下的模块划分</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">打开教学版模板页面,从上往下大致分为几个部分:</p>
+
+                            <!-- 页面模块流程图 -->
+                            <div class="page-flow-diagram">
+                                <div class="flow-item flow-item--header">
+                                    <div class="flow-number">1</div>
+                                    <div class="flow-content">
+                                        <h4>Header 导航区域</h4>
+                                        <p>显示姓名或个人标识,提供跳转链接</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                <div class="flow-item flow-item--hero">
+                                    <div class="flow-number">2</div>
+                                    <div class="flow-content">
+                                        <h4>Hero 主页展示区</h4>
+                                        <p>展示个人角色与简短描述</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                <div class="flow-item flow-item--about">
+                                    <div class="flow-number">3</div>
+                                    <div class="flow-content">
+                                        <h4>About 关于我</h4>
+                                        <p>个人简介文字与头像</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                <div class="flow-item flow-item--skills">
+                                    <div class="flow-number">4</div>
+                                    <div class="flow-content">
+                                        <h4>Skills 技能模块</h4>
+                                        <p>列表展示技能点</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                <div class="flow-item flow-item--projects">
+                                    <div class="flow-number">5</div>
+                                    <div class="flow-content">
+                                        <h4>Projects 项目展示</h4>
+                                        <p>核心展示区域,项目卡片</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                <div class="flow-item flow-item--contact">
+                                    <div class="flow-number">6</div>
+                                    <div class="flow-content">
+                                        <h4>Contact 联系方式</h4>
+                                        <p>邮箱、社交链接</p>
+                                    </div>
+                                </div>
+                                <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+
+                                <div class="flow-item flow-item--footer">
+                                    <div class="flow-number">7</div>
+                                    <div class="flow-content">
+                                        <h4>Footer 页脚</h4>
+                                        <p>版权信息与声明</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 信息顺序的意义 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)信息顺序的意义</h3>
+                            <div class="highlight-box">
+                                <p style="font-size: 1.5rem; text-align: center; margin: 0;">
+                                    <strong>💡 信息流:</strong>"我是谁 → 我会什么 → 我做过什么 → 如何联系我"
+                                </p>
+                            </div>
+
+                            <!-- 信息流示意图 -->
+                            <div class="info-flow-diagram">
+                                <div class="info-step">
+                                    <div class="info-icon"><i class="fas fa-user"></i></div>
+                                    <div class="info-label">我是谁</div>
+                                    <div class="info-modules">Hero + About</div>
+                                </div>
+                                <div class="info-connector">→</div>
+                                <div class="info-step">
+                                    <div class="info-icon"><i class="fas fa-tools"></i></div>
+                                    <div class="info-label">我会什么</div>
+                                    <div class="info-modules">Skills</div>
+                                </div>
+                                <div class="info-connector">→</div>
+                                <div class="info-step">
+                                    <div class="info-icon"><i class="fas fa-project-diagram"></i></div>
+                                    <div class="info-label">我做过什么</div>
+                                    <div class="info-modules">Projects</div>
+                                </div>
+                                <div class="info-connector">→</div>
+                                <div class="info-step">
+                                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                                    <div class="info-label">如何联系我</div>
+                                    <div class="info-modules">Contact</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 三、HTML结构解析 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 三、在Trae中认识HTML结构骨架</h2>
+                            <h3>(一)在Trae中打开模板与预览</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.1rem; margin: 12px 0;">打开Trae,进入本节课使用的作品集项目</li>
+                                <li style="font-size: 1.1rem; margin: 12px 0;">在左侧文件列表中点击 <code>index.html</code></li>
+                                <li style="font-size: 1.1rem; margin: 12px 0;">确认右侧有页面预览,方便一边看画面一边对照代码</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Section与画面对应 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)浏览器画面与section的对应关系</h3>
+
+                            <!-- HTML section 对应示意图 -->
+                            <div class="html-mapping-diagram">
+                                <div class="mapping-row">
+                                    <div class="mapping-browser">
+                                        <div class="browser-window">
+                                            <div class="browser-bar">
+                                                <div class="browser-dots">
+                                                    <span></span><span></span><span></span>
+                                                </div>
+                                                <div class="browser-title">作品集网页</div>
+                                            </div>
+                                            <div class="browser-content">
+                                                <div class="browser-section browser-section--header">Header 导航</div>
+                                                <div class="browser-section browser-section--hero">Hero 展示区</div>
+                                                <div class="browser-section browser-section--about">About 关于我</div>
+                                                <div class="browser-section browser-section--skills">Skills 技能</div>
+                                                <div class="browser-section browser-section--projects">Projects 项目</div>
+                                                <div class="browser-section browser-section--contact">Contact 联系</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mapping-arrow">
+                                        <i class="fas fa-arrows-alt-h"></i>
+                                        <span>对应</span>
+                                    </div>
+                                    <div class="mapping-code">
+                                        <div class="code-window">
+                                            <div class="code-line"><span class="code-tag">&lt;header&gt;</span>...&lt;/header&gt;</div>
+                                            <div class="code-line"><span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-val">"hero"</span><span class="code-tag">&gt;</span>...&lt;/section&gt;</div>
+                                            <div class="code-line"><span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-val">"about"</span><span class="code-tag">&gt;</span>...&lt;/section&gt;</div>
+                                            <div class="code-line"><span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-val">"skills"</span><span class="code-tag">&gt;</span>...&lt;/section&gt;</div>
+                                            <div class="code-line"><span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-val">"projects"</span><span class="code-tag">&gt;</span>...&lt;/section&gt;</div>
+                                            <div class="code-line"><span class="code-tag">&lt;section</span> <span class="code-attr">id</span>=<span class="code-val">"contact"</span><span class="code-tag">&gt;</span>...&lt;/section&gt;</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p><strong class="neon-text-cyan">💡 关键要点:</strong></p>
+                                <ul style="list-style: none; padding-left: 20px;">
+                                    <li style="margin-bottom: 10px;">✅ 带有 <code>id="hero" / "about" / "skills" / "projects" / "contact"</code> 的 <code>&lt;section&gt;</code> 是对应的模块外层容器</li>
+                                    <li>✅ 这些带 <code>id</code> 的 <code>&lt;section&gt;</code> 共同构成页面的<strong>结构骨架</strong>,后续不建议改名或删除</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 骨架与内容区分 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(三)"骨架"与"内容"的简单区分</h3>
+
+                            <div class="comparison-diagram">
+                                <div class="comparison-item comparison-item--fixed">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-lock"></i>
+                                        <h4>结构骨架(建议不要随意改动)</h4>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <ul>
+                                            <li><code>&lt;header&gt; / &lt;main&gt; / &lt;footer&gt;</code> 整体框架</li>
+                                            <li>每个模块的 <code>&lt;section&gt;</code> 标签及其 <code>id</code></li>
+                                            <li>主要容器的层级关系(大致的嵌套结构)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="comparison-item comparison-item--editable">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-edit"></i>
+                                        <h4>可修改内容(下一节重点修改)</h4>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <ul>
+                                            <li>文本节点(标题、段落、列表项)</li>
+                                            <li>图片路径与替换图</li>
+                                            <li>项目卡片的数量(以整块 <code>&lt;article&gt;</code> 为单位)</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; margin-bottom: 10px;"><strong>💡 本节只需认识:</strong></p>
+                                <p>想改"哪个区域的内容",就在Trae中先找到对应的 <code>&lt;section id="…"&gt;</code>,后续只改内部文字和图片,不去改外层结构</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 四、CSS样式入口 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎨 四、在Trae中找到样式入口与主题控制</h2>
+                            <h3>(一)定位主要样式文件与变量区域</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.1rem; margin: 12px 0;">在Trae左侧文件列表中找到与页面整体样式相关的CSS文件</li>
+                                <li style="font-size: 1.1rem; margin: 12px 0;">打开主样式文件,在文件顶部或前半部分找到 <code>:root { ... }</code> 这一段</li>
+                                <li style="font-size: 1.1rem; margin: 12px 0;">简要说明:<code>:root</code> 中通常集中放置全局样式变量,用来控制主题颜色、背景色、文字色、圆角、阴影等</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: CSS变量识别 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)识别主题相关的CSS变量</h3>
+
+                            <!-- CSS :root 变量示意图 -->
+                            <div class="css-variables-diagram">
+                                <div class="css-root-block">
+                                    <div class="css-root-header">
+                                        <i class="fas fa-code"></i>
+                                        <span>:root { ... }</span>
+                                    </div>
+                                    <div class="css-root-content">
+                                        <div class="css-variable">
+                                            <span class="var-name">--color-primary:</span>
+                                            <span class="var-value">#3498db</span>
+                                            <div class="var-preview" style="background: #3498db;"></div>
+                                            <span class="var-desc">主色</span>
+                                        </div>
+                                        <div class="css-variable">
+                                            <span class="var-name">--color-bg:</span>
+                                            <span class="var-value">#ffffff</span>
+                                            <div class="var-preview" style="background: #ffffff; border: 1px solid #ccc;"></div>
+                                            <span class="var-desc">页面背景色</span>
+                                        </div>
+                                        <div class="css-variable">
+                                            <span class="var-name">--color-text:</span>
+                                            <span class="var-value">#333333</span>
+                                            <div class="var-preview" style="background: #333333;"></div>
+                                            <span class="var-desc">正文字体颜色</span>
+                                        </div>
+                                        <div class="css-variable">
+                                            <span class="var-name">--radius-card:</span>
+                                            <span class="var-value">12px</span>
+                                            <div class="var-demo-box" style="border-radius: 12px;"></div>
+                                            <span class="var-desc">卡片圆角</span>
+                                        </div>
+                                        <div class="css-variable">
+                                            <span class="var-name">--shadow-card:</span>
+                                            <span class="var-value">0 4px 12px rgba(0,0,0,0.1)</span>
+                                            <div class="var-demo-box" style="box-shadow: 0 4px 12px rgba(0,0,0,0.1);"></div>
+                                            <span class="var-desc">卡片阴影</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="css-flow-arrow">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <span>影响整个页面</span>
+                                </div>
+
+                                <div class="css-usage-examples">
+                                    <div class="css-usage-item">
+                                        <div class="usage-icon"><i class="fas fa-palette"></i></div>
+                                        <div class="usage-text">按钮背景色使用 var(--color-primary)</div>
+                                    </div>
+                                    <div class="css-usage-item">
+                                        <div class="usage-icon"><i class="fas fa-square"></i></div>
+                                        <div class="usage-text">卡片圆角使用 var(--radius-card)</div>
+                                    </div>
+                                    <div class="css-usage-item">
+                                        <div class="usage-icon"><i class="fas fa-sun"></i></div>
+                                        <div class="usage-text">卡片阴影使用 var(--shadow-card)</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p><strong class="neon-text-cyan">💡 本节只需建立印象:</strong></p>
+                                <ul style="list-style: none; padding-left: 20px;">
+                                    <li style="margin-bottom: 10px;">✅ 以后想统一调整颜色与风格,优先来这里修改这些变量</li>
+                                    <li>✅ 不需要在整份CSS中逐行寻找所有颜色值</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: CSS模块分区 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(三)模块样式的大致分区</h3>
+
+                            <!-- CSS模块分区示意图 -->
+                            <div class="css-modules-diagram">
+                                <div class="css-file-structure">
+                                    <div class="css-file-header">
+                                        <i class="fas fa-file-code"></i>
+                                        <span>styles.css</span>
+                                    </div>
+                                    <div class="css-sections">
+                                        <div class="css-section">
+                                            <div class="css-comment">/* header 区域样式 */</div>
+                                            <div class="css-rules">
+                                                <div class="css-rule">header { ... }</div>
+                                                <div class="css-rule">.navbar { ... }</div>
+                                            </div>
+                                        </div>
+                                        <div class="css-section">
+                                            <div class="css-comment">/* hero 区域样式 */</div>
+                                            <div class="css-rules">
+                                                <div class="css-rule">#hero { ... }</div>
+                                                <div class="css-rule">.hero-title { ... }</div>
+                                            </div>
+                                        </div>
+                                        <div class="css-section">
+                                            <div class="css-comment">/* about 区域样式 */</div>
+                                            <div class="css-rules">
+                                                <div class="css-rule">#about { ... }</div>
+                                                <div class="css-rule">.about-content { ... }</div>
+                                            </div>
+                                        </div>
+                                        <div class="css-section">
+                                            <div class="css-comment">/* projects 区域样式 */</div>
+                                            <div class="css-rules">
+                                                <div class="css-rule">#projects { ... }</div>
+                                                <div class="css-rule">.project-card { ... }</div>
+                                            </div>
+                                        </div>
+                                        <div class="css-section">
+                                            <div class="css-comment">/* contact 区域样式 */</div>
+                                            <div class="css-rules">
+                                                <div class="css-rule">#contact { ... }</div>
+                                                <div class="css-rule">.contact-form { ... }</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p><strong class="neon-text-purple">💡 说明要点:</strong></p>
+                                <ul style="list-style: none; padding-left: 20px;">
+                                    <li style="margin-bottom: 10px;">✅ 每一段注释下面,是对应模块的布局与细节样式</li>
+                                    <li style="margin-bottom: 10px;">✅ 以后若需要微调某个模块的间距或对齐,可以在相应分区内调整</li>
+                                    <li>✅ 本节不要求修改样式,只需要知道样式的大致组织方式</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: CSS边界提示 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(四)本节的边界提示</h3>
+
+                            <div class="key-takeaway-diagram">
+                                <div class="takeaway-title">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <span>需要记住的信息只有两点:</span>
+                                </div>
+                                <div class="takeaway-items">
+                                    <div class="takeaway-item">
+                                        <div class="takeaway-number">1</div>
+                                        <div class="takeaway-content">
+                                            <div class="takeaway-action">想改页面内容</div>
+                                            <div class="takeaway-arrow">→</div>
+                                            <div class="takeaway-solution">回到 <code>index.html</code> 中对应的 <code>&lt;section&gt;</code></div>
+                                        </div>
+                                    </div>
+                                    <div class="takeaway-item">
+                                        <div class="takeaway-number">2</div>
+                                        <div class="takeaway-content">
+                                            <div class="takeaway-action">想改整体风格</div>
+                                            <div class="takeaway-arrow">→</div>
+                                            <div class="takeaway-solution">在Trae中打开CSS文件,优先查看 <code>:root</code> 中的变量配置</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: 五、固定/可改标注 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🏷️ 五、教学版模板中的"固定/可改"标注说明</h2>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">教学版模板中,会通过注释和提示文字标明哪些是固定结构,哪些是可修改内容</p>
+
+                            <!-- HTML标注示例 -->
+                            <div class="code-example-block">
+                                <div class="code-example-header">
+                                    <i class="fas fa-code"></i>
+                                    <span>HTML中的标注示例</span>
+                                </div>
+                                <pre class="code-example-content"><code>&lt;!-- 固定结构:建议保留,删除可能导致页面错乱 --&gt;
+&lt;section id="projects" class="section section--projects"&gt;
+  &lt;div class="section__inner"&gt;
+    &lt;!-- 可修改内容:标题文字可微调 --&gt;
+    &lt;h2&gt;项目展示&lt;/h2&gt;
+
+    &lt;!-- 固定结构:项目卡片容器 --&gt;
+    &lt;div class="projects-grid"&gt;
+      &lt;!-- 可修改内容:整个项目卡片可增减或替换 --&gt;
+      &lt;article class="project-card"&gt;
+        &lt;!-- 可修改内容:项目标题、描述、标签等 --&gt;
+        &lt;h3&gt;示例项目名称&lt;/h3&gt;
+        &lt;p&gt;示例项目描述...&lt;/p&gt;
+        &lt;ul class="project-tags"&gt;
+          &lt;li&gt;HTML&lt;/li&gt;
+          &lt;li&gt;CSS&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/article&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: CSS标注示例 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <!-- CSS标注示例 -->
+                            <div class="code-example-block">
+                                <div class="code-example-header">
+                                    <i class="fas fa-palette"></i>
+                                    <span>CSS中的标注示例</span>
+                                </div>
+                                <pre class="code-example-content"><code>/* ===== 固定结构:布局与定位 ===== */
+.section {
+  padding: 4rem 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== 可修改区域:颜色与视觉效果 ===== */
+:root {
+  --primary-color: #3498db;      /* 可改:主色 */
+  --secondary-color: #2ecc71;    /* 可改:辅色 */
+  --border-radius: 8px;         /* 可改:圆角大小 */
+}</code></pre>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; margin: 0;">
+                                    <strong>💡 提示:</strong>这些标注在实际使用时会被删除,仅用于教学演示
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 14: 六、实战预告 -->
+            <section class="section-scroll-item" data-section="14">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🚀 六、下节课实战预告</h2>
+
+                            <h3>(一)内容替换方向</h3>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-font neon-text-cyan"></i> 文本内容替换</h4>
+                                    <ul>
+                                        <li>About模块:替换为个人简介(100–150字)</li>
+                                        <li>Skills模块:替换为真实技能列表(3–6条)</li>
+                                        <li>Projects模块:替换为真实项目信息(至少3个)</li>
+                                    </ul>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-image neon-text-purple"></i> 图片资源替换</h4>
+                                    <ul>
+                                        <li>头像替换:<code>assets/img/avatar.png</code></li>
+                                        <li>项目封面:<code>assets/img/project-1.png</code>等</li>
+                                    </ul>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-link neon-text-pink"></i> 链接与联系信息</h4>
+                                    <ul>
+                                        <li>邮箱、社交链接等</li>
+                                        <li>项目详情页或源码链接</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 15: 风格调整方向 -->
+            <section class="section-scroll-item" data-section="15">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)风格调整方向</h3>
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>颜色主题</h4>
+                                    <p>通过修改CSS变量快速更换主色、辅色。保持整体协调性,避免过多颜色</p>
+                                </div>
+                            </div>
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>字体与排版</h4>
+                                    <p>调整字体大小、行高、字重。保持良好的可读性</p>
+                                </div>
+                            </div>
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>卡片与组件样式</h4>
+                                    <p>调整圆角、阴影、边框。保持视觉一致性</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 16: 常见问题 -->
+            <section class="section-scroll-item" data-section="16">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(三)常见问题与排查</h3>
+
+                            <div class="troubleshooting-diagram">
+                                <div class="trouble-item">
+                                    <div class="trouble-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                                    <div class="trouble-content">
+                                        <h4>图片不显示</h4>
+                                        <ul>
+                                            <li>检查路径与文件名</li>
+                                            <li>确认文件已上传至GitHub</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="trouble-item">
+                                    <div class="trouble-icon"><i class="fas fa-times-circle"></i></div>
+                                    <div class="trouble-content">
+                                        <h4>样式不生效</h4>
+                                        <ul>
+                                            <li>检查CSS语法错误</li>
+                                            <li>确认选择器与类名匹配</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="trouble-item">
+                                    <div class="trouble-icon"><i class="fas fa-bug"></i></div>
+                                    <div class="trouble-content">
+                                        <h4>布局错乱</h4>
+                                        <ul>
+                                            <li>检查HTML标签是否正确闭合</li>
+                                            <li>确认未意外删除关键结构</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(1)">一、统一模板说明</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">二、页面结构认知</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">三、HTML结构解析</button>
+                    <button class="nav-item" onclick="courseScrollToSection(8)">四、CSS样式入口</button>
+                    <button class="nav-item" onclick="courseScrollToSection(12)">五、固定/可改标注</button>
+                    <button class="nav-item" onclick="courseScrollToSection(14)">六、实战预告</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">巩固本节知识,为下节课实战做准备</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+
+                                <div class="homework-item">
+                                    <div class="homework-number">1</div>
+                                    <div class="homework-content">
+                                        <h4>标注练习</h4>
+                                        <p>在实战版模板中,尝试添加自己的注释,标出哪些是"固定结构",哪些是"可修改内容"。不实际修改内容,仅通过注释加深理解</p>
+                                    </div>
+                                </div>
+
+                                <div class="homework-item">
+                                    <div class="homework-number">2</div>
+                                    <div class="homework-content">
+                                        <h4>变量修改尝试</h4>
+                                        <p>在 <code>styles.css</code> 中找到 <code>:root</code> 部分,尝试修改主色和辅色。保存并在浏览器中查看效果,观察颜色变化</p>
+                                    </div>
+                                </div>
+
+                                <div class="homework-item">
+                                    <div class="homework-number">3</div>
+                                    <div class="homework-content">
+                                        <h4>思考题</h4>
+                                        <p>如果要在About模块中添加一张个人照片,应该放在哪个位置?如何修改HTML结构?</p>
+                                    </div>
+                                </div>
+
+                                <div class="homework-item">
+                                    <div class="homework-number">4</div>
+                                    <div class="homework-content">
+                                        <h4>思考题</h4>
+                                        <p>如果要调整所有卡片的圆角大小,应该在CSS的哪个位置进行修改?为什么?</p>
+                                    </div>
+                                </div>
+
+                                <div class="homework-item">
+                                    <div class="homework-number">5</div>
+                                    <div class="homework-content">
+                                        <h4>思考题</h4>
+                                        <p>为什么说 <code>id</code> 属性是"固定骨架"的一部分?随意修改 <code>id</code> 可能会导致什么问题?</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
