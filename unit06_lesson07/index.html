@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第七课：作品集网页内容整合与模块替换</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>7.作品集网页内容整合与模块替换</h1>
+                    <p class="subtitle">掌握个人作品集网页的内容填充与定制化技巧</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 课程回顾</h2>
+                            <ol class="course-outline">
+                                <li>
+                                    <span class="outline-number">01</span>
+                                    <span class="outline-text">网页生成中的提示词控制基础：掌握结构化提示词的写法和核心原则</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">02</span>
+                                    <span class="outline-text">页面结构控制：使用明确约束让 AI 严格按所需格式输出 HTML 结构</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">03</span>
+                                    <span class="outline-text">视觉风格控制（CSS层）：通过提示词精准控制网页的配色、字体、布局等视觉元素</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">04</span>
+                                    <span class="outline-text">结构风格控制（HTML层）：指定网页的组织方式和元素层次关系</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">05</span>
+                                    <span class="outline-text">表达风格控制（文案层）：设计符合特定语气和调性的文案内容</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">06</span>
+                                    <span class="outline-text">风格化提示词模板设计：能够围绕"极简/科技/卡通/时尚"等风格创建可复用模板</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">07</span>
+                                    <span class="outline-text">从"AI自由生成"到"按规范生成"的提示词迭代实践</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 学习目标</h2>
+                            <ol class="course-outline">
+                                <li>
+                                    <span class="outline-number">01</span>
+                                    <span class="outline-text">理解作品集网页的模块化结构</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">02</span>
+                                    <span class="outline-text">掌握项目资料整理与分类方法</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">03</span>
+                                    <span class="outline-text">学会内容替换与模块整合技巧</span>
+                                </li>
+                                <li>
+                                    <span class="outline-number">04</span>
+                                    <span class="outline-text">完成个人作品集网页内容填充</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 课程目录</h2>
+                            <ol class="course-outline">
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(1);">
+                                    <span class="outline-number">01</span>
+                                    <span class="outline-text">作品集网页结构解析</span>
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(4);">
+                                    <span class="outline-number">02</span>
+                                    <span class="outline-text">项目资料结构化整理</span>
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(9);">
+                                    <span class="outline-number">03</span>
+                                    <span class="outline-text">模块替换机制与内容整合</span>
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(12);">
+                                    <span class="outline-number">04</span>
+                                    <span class="outline-text">内容整合实战操作</span>
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(15);">
+                                    <span class="outline-number">05</span>
+                                    <span class="outline-text">常见问题与解决方案</span>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习作品集网页的内容整合技巧</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 一、作品集网页结构解析 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📐 一、作品集网页结构解析</h2>
+                            <h3>（一）网页模块组成</h3>
+                            <p class="intro-text">一个完整的作品集网页由多个功能模块组成，每个模块承担不同的信息展示任务</p>
+
+                            <!-- 网页模块组成SVG示意图 -->
+                            <div class="diagram-container">
+                                <svg class="webpage-structure-diagram" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 背景 -->
+                                    <rect width="800" height="600" fill="rgba(10, 10, 10, 0.3)"/>
+
+                                    <!-- 导航栏 -->
+                                    <rect x="50" y="30" width="700" height="60" rx="8" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2"/>
+                                    <text x="400" y="65" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">导航栏 Navigation</text>
+
+                                    <!-- 个人介绍 -->
+                                    <rect x="50" y="110" width="700" height="80" rx="8" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2"/>
+                                    <text x="400" y="155" text-anchor="middle" fill="#a855f7" font-size="16" font-weight="bold">个人介绍 Profile</text>
+
+                                    <!-- 学习背景 -->
+                                    <rect x="50" y="210" width="700" height="70" rx="8" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="400" y="250" text-anchor="middle" fill="#06b6d4" font-size="16" font-weight="bold">学习背景 Education</text>
+
+                                    <!-- 专业能力 -->
+                                    <rect x="50" y="300" width="340" height="100" rx="8" fill="rgba(234, 179, 8, 0.2)" stroke="#eab308" stroke-width="2"/>
+                                    <text x="220" y="355" text-anchor="middle" fill="#eab308" font-size="16" font-weight="bold">专业能力 Skills</text>
+
+                                    <!-- 项目案例 -->
+                                    <rect x="410" y="300" width="340" height="100" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2"/>
+                                    <text x="580" y="355" text-anchor="middle" fill="#3b82f6" font-size="16" font-weight="bold">项目案例 Projects</text>
+
+                                    <!-- 联系信息 -->
+                                    <rect x="50" y="420" width="700" height="60" rx="8" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2"/>
+                                    <text x="400" y="455" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">联系信息 Contact</text>
+
+                                    <!-- 连接线 -->
+                                    <line x1="400" y1="90" x2="400" y2="110" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <line x1="400" y1="190" x2="400" y2="210" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <line x1="400" y1="280" x2="400" y2="300" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <line x1="400" y1="400" x2="400" y2="420" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+                                </svg>
+                                <p class="diagram-caption">网页模块结构示意图</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 模块详解 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>模块详解</h3>
+                            <div class="grid-2">
+                                <div class="icon-card">
+                                    <i class="fas fa-bars" style="color: var(--neon-cyan);"></i>
+                                    <h4>1. 顶部导航栏</h4>
+                                    <p>姓名显示 / 菜单按钮 / 跳转链接</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-user-circle" style="color: var(--neon-purple);"></i>
+                                    <h4>2. 个人介绍模块</h4>
+                                    <p>头像展示 / 姓名与定位 / 个人标签</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-graduation-cap" style="color: var(--cyber-pink);"></i>
+                                    <h4>3. 学习背景</h4>
+                                    <p>学校信息 / 专业名称 / 学习时间段</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-chart-line" style="color: var(--neon-yellow);"></i>
+                                    <h4>4. 专业能力矩阵</h4>
+                                    <p>能力卡片组合 / 技能描述</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-project-diagram" style="color: var(--neon-blue);"></i>
+                                    <h4>5. 项目案例展示</h4>
+                                    <p>项目图片 / 项目描述 / 时间与标签</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-envelope" style="color: var(--neon-cyan);"></i>
+                                    <h4>6. 联系信息区</h4>
+                                    <p>邮箱 / 电话 / 位置信息</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 模块间关联性 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）模块间关联性</h3>
+
+                            <div class="grid-3" style="margin-top: 30px;">
+                                <div class="icon-card">
+                                    <i class="fas fa-link" style="color: var(--neon-cyan); font-size: 3rem;"></i>
+                                    <h4 style="color: var(--neon-cyan); margin-top: 20px;">导航锚点连接</h4>
+                                    <p style="margin-top: 15px; line-height: 1.8;">顶部菜单可快速跳转到对应内容区域，实现页面内的便捷导航</p>
+                                    <div style="margin-top: 15px; padding: 12px; background: rgba(6, 182, 212, 0.1); border-radius: 8px; border-left: 3px solid var(--neon-cyan);">
+                                        <p style="font-size: 0.9rem; margin: 0;">例：点击"项目案例"直接滚动到项目展示部分</p>
+                                    </div>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-layer-group" style="color: var(--neon-purple); font-size: 3rem;"></i>
+                                    <h4 style="color: var(--neon-purple); margin-top: 20px;">视觉层次结构</h4>
+                                    <p style="margin-top: 15px; line-height: 1.8;">重要信息在显眼位置，次要信息在页面底部，形成清晰的视觉优先级</p>
+                                    <div style="margin-top: 15px; padding: 12px; background: rgba(168, 85, 247, 0.1); border-radius: 8px; border-left: 3px solid var(--neon-purple);">
+                                        <p style="font-size: 0.9rem; margin: 0;">姓名在顶部 → 联系方式在底部</p>
+                                    </div>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-route" style="color: var(--neon-yellow); font-size: 3rem;"></i>
+                                    <h4 style="color: var(--neon-yellow); margin-top: 20px;">内容逻辑流程</h4>
+                                    <p style="margin-top: 15px; line-height: 1.8;">从个人介绍到项目案例，遵循陌生人了解你的自然流程</p>
+                                    <div style="margin-top: 15px; padding: 12px; background: rgba(234, 179, 8, 0.1); border-radius: 8px; border-left: 3px solid var(--neon-yellow);">
+                                        <p style="font-size: 0.9rem; margin: 0;">个人介绍 → 学习背景 → 能力展示 → 项目案例</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 二、项目资料结构化整理 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📊 二、项目资料结构化整理</h2>
+                            <h3>（一）个人信息准备</h3>
+
+                            <div class="info-grid">
+                                <div class="info-card">
+                                    <div class="info-header">
+                                        <i class="fas fa-id-card" style="color: var(--neon-cyan);"></i>
+                                        <h4>基础信息</h4>
+                                    </div>
+                                    <ul>
+                                        <li><strong>姓名：</strong>你的真实姓名</li>
+                                        <li><strong>头像：</strong>清晰的个人照片（正方形）</li>
+                                        <li><strong>自我介绍：</strong>30-50字，简明扼要</li>
+                                    </ul>
+                                </div>
+                                <div class="info-card">
+                                    <div class="info-header">
+                                        <i class="fas fa-tags" style="color: var(--neon-purple);"></i>
+                                        <h4>个人标签</h4>
+                                    </div>
+                                    <ul>
+                                        <li>至少<strong style="color: var(--cyber-pink);">3个</strong>专业标签</li>
+                                        <li>例如："前端开发"、"UI设计"、"数据分析"</li>
+                                        <li>标签要<strong>简洁准确</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 教育背景整理 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）教育背景整理</h3>
+
+                            <div class="example-card">
+                                <div class="example-header">
+                                    <i class="fas fa-graduation-cap" style="color: var(--neon-cyan);"></i>
+                                    <h4>学校信息示例</h4>
+                                </div>
+                                <div class="example-content">
+                                    <div class="example-item">
+                                        <span class="label">学校名称：</span>
+                                        <span class="value">北京大学</span>
+                                    </div>
+                                    <div class="example-item">
+                                        <span class="label">专业名称：</span>
+                                        <span class="value">计算机科学与技术</span>
+                                    </div>
+                                    <div class="example-item">
+                                        <span class="label">学习时间段：</span>
+                                        <span class="value">2020年9月 - 2024年6月</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 专业能力矩阵 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）专业能力矩阵</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>能力点选择</h4>
+                                    <ul>
+                                        <li>选择<strong style="color: var(--neon-cyan);">6-8个</strong>核心能力</li>
+                                        <li>每个能力用<strong style="color: var(--neon-purple);">2-3句话</strong>描述</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>能力分类</h4>
+                                    <div class="grid-3">
+                                        <div class="skill-category">
+                                            <div class="category-icon"><i class="fas fa-code" style="color: var(--neon-cyan);"></i></div>
+                                            <h5>专业技能</h5>
+                                            <p>HTML/CSS开发<br>JavaScript编程</p>
+                                        </div>
+                                        <div class="skill-category">
+                                            <div class="category-icon"><i class="fas fa-users" style="color: var(--neon-purple);"></i></div>
+                                            <h5>软技能</h5>
+                                            <p>团队协作<br>项目管理</p>
+                                        </div>
+                                        <div class="skill-category">
+                                            <div class="category-icon"><i class="fas fa-tools" style="color: var(--cyber-pink);"></i></div>
+                                            <h5>工具使用</h5>
+                                            <p>Figma设计<br>Git版本控制</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 项目案例准备 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）项目案例准备</h3>
+
+                            <!-- 项目信息结构图 -->
+                            <div class="diagram-container">
+                                <svg class="project-structure-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 背景 -->
+                                    <rect width="800" height="400" fill="rgba(10, 10, 10, 0.3)"/>
+
+                                    <!-- 项目卡片 -->
+                                    <rect x="150" y="50" width="500" height="300" rx="12" fill="rgba(23, 23, 23, 0.6)" stroke="#f43f5e" stroke-width="2"/>
+
+                                    <!-- 项目封面 -->
+                                    <rect x="170" y="70" width="460" height="120" rx="8" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="400" y="135" text-anchor="middle" fill="#06b6d4" font-size="16" font-weight="bold">项目封面图</text>
+
+                                    <!-- 项目名称 -->
+                                    <text x="400" y="220" text-anchor="middle" fill="#f43f5e" font-size="18" font-weight="bold">项目名称</text>
+
+                                    <!-- 项目描述 -->
+                                    <text x="400" y="250" text-anchor="middle" fill="#a855f7" font-size="14">项目描述：2-3句话说明内容和贡献</text>
+
+                                    <!-- 时间和标签 -->
+                                    <rect x="200" y="270" width="160" height="30" rx="15" fill="rgba(234, 179, 8, 0.2)" stroke="#eab308" stroke-width="2"/>
+                                    <text x="280" y="292" text-anchor="middle" fill="#eab308" font-size="12">2023.03 - 2023.05</text>
+
+                                    <rect x="380" y="270" width="220" height="30" rx="15" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2"/>
+                                    <text x="490" y="292" text-anchor="middle" fill="#3b82f6" font-size="12">HTML · CSS · JavaScript</text>
+                                </svg>
+                                <p class="diagram-caption">项目案例信息结构</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4>项目准备清单</h4>
+                                <ul>
+                                    <li><strong>项目名称：</strong>简洁明了，如"电商网站设计"</li>
+                                    <li><strong>项目封面图：</strong>展示项目成果的图片</li>
+                                    <li><strong>项目描述：</strong>2-3句话说明项目内容和你的贡献</li>
+                                    <li><strong>时间节点：</strong>如"2023年3月-2023年5月"</li>
+                                    <li><strong>技术标签：</strong>如"HTML、CSS、JavaScript、Figma"</li>
+                                    <li><strong>项目数量：</strong>建议2-4个项目</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 联系方式整理 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（五）联系方式整理</h3>
+
+                            <div class="grid-2">
+                                <div class="contact-box required">
+                                    <div class="box-header">
+                                        <i class="fas fa-check-circle" style="color: var(--neon-cyan);"></i>
+                                        <h4>必要信息</h4>
+                                    </div>
+                                    <ul>
+                                        <li><i class="fas fa-envelope"></i> 邮箱地址：常用的电子邮箱</li>
+                                    </ul>
+                                </div>
+                                <div class="contact-box optional">
+                                    <div class="box-header">
+                                        <i class="fas fa-plus-circle" style="color: var(--neon-purple);"></i>
+                                        <h4>可选信息</h4>
+                                    </div>
+                                    <ul>
+                                        <li><i class="fas fa-phone"></i> 电话号码：便于联系</li>
+                                        <li><i class="fab fa-weixin"></i> 微信号：社交联系方式</li>
+                                        <li><i class="fas fa-map-marker-alt"></i> 所在城市：如"北京市"</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 三、模块替换机制与内容整合 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔄 三、模块替换机制与内容整合</h2>
+                            <h3>（一）AI辅助内容生成</h3>
+
+                            <div class="prompt-template">
+                                <div class="template-header">
+                                    <i class="fas fa-robot" style="color: var(--neon-cyan);"></i>
+                                    <h4>提示词模板</h4>
+                                </div>
+                                <div class="template-content">
+                                    <pre>请把以下内容转成我网页模板可替换的文本内容，保持简洁、专业，并分成对应模块：
+
+1. 个人简介（一句定位 + 简短介绍）
+2. 学习背景（学校 / 专业 / 时间）
+3. 专业能力矩阵（按卡片形式拆成多个2-3句的小描述）
+4. 项目案例（每个项目生成标题、简介、亮点、时间、标签）
+5. 联系方式（邮箱 / 城市 / 微信等）
+
+以下是我的原始内容：
+【在这里粘贴准备好的内容】</pre>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4>内容优化原则</h4>
+                                <ul>
+                                    <li><strong>简洁专业：</strong>用简短的语言表达专业能力</li>
+                                    <li><strong>结构清晰：</strong>按模块组织内容，便于替换</li>
+                                    <li><strong>符合展示需求：</strong>文字不宜过多，重点突出</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HTML模板替换操作 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）HTML模板替换操作</h3>
+
+                            <!-- 替换示意图 -->
+                            <div class="diagram-container">
+                                <svg class="replacement-diagram" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 背景 -->
+                                    <rect width="800" height="450" fill="rgba(10, 10, 10, 0.3)"/>
+
+                                    <!-- 左侧：模板代码 -->
+                                    <rect x="50" y="50" width="330" height="350" rx="8" fill="rgba(23, 23, 23, 0.8)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="215" y="35" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">模板代码</text>
+
+                                    <!-- 代码内容 -->
+                                    <text x="70" y="90" fill="#f43f5e" font-size="12" font-family="monospace">&lt;h1&gt;</text>
+                                    <text x="110" y="90" fill="#eab308" font-size="12" font-family="monospace">你好，我是</text>
+                                    <text x="200" y="90" fill="#a855f7" font-size="12" font-family="monospace">【学生姓名】</text>
+                                    <text x="290" y="90" fill="#f43f5e" font-size="12" font-family="monospace">&lt;/h1&gt;</text>
+
+                                    <text x="70" y="120" fill="#f43f5e" font-size="12" font-family="monospace">&lt;p&gt;</text>
+                                    <text x="100" y="120" fill="#a855f7" font-size="12" font-family="monospace">【AI生成的自我介绍】</text>
+                                    <text x="290" y="120" fill="#f43f5e" font-size="12" font-family="monospace">&lt;/p&gt;</text>
+
+                                    <text x="70" y="150" fill="#f43f5e" font-size="12" font-family="monospace">&lt;img src="</text>
+                                    <text x="70" y="170" fill="#a855f7" font-size="12" font-family="monospace">  assets/img/【头像文件名】</text>
+                                    <text x="70" y="190" fill="#f43f5e" font-size="12" font-family="monospace">" /&gt;</text>
+
+                                    <!-- 中间：箭头 -->
+                                    <path d="M 390 225 L 410 225" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrow-replace)"/>
+                                    <text x="400" y="215" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">替换</text>
+
+                                    <!-- 右侧：实际内容 -->
+                                    <rect x="420" y="50" width="330" height="350" rx="8" fill="rgba(23, 23, 23, 0.8)" stroke="#a855f7" stroke-width="2"/>
+                                    <text x="585" y="35" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">实际内容</text>
+
+                                    <text x="440" y="90" fill="#f43f5e" font-size="12" font-family="monospace">&lt;h1&gt;</text>
+                                    <text x="480" y="90" fill="#eab308" font-size="12" font-family="monospace">你好，我是</text>
+                                    <text x="570" y="90" fill="#06b6d4" font-size="12" font-family="monospace">张三</text>
+                                    <text x="600" y="90" fill="#f43f5e" font-size="12" font-family="monospace">&lt;/h1&gt;</text>
+
+                                    <text x="440" y="120" fill="#f43f5e" font-size="12" font-family="monospace">&lt;p&gt;</text>
+                                    <text x="470" y="120" fill="#06b6d4" font-size="12" font-family="monospace">前端开发工程师</text>
+                                    <text x="440" y="140" fill="#06b6d4" font-size="12" font-family="monospace">精通HTML/CSS/JavaScript</text>
+                                    <text x="650" y="140" fill="#f43f5e" font-size="12" font-family="monospace">&lt;/p&gt;</text>
+
+                                    <text x="440" y="170" fill="#f43f5e" font-size="12" font-family="monospace">&lt;img src="</text>
+                                    <text x="440" y="190" fill="#06b6d4" font-size="12" font-family="monospace">  assets/img/avatar.png</text>
+                                    <text x="440" y="210" fill="#f43f5e" font-size="12" font-family="monospace">" /&gt;</text>
+
+                                    <!-- 箭头定义 -->
+                                    <defs>
+                                        <marker id="arrow-replace" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#06b6d4"/>
+                                        </marker>
+                                    </defs>
+
+                                    <!-- 高亮替换部分 -->
+                                    <rect x="190" y="75" width="100" height="20" rx="4" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="5,5"/>
+                                    <rect x="560" y="75" width="40" height="20" rx="4" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5"/>
+                                </svg>
+                                <p class="diagram-caption">HTML模板替换示意</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 替换操作详解 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>替换操作详解</h3>
+
+                            <div class="code-examples">
+                                <div class="code-example">
+                                    <h4><i class="fas fa-user" style="color: var(--neon-cyan);"></i> 1. 个人介绍替换</h4>
+                                    <pre><code>&lt;h1&gt;你好，我是 <span class="highlight">【学生姓名】</span>&lt;/h1&gt;
+&lt;p&gt;<span class="highlight">【AI 生成的自我介绍】</span>&lt;/p&gt;
+&lt;img src="assets/img/<span class="highlight">学生头像文件名.png</span>" /&gt;</code></pre>
+                                </div>
+
+                                <div class="code-example">
+                                    <h4><i class="fas fa-graduation-cap" style="color: var(--neon-purple);"></i> 2. 学习背景替换</h4>
+                                    <pre><code>&lt;h2&gt;学习背景&lt;/h2&gt;
+&lt;p&gt;<span class="highlight">【学校名称】</span> · <span class="highlight">【专业名称】</span> · <span class="highlight">【学习时间段】</span>&lt;/p&gt;</code></pre>
+                                </div>
+
+                                <div class="code-example">
+                                    <h4><i class="fas fa-chart-bar" style="color: var(--cyber-pink);"></i> 3. 能力矩阵替换</h4>
+                                    <pre><code>&lt;div class="skill-card"&gt;
+  &lt;h3&gt;<span class="highlight">【能力名称】</span>&lt;/h3&gt;
+  &lt;p&gt;<span class="highlight">【能力描述】</span>&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+
+                                <div class="code-example">
+                                    <h4><i class="fas fa-project-diagram" style="color: var(--neon-yellow);"></i> 4. 项目案例替换</h4>
+                                    <pre><code>&lt;div class="project-card"&gt;
+  &lt;img src="assets/img/<span class="highlight">【项目图片文件名】</span>" /&gt;
+  &lt;h3&gt;<span class="highlight">【项目名称】</span>&lt;/h3&gt;
+  &lt;p&gt;<span class="highlight">【项目简述】</span>&lt;/p&gt;
+  &lt;p class="date"&gt;<span class="highlight">【项目时间】</span>&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                                </div>
+
+                                <div class="code-example">
+                                    <h4><i class="fas fa-envelope" style="color: var(--neon-blue);"></i> 5. 联系信息替换</h4>
+                                    <pre><code>&lt;p&gt;Email: <span class="highlight">【邮箱地址】</span>&lt;/p&gt;
+&lt;p&gt;微信：<span class="highlight">【微信号】</span>&lt;/p&gt;
+&lt;p&gt;位置：<span class="highlight">【所在城市】</span>&lt;/p&gt;</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 四、内容整合实战操作 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 四、内容整合实战操作</h2>
+                            <h3>（一）项目文件夹结构</h3>
+
+                            <!-- 文件夹结构树形图 -->
+                            <div class="diagram-container">
+                                <svg class="folder-structure-diagram" viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 背景 -->
+                                    <rect width="800" height="450" fill="rgba(10, 10, 10, 0.3)"/>
+
+                                    <!-- 根文件夹 -->
+                                    <rect x="50" y="50" width="250" height="50" rx="8" fill="rgba(244, 63, 94, 0.3)" stroke="#f43f5e" stroke-width="2"/>
+                                    <text x="70" y="82" fill="#f43f5e" font-size="16" font-weight="bold">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf07b;</tspan> my-portfolio/
+                                    </text>
+
+                                    <!-- index.html -->
+                                    <line x1="175" y1="100" x2="175" y2="140" stroke="#06b6d4" stroke-width="2"/>
+                                    <line x1="175" y1="140" x2="195" y2="140" stroke="#06b6d4" stroke-width="2"/>
+                                    <rect x="195" y="120" width="200" height="40" rx="8" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="215" y="145" fill="#06b6d4" font-size="14">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf15b;</tspan> index.html
+                                    </text>
+
+                                    <!-- CSS文件 -->
+                                    <line x1="175" y1="140" x2="175" y2="180" stroke="#06b6d4" stroke-width="2"/>
+                                    <line x1="175" y1="180" x2="195" y2="180" stroke="#06b6d4" stroke-width="2"/>
+                                    <rect x="195" y="160" width="280" height="40" rx="8" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2"/>
+                                    <text x="215" y="185" fill="#a855f7" font-size="14">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf15b;</tspan> muted_elegant_theme.css
+                                    </text>
+
+                                    <!-- assets文件夹 -->
+                                    <line x1="175" y1="180" x2="175" y2="220" stroke="#06b6d4" stroke-width="2"/>
+                                    <line x1="175" y1="220" x2="195" y2="220" stroke="#06b6d4" stroke-width="2"/>
+                                    <rect x="195" y="200" width="150" height="40" rx="8" fill="rgba(234, 179, 8, 0.2)" stroke="#eab308" stroke-width="2"/>
+                                    <text x="215" y="225" fill="#eab308" font-size="14" font-weight="bold">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf07b;</tspan> assets/
+                                    </text>
+
+                                    <!-- img文件夹 -->
+                                    <line x1="270" y1="240" x2="270" y2="280" stroke="#eab308" stroke-width="2"/>
+                                    <line x1="270" y1="280" x2="290" y2="280" stroke="#eab308" stroke-width="2"/>
+                                    <rect x="290" y="260" width="120" height="40" rx="8" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2"/>
+                                    <text x="310" y="285" fill="#3b82f6" font-size="14" font-weight="bold">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf07b;</tspan> img/
+                                    </text>
+
+                                    <!-- 图片文件 -->
+                                    <line x1="350" y1="300" x2="350" y2="330" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="350" y1="330" x2="370" y2="330" stroke="#3b82f6" stroke-width="2"/>
+                                    <rect x="370" y="315" width="180" height="30" rx="6" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="1"/>
+                                    <text x="385" y="335" fill="#06b6d4" font-size="12">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf1c5;</tspan> 头像文件.png
+                                    </text>
+
+                                    <line x1="350" y1="330" x2="350" y2="360" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="350" y1="360" x2="370" y2="360" stroke="#3b82f6" stroke-width="2"/>
+                                    <rect x="370" y="345" width="180" height="30" rx="6" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="1"/>
+                                    <text x="385" y="365" fill="#06b6d4" font-size="12">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf1c5;</tspan> 项目图片1.png
+                                    </text>
+
+                                    <line x1="350" y1="360" x2="350" y2="390" stroke="#3b82f6" stroke-width="2"/>
+                                    <line x1="350" y1="390" x2="370" y2="390" stroke="#3b82f6" stroke-width="2"/>
+                                    <rect x="370" y="375" width="180" height="30" rx="6" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="1"/>
+                                    <text x="385" y="395" fill="#06b6d4" font-size="12">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf1c5;</tspan> ...
+                                    </text>
+
+                                    <!-- 说明文字 -->
+                                    <text x="420" y="145" fill="#888" font-size="12">← 网页主文件</text>
+                                    <text x="485" y="185" fill="#888" font-size="12">← 样式文件</text>
+                                    <text x="355" y="225" fill="#888" font-size="12">← 资源文件夹</text>
+                                    <text x="420" y="285" fill="#888" font-size="12">← 图片文件夹</text>
+                                </svg>
+                                <p class="diagram-caption">项目文件夹结构树形图</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4>图片存放规范</h4>
+                                <ul>
+                                    <li>所有图片放入 <code>assets/img/</code> 目录</li>
+                                    <li>文件命名<strong>简洁明了</strong>，避免使用中文和空格</li>
+                                    <li>例如：<code>avatar.png</code>、<code>project1.png</code></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 替换操作流程 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）替换操作流程</h3>
+
+                            <!-- 流程图 -->
+                            <div class="diagram-container">
+                                <svg class="workflow-diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 背景 -->
+                                    <rect width="800" height="500" fill="rgba(10, 10, 10, 0.3)"/>
+
+                                    <!-- 阶段1：内容准备 -->
+                                    <rect x="100" y="50" width="200" height="120" rx="12" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="3"/>
+                                    <text x="200" y="80" text-anchor="middle" fill="#06b6d4" font-size="16" font-weight="bold">阶段1：内容准备</text>
+                                    <text x="200" y="105" text-anchor="middle" fill="#fff" font-size="12">收集个人信息</text>
+                                    <text x="200" y="125" text-anchor="middle" fill="#fff" font-size="12">整理项目资料</text>
+                                    <text x="200" y="145" text-anchor="middle" fill="#fff" font-size="12">准备图片资源</text>
+
+                                    <!-- 箭头1 -->
+                                    <path d="M 300 110 L 380 110" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrow1)"/>
+                                    <text x="340" y="100" text-anchor="middle" fill="#06b6d4" font-size="12">准备完成</text>
+
+                                    <!-- 阶段2：AI优化 -->
+                                    <rect x="380" y="50" width="200" height="120" rx="12" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="3"/>
+                                    <text x="480" y="80" text-anchor="middle" fill="#a855f7" font-size="16" font-weight="bold">阶段2：AI优化</text>
+                                    <text x="480" y="105" text-anchor="middle" fill="#fff" font-size="12">使用提示词模板</text>
+                                    <text x="480" y="125" text-anchor="middle" fill="#fff" font-size="12">获取结构化内容</text>
+                                    <text x="480" y="145" text-anchor="middle" fill="#fff" font-size="12">检查内容质量</text>
+
+                                    <!-- 箭头2 -->
+                                    <path d="M 480 170 L 480 230" stroke="#a855f7" stroke-width="3" marker-end="url(#arrow2)"/>
+                                    <text x="510" y="205" fill="#a855f7" font-size="12">优化完成</text>
+
+                                    <!-- 阶段3：替换实施 -->
+                                    <rect x="380" y="230" width="200" height="120" rx="12" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="3"/>
+                                    <text x="480" y="260" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">阶段3：替换实施</text>
+                                    <text x="480" y="285" text-anchor="middle" fill="#fff" font-size="12">按模块逐一替换</text>
+                                    <text x="480" y="305" text-anchor="middle" fill="#fff" font-size="12">检查路径正确性</text>
+                                    <text x="480" y="325" text-anchor="middle" fill="#fff" font-size="12">验证显示效果</text>
+
+                                    <!-- 箭头3 -->
+                                    <path d="M 380 290 L 300 290" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrow3)"/>
+                                    <text x="340" y="280" text-anchor="middle" fill="#f43f5e" font-size="12">进入替换</text>
+
+                                    <!-- 循环检查 -->
+                                    <rect x="100" y="230" width="200" height="120" rx="12" fill="rgba(234, 179, 8, 0.2)" stroke="#eab308" stroke-width="3"/>
+                                    <text x="200" y="260" text-anchor="middle" fill="#eab308" font-size="16" font-weight="bold">检查与调试</text>
+                                    <text x="200" y="285" text-anchor="middle" fill="#fff" font-size="12">浏览器预览</text>
+                                    <text x="200" y="305" text-anchor="middle" fill="#fff" font-size="12">发现问题</text>
+                                    <text x="200" y="325" text-anchor="middle" fill="#fff" font-size="12">返回修改</text>
+
+                                    <!-- 循环箭头 -->
+                                    <path d="M 200 230 Q 200 190 300 190 Q 400 190 480 230" stroke="#eab308" stroke-width="2" stroke-dasharray="5,5" fill="none" marker-end="url(#arrow4)"/>
+                                    <text x="350" y="180" text-anchor="middle" fill="#eab308" font-size="12">发现问题，重新优化</text>
+
+                                    <!-- 完成 -->
+                                    <rect x="150" y="390" width="100" height="50" rx="25" fill="rgba(16, 185, 129, 0.3)" stroke="#10b981" stroke-width="3"/>
+                                    <text x="200" y="422" text-anchor="middle" fill="#10b981" font-size="16" font-weight="bold">
+                                        <tspan font-family="Font Awesome 6 Free">&#xf00c;</tspan> 完成
+                                    </text>
+
+                                    <!-- 箭头到完成 -->
+                                    <path d="M 200 350 L 200 390" stroke="#10b981" stroke-width="3" marker-end="url(#arrow5)"/>
+
+                                    <!-- 箭头定义 -->
+                                    <defs>
+                                        <marker id="arrow1" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#06b6d4"/>
+                                        </marker>
+                                        <marker id="arrow2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#a855f7"/>
+                                        </marker>
+                                        <marker id="arrow3" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#f43f5e"/>
+                                        </marker>
+                                        <marker id="arrow4" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#eab308"/>
+                                        </marker>
+                                        <marker id="arrow5" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#10b981"/>
+                                        </marker>
+                                    </defs>
+                                </svg>
+                                <p class="diagram-caption">替换操作流程图</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 实战操作要点 -->
+            <section class="section-scroll-item" data-section="14">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>实战操作要点</h3>
+
+                            <div class="tips-grid">
+                                <div class="tip-card">
+                                    <div class="tip-icon">
+                                        <i class="fas fa-lightbulb" style="color: var(--neon-cyan);"></i>
+                                    </div>
+                                    <h4>内容准备阶段</h4>
+                                    <ul>
+                                        <li>整理个人介绍、教育背景</li>
+                                        <li>准备能力描述和项目资料</li>
+                                        <li>收集头像和项目封面图</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tip-card">
+                                    <div class="tip-icon">
+                                        <i class="fas fa-robot" style="color: var(--neon-purple);"></i>
+                                    </div>
+                                    <h4>AI优化阶段</h4>
+                                    <ul>
+                                        <li>使用提示词模板整理内容</li>
+                                        <li>获取结构化、简洁的文本</li>
+                                        <li>确保内容符合展示要求</li>
+                                    </ul>
+                                </div>
+
+                                <div class="tip-card">
+                                    <div class="tip-icon">
+                                        <i class="fas fa-code" style="color: var(--cyber-pink);"></i>
+                                    </div>
+                                    <h4>替换实施阶段</h4>
+                                    <ul>
+                                        <li>按模块逐一替换内容</li>
+                                        <li>确保图片路径正确</li>
+                                        <li>在浏览器中验证效果</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 五、常见问题与解决方案 -->
+            <section class="section-scroll-item" data-section="15">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔧 五、常见问题与解决方案</h2>
+                            <h3>（一）内容相关问题</h3>
+
+                            <div class="problem-solution">
+                                <div class="problem-card">
+                                    <div class="problem-header">
+                                        <span class="problem-icon">❌</span>
+                                        <h4>问题1：个人介绍过长或过短</h4>
+                                    </div>
+                                    <div class="problem-body">
+                                        <p><strong>现象：</strong>自我介绍超过50字或不足30字</p>
+                                        <p><strong>原因：</strong>内容过于详细或过于简略</p>
+                                    </div>
+                                    <div class="solution">
+                                        <span class="solution-icon">✅</span>
+                                        <p><strong>解决方案：</strong>控制在30-50字，突出核心优势，删除无关信息</p>
+                                    </div>
+                                </div>
+
+                                <div class="problem-card">
+                                    <div class="problem-header">
+                                        <span class="problem-icon">❌</span>
+                                        <h4>问题2：能力描述不一致</h4>
+                                    </div>
+                                    <div class="problem-body">
+                                        <p><strong>现象：</strong>有些能力描述很长，有些很短</p>
+                                        <p><strong>原因：</strong>没有统一描述标准</p>
+                                    </div>
+                                    <div class="solution">
+                                        <span class="solution-icon">✅</span>
+                                        <p><strong>解决方案：</strong>统一描述长度和风格，每个能力用2-3句话描述</p>
+                                    </div>
+                                </div>
+
+                                <div class="problem-card">
+                                    <div class="problem-header">
+                                        <span class="problem-icon">❌</span>
+                                        <h4>问题3：项目信息不完整</h4>
+                                    </div>
+                                    <div class="problem-body">
+                                        <p><strong>现象：</strong>项目缺少名称、描述、时间或标签</p>
+                                        <p><strong>原因：</strong>准备不充分</p>
+                                    </div>
+                                    <div class="solution">
+                                        <span class="solution-icon">✅</span>
+                                        <p><strong>解决方案：</strong>确保每个项目包含名称、描述、时间、标签四要素</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 技术问题 -->
+            <section class="section-scroll-item" data-section="16">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）技术问题</h3>
+
+                            <div class="problem-solution">
+                                <div class="problem-card tech">
+                                    <div class="problem-header">
+                                        <span class="problem-icon">⚠️</span>
+                                        <h4>问题1：图片路径错误</h4>
+                                    </div>
+                                    <div class="problem-body">
+                                        <p><strong>现象：</strong>网页中图片显示不出来</p>
+                                        <p><strong>原因：</strong>图片路径不正确</p>
+                                    </div>
+                                    <div class="solution">
+                                        <span class="solution-icon">💡</span>
+                                        <p><strong>解决方案：</strong>检查相对路径，确保 <code>assets/img/</code> 前缀正确，文件名无误</p>
+                                    </div>
+                                    <div class="example-box">
+                                        <p class="error">❌ 错误：<code>&lt;img src="头像.png" /&gt;</code></p>
+                                        <p class="correct">✅ 正确：<code>&lt;img src="assets/img/avatar.png" /&gt;</code></p>
+                                    </div>
+                                </div>
+
+                                <div class="problem-card tech">
+                                    <div class="problem-header">
+                                        <span class="problem-icon">⚠️</span>
+                                        <h4>问题2：HTML结构破坏</h4>
+                                    </div>
+                                    <div class="problem-body">
+                                        <p><strong>现象：</strong>网页布局错乱</p>
+                                        <p><strong>原因：</strong>替换时删除了重要的HTML标签</p>
+                                    </div>
+                                    <div class="solution">
+                                        <span class="solution-icon">💡</span>
+                                        <p><strong>解决方案：</strong>替换时保持原有标签结构完整，只替换标签内的内容</p>
+                                    </div>
+                                    <div class="example-box">
+                                        <p class="error">❌ 错误：删除了 <code>&lt;div&gt;</code> 或 <code>&lt;/div&gt;</code></p>
+                                        <p class="correct">✅ 正确：只修改 <code>&lt;div&gt;</code>内容<code>&lt;/div&gt;</code> 之间的内容</p>
+                                    </div>
+                                </div>
+
+                                <div class="problem-card tech">
+                                    <div class="problem-header">
+                                        <span class="problem-icon">⚠️</span>
+                                        <h4>问题3：样式显示异常</h4>
+                                    </div>
+                                    <div class="problem-body">
+                                        <p><strong>现象：</strong>网页样式与预期不符</p>
+                                        <p><strong>原因：</strong>CSS类名被修改或标签未正确闭合</p>
+                                    </div>
+                                    <div class="solution">
+                                        <span class="solution-icon">💡</span>
+                                        <p><strong>解决方案：</strong>检查CSS类名是否保留，标签是否正确闭合</p>
+                                    </div>
+                                    <div class="example-box">
+                                        <p class="error">❌ 错误：<code>class="skill-card"</code> 改成了其他名称</p>
+                                        <p class="correct">✅ 正确：保持 <code>class</code> 属性不变</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 总结 -->
+            <section class="section-scroll-item" data-section="17">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📝 课程总结</h2>
+
+                            <div class="summary-box">
+                                <h3 style="color: var(--neon-cyan);">掌握了什么？</h3>
+                                <div class="summary-grid">
+                                    <div class="summary-item">
+                                        <div class="summary-icon"><i class="fas fa-check-circle" style="color: var(--neon-cyan);"></i></div>
+                                        <p>理解作品集网页的模块化结构</p>
+                                    </div>
+                                    <div class="summary-item">
+                                        <div class="summary-icon"><i class="fas fa-check-circle" style="color: var(--neon-purple);"></i></div>
+                                        <p>掌握项目资料整理与分类方法</p>
+                                    </div>
+                                    <div class="summary-item">
+                                        <div class="summary-icon"><i class="fas fa-check-circle" style="color: var(--cyber-pink);"></i></div>
+                                        <p>学会内容替换与模块整合技巧</p>
+                                    </div>
+                                    <div class="summary-item">
+                                        <div class="summary-icon"><i class="fas fa-check-circle" style="color: var(--neon-yellow);"></i></div>
+                                        <p>能够独立完成作品集网页定制</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4>关键要点回顾</h4>
+                                <ul>
+                                    <li>作品集网页由<strong>6个核心模块</strong>组成：导航、个人介绍、学习背景、能力矩阵、项目案例、联系信息</li>
+                                    <li>使用<strong>AI提示词模板</strong>可以快速生成结构化、简洁的内容</li>
+                                    <li>替换时要<strong>保持HTML结构完整</strong>，只修改内容部分</li>
+                                    <li>图片路径必须使用<strong>相对路径</strong>：<code>assets/img/文件名</code></li>
+                                    <li>遇到问题时，先检查<strong>路径、标签、类名</strong>这三个关键点</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card nav-card">
+                <button class="nav-item active" onclick="courseScrollToSection(1)">一、网页结构解析</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(1)">（一）模块组成</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(3)">（二）模块关联</button>
+                <button class="nav-item" onclick="courseScrollToSection(4)">二、资料整理</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(4)">（一）个人信息</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(5)">（二）教育背景</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(6)">（三）能力矩阵</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(7)">（四）项目案例</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(8)">（五）联系方式</button>
+                <button class="nav-item" onclick="courseScrollToSection(9)">三、模块替换</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(9)">（一）AI辅助</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(10)">（二）HTML替换</button>
+                <button class="nav-item" onclick="courseScrollToSection(12)">四、实战操作</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(12)">（一）文件结构</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(13)">（二）操作流程</button>
+                <button class="nav-item" onclick="courseScrollToSection(15)">五、常见问题</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(15)">（一）内容问题</button>
+                <button class="nav-item-sub" onclick="courseScrollToSection(16)">（二）技术问题</button>
+                <button class="nav-item" onclick="courseScrollToSection(17)">课程总结</button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">完成个人作品集网页的内容整合</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+
+                                <div class="homework-tasks">
+                                    <div class="homework-task">
+                                        <div class="task-number">1</div>
+                                        <div class="task-content">
+                                            <h4>完成个人信息收集与整理</h4>
+                                            <p>包括头像、自我介绍和个人标签</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-task">
+                                        <div class="task-number">2</div>
+                                        <div class="task-content">
+                                            <h4>准备2-4个项目案例</h4>
+                                            <p>每个项目包含名称、描述、时间和标签</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-task">
+                                        <div class="task-number">3</div>
+                                        <div class="task-content">
+                                            <h4>使用AI提示词模板优化内容</h4>
+                                            <p>生成适合网页展示的结构化文本</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-task">
+                                        <div class="task-number">4</div>
+                                        <div class="task-content">
+                                            <h4>完成所有模块的内容替换</h4>
+                                            <p>确保网页显示正常</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-task">
+                                        <div class="task-number">5</div>
+                                        <div class="task-content">
+                                            <h4>检查所有图片路径和链接</h4>
+                                            <p>确保在浏览器中能正确显示</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="homework-tips">
+                                    <h3><i class="fas fa-lightbulb" style="color: var(--neon-yellow);"></i> 温馨提示</h3>
+                                    <ul>
+                                        <li>先整理好所有资料再开始替换，提高效率</li>
+                                        <li>充分利用AI工具优化内容，让文案更专业</li>
+                                        <li>每替换一个模块就在浏览器中检查一次效果</li>
+                                        <li>图片命名要规范，使用英文和数字</li>
+                                        <li>遇到问题及时参考"常见问题与解决方案"章节</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI网页开发课程 | 第七课：作品集网页内容整合与模块替换</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
