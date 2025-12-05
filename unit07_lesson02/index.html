@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2.第一次用 N8N？用这套节点做个简单工作流 | N8N自动化教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>2.第一次用 N8N？用这套节点做个简单工作流</h1>
+                    <p class="subtitle">掌握N8N节点基础 | 创建你的第一个自动化工作流</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 板块一课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card" style="background: linear-gradient(135deg, rgba(10, 10, 10, 0.5) 0%, rgba(23, 23, 23, 0.4) 100%);">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">（一）课程回顾</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">什么是自动化工作流</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">工作流的基本构成与优化的方法</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">自动化在学习、金融、设计、计算机等领域的价值</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">N8N工具的本地部署</li>
+                            </ol>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">（二）学习目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解N8N的基础页面布局</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解N8N基础节点的作用及如何使用</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解API的概念与作用</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">成功布置一个简单的自动化工作流</li>
+                            </ol>
+
+                            <h3 class="neon-text-pink" style="margin-top: 35px; font-size: 1.5rem;">（三）课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">认识N8N的界面</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">基础节点介绍</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">一起构建一个简单的工作流</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">课后任务</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入了解 N8N 节点 | 构建自动化工作流</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 认识N8N节点 -->
+            <section class="section-scroll-item" data-section="1" id="section-n8n-interface">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🖥️ 一、认识N8N的界面</h2>
+                            <p style="font-size: 1.2rem; margin-bottom: 30px;">N8N的核心是"<strong class="neon-text-cyan">可视化工作流构建区</strong>"，它通过节点（Node）连接形成完整流程。在正式操作之前，我们要先熟悉界面布局。</p>
+
+                            <h3>（一）初始界面</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧按钮栏 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepSection1(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">工作流</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection1(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">凭证</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection1(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">状态</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区 -->
+                                <div class="steps-content">
+                                    <!-- 工作流 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1. 工作流</h4>
+                                        <p class="step-content-description">
+                                            这里保存和管理你创建的所有流程。每个工作流就像一个"自动化项目文件夹"，可以随时打开、修改、执行或暂停。<br><br>
+                                            你可以通过重命名与添加标签的方法来增加工作流的辨识度。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/1.工作流管理界面.jpeg"]'
+                                             data-descriptions='["这里保存和管理你创建的所有流程"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 凭证 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2. 凭证</h4>
+                                        <p class="step-content-description">
+                                            当N8N需要连接外部平台（如邮箱、AI模型、飞书等）时，需要凭证授权。凭证相当于一把"钥匙"，让N8N安全访问你的应用。从而可以获取信息、保存信息等等。<br><br>
+                                            例如我们的工作流要浏览我们邮箱的时候，我们就需要提供授权码，这就是凭证。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/2.凭证管理界面.jpeg"]'
+                                             data-descriptions='["凭证授权管理界面"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 状态 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3. 状态</h4>
+                                        <p class="step-content-description">
+                                            用于查看工作流的运行记录与结果。你可以在这里检查：<br>
+                                            • 是否执行成功？<br>
+                                            • 执行用了多长时间？<br>
+                                            • 哪些节点出错？
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/3.执行状态查看界面.jpeg"]'
+                                             data-descriptions='["查看工作流运行记录和结果"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1b: 内部工作区 -->
+            <section class="section-scroll-item" data-section="1b" id="section-n8n-workspace">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）内部工作区</h3>
+                            <p style="font-size: 1.2rem; margin-bottom: 30px;">点击右上角"<strong class="neon-text-cyan">create Workflow（创建新工作流）</strong>"后，会进入<strong>可视化编辑区</strong>。</p>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧按钮栏 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepSection1b(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点区</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection1b(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">顶部工具栏</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection1b(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">左侧节点库</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区 -->
+                                <div class="steps-content">
+                                    <!-- 节点区 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1. 节点区（Node Canvas）</h4>
+                                        <p class="step-content-description">
+                                            这是核心工作区，你可以拖拽节点并通过连线形成逻辑。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/4.节点区界面.jpeg"]'
+                                             data-descriptions='["核心工作区，拖拽节点并通过连线形成逻辑"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 顶部工具栏 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2. 顶部工具栏</h4>
+                                        <p class="step-content-description">
+                                            包含保存、运行、暂停、调试等按钮。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/5.顶部工具栏.jpeg"]'
+                                             data-descriptions='["保存、运行、暂停、调试等按钮"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 左侧节点库 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3. 左侧节点库（Nodes Panel）</h4>
+                                        <p class="step-content-description">
+                                            提供所有可用的节点分类，例如"触发器""AI""应用""逻辑"。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/6.左侧节点库面板.jpeg"]'
+                                             data-descriptions='["所有可用的节点分类"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 基础节点介绍 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔗 二、基础节点介绍</h2>
+                            <p style="font-size: 1.3rem; margin-bottom: 20px;">N8N中的每个节点（Node）都代表一个具体动作或事件。节点可以理解为"<strong class="neon-text-cyan">自动化任务的最小单元</strong>"。</p>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;"><strong>理解节点的类比：</strong></p>
+                                <p style="margin-top: 10px;">如果把我们上节课提到的<strong class="neon-text-purple">炒菜</strong>看作是一个工作流：</p>
+                                <p style="margin-top: 10px; font-size: 1.1rem;">确定今天要吃什么 → 菜市场买菜 → <span class="neon-text-cyan">洗菜</span> → <span class="neon-text-cyan">备菜</span> → <span class="neon-text-cyan">炒菜</span> → 装盘 → 上桌吃饭</p>
+                                <p style="margin-top: 10px;">其中，<strong>洗菜、备菜、炒菜</strong>就算是一个单独的节点。</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;"><strong>节点的类型：</strong></p>
+                                <p style="margin-top: 15px;"><strong class="neon-text-pink">触发节点：</strong>流程的起跑讯号，决定了工作流何时启动，以什么样的方式启动</p>
+                                <p style="margin-top: 15px;"><strong class="neon-text-purple">AI节点：</strong>调用外部模型功能，实现文本、图形、视频等内容创作</p>
+                                <p style="margin-top: 15px;"><strong class="neon-text-cyan">应用节点：</strong>应用节点让N8N连接并操作外部软件系统，比如邮箱、文档、数据库、社交平台等。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 触发节点详解 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（一）触发节点</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">触发节点决定了工作流"<strong class="neon-text-pink">何时启动</strong>"。就像是流程的"起跑信号"。</p>
+
+                            <!-- 触发节点示意图 -->
+                            <div style="text-align: center; margin: 30px 0;">
+                                <img src="images/7.触发节点.jpeg" alt="触发节点示意图" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);">
+                            </div>
+
+                            <h3>触发节点类型详解</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-hand-pointer neon-text-cyan"></i> 1. 点击触发器</h4>
+                                <p><strong>功能：</strong>手动点击触发执行工作流</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-envelope neon-text-purple"></i> 2. 消息触发器</h4>
+                                <p><strong>功能：</strong>当邮箱收到新邮件或外部程序发送请求时自动触发工作流</p>
+                                <p><strong>举例：</strong>当接收到邮件提醒/别人填写表单的时候自动触发工作流</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-clock neon-text-pink"></i> 3. 定时触发器</h4>
+                                <p><strong>功能：</strong>让自动化工作流在特定时间自动运行</p>
+                                <p><strong>举例：</strong>每天早上8点自动发送天气提醒邮件</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-network-wired" style="color: var(--neon-yellow);"></i> 4. HTTP请求触发</h4>
+                                <p><strong>功能：</strong>外部系统可通过网络请求调用此流程，从而触发工作流</p>
+                                <p><strong>举例：</strong>一个网站表单提交后，自动调用N8N更新数据库，从而返回显示出更新了哪些内容</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-clipboard-list" style="color: #10b981;"></i> 5. 表单被填写时触发</h4>
+                                <p><strong>功能：</strong>当用户提交表单数据时自动触发流程</p>
+                                <p><strong>举例：</strong>学生在报名表中填写信息，系统自动保存到Excel表中</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-project-diagram" style="color: #f59e0b;"></i> 6. 被另一个工作流调用时触发</h4>
+                                <p><strong>功能：</strong>一个工作流可以调用另一个工作流，在过程中或是结束的时候</p>
+                                <p><strong>举例：</strong>一个文生图的自动化流程，写提示词我们用一个工作流，然后用上一个工作流撰写的提示词用来生成图片作为另一个工作流</p>
+                                <p><strong>优点：</strong>避免鸡蛋放在一个筐子里，如果有修改的需求，不至于从头到尾全都改一遍</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-comment-dots" style="color: #ec4899;"></i> 7. 外部应用触发</h4>
+                                <p><strong>功能：</strong>如飞书、Slack、Telegram等应用发送消息时触发N8N工作流</p>
+                                <p><strong>举例：</strong>当有人在群里发送"日报"两个字时，系统自动收集当天工作内容</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: AI节点 - 主标题 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）AI节点</h3>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">AI节点让N8N能够调用外部AI模型，实现智能化任务。</p>
+
+                            <!-- AI节点示意图 -->
+                            <div style="text-align: center; margin: 30px 0;">
+                                <img src="images/8.（一）AI节点.png" alt="AI节点示意图" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4a: Agent节点 -->
+            <section class="section-scroll-item" data-section="4a">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4><i class="fas fa-robot neon-text-cyan"></i> 1. Agent节点</h4>
+                            <p><strong>功能：</strong>根据提示词与输入，输出结果</p>
+                            <ul style="margin-top: 10px;">
+                                <li><strong>选择模型：</strong>配置节点所使用哪个AI模型，原生模型可选</li>
+                                <li><strong>记忆：</strong>是否开启记忆，让AI记住前文与上下文，默认的记忆对话是5次</li>
+                                <li><strong>外部工具：</strong>允许AI在执行过程中使用外部功能，比如网络搜索、生成图片、抓取网页数据等</li>
+                                <li><strong>规范输出格式：</strong>是否让节点输出的结果按照我们设定的结构来输出，例如JSON、表格或Markdown结构，方便后续节点读取</li>
+                            </ul>
+
+                            <!-- Agent节点示意图 -->
+                            <div style="text-align: center; margin: 30px 0;">
+                                <img src="images/9.Agent节点.jpeg" alt="Agent节点示意图" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4b: 模型接入节点 -->
+            <section class="section-scroll-item" data-section="4b">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4><i class="fas fa-plug neon-text-purple"></i> 2. 模型接入节点</h4>
+                            <p><strong>功能：</strong>这些节点的功能是"<strong>连接外部AI模型或平台</strong>"，相当于让n8n能够调用不同的大模型服务</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4c: 语言处理类节点 -->
+            <section class="section-scroll-item" data-section="4c">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4><i class="fas fa-language neon-text-pink"></i> 3. 语言处理类节点</h4>
+                            <p><strong>功能：</strong>不依赖具体品牌的模型，而是用来<strong>处理文本的基本任务</strong>，比如提取信息、分类、总结</p>
+                            <ul style="margin-top: 10px;">
+                                <li><strong>Basic LLM Chain：</strong>一个基础语言模型链，用于设计提示词（Prompt）和处理简单输入输出</li>
+                                <li><strong>Information Extractor：</strong>从文本中提取结构化信息（例如从邮件中提取姓名、地址、日期等）</li>
+                                <li><strong>Summarization Chain：</strong>把长文本自动概括为摘要，提取重点内容</li>
+                                <li><strong>Text Classifier：</strong>根据规则或模型，把文本分类（例如判断邮件类型、客户意图等）</li>
+                                <li><strong>Question and Answer Chain：</strong>用于问答型任务，例如根据文档回答问题</li>
+                                <li><strong>Sentiment Analysis：</strong>分析文本的情绪（正向、负向、中性）</li>
+                                <li><strong>Evaluation：</strong>用于评估AI模型的表现或结果准确度</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 应用节点 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）应用节点</h3>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">应用节点让N8N连接并操作外部软件系统，比如邮箱、文档、数据库、社交平台等。它是"<strong class="neon-text-cyan">沟通桥梁</strong>"，让不同系统的数据可以自动流转。</p>
+
+                            <div style="overflow-x: auto; margin: 30px 0;">
+                                <table style="width: 100%; border-collapse: collapse; background: rgba(23, 23, 23, 0.6); border-radius: 10px; overflow: hidden;">
+                                    <thead>
+                                        <tr style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(168, 85, 247, 0.3));">
+                                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid var(--cyber-pink); color: var(--neon-cyan); font-size: 1.1rem;">应用类别</th>
+                                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid var(--cyber-pink); color: var(--neon-cyan); font-size: 1.1rem;">示例节点</th>
+                                            <th style="padding: 15px; text-align: left; border-bottom: 2px solid var(--cyber-pink); color: var(--neon-cyan); font-size: 1.1rem;">功能说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom: 1px solid rgba(244, 63, 94, 0.2);">
+                                            <td style="padding: 15px;"><strong class="neon-text-pink">邮箱类</strong></td>
+                                            <td style="padding: 15px;">Gmail / QQ邮箱</td>
+                                            <td style="padding: 15px;">自动收取邮件、提取附件、自动回复或发送通知</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid rgba(244, 63, 94, 0.2);">
+                                            <td style="padding: 15px;"><strong class="neon-text-purple">表格类</strong></td>
+                                            <td style="padding: 15px;">Google Sheets / Excel</td>
+                                            <td style="padding: 15px;">自动写入成绩、统计数据、生成报表</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid rgba(244, 63, 94, 0.2);">
+                                            <td style="padding: 15px;"><strong class="neon-text-cyan">知识管理类</strong></td>
+                                            <td style="padding: 15px;">Notion / Evernote</td>
+                                            <td style="padding: 15px;">自动创建学习笔记、任务记录、日报卡片</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid rgba(244, 63, 94, 0.2);">
+                                            <td style="padding: 15px;"><strong style="color: var(--neon-yellow);">消息通知类</strong></td>
+                                            <td style="padding: 15px;">飞书 / Slack / 微信推送</td>
+                                            <td style="padding: 15px;">自动发送提醒、群发通知、接收命令消息</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid rgba(244, 63, 94, 0.2);">
+                                            <td style="padding: 15px;"><strong style="color: #10b981;">文件存储类</strong></td>
+                                            <td style="padding: 15px;">Google Drive / OneDrive</td>
+                                            <td style="padding: 15px;">自动备份文件、上传日志或报告</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 15px;"><strong style="color: #f59e0b;">社交平台类</strong></td>
+                                            <td style="padding: 15px;">Twitter / 小红书 / B站</td>
+                                            <td style="padding: 15px;">自动发布内容、更新动态、抓取评论</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 应用节点示意图 -->
+                            <div style="text-align: center; margin: 30px 0;">
+                                <img src="images/10.应用节点.jpeg" alt="应用节点示意图" style="max-width: 100%; border-radius: 10px; box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 一起做一个最简单的工作流 - 主标题 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚡ 三、一起做一个最简单的工作流</h2>
+                            <h3>（一）实战案例</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                使用N8N构建一个<strong class="neon-text-cyan">每天早上8点</strong>定时给<strong class="neon-text-cyan">自己的邮箱</strong>发送一封<strong class="neon-text-purple">根据个人品味定制</strong>的名称为<strong class="neon-text-pink">音乐推荐</strong>的邮件。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6a: 使用的节点分析 -->
+            <section class="section-scroll-item" data-section="6a">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4>（二）工作流逻辑分析</h4>
+                            <ul style="margin-top: 20px; font-size: 1.1rem;">
+                                <li><strong class="neon-text-cyan">每天早上8点:</strong>固定的时间自动触发工作流，时区为中国</li>
+                                <li><strong class="neon-text-purple">根据个人品味定制的名称为音乐推荐:</strong>需要用到<strong class="neon-text-purple">大语言模型</strong>根据<strong class="neon-text-purple">提示词</strong>自动生成</li>
+                                <li><strong class="neon-text-pink">发送到邮箱:</strong>将生成的推荐内容通过邮件发送，<strong class="neon-text-pink">邮件主题</strong>为"<strong class="neon-text-pink">音乐推荐</strong>"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6b: 案例功能实现路径分析 -->
+            <section class="section-scroll-item" data-section="6b">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4>（三）工作流技术选型</h4>
+                            <div class="highlight-box" style="margin-top: 20px;">
+                                <p style="font-size: 1.3rem; text-align: center; line-height: 2;">
+                                    <strong class="neon-text-cyan">Cron Trigger（每天08:00）</strong><br>
+                                    ↓<br>
+                                    <strong class="neon-text-purple">AI Agent（生成音乐推荐列表）</strong><br>
+                                    ↓<br>
+                                    <strong class="neon-text-pink">Email Send（发送到邮箱）</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- Section 8: 实操演示 -->
+            <section class="section-scroll-item" data-section="8" id="section-demo-practice">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4>（四）操作步骤</h4>
+                            <p style="font-size: 1.2rem; margin: 20px 0 40px 0;">接下来我们将在N8N中实际操作，创建这个音乐推荐工作流。</p>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧按钮栏 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepSection8(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">创建工作区</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection8(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">Cron Trigger节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection8(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">AI Agent节点配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection8(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">Send Email节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepSection8(4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">提示词内容</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1：创建工作区（4张图片） -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">步骤1：创建工作区</h4>
+                                        <p class="step-content-description">
+                                            点击创建工作流
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/11.创建工作区.jpeg","images/12.命名.jpeg","images/13.打开设置.jpeg","images/14.更改时区.jpeg"]'
+                                             data-descriptions='["点击创建工作流","为工作流命名，方便后续管理","在右上角打开setting","将工作流的时区更改为<strong class=\"neon-text-cyan\">Asia/Shanghai</strong>"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">4</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2：Cron Trigger节点设置（2张图片） -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤2：Cron Trigger节点设置</h4>
+                                        <p class="step-content-description">
+                                            点击Add first step，<strong class="neon-text-cyan">选择On a schedule节点</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/15.新建定时器触发节点.jpeg","images/16.修改触发时间.jpeg"]'
+                                             data-descriptions='["点击Add first step，<strong class=\"neon-text-cyan\">选择On a schedule节点</strong>","进入节点内部设置，将触发时间改为\"8am\"，随后返回工作区"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">2</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3：AI Agent节点配置（3张图片） -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤3：AI Agent节点配置</h4>
+                                        <p class="step-content-description">
+                                            点击后方"+"，新建<strong class="neon-text-cyan">AI agent</strong>节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/17.新建agent节点.jpeg","images/18.提示词设置.jpeg","images/19.配置deepseek.jpeg"]'
+                                             data-descriptions='["点击后方\"+\"，新建<strong class=\"neon-text-cyan\">AI agent</strong>节点","将提示词复制进去","添加大预言模型，配置完成（具体API设置下节课教学）"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4：Send Email节点设置（6张图片） -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤4：Send Email节点设置</h4>
+                                        <p class="step-content-description">
+                                            新建<strong class="neon-text-cyan">send Email</strong>节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/20.新建send email节点.jpg","images/21.设置IMAP账户.jpg","images/22.设置account.jpg","images/23.send email节点设置.jpeg","images/24.执行成功.jpeg","images/25.收到的邮箱.jpeg"]'
+                                             data-descriptions='["新建<strong class=\"neon-text-cyan\">send Email</strong>节点","打开qq邮箱，在设置>账号>账号安全处找到POP3/IMAP..服务，开启服务，随后跟随步骤生成授权码。后若善保存授权码","配置IMAP账户，<strong class=\"neon-text-cyan\">user</strong>填写自己的<strong class=\"neon-text-cyan\">qq账号</strong>，<strong class=\"neon-text-cyan\">密码</strong>放入上一步生成的<strong class=\"neon-text-cyan\">授权码</strong>，<strong class=\"neon-text-cyan\">host</strong>填写\"<strong class=\"neon-text-cyan\">smtp.qq.com</strong>\"；<strong class=\"neon-text-cyan\">port</strong>填写\"<strong class=\"neon-text-cyan\">465</strong>\"，<strong class=\"neon-text-cyan\">ssl/tls</strong>默认<strong class=\"neon-text-cyan\">打开</strong>","返回节点，from Email 和to email全部填写自己的qq号；subject填写音乐推荐，Email Format选择text，并将上一步输出的内容拖拽至文本框中","点击执行，可以看到工作流执行成功","邮箱内也收到来自n8n编辑的邮箱，演示完成"]'>
+                                            <div class="step-image-placeholder"></div>
+                                            <div class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </div>
+                                            <div class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </div>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">6</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5：提示词内容 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">步骤5：提示词内容</h4>
+                                        <p class="step-content-description">
+                                            以下是AI Agent节点中使用的完整提示词模板
+                                        </p>
+
+                                        <!-- 代码块容器 -->
+                                        <div class="prompt-code-container">
+                                            <!-- 复制按钮 -->
+                                            <button class="copy-prompt-btn" onclick="copyPromptCode()">
+                                                <i class="fas fa-copy"></i> 复制代码
+                                            </button>
+
+                                            <!-- 代码内容 -->
+                                            <pre class="prompt-code-block"><code># Role: 音乐品味分析与推荐专家
+
+## Profile
+- author: LangGPT
+- version: 1.0
+- language: 中文
+- description: 你是一位音乐推荐专家，擅长分析用户的音乐口味，并根据其偏好推荐风格相近的音乐专辑。你会结合用户喜欢的歌手，挖掘相似风格、同一时期或精神气质相通的艺术家及其作品，提供带有发行时间、风格流派、以及每首歌曲市场表现的完整推荐报告。
+
+## Skills
+1. 熟悉音乐史中70年代至90年代摇滚乐的发展，包括各类子风格如迷幻摇滚、独立摇滚、前卫摇滚等。
+2. 能够识别不同歌手的音乐风格特征，分析用户偏好的音乐元素（如旋律、编曲、歌词主题等）。
+3. 能根据用户喜好匹配相似风格的专辑，并提供相关背景资料。
+4. 提供每张推荐专辑中的主要歌曲市场表现数据（如当年销量、榜单成绩、评论评价）。
+
+## Rules
+1. 推荐至少3张专辑，每张专辑应包含：
+   - 歌手名称
+   - 专辑名称
+   - 发行年份
+   - 所属风格流派
+   - 专辑简介（为何推荐）
+   - 各首歌曲名称及其市场反响（如单曲榜成绩、受欢迎程度等）
+2. 所有推荐需基于用户喜欢的歌手（Fleetwood Mac、U2、Pink Floyd、Neutral Milk Hotel、Prince）相似或同代风格。
+
+## Workflows
+1. 分析用户口味关键词："70年代~90年代"、"摇滚"、"Fleetwood Mac"、"U2"、"Pink Floyd"、"Neutral Milk Hotel"、"Prince"。
+2. 识别这些艺术家的核心风格（如：迷幻摇滚、独立民谣、前卫流行、流行摇滚等）。
+3. 搜索与之风格相近、同一时期或受其影响的专辑与歌手。
+4. 输出包含完整信息的推荐列表，包括每首歌的市场评价。
+
+## Init
+请根据以下用户喜好推荐音乐专辑，并详细说明每张专辑的背景、风格、与用户口味的匹配度，以及其中歌曲的市场表现：
+- 喜欢的歌手：Fleetwood Mac、U2、Pink Floyd、Neutral Milk Hotel、Prince
+- 偏好风格：70年代~90年代的摇滚</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 课程小结 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📝 课程小结</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong class="neon-text-cyan">本节课我们学习了：</strong></p>
+                                <ol style="list-style: decimal; padding-left: 20px; font-size: 1.1rem;">
+                                    <li style="margin: 15px 0;">N8N的界面布局：初始界面和内部工作区</li>
+                                    <li style="margin: 15px 0;">基础节点介绍：触发节点、AI节点、应用节点</li>
+                                    <li style="margin: 15px 0;">实战案例：创建音乐推荐自动化工作流</li>
+                                    <li style="margin: 15px 0;">提示词编写：使用LangGPT框架设计专业提示词</li>
+                                </ol>
+                            </div>
+
+                            <div class="grid-2" style="margin-top: 40px;">
+                                <div class="icon-card">
+                                    <i class="fas fa-check-circle neon-text-cyan"></i>
+                                    <h4>掌握的技能</h4>
+                                    <p style="margin-top: 15px; text-align: left;">
+                                        ✓ 熟悉N8N界面操作<br>
+                                        ✓ 了解基础节点类型<br>
+                                        ✓ 能创建简单工作流<br>
+                                        ✓ 会使用AI Agent节点
+                                    </p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-rocket neon-text-purple"></i>
+                                    <h4>下一步学习</h4>
+                                    <p style="margin-top: 15px; text-align: left;">
+                                        → 更复杂的工作流设计<br>
+                                        → 条件判断和循环逻辑<br>
+                                        → 多平台集成应用<br>
+                                        → 错误处理和调试技巧
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- 侧边导航栏 -->
+<nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、认识N8N界面
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">
+                        （一）初始界面
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （二）内部工作区
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">
+                        二、基础节点介绍
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （一）触发节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （二）AI节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">
+                        （三）应用节点
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(10)">
+                        三、制作简单工作流
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">
+                        （一）实战案例
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">
+                        （二）工作流逻辑分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(12)">
+                        （三）工作流技术选型
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">
+                        （四）操作步骤
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(14)">
+                        课程小结
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">实践出真知 | 创建属于你的自动化工作流</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title" style="color: var(--neon-yellow);">🎯 板块三：课后作业</h2>
+
+                            <div class="homework-section">
+                                <div class="step-container" style="margin-top: 30px;">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4 style="color: var(--neon-yellow);">任务1：复现课程案例</h4>
+                                        <p style="font-size: 1.2rem; margin: 15px 0;">
+                                            按照课程中的步骤，在你的N8N中创建"每天邮箱发送音乐推荐"工作流
+                                        </p>
+                                        <div class="content-card" style="margin-top: 15px;">
+                                            <strong>要求：</strong>
+                                            <ul style="margin-top: 10px;">
+                                                <li>正确配置定时触发器</li>
+                                                <li>使用AI Agent节点生成音乐推荐</li>
+                                                <li>成功发送邮件到自己邮箱</li>
+                                                <li>工作流能够正常运行</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-container" style="margin-top: 30px;">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4 style="color: var(--neon-yellow);">任务2：自定义提示词</h4>
+                                        <p style="font-size: 1.2rem; margin: 15px 0;">
+                                            根据自己的兴趣爱好，修改提示词内容，生成个性化推荐
+                                        </p>
+                                        <div class="content-card" style="margin-top: 15px;">
+                                            <strong>建议方向：</strong>
+                                            <ul style="margin-top: 10px;">
+                                                <li>书籍推荐（根据你喜欢的作家）</li>
+                                                <li>电影推荐（根据你喜欢的导演或类型）</li>
+                                                <li>美食推荐（根据你的口味偏好）</li>
+                                                <li>学习资源推荐（根据你的专业方向）</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-container" style="margin-top: 30px;">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4 style="color: var(--neon-yellow);">任务3：提交作业</h4>
+                                        <p style="font-size: 1.2rem; margin: 15px 0;">
+                                            上传工作流截图和运行结果
+                                        </p>
+                                        <div class="highlight-box">
+                                            <strong>📸 提交内容：</strong>
+                                            <ol style="margin-top: 10px; list-style: decimal; padding-left: 20px;">
+                                                <li style="margin: 8px 0;">N8N工作流界面截图（显示所有节点连接）</li>
+                                                <li style="margin: 8px 0;">邮箱收到的推荐内容截图</li>
+                                                <li style="margin: 8px 0;">简要说明你的自定义内容和心得体会</li>
+                                            </ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px; border-left-color: var(--neon-purple);">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    <strong style="color: var(--neon-purple);">💡 提示：</strong><br>
+                                    遇到问题可以查看N8N官方文档，或在课程群中交流讨论！
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Footer -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card" style="background: linear-gradient(135deg, rgba(10, 10, 10, 0.5) 0%, rgba(23, 23, 23, 0.4) 100%);">
+                            <h2 class="section-title">🎓 学习寄语</h2>
+                            <div class="highlight-box" style="border-left-color: var(--neon-cyan);">
+                                <p style="font-size: 1.3rem; text-align: center; line-height: 2;">
+                                    <strong style="color: var(--neon-cyan);">"自动化不是为了偷懒，而是为了把时间用在更有价值的事情上。"</strong>
+                                </p>
+                                <p style="text-align: center; margin-top: 20px; font-size: 1.1rem; color: var(--cyber-dark-200);">
+                                    希望你通过本次课程，掌握N8N的基础使用方法，<br>
+                                    开启属于你的自动化之旅！🚀
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
