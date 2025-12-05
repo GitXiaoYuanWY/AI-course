@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今年最火的AI视频，到底能干啥？ | AI视频创作教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第四单元：AI视频创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>1. 今年最火的AI视频，到底能干啥？</h1>
+                    <p class="subtitle">AI视频创作入门 | 从零开始学Sora 2</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 板块一课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card" style="background: linear-gradient(135deg, rgba(10, 10, 10, 0.5) 0%, rgba(23, 23, 23, 0.4) 100%);">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">一、学习目标</h3>
+                            <ul style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解AI视频创作的基本概念与工作原理</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">掌握主流AI视频工具类型与Sora 2的优势</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">学会使用Sora 2进行文字/图片生成视频</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解提示词编写逻辑，能独立生成视频内容</li>
+                            </ul>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">二、课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">AI视频创作概念</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">AI视频工具类型</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">Sora 2使用前的准备</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">Sora 2界面初识</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">文本/图片生成视频实操</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">Sora 2进阶功能</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 AI视频创作的核心知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: AI视频创作概念 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎬 一、AI视频创作概念</h2>
+                            <h3>（一）定义与核心概念</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                <strong class="neon-text-cyan">AI视频生成（AI Video Generation）</strong> 是一种利用人工智能模型，通过文字、图片或语音等输入自动合成视频的技术。
+                            </p>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                该技术的本质是：<strong class="neon-text-pink">将语言转化为视觉内容</strong>，通过理解提示词（Prompt）的语义含义，生成符合描述的动态视频。
+                            </p>
+
+                            <!-- 配图：对比传统视频创作和AI视频创作 -->
+                            <div class="image-grid-2" style="margin: 30px 0;">
+                                <div>
+                                    <div class="image-container">
+                                        <img src="../图片/一、AI视频创作概念-（一）定义与核心概念-传统视频创作配图.png" alt="传统视频创作">
+                                    </div>
+                                    <p class="image-caption">传统视频创作流程</p>
+                                </div>
+                                <div>
+                                    <div class="image-container">
+                                        <img src="../图片/一、AI视频创作概念-（一）定义与核心概念-ai视频创作配图.png" alt="AI视频创作">
+                                    </div>
+                                    <p class="image-caption">AI视频创作流程</p>
+                                </div>
+                            </div>
+
+                            <div class="table-container" style="margin: 30px 0;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>对比维度</th>
+                                            <th>传统视频创作</th>
+                                            <th>AI视频创作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>主要流程</strong></td>
+                                            <td>脚本 → 拍摄 → 剪辑 → 配音</td>
+                                            <td>输入文字 → 自动生成</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>参与人员</strong></td>
+                                            <td>编剧、摄影师、剪辑师、演员</td>
+                                            <td>单人即可完成</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>创作周期</strong></td>
+                                            <td>数小时至数天</td>
+                                            <td>几分钟即可</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>技术依赖</strong></td>
+                                            <td>摄影与后期软件</td>
+                                            <td>AI模型</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 class="neon-text-purple">AI视频技术正在渗透至多个行业：</h4>
+                            <div class="grid" style="margin: 30px 0;">
+                                <div class="icon-card">
+                                    <i class="fas fa-video neon-text-cyan"></i>
+                                    <h4>短视频创作</h4>
+                                    <p>抖音、B站创作者通过AI快速生成剧情、科普、搞笑短片</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-shopping-cart neon-text-purple"></i>
+                                    <h4>电商营销</h4>
+                                    <p>商家利用AI生成商品演示或品牌宣传视频</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-graduation-cap neon-text-pink"></i>
+                                    <h4>教育与培训</h4>
+                                    <p>教学机构通过AI视频讲解知识点、模拟场景</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-film" style="color: var(--neon-yellow);"></i>
+                                    <h4>影视创作</h4>
+                                    <p>独立创作者制作剧情短片、动画、科幻视觉作品</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin: 0;">
+                                    <strong>💡 核心观点：</strong>AI视频不仅是技术创新，更是一种内容生态变革。它让视觉创作的方式从"拍"转向"想"，让"表达能力"取代"技术能力"成为核心竞争力。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: AI视频工作原理 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）AI视频工作原理</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                AI视频生成其实就像一个"懂你话的导演"。
+                            </p>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem; margin-bottom: 10px;">当输入一句提示词，比如：</p>
+                                <p style="font-size: 1.3rem; color: var(--neon-cyan); text-align: center; margin: 0;">
+                                    <strong>"一只猫在海边冲浪"</strong>
+                                </p>
+                            </div>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                AI就会一步一步地把这句话变成视频。整个过程可以分成五步：
+                            </p>
+
+                            <div class="table-container" style="margin: 30px 0;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>步骤</th>
+                                            <th>AI在做什么</th>
+                                            <th>举例说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>① 听懂你说什么</strong></td>
+                                            <td>AI先"读懂"提示词，知道你说的是什么内容。</td>
+                                            <td>它明白有"猫""海边""冲浪"这些要素。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>② 想象画面</strong></td>
+                                            <td>AI在脑子里"画出"大概的画面。</td>
+                                            <td>想出海浪、阳光、蓝天、猫咪的样子。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>③ 让画面动起来</strong></td>
+                                            <td>AI给这些画面加上动作。</td>
+                                            <td>猫在冲浪板上晃动，浪花在翻滚。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>④ 加上声音</strong></td>
+                                            <td>AI自动配上合适的音乐和声音。</td>
+                                            <td>有浪声、风声，还有轻快的背景音乐。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>⑤ 合成视频</strong></td>
+                                            <td>把所有内容拼在一起，变成真正的视频。</td>
+                                            <td>几分钟后，你就能播放完整成片。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 class="neon-text-purple">技术支撑：</h4>
+                            <p style="font-size: 1.1rem; margin: 20px 0;">AI视频生成不是简单地"把动画拼在一起"。它是很多先进技术一起工作的结果，比如：</p>
+                            <ul style="margin: 20px 0;">
+                                <li><strong class="neon-text-cyan">图像识别：</strong>让AI看懂画面里有什么</li>
+                                <li><strong class="neon-text-cyan">语言理解：</strong>让AI听懂你说的话</li>
+                                <li><strong class="neon-text-cyan">画面生成：</strong>让AI自己画出新的场景和人物</li>
+                                <li><strong class="neon-text-cyan">声音合成：</strong>让AI自动配上合适的音乐和声音</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: AI视频工具类型 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🛠️ 二、AI视频工具类型</h2>
+                            <h3>（一）主流AI视频工具类型</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                随着生成式AI技术的普及，市面上出现了多种类型的AI视频工具。根据输入方式与生成逻辑，大致可分为以下三类：
+                            </p>
+
+                            <!-- 1. 文字生成视频 -->
+                            <div class="content-card">
+                                <h4><i class="fas fa-font neon-text-cyan"></i> 1. 文字生成视频</h4>
+                                <p style="margin: 15px 0;">
+                                    这是目前最主流的AI视频类型。用户只需输入自然语言描述，例如"夜晚街头下雨的场景，一位青年撑伞走过霓虹灯下"，系统即可自动生成视觉效果逼真的视频片段。
+                                </p>
+                                <p style="margin: 15px 0;">
+                                    这类工具通常基于<strong class="neon-text-purple">文本到图像扩散模型与时间建模网络</strong>结合，使生成画面具备动态连续性。
+                                </p>
+                                <div class="badge-container">
+                                    <span class="badge">Runway</span>
+                                    <span class="badge">Pika</span>
+                                    <span class="badge">Sora</span>
+                                </div>
+
+                                <!-- 配图：3张图片横向并列 -->
+                                <div class="image-grid-3" style="margin-top: 25px;">
+                                    <div>
+                                        <div class="image-container-small">
+                                            <img src="../图片/二、AI视频工具类型（一）主流AI视频工具类型1. 文字生成视频配图1.png" alt="Runway示例">
+                                        </div>
+                                        <p class="image-caption">Runway</p>
+                                    </div>
+                                    <div>
+                                        <div class="image-container-small">
+                                            <img src="../图片/二、AI视频工具类型（一）主流AI视频工具类型1. 文字生成视频配图2.png" alt="Pika示例">
+                                        </div>
+                                        <p class="image-caption">Pika</p>
+                                    </div>
+                                    <div>
+                                        <div class="image-container-small">
+                                            <img src="../图片/二、AI视频工具类型（一）主流AI视频工具类型1. 文字生成视频配图3.png" alt="Sora示例">
+                                        </div>
+                                        <p class="image-caption">Sora</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2. 图像生成视频 -->
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4><i class="fas fa-image neon-text-purple"></i> 2. 图像生成视频</h4>
+                                <p style="margin: 15px 0;">
+                                    此类工具擅长将静态图片转换为动态内容。例如用户上传一张产品照片，输入"旋转展示360度"或"人物向镜头走来"，系统即可生成相应动画。
+                                </p>
+                                <p style="margin: 15px 0;">
+                                    <strong class="neon-text-cyan">Kaiber</strong>等平台广泛应用于电商展示、角色动画和品牌短片领域。这种方式弥补了静态图像表达的局限，使画面更具表现力与故事性。
+                                </p>
+
+                                <!-- 配图 -->
+                                <div class="image-container-small" style="margin: 25px auto 0 auto;">
+                                    <img src="../图片/二、AI视频工具类型-（一）主流AI视频工具类型-2. 图像生成视频.png" alt="图像生成视频示例">
+                                </div>
+                                <p class="image-caption">Kaiber</p>
+                            </div>
+
+                            <!-- 3. 多模态综合类工具 -->
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4><i class="fas fa-project-diagram neon-text-pink"></i> 3. 多模态综合类工具</h4>
+                                <p style="margin: 15px 0;">
+                                    多模态AI整合了文本、语音、图像等多种输入模式。ChatGPT与Sora 2的联动正是这种模式的典型代表。
+                                </p>
+                                <p style="margin: 15px 0;">
+                                    例如，用户可在ChatGPT中生成剧本、镜头脚本，再一键导入Sora 2生成视频，实现从"语言"到"影像"的完整闭环。这类系统具备更强的理解力和场景控制能力，是未来AI视频发展的方向。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 为什么选择Sora 2 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）为什么选择Sora 2</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                Sora 2是OpenAI推出的新一代AI视频生成系统，代表了当前AI视频创作的最高水平之一。其核心优势体现在以下几个方面：
+                            </p>
+
+                            <!-- Sora 2背景图 -->
+                            <div class="image-container-large" style="margin: 30px 0;">
+                                <img src="../图片/二、AI视频工具类型（二）为什么选择Sora 2背景图.png" alt="Sora 2界面">
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>技术背景强大</h4>
+                                    <p>Sora 2由ChatGPT的开发公司OpenAI研发，基于先进的多模态生成模型。系统融合自然语言理解、图像生成、动作模拟和音频合成技术，能精准解析提示词的语义结构，生成逻辑清晰、镜头自然的视频内容。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>功能领先</h4>
+                                    <p style="margin-bottom: 15px;">Sora 2支持<strong class="neon-text-cyan">语音、音乐、人物动作与镜头切换</strong>的综合生成，可实现类似人类导演的镜头逻辑。</p>
+                                    <p style="margin-bottom: 10px;"><strong>主要功能包括：</strong></p>
+                                    <ul>
+                                        <li>自动识别场景与人物关系</li>
+                                        <li>动作设计自然流畅</li>
+                                        <li>背景渲染真实且细节丰富</li>
+                                        <li>音乐节奏与画面动态自动匹配</li>
+                                        <li>支持多种分辨率与比例（横屏、竖屏）</li>
+                                        <li>一键导出成片</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>创作社区生态</h4>
+                                    <p>Sora 2内置创作社区，用户可浏览他人作品、学习优秀提示词结构，并通过<strong class="neon-text-purple">Remix功能</strong>直接修改他人视频，实现"二次创作"。这种开放式生态促进了内容流通与创作灵感共享。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>风格多样性</h4>
+                                    <p style="margin-bottom: 15px;">Sora 2可生成多种风格的视频，包括：</p>
+                                    <div class="badge-container">
+                                        <span class="badge">📸 写实风格 - 逼真场景、自然光影</span>
+                                        <span class="badge">🎨 动漫风格 - 夸张表现、鲜艳色彩</span>
+                                        <span class="badge">🎬 电影风格 - 镜头推进、景深控制</span>
+                                        <span class="badge">🎮 游戏风格 - 虚拟角色与环境交互</span>
+                                        <span class="badge">🎭 剧情风格 - 多场景衔接、角色互动</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin: 0;">
+                                    <strong>💡 核心优势：</strong>Sora 2的技术重点在于<strong class="neon-text-cyan">语义一致性</strong>与<strong class="neon-text-pink">镜头连贯性</strong>，使AI生成的内容更贴近"人类导演的逻辑"。其生成的视频不仅"像视频"，而且"像故事"。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Sora 2使用前的准备 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、Sora 2使用前的准备</h2>
+                            <h3>（一）四样必备工具说明</h3>
+
+                            <div class="grid-2" style="margin: 30px 0;">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-globe neon-text-cyan"></i> 1. 网络环境</h4>
+                                    <p>由于Sora 2服务器位于海外，需具备可访问外网的网络环境。该部分属于网络设置范畴，用户可通过学习资料了解配置方式。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fab fa-chrome neon-text-purple"></i> 2. 谷歌浏览器</h4>
+                                    <p>Chrome具有稳定的渲染性能与AI兼容性，能保证视频生成页面加载顺畅，避免出现闪退或错误渲染。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-user-circle neon-text-pink"></i> 3. ChatGPT账号</h4>
+                                    <p>OpenAI生态体系采用统一账号机制。Sora 2登录时需绑定ChatGPT账号，以便在多工具之间共享创作资源与提示词模板。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-ticket-alt" style="color: var(--neon-yellow);"></i> 4. Sora 2 邀请码</h4>
+                                    <p>邀请码用于激活完整版功能（包括声音与音乐生成）。每位注册用户可分享4个邀请码，用于同学间协作测试。</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4 class="neon-text-cyan">登录流程：</h4>
+                                <p style="margin: 15px 0; font-size: 1.1rem;">
+                                    进入<a href="https://sora.com/" target="_blank" style="color: var(--cyber-pink); text-decoration: underline;">Sora官网</a>或OpenAI主站 → 点击"Log in with ChatGPT" → 输入验证码 → 成功进入主页。
+                                </p>
+                                <p style="margin: 0; font-size: 1rem; color: var(--cyber-dark-200);">
+                                    若暂无邀请码，可通过官方测试计划或社区分享获取。邀请码机制主要用于控制服务器负载与用户体验。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Sora 2界面初识 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🖥️ 四、Sora 2界面初识</h2>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                Sora 2的界面设计注重直观与高效，主要分为六个核心功能区：
+                            </p>
+
+                            <div class="table-container" style="margin: 30px 0;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>功能区</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>For You</strong></td>
+                                            <td>推荐视频流，展示AI精选或社区热门作品</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>搜索栏</strong></td>
+                                            <td>可按关键词检索创作者或主题（如"cat"、"music"）</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>通知栏</strong></td>
+                                            <td>显示生成进度、评论提醒与系统更新</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>个人主页</strong></td>
+                                            <td>管理自己的作品、草稿及发布记录</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>设置</strong></td>
+                                            <td>包含邀请码管理、语言选择、界面切换等选项</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- Sora 2界面截图展示 - 翻页形式 -->
+                            <h4 class="neon-text-purple" style="margin-top: 40px; margin-bottom: 20px;">界面功能展示：</h4>
+
+                            <!-- 轮播容器 -->
+                            <div class="carousel-container" id="soraCarousel">
+                                <!-- 轮播内容 -->
+                                <div class="carousel-wrapper">
+                                    <!-- 页面1：For You -->
+                                    <div class="carousel-slide active">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 20px;">For You - 推荐视频流</h3>
+                                            <p style="text-align: center; color: var(--cyber-dark-200); margin-bottom: 30px;">展示AI精选或社区热门作品</p>
+                                            <div class="image-container-large" onclick="openImageModal(this)">
+                                                <img src="../图片/四、Sora 2界面初识——For You对应图片.png" alt="For You 推荐视频流">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面2：搜索栏 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 20px;">搜索栏</h3>
+                                            <p style="text-align: center; color: var(--cyber-dark-200); margin-bottom: 30px;">可按关键词检索创作者或主题（如"cat"、"music"）</p>
+                                            <div class="image-container-large" onclick="openImageModal(this)">
+                                                <img src="../图片/四、Sora 2界面初识——搜索栏对应图片.png" alt="搜索栏功能">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面3：通知栏 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 20px;">通知栏</h3>
+                                            <p style="text-align: center; color: var(--cyber-dark-200); margin-bottom: 30px;">显示生成进度、评论提醒与系统更新</p>
+                                            <div class="image-container-large" onclick="openImageModal(this)">
+                                                <img src="../图片/四、Sora 2界面初识——通知栏对应图片.png" alt="通知栏">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面4：个人主页 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 20px;">个人主页</h3>
+                                            <p style="text-align: center; color: var(--cyber-dark-200); margin-bottom: 30px;">管理自己的作品、草稿及发布记录</p>
+                                            <div class="image-container-large" onclick="openImageModal(this)">
+                                                <img src="../图片/四、Sora 2界面初识——个人主页对应图片.png" alt="个人主页">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面5：设置 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 20px;">设置</h3>
+                                            <p style="text-align: center; color: var(--cyber-dark-200); margin-bottom: 30px;">包含邀请码管理、语言选择、界面切换等选项</p>
+                                            <div class="image-container-large" onclick="openImageModal(this)">
+                                                <img src="../图片/四、Sora 2界面初识——设置对应图片.png" alt="设置">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 左右翻页按钮 -->
+                                <button class="carousel-btn carousel-btn-prev" onclick="changeSlide(-1, 'soraCarousel')">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="carousel-btn carousel-btn-next" onclick="changeSlide(1, 'soraCarousel')">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <!-- 页面指示器 -->
+                                <div class="carousel-indicators">
+                                    <span class="indicator active" onclick="goToSlide(0, 'soraCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(1, 'soraCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(2, 'soraCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(3, 'soraCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(4, 'soraCarousel')"></span>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.1rem; margin-bottom: 15px;">
+                                    用户进入个人主页后，可查看<strong class="neon-text-cyan">"我的草稿"</strong>、<strong class="neon-text-purple">"已发布"</strong>两大板块。草稿区保存生成中的视频，已发布区展示成品。
+                                </p>
+                                <p style="font-size: 1.1rem; margin: 0;">
+                                    在<strong class="neon-text-pink">"邀请朋友"</strong>功能中，可复制自己的邀请码或查看已使用记录。
+                                </p>
+                            </div>
+
+                            <p style="font-size: 1.1rem; margin: 20px 0; color: var(--cyber-dark-200);">
+                                这种界面结构类似社交媒体平台，既保留了专业创作工具的功能逻辑，又简化了操作复杂度。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 文本/图片生成视频实操 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎨 五、文本/图片生成视频实操</h2>
+                            <p style="font-size: 1.2rem; margin: 20px 0; text-align: center;">
+                                Sora 2支持文本和图片两种输入方式生成视频，下面通过分步演示展示完整操作流程
+                            </p>
+
+                            <!-- 实操轮播容器 -->
+                            <div class="carousel-container" id="practiceCarousel">
+                                <!-- 轮播内容 -->
+                                <div class="carousel-wrapper">
+                                    <!-- 页面1：文本生成视频 - 步骤1 -->
+                                    <div class="carousel-slide active">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 10px;">（一）文本生成视频</h3>
+                                            <div class="step-container" style="margin-top: 30px;">
+                                                <div class="step-number">1</div>
+                                                <div class="step-content">
+                                                    <h4>输入提示词</h4>
+                                                    <p>在输入框键入提示词：<span class="neon-text-cyan">"一只海上冲浪的猫咪"</span>，点击"生成"按钮，系统显示"正在生成"提示</p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container-large" onclick="openImageModal(this)" style="margin-top: 30px;">
+                                                <img src="../图片/在输入框键入提示词一只海上冲浪的猫咪点击生成按钮系统显示正在生成提示.png" alt="输入提示词生成视频">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面2：文本生成视频 - 步骤2 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 10px;">（一）文本生成视频</h3>
+                                            <div class="step-container" style="margin-top: 30px;">
+                                                <div class="step-number">2</div>
+                                                <div class="step-content">
+                                                    <h4>查看生成进度</h4>
+                                                    <p>进入左侧<strong class="neon-text-purple">"草稿"</strong>区查看生成进度</p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container-large" onclick="openImageModal(this)" style="margin-top: 30px;">
+                                                <img src="../图片/进入左侧草稿区查看生成进度 .png" alt="查看生成进度">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面3：文本生成视频 - 步骤3 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 10px;">（一）文本生成视频</h3>
+                                            <div class="step-container" style="margin-top: 30px;">
+                                                <div class="step-number">3</div>
+                                                <div class="step-content">
+                                                    <h4>预览成品</h4>
+                                                    <p>完成后点击播放，即可预览成品</p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container-large" style="margin-top: 30px;">
+                                                <video controls style="width: 100%; border-radius: 10px;">
+                                                    <source src="../图片/五、文本图片生成视频实操-（一）文本生成视频-步骤 3-完成后点击播放，即可预览成品.mp4" type="video/mp4">
+                                                    您的浏览器不支持视频播放。
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面4：图片生成视频 - 步骤1 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-purple" style="text-align: center; margin-bottom: 10px;">（二）图片生成视频</h3>
+                                            <div class="step-container" style="margin-top: 30px;">
+                                                <div class="step-number">1</div>
+                                                <div class="step-content">
+                                                    <h4>上传图片</h4>
+                                                    <p>点击"+"上传一张图片（如猫的照片）</p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container-large" onclick="openImageModal(this)" style="margin-top: 30px;">
+                                                <img src="../图片/五、文本图片生成视频实操-（二）图片生成视频-步骤1.png" alt="上传图片">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面5：图片生成视频 - 步骤2 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-purple" style="text-align: center; margin-bottom: 10px;">（二）图片生成视频</h3>
+                                            <div class="step-container" style="margin-top: 30px;">
+                                                <div class="step-number">2</div>
+                                                <div class="step-content">
+                                                    <h4>输入动作提示词</h4>
+                                                    <p>输入提示词：<span class="neon-text-cyan">"让这只猫跳起来"</span></p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container-large" onclick="openImageModal(this)" style="margin-top: 30px;">
+                                                <img src="../图片/五、文本图片生成视频实操-（二）图片生成视频-步骤2.png" alt="输入动作提示词">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 页面6：图片生成视频 - 步骤3 -->
+                                    <div class="carousel-slide">
+                                        <div class="carousel-content">
+                                            <h3 class="neon-text-purple" style="text-align: center; margin-bottom: 10px;">（二）图片生成视频</h3>
+                                            <div class="step-container" style="margin-top: 30px;">
+                                                <div class="step-number">3</div>
+                                                <div class="step-content">
+                                                    <h4>生成与预览</h4>
+                                                    <p>点击"生成" → 等待渲染 → 播放结果</p>
+                                                </div>
+                                            </div>
+                                            <div class="image-container-large" style="margin-top: 30px;">
+                                                <video controls style="width: 100%; border-radius: 10px;">
+                                                    <source src="../图片/五、文本图片生成视频实操-（二）图片生成视频-步骤3.mp4" type="video/mp4">
+                                                    您的浏览器不支持视频播放。
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 左右翻页按钮 -->
+                                <button class="carousel-btn carousel-btn-prev" onclick="changeSlide(-1, 'practiceCarousel')">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <button class="carousel-btn carousel-btn-next" onclick="changeSlide(1, 'practiceCarousel')">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+
+                                <!-- 页面指示器 -->
+                                <div class="carousel-indicators">
+                                    <span class="indicator active" onclick="goToSlide(0, 'practiceCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(1, 'practiceCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(2, 'practiceCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(3, 'practiceCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(4, 'practiceCarousel')"></span>
+                                    <span class="indicator" onclick="goToSlide(5, 'practiceCarousel')"></span>
+                                </div>
+                            </div>
+
+                            <!-- 提示信息 -->
+                            <div class="highlight-box" style="margin-top: 40px;">
+                                <p style="font-size: 1.2rem; margin-bottom: 15px;">
+                                    生成视频的画面、音乐、动作均由AI自动完成。用户可自定义输出方向（横屏/竖屏）与时长（10s或15s）。
+                                </p>
+                                <p style="font-size: 1.2rem; margin-bottom: 15px;">
+                                    <strong class="neon-text-cyan">提示词越具体，生成结果越符合预期。</strong>例如：
+                                </p>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin: 10px 0;">❌ 模糊提示：<code style="color: var(--cyber-pink);">一只猫冲浪</code> → 结果可能是静态画面</li>
+                                    <li style="margin: 10px 0;">✅ 精确提示：<code style="color: var(--neon-cyan);">一只橙色猫在阳光下的海浪上冲浪，镜头从远处慢慢推进</code> → 结果更具层次与真实感</li>
+                                </ul>
+                            </div>
+
+                            <p style="font-size: 1.1rem; margin: 20px 0; color: var(--cyber-dark-200);">
+                                系统将基于图片内容进行动作推理，自动生成合理的运动轨迹。此功能特别适用于视觉营销与创意广告场景。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: Sora 2进阶功能 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🚀 六、Sora 2进阶功能</h2>
+
+                            <h3>（一）Remix功能</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                Remix是Sora 2的核心创新之一。用户可选择他人视频并点击<strong class="neon-text-cyan">"Remix"</strong>，在原视频提示词基础上修改细节。
+                            </p>
+
+                            <div class="highlight-box">
+                                <h4 style="margin-bottom: 15px;">示例：</h4>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li style="margin: 10px 0;"><strong>原视频提示词：</strong><span class="neon-text-purple">"小猫在雨中走路"</span></li>
+                                    <li style="margin: 10px 0;"><strong>修改提示词：</strong><span class="neon-text-cyan">"把小猫换成小狗"</span></li>
+                                    <li style="margin: 10px 0;"><strong>结果：</strong>AI将自动重新生成相同场景的新版本</li>
+                                </ul>
+                            </div>
+
+                            <!-- Remix功能示例图 -->
+                            <div class="image-grid-2" style="margin: 30px 0;">
+                                <div>
+                                    <div class="image-container">
+                                        <img src="../图片/六、Sora 2进阶功能-（一）Remix功能-原视频提示词：小猫在雨中走路.jpg" alt="原视频：小猫在雨中走路">
+                                    </div>
+                                    <p class="image-caption">原视频：小猫在雨中走路</p>
+                                </div>
+                                <div>
+                                    <div class="image-container">
+                                        <img src="../图片/六、Sora 2进阶功能-（一）Remix功能-修改提示词：把小猫换成小狗.png" alt="修改后：把小猫换成小狗">
+                                    </div>
+                                    <p class="image-caption">Remix后：把小猫换成小狗</p>
+                                </div>
+                            </div>
+
+                            <p style="font-size: 1.1rem; margin: 20px 0;">
+                                Remix功能让创作从"单向生成"变为"互动创作"，促进了视频内容的社交流通与风格再创造。
+                            </p>
+
+                            <h3 style="margin-top: 40px;">（二）发布与分享</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                完成视频后，可点击<strong class="neon-text-pink">"Post"</strong>上传至社区。用户可修改标题（默认提示词）并添加说明文字。
+                            </p>
+
+                            <!-- 发布与分享配图 -->
+                            <div class="image-grid-2" style="margin: 30px 0;">
+                                <div>
+                                    <div class="image-container">
+                                        <img src="../图片/六、Sora 2进阶功能-（二）发布与分享配图1.png" alt="发布视频界面">
+                                    </div>
+                                    <p class="image-caption">发布视频界面</p>
+                                </div>
+                                <div>
+                                    <div class="image-container">
+                                        <img src="../图片/六、Sora 2进阶功能-（二）发布与分享配图2.png" alt="分享链接生成">
+                                    </div>
+                                    <p class="image-caption">分享链接生成</p>
+                                </div>
+                            </div>
+
+                            <div class="content-card">
+                                <p style="margin: 10px 0;">
+                                    系统生成分享链接，可直接复制发送或发布至社交媒体平台。
+                                </p>
+                                <p style="margin: 10px 0; color: var(--cyber-dark-200);">
+                                    Sora 2的分享机制强化了AI视频的"内容社交"属性，使创作成果具备传播性与展示价值。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、AI视频创作概念
+                    </button>
+                    <!-- Section 1: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">
+                        （一）定义与核心概念
+                    </button>
+                    <!-- Section 2: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （二）AI视频工作原理
+                    </button>
+
+                    <!-- Section 3: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(3)">
+                        二、AI视频工具类型
+                    </button>
+                    <!-- Section 3: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （一）主流工具类型
+                    </button>
+                    <!-- Section 4: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （二）为什么选择Sora 2
+                    </button>
+
+                    <!-- Section 5: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(5)">
+                        三、使用前的准备
+                    </button>
+
+                    <!-- Section 6: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(6)">
+                        四、Sora 2界面初识
+                    </button>
+
+                    <!-- Section 7: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(7)">
+                        五、实操演练
+                    </button>
+
+                    <!-- Section 8: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(8)">
+                        六、进阶功能
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">自己生成一个AI视频</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">一、任务名称</h2>
+                                <p style="font-size: 1.5rem; margin-top: 20px; color: var(--cyber-dark-100); text-align: center;">
+                                    <strong>自己生成一个AI视频</strong>
+                                </p>
+                            </div>
+
+                            <h3 class="neon-text-cyan" style="margin-top: 40px;">二、操作内容</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>打开工具</h4>
+                                    <p>登录 <a href="https://sora.com/" target="_blank" style="color: var(--cyber-pink); text-decoration: underline;">Sora 2 官网</a>，使用你的 ChatGPT 账号进入主界面。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>输入提示词</h4>
+                                    <div class="highlight-box">
+                                        <p style="font-size: 1.1rem; color: var(--neon-cyan);">
+                                            "阳光明媚的午后，一个小男孩在绿油油的草地上追逐五颜六色的泡泡，镜头从远处慢慢拉近，背景是蓝天白云，风轻轻吹动草叶，画面温暖又梦幻。"
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>调整参数</h4>
+                                    <ul>
+                                        <li>选择视频比例：使用竖屏（9:16）</li>
+                                        <li>设置视频时长：10秒</li>
+                                        <li>勾选背景音乐自动匹配功能</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>查看与保存</h4>
+                                    <ul>
+                                        <li>在左侧"草稿区"查看生成进度</li>
+                                        <li>生成完成后点击播放预览</li>
+                                        <li>点击右上角"下载（Download）"保存视频</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI视频创作教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 图片放大模态框 -->
+    <div class="image-modal" id="imageModal" onclick="closeImageModal(event)">
+        <div class="image-modal-content">
+            <button class="image-modal-close" onclick="closeImageModal(event)">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="放大图片">
+            <div class="image-modal-hint">点击图片外部区域或按ESC键关闭</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
