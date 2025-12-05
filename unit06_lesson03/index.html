@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三课：CSS样式设计与视觉表达 | AI课程</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-rings">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loader-logo">CSS DESIGN</div>
+            <div class="loader-text">加载中<span class="loader-dots"></span></div>
+        </div>
+    </div>
+
+    <!-- 赛博朋克背景特效 -->
+    <div class="cyberpunk-background">
+        <div class="gradient-base"></div>
+        <div class="neon-grid-container">
+            <div class="cyber-grid"></div>
+        </div>
+        <div class="neon-beams-container">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="data-rain-container" id="dataRainContainer"></div>
+        <div class="radial-glow"></div>
+        <div class="edge-glow"></div>
+        <div class="crt-effect"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">第六单元：个人作品集制作</div>
+            <ul class="nav-menu">
+                <li class="nav-dropdown">
+                    <a href="#home" class="nav-link active">课程概述 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#home" class="dropdown-item">主页</a></li>
+                        <li><a href="#review" class="dropdown-item">课程回顾</a></li>
+                        <li><a href="#objectives" class="dropdown-item">学习目标</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="#content" class="nav-link">课程内容 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#chapter1" class="dropdown-item">01 CSS基础入门</a></li>
+                        <li><a href="#chapter2" class="dropdown-item">02 6个核心CSS属性</a></li>
+                        <li><a href="#chapter3" class="dropdown-item">03 Flex布局一句话</a></li>
+                        <li><a href="#chapter4" class="dropdown-item">04 AI辅助CSS设计</a></li>
+                    </ul>
+                </li>
+                <li><a href="#homework" class="nav-link">课后作业</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 整屏导航按钮 -->
+    <div class="section-nav-buttons">
+        <button class="section-nav-btn" id="prevSectionBtn" title="上一页">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="section-nav-btn" id="nextSectionBtn" title="下一页">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="返回顶部">
+        <i class="fas fa-rocket"></i>
+    </button>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="course-badge">第三课</div>
+            <h1 class="hero-title typewriter" id="heroTitle" data-text="3.CSS样式设计与视觉表达">3.CSS样式设计与视觉表达</h1>
+            <p class="hero-subtitle">
+                掌握CSS核心技术，打造美观专业的网页视觉效果<br>
+                从基础样式到AI辅助设计，让网页更具表现力
+            </p>
+            <div class="hero-buttons">
+                <a href="#objectives" class="cyber-btn">
+                    <i class="fas fa-palette"></i> 开始学习
+                </a>
+                <a href="#content" class="cyber-btn cyber-btn-outline">
+                    <i class="fas fa-code"></i> 课程内容
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程回顾 -->
+    <section id="review" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课程回顾</h2>
+                <p class="section-description">
+                    上节课的学习成果与本课关系
+                </p>
+            </div>
+            <div class="review-container">
+                <div class="glass-card review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="review-content">
+                        <h3>上节课学习</h3>
+                        <ul>
+                            <li>学习了如何用 <strong>HTML5 语义化标签</strong> 构建网页结构</li>
+                            <li>通过 AI 辅助生成和优化网页的"骨架"，实现了信息层次清晰、结构合理的页面设计</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="glass-card review-card">
+                    <div class="review-icon">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <div class="review-content">
+                        <h3>本节课目标</h3>
+                        <ul>
+                            <li>从 <strong>网页的视觉表现</strong> 出发，了解如何使用 <strong>CSS（层叠样式表）</strong> 来控制网页的外观</li>
+                            <li>让页面不仅结构清晰，还能在色彩、字体与布局上更美观、统一、有风格</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习目标 -->
+    <section id="objectives" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">学习目标</h2>
+                <p class="section-description">
+                    通过本节学习，掌握CSS设计的核心能力
+                </p>
+            </div>
+            <div class="goals-container">
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>理解CSS核心作用</h3>
+                            <p>明白HTML负责结构、CSS负责样式的分工关系</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>掌握基础样式设计</h3>
+                            <p>掌握字体、颜色、边距、布局等基础样式的设计方法</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>阅读CSS代码</h3>
+                            <p>学会阅读并理解基础CSS语法和代码逻辑</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>清晰描述设计需求</h3>
+                            <p>能够使用自然语言清晰描述网页风格，让AI准确生成样式</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>AI辅助设计流程</h3>
+                            <p>掌握AI辅助样式设计的基本流程：生成 → 分析 → 优化 → 检查</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程内容 -->
+    <section id="content" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课程内容</h2>
+                <p class="section-description">
+                    详细的课程内容讲解，从CSS基础到实战应用
+                </p>
+            </div>
+            <div class="content-detail">
+
+                <!-- 第一章：CSS基础入门 -->
+                <div id="chapter1" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">01</div>
+                        <h2 class="content-title">CSS基础入门</h2>
+                    </div>
+
+                    <!-- CSS是什么 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>CSS是什么</h3>
+                            <p><strong>CSS（层叠样式表）是控制网页外观的语言</strong>——如果HTML是骨架，CSS就是外衣，决定网页的颜色、字体、间距与布局。</p>
+                        </div>
+                    </div>
+
+                    <!-- 基本语法 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>基本语法</h3>
+                            <div class="syntax-example">
+                                <div class="syntax-structure">
+                                    <span class="syntax-selector">选择器</span>
+                                    <span class="syntax-bracket">{</span>
+                                    <span class="syntax-property">属性</span>
+                                    <span class="syntax-colon">:</span>
+                                    <span class="syntax-value">值</span>
+                                    <span class="syntax-semicolon">;</span>
+                                    <span class="syntax-bracket">}</span>
+                                </div>
+                            </div>
+
+                            <h4>示例代码</h4>
+                            <pre><code>h1 {
+  color: blue;
+  font-size: 24px;
+}</code></pre>
+                            <p><strong>解释：</strong>这段代码让网页中的一级标题文字显示为蓝色，字号为24px。</p>
+                        </div>
+                    </div>
+
+                    <!-- 外部样式表写法 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>外部样式表写法（推荐）</h3>
+                            <p>将CSS代码写在独立的 <code>.css</code> 文件中，然后在HTML中引入：</p>
+                            <pre><code>&lt;link rel="stylesheet" href="style.css"&gt;</code></pre>
+                            <p class="design-note">
+                                <i class="fas fa-lightbulb"></i>
+                                <strong>为什么推荐？</strong>一个CSS文件可以控制多个网页，修改方便，结构清晰。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二章：6个核心CSS属性 -->
+                <div id="chapter2" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">02</div>
+                        <h2 class="content-title">6个核心CSS属性</h2>
+                    </div>
+
+                    <!-- 1. color - 文字颜色 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>1. color - 文字颜色</h3>
+                            <p><code>color</code> 属性控制文字的颜色，让文字更醒目或柔和。</p>
+
+                            <h4>示例代码</h4>
+                            <pre><code>h1 {
+  color: #f43f5e;  /* 粉红色标题 */
+}
+
+p {
+  color: #333;     /* 深灰色正文 */
+}</code></pre>
+                            <p><strong>效果：</strong>标题显示为粉红色，段落文字显示为深灰色。</p>
+                        </div>
+                    </div>
+
+                    <!-- 2. background-color - 背景颜色 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>2. background-color - 背景颜色</h3>
+                            <p><code>background-color</code> 设置元素的背景颜色，可以突出内容区域。</p>
+
+                            <h4>示例代码</h4>
+                            <pre><code>body {
+  background-color: #f5f5f5;  /* 浅灰色背景 */
+}
+
+.highlight {
+  background-color: yellow;   /* 黄色高亮 */
+}</code></pre>
+                            <p><strong>效果：</strong>整个页面背景为浅灰色，高亮区域为黄色。</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. font-size - 字体大小 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>3. font-size - 字体大小</h3>
+                            <p><code>font-size</code> 控制文字的大小，用于建立视觉层次。</p>
+
+                            <h4>示例代码</h4>
+                            <pre><code>h1 {
+  font-size: 32px;   /* 大标题 */
+}
+
+p {
+  font-size: 16px;   /* 正文大小 */
+}</code></pre>
+                            <p><strong>效果：</strong>标题字号为32px，正文字号为16px，层次清晰。</p>
+                        </div>
+                    </div>
+
+                    <!-- 4. padding - 内部空间 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>4. padding - 内部空间</h3>
+                            <p><code>padding</code> 是元素内容与边框之间的空间，让内容"呼吸"，不显拥挤。</p>
+
+                            <h4>按钮演示对比</h4>
+                            <div class="spacing-demo-container">
+                                <div class="spacing-demo-item">
+                                    <div class="demo-label bad-label">❌ 没有 padding</div>
+                                    <button class="demo-button no-padding">立即购买</button>
+                                    <p class="demo-explanation">文字紧贴边缘，看起来拥挤</p>
+                                </div>
+                                <div class="spacing-demo-item">
+                                    <div class="demo-label good-label">✅ 有 padding</div>
+                                    <button class="demo-button with-padding">立即购买</button>
+                                    <p class="demo-explanation">文字周围有空间，视觉舒适</p>
+                                </div>
+                            </div>
+
+                            <h4>示例代码</h4>
+                            <pre><code>button {
+  padding: 15px 40px;  /* 上下15px，左右40px */
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 5. margin - 外部空间 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>5. margin - 外部空间</h3>
+                            <p><code>margin</code> 是元素与周围其他元素之间的距离，控制元素间的间隔。</p>
+
+                            <h4>卡片间距演示</h4>
+                            <div class="margin-demo-container">
+                                <div class="margin-demo-section">
+                                    <div class="demo-label bad-label">❌ 没有 margin</div>
+                                    <div class="margin-demo-box">
+                                        <div class="card-demo no-margin">卡片1</div>
+                                        <div class="card-demo no-margin">卡片2</div>
+                                        <div class="card-demo no-margin">卡片3</div>
+                                    </div>
+                                    <p class="demo-explanation">卡片紧贴在一起，难以区分</p>
+                                </div>
+                                <div class="margin-demo-section">
+                                    <div class="demo-label good-label">✅ 有 margin</div>
+                                    <div class="margin-demo-box">
+                                        <div class="card-demo with-margin">卡片1</div>
+                                        <div class="card-demo with-margin">卡片2</div>
+                                        <div class="card-demo with-margin">卡片3</div>
+                                    </div>
+                                    <p class="demo-explanation">卡片之间有间距，层次清晰</p>
+                                </div>
+                            </div>
+
+                            <h4>示例代码</h4>
+                            <pre><code>.card {
+  margin-bottom: 20px;  /* 卡片底部间距20px */
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 6. border-radius - 圆角 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>6. border-radius - 圆角</h3>
+                            <p><code>border-radius</code> 让元素的四个角变圆，使设计更柔和、现代。</p>
+
+                            <h4>圆角演示</h4>
+                            <div class="radius-demo-container">
+                                <div class="radius-demo-item">
+                                    <div class="radius-box no-radius"></div>
+                                    <code>border-radius: 0;</code>
+                                    <p>直角（默认）</p>
+                                </div>
+                                <div class="radius-demo-item">
+                                    <div class="radius-box small-radius"></div>
+                                    <code>border-radius: 8px;</code>
+                                    <p>小圆角</p>
+                                </div>
+                                <div class="radius-demo-item">
+                                    <div class="radius-box medium-radius"></div>
+                                    <code>border-radius: 20px;</code>
+                                    <p>中圆角</p>
+                                </div>
+                                <div class="radius-demo-item">
+                                    <div class="radius-box circle-radius"></div>
+                                    <code>border-radius: 50%;</code>
+                                    <p>圆形</p>
+                                </div>
+                            </div>
+
+                            <h4>示例代码</h4>
+                            <pre><code>button {
+  border-radius: 8px;   /* 柔和的圆角 */
+}
+
+.avatar {
+  border-radius: 50%;   /* 圆形头像 */
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <!-- 练习：看懂代码 -->
+                    <div class="sub-content-card exercise-card">
+                        <div class="content-body">
+                            <h3>💡 练习：看懂代码，翻译成人话</h3>
+                            <p>下面是一段CSS代码，请尝试用自己的话说出它的作用：</p>
+
+                            <div class="code-exercise">
+                                <h4>练习题</h4>
+                                <pre><code>.welcome-box {
+  color: white;
+  background-color: #3b82f6;
+  font-size: 24px;
+  padding: 30px;
+  margin: 20px;
+  border-radius: 15px;
+}</code></pre>
+                            </div>
+
+                            <div class="exercise-answer">
+                                <h4>参考答案</h4>
+                                <p class="answer-text">
+                                    这段代码创建了一个欢迎框样式：<br>
+                                    • 文字是<strong>白色</strong><br>
+                                    • 背景是<strong>蓝色</strong>（#3b82f6）<br>
+                                    • 字体大小是<strong>24像素</strong><br>
+                                    • 内容与边框之间有<strong>30像素的内边距</strong>，让内容不拥挤<br>
+                                    • 盒子与周围有<strong>20像素的外边距</strong>，与其他元素保持距离<br>
+                                    • 四个角有<strong>15像素的圆角</strong>，看起来柔和美观
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三章：Flex布局一句话 -->
+                <div id="chapter3" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">03</div>
+                        <h2 class="content-title">Flex布局一句话</h2>
+                    </div>
+
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>display: flex — 让元素横向排列</h3>
+                            <p><strong>Flex布局是现代网页最常用的布局方式</strong>，只需要一行代码 <code>display: flex;</code>，就能让元素从"上下排列"变成"左右排列"。</p>
+
+                            <h4>可视化演示</h4>
+                            <div class="flex-comparison">
+                                <div class="flex-comparison-item">
+                                    <div class="demo-label bad-label">❌ 默认（竖向）</div>
+                                    <div class="flex-demo-box default-layout">
+                                        <div class="flex-demo-item">项目1</div>
+                                        <div class="flex-demo-item">项目2</div>
+                                        <div class="flex-demo-item">项目3</div>
+                                    </div>
+                                </div>
+                                <div class="flex-comparison-item">
+                                    <div class="demo-label good-label">✅ Flex（横向）</div>
+                                    <div class="flex-demo-box flex-layout">
+                                        <div class="flex-demo-item">项目1</div>
+                                        <div class="flex-demo-item">项目2</div>
+                                        <div class="flex-demo-item">项目3</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4>示例代码</h4>
+                            <pre><code>nav {
+  display: flex;  /* 让导航项横向排列 */
+}</code></pre>
+                            <p><strong>效果：</strong>导航栏的链接会在一行内从左到右排列，而不是从上到下。</p>
+
+                            <p class="design-note">
+                                <i class="fas fa-lightbulb"></i>
+                                <strong>记住：</strong>Flex是控制"布局方向"的神器，一句代码搞定横向排列。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第四章：AI辅助CSS设计 -->
+                <div id="chapter4" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">04</div>
+                        <h2 class="content-title">AI辅助CSS设计</h2>
+                    </div>
+
+                    <!-- 为什么要学会描述 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>为什么要学会描述（AI只懂人话）</h3>
+                            <p>AI不能读懂你的想法，只能听懂你的<strong>语言</strong>。</p>
+                            <p>当你说"让网页好看一点"，AI无法理解——什么是"好看"？颜色？字体？间距？</p>
+                            <p>但如果你说"按钮用蓝色背景、白色文字、圆角8px"，AI就能准确生成。</p>
+
+                            <div class="design-note">
+                                <i class="fas fa-lightbulb"></i>
+                                <p><strong>核心原则：</strong>描述越具体，AI生成的结果越准确。学会用CSS术语表达需求，是使用AI的关键能力。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 错误vs正确的描述对比 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>错误vs正确的描述对比</h3>
+                            <p>好的描述能让AI一次到位，差的描述会让你反复修改。对比以下示例：</p>
+
+                            <div class="description-comparison">
+                                <div class="description-item bad">
+                                    <div class="description-label">❌ 模糊描述</div>
+                                    <div class="description-box">
+                                        <p>"让标题好看一点"</p>
+                                        <p class="problem">问题：什么是"好看"？AI无法理解</p>
+                                    </div>
+                                </div>
+                                <div class="description-item good">
+                                    <div class="description-label">✅ 清晰描述</div>
+                                    <div class="description-box">
+                                        <p>"标题用32px，粗体，深蓝色"</p>
+                                        <p class="problem">结果：AI能准确生成代码</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="description-comparison">
+                                <div class="description-item bad">
+                                    <div class="description-label">❌ 模糊描述</div>
+                                    <div class="description-box">
+                                        <p>"按钮要有间距"</p>
+                                        <p class="problem">问题：内部间距还是外部间距？</p>
+                                    </div>
+                                </div>
+                                <div class="description-item good">
+                                    <div class="description-label">✅ 清晰描述</div>
+                                    <div class="description-box">
+                                        <p>"按钮padding上下15px、左右30px"</p>
+                                        <p class="problem">结果：明确具体，AI一次成功</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 描述翻译训练 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>描述翻译训练（人话→CSS术语）</h3>
+                            <p>练习将日常语言翻译成CSS术语，是掌握AI沟通的关键技能。</p>
+
+                            <div class="translation-exercise">
+                                <div class="translation-item">
+                                    <div class="human-lang">
+                                        <span class="lang-label">人话</span>
+                                        <p>"我想让文字是红色的"</p>
+                                    </div>
+                                    <div class="arrow">→</div>
+                                    <div class="css-lang">
+                                        <span class="lang-label">CSS术语</span>
+                                        <p>"设置 <code>color: red</code>"</p>
+                                    </div>
+                                </div>
+
+                                <div class="translation-item">
+                                    <div class="human-lang">
+                                        <span class="lang-label">人话</span>
+                                        <p>"按钮内容不要太挤"</p>
+                                    </div>
+                                    <div class="arrow">→</div>
+                                    <div class="css-lang">
+                                        <span class="lang-label">CSS术语</span>
+                                        <p>"增加 <code>padding: 15px 30px</code>"</p>
+                                    </div>
+                                </div>
+
+                                <div class="translation-item">
+                                    <div class="human-lang">
+                                        <span class="lang-label">人话</span>
+                                        <p>"卡片之间距离太近"</p>
+                                    </div>
+                                    <div class="arrow">→</div>
+                                    <div class="css-lang">
+                                        <span class="lang-label">CSS术语</span>
+                                        <p>"设置 <code>margin-bottom: 20px</code>"</p>
+                                    </div>
+                                </div>
+
+                                <div class="translation-item">
+                                    <div class="human-lang">
+                                        <span class="lang-label">人话</span>
+                                        <p>"我要圆角按钮"</p>
+                                    </div>
+                                    <div class="arrow">→</div>
+                                    <div class="css-lang">
+                                        <span class="lang-label">CSS术语</span>
+                                        <p>"添加 <code>border-radius: 8px</code>"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 10个提示词模板 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>10个提示词模板</h3>
+                            <p>直接套用这些模板，让AI快速生成你需要的CSS样式：</p>
+
+                            <div class="prompt-templates">
+                                <div class="template-item">
+                                    <div class="template-number">1</div>
+                                    <div class="template-content">
+                                        <h4>设置颜色</h4>
+                                        <p class="template-text">"请将[元素]的文字颜色设为[颜色]，背景色设为[颜色]"</p>
+                                        <p class="template-example">示例："请将标题的文字颜色设为深蓝色，背景色设为浅灰色"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">2</div>
+                                    <div class="template-content">
+                                        <h4>调整字号</h4>
+                                        <p class="template-text">"请将[元素]的字体大小改为[数值]px"</p>
+                                        <p class="template-example">示例："请将正文的字体大小改为16px"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">3</div>
+                                    <div class="template-content">
+                                        <h4>增加内边距</h4>
+                                        <p class="template-text">"请为[元素]添加padding，上下[数值]px，左右[数值]px"</p>
+                                        <p class="template-example">示例："请为按钮添加padding，上下15px，左右40px"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">4</div>
+                                    <div class="template-content">
+                                        <h4>设置外边距</h4>
+                                        <p class="template-text">"请让[元素]之间保持[数值]px的间距（使用margin）"</p>
+                                        <p class="template-example">示例："请让卡片之间保持20px的间距（使用margin）"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">5</div>
+                                    <div class="template-content">
+                                        <h4>添加圆角</h4>
+                                        <p class="template-text">"请为[元素]添加[数值]px的圆角"</p>
+                                        <p class="template-example">示例："请为按钮添加8px的圆角"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">6</div>
+                                    <div class="template-content">
+                                        <h4>横向布局</h4>
+                                        <p class="template-text">"请让[容器]内的元素横向排列（使用Flex布局）"</p>
+                                        <p class="template-example">示例:"请让导航栏内的链接横向排列（使用Flex布局）"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">7</div>
+                                    <div class="template-content">
+                                        <h4>整体风格</h4>
+                                        <p class="template-text">"请生成[风格]风格的CSS，主色为[颜色]"</p>
+                                        <p class="template-example">示例："请生成简约现代风格的CSS，主色为蓝色"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">8</div>
+                                    <div class="template-content">
+                                        <h4>按钮样式</h4>
+                                        <p class="template-text">"请设计一个[颜色]背景、[颜色]文字、带圆角的按钮"</p>
+                                        <p class="template-example">示例："请设计一个蓝色背景、白色文字、带圆角的按钮"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">9</div>
+                                    <div class="template-content">
+                                        <h4>卡片样式</h4>
+                                        <p class="template-text">"请创建带阴影、圆角、内边距的卡片样式"</p>
+                                        <p class="template-example">示例："请创建带阴影、圆角、内边距的卡片样式"</p>
+                                    </div>
+                                </div>
+
+                                <div class="template-item">
+                                    <div class="template-number">10</div>
+                                    <div class="template-content">
+                                        <h4>响应式调整</h4>
+                                        <p class="template-text">"请在手机屏幕上，将[元素]的[属性]改为[值]"</p>
+                                        <p class="template-example">示例："请在手机屏幕上，将标题的字体大小改为24px"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>AI辅助设计流程</h3>
+                            <p>AI在网页样式设计中，最核心的作用不是"帮我们写CSS"，而是<strong>帮助我们用自然语言表达设计意图，并通过多轮反馈逐步完善样式</strong>。</p>
+
+                            <div class="workflow-steps">
+                                <div class="workflow-step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>描述需求</h4>
+                                        <p>明确对象、风格、细节</p>
+                                    </div>
+                                </div>
+                                <div class="workflow-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>分析结果</h4>
+                                        <p>检查结构、视觉、风格</p>
+                                    </div>
+                                </div>
+                                <div class="workflow-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>优化迭代</h4>
+                                        <p>调整色彩、层次、排版</p>
+                                    </div>
+                                </div>
+                                <div class="workflow-arrow">
+                                    <i class="fas fa-arrow-right"></i>
+                                </div>
+                                <div class="workflow-step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>自检验证</h4>
+                                        <p>对齐、统一、对比度</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 阶段一：描述样式需求 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>阶段一：描述样式需求</h3>
+                            <p>AI能够根据自然语言生成CSS样式，但前提是<strong>描述要具体、有方向</strong>。</p>
+
+                            <div class="description-guide">
+                                <div class="guide-item">
+                                    <div class="guide-icon">1</div>
+                                    <div class="guide-content">
+                                        <h4>明确对象</h4>
+                                        <p>指出要调整的部分（如导航栏、标题区、按钮）</p>
+                                    </div>
+                                </div>
+                                <div class="guide-item">
+                                    <div class="guide-icon">2</div>
+                                    <div class="guide-content">
+                                        <h4>明确风格</h4>
+                                        <p>指定整体风格特征（如清新、科技、温暖、正式）</p>
+                                    </div>
+                                </div>
+                                <div class="guide-item">
+                                    <div class="guide-icon">3</div>
+                                    <div class="guide-content">
+                                        <h4>明确细节</h4>
+                                        <p>包含主色调、字体大小、边距、布局方式</p>
+                                    </div>
+                                </div>
+                                <div class="guide-item">
+                                    <div class="guide-icon">4</div>
+                                    <div class="guide-content">
+                                        <h4>参考说明</h4>
+                                        <p>给出参考风格或网站示例</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ai-prompt-box large">
+                                <div class="prompt-header">
+                                    <i class="fas fa-robot"></i>
+                                    <span>提示词示例</span>
+                                </div>
+                                <p>"请为一个校园图书馆网页生成清新简约风格的CSS样式，主色为蓝绿色，标题加粗，导航栏置顶，整体留白充足。"</p>
+                                <p>"希望风格接近苹果官网，整体更干净，字体更细。"</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 阶段二：分析AI生成结果 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>阶段二：分析AI生成结果</h3>
+                            <p>AI输出的样式只是一个初稿，设计者要像评审作品一样去"读懂它"。</p>
+
+                            <div class="analysis-checklist">
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-square"></i>
+                                    <div>
+                                        <h4>结构合理性</h4>
+                                        <p>样式是否与HTML层级对应；类名与选择器是否规范</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-square"></i>
+                                    <div>
+                                        <h4>视觉协调性</h4>
+                                        <p>主色与背景对比是否适中；字体大小、行距是否均衡</p>
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-square"></i>
+                                    <div>
+                                        <h4>风格一致性</h4>
+                                        <p>各区块是否遵循同一视觉体系；按钮、图片、标题的样式是否统一</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="design-note warning">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <p><strong>提示：</strong>尽量不要直接使用AI生成的第一个版本，应像做"设计评审"一样，指出不协调之处并准备优化。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 阶段三：优化与迭代 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>阶段三：优化与迭代</h3>
+                            <p>分析完成后，可以通过自然语言进一步优化样式。</p>
+
+                            <div class="optimization-categories">
+                                <div class="opt-category">
+                                    <div class="opt-icon"><i class="fas fa-palette"></i></div>
+                                    <h4>调整色彩</h4>
+                                    <div class="opt-example">"请将整体配色改为暖色调，并降低饱和度。"</div>
+                                </div>
+                                <div class="opt-category">
+                                    <div class="opt-icon"><i class="fas fa-layer-group"></i></div>
+                                    <h4>控制层次</h4>
+                                    <div class="opt-example">"让标题与正文层次更明显，标题加粗并增加上下间距。"</div>
+                                </div>
+                                <div class="opt-category">
+                                    <div class="opt-icon"><i class="fas fa-align-left"></i></div>
+                                    <h4>改善排版</h4>
+                                    <div class="opt-example">"请在各模块之间增加留白，让页面更简洁整齐。"</div>
+                                </div>
+                                <div class="opt-category">
+                                    <div class="opt-icon"><i class="fas fa-paint-brush"></i></div>
+                                    <h4>统一风格</h4>
+                                    <div class="opt-example">"请保持所有按钮样式一致，使用圆角和主色背景。"</div>
+                                </div>
+                            </div>
+
+                            <div class="design-note">
+                                <i class="fas fa-lightbulb"></i>
+                                <p>AI的优势在于可<strong>快速生成多个版本</strong>，设计者可以从中选择最佳方案。这一过程可培养"审美判断"与"语言表达能力"。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 阶段四：AI自检与结果验证 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>阶段四：AI自检与结果验证</h3>
+                            <p>在完成优化后，还应让AI帮助进行样式的自我检查。</p>
+
+                            <div class="check-points">
+                                <div class="check-point">
+                                    <i class="fas fa-ruler"></i>
+                                    <p>各元素对齐是否整齐</p>
+                                </div>
+                                <div class="check-point">
+                                    <i class="fas fa-font"></i>
+                                    <p>字体大小与间距是否统一</p>
+                                </div>
+                                <div class="check-point">
+                                    <i class="fas fa-adjust"></i>
+                                    <p>色彩对比度是否足够</p>
+                                </div>
+                                <div class="check-point">
+                                    <i class="fas fa-grip-horizontal"></i>
+                                    <p>模块间距是否一致</p>
+                                </div>
+                            </div>
+
+                            <div class="ai-prompt-box large">
+                                <div class="prompt-header">
+                                    <i class="fas fa-robot"></i>
+                                    <span>自检提示示例</span>
+                                </div>
+                                <p>"请帮我检查这段CSS是否存在颜色对比度不足或层级混乱的问题。"</p>
+                                <p>"请评估此页面的文字可读性和布局平衡度，并给出优化建议。"</p>
+                            </div>
+
+                            <div class="design-note success">
+                                <i class="fas fa-check-circle"></i>
+                                <p>通过不断与AI对话，不仅能提升网页的视觉表现力，也能学会更精准地表达设计意图，训练设计思维与美学判断力。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 真实案例演示 -->
+                    <div class="sub-content-card case-study-card">
+                        <div class="content-body">
+                            <h3>💼 真实案例演示：从需求到成品</h3>
+                            <p>通过一个完整案例，看看如何用AI一步步优化按钮样式。</p>
+
+                            <div class="case-study">
+                                <div class="case-step">
+                                    <div class="step-badge">步骤 1</div>
+                                    <h4>初始需求</h4>
+                                    <p class="step-desc">用户说："我想要一个购买按钮"</p>
+                                    <div class="step-prompt">
+                                        <strong>AI提示词：</strong>"请帮我设计一个'立即购买'按钮的CSS样式"
+                                    </div>
+                                    <div class="step-result">
+                                        <p><strong>AI生成代码：</strong></p>
+                                        <pre><code>.buy-button {
+  background-color: blue;
+  color: white;
+  padding: 10px 20px;
+}</code></pre>
+                                        <button class="demo-button case-v1">立即购买</button>
+                                        <p class="step-comment">❌ 问题：太基础，不够美观</p>
+                                    </div>
+                                </div>
+
+                                <div class="case-step">
+                                    <div class="step-badge">步骤 2</div>
+                                    <h4>优化描述</h4>
+                                    <p class="step-desc">用更具体的语言描述需求</p>
+                                    <div class="step-prompt">
+                                        <strong>优化提示词：</strong>"请设计一个现代感的购买按钮，蓝色渐变背景，白色文字，padding上下15px、左右40px，添加8px圆角和轻微阴影"
+                                    </div>
+                                    <div class="step-result">
+                                        <p><strong>AI优化代码：</strong></p>
+                                        <pre><code>.buy-button {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  padding: 15px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+}</code></pre>
+                                        <button class="demo-button case-v2">立即购买</button>
+                                        <p class="step-comment">✅ 好多了！现代、美观、专业</p>
+                                    </div>
+                                </div>
+
+                                <div class="case-step">
+                                    <div class="step-badge">步骤 3</div>
+                                    <h4>添加交互</h4>
+                                    <p class="step-desc">让按钮更有交互感</p>
+                                    <div class="step-prompt">
+                                        <strong>进一步提示：</strong>"请添加鼠标悬停效果，悬停时按钮向上移动3px，阴影加深"
+                                    </div>
+                                    <div class="step-result">
+                                        <p><strong>AI添加交互代码：</strong></p>
+                                        <pre><code>.buy-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+}</code></pre>
+                                        <button class="demo-button case-v3">立即购买</button>
+                                        <p class="step-comment">🎯 完美！有交互反馈，用户体验更好</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="case-conclusion">
+                                <h4>案例总结</h4>
+                                <p>从一个简单的需求到专业的成品按钮，关键在于：</p>
+                                <ul>
+                                    <li>第一步：<strong>基础实现</strong> — 告诉AI做什么</li>
+                                    <li>第二步：<strong>具体优化</strong> — 用CSS术语描述细节（颜色、尺寸、圆角、阴影）</li>
+                                    <li>第三步：<strong>增强体验</strong> — 添加交互效果</li>
+                                </ul>
+                                <p class="highlight-text">💡 与AI对话就像和设计师沟通——描述越清晰，结果越精准！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 课后作业 -->
+    <section id="homework" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课后作业</h2>
+                <p class="section-description">
+                    校园图书馆网页样式生成与优化
+                </p>
+            </div>
+            <div class="homework-container">
+                <div class="glass-card homework-header">
+                    <h3><i class="fas fa-clipboard-list"></i> 任务主题</h3>
+                    <p>利用AI为已完成的HTML网页添加样式，使页面具备清晰的视觉层次与统一的设计风格。</p>
+                </div>
+
+                <div class="homework-requirements">
+                    <div class="requirement-card">
+                        <div class="req-number">1</div>
+                        <h4>描述网页风格</h4>
+                        <p>向AI描述网页风格（如"安静、简约、书香氛围"）</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="req-number">2</div>
+                        <h4>生成CSS样式</h4>
+                        <p>生成CSS样式并嵌入到HTML文件中</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="req-number">3</div>
+                        <h4>检查协调性</h4>
+                        <p>检查页面的色彩、字体与布局是否协调</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="req-number">4</div>
+                        <h4>AI优化迭代</h4>
+                        <p>使用AI优化一次样式输出，使网页更美观</p>
+                    </div>
+                    <div class="requirement-card">
+                        <div class="req-number">5</div>
+                        <h4>对比总结</h4>
+                        <p>对比优化前后结果，并记录主要改进点与改进方式</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 图片预览模态框 -->
+    <div class="image-lightbox" id="imageLightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-close" id="closeLightbox">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- 外部JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
