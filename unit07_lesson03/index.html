@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3.API + HTTP 请求这么用，N8N 直接起飞 | N8N自动化工作流教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>3.API + HTTP 请求这么用，N8N 直接起飞</h1>
+                    <p class="subtitle">N8N自动化工作流 | 第三单元课程</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan">一、课程回顾</h3>
+                            <ol>
+                                <li>N8N的界面与工作区的认识</li>
+                                <li>N8N中的触发器、AI agent以及应用节点</li>
+                                <li>上手搭建了第一个自动化工作</li>
+                                <li>让N8N自动执行简单任务</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple">二、学习目标</h3>
+                            <ol>
+                                <li>如何让N8N"连接外部应用"，像专业开发者一样调用各种在线服务。</li>
+                                <li>理解API的原理和作用；</li>
+                                <li>掌握HTTP请求的工作机制与节点配置方法；</li>
+                                <li>了解Webhook节点的原理与应用场景；</li>
+                                <li>学会使用社区节点来快速扩展功能；</li>
+                                <li>亲手构建一个基于HTTP请求的自动化工作流。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-pink">三、课程目录</h3>
+                            <ol>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">链接应用之API</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">HTTP请求与节点架构</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">Webhook节点</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">社区节点与安装方法</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">实战：用HTTP请求构建音乐推荐自动化</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 API、HTTP请求及社区节点</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 一、链接应用之API -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔗 一、链接应用之API</h2>
+
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                                我们平时使用的所有互联网应用——微信、支付宝、网易云音乐、ChatGPT……背后都在使用API。API（Application Programming Interface）是一种<strong class="neon-text-cyan">让不同软件"对话"的方式</strong>。
+                            </p>
+
+                            <h3>（一）API的原理</h3>
+
+                            <h4>1. 通过一个简单的例子了解API</h4>
+                            <p style="margin-bottom: 15px;">日常生活中寄快递的例子：</p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>角色</th>
+                                            <th>对应关系</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>寄件人（用户）</strong></td>
+                                            <td>Client / 用户</td>
+                                            <td>想寄一个包裹，但不自己跑到目的地。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>快递单（API文档）</strong></td>
+                                            <td>API Documentation</td>
+                                            <td>告诉寄件人需要填写哪些信息（收件人、地址、物品类型等）。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>快递员（API接口）</strong></td>
+                                            <td>API</td>
+                                            <td>接收包裹（请求），转交给快递中心，并把投递结果（响应）反馈回来。</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>快递中心（后台系统）</strong></td>
+                                            <td>Backend / Server</td>
+                                            <td>负责分拣、运输、投递等具体工作。寄件人不需要知道内部细节。</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4>2. API的定义</h4>
+                            <p style="margin-bottom: 15px;">
+                                API是一套标准化的规则，或者说是一个"密码"，支持一个软件程序与另一个软件程序之间的相互通信、交换数据和共享。
+                            </p>
+
+                            <h4>3. 总结</h4>
+                            <ul>
+                                <li><strong class="neon-text-cyan">API：</strong>是用户应用与后台系统之间的桥梁，它允许我们调用和获取后台程序或系统暴露给我们的功能和数据。</li>
+                                <li><strong class="neon-text-purple">API流程：</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>用户应用：根据 API文档，通过 API发送 请求 (Request)。</li>
+                                        <li>API：将请求传达给后台系统。</li>
+                                        <li>后台系统：处理数据，然后返回 响应 (Response) 给用户应用。</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <!-- API流程示意图 -->
+                            <svg class="svg-diagram" viewBox="0 0 800 250" xmlns="http://www.w3.org/2000/svg" style="margin: 30px 0;">
+                                <defs>
+                                    <filter id="glow-api">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <marker id="arrowhead-api" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" filter="url(#glow-api)"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 用户应用 -->
+                                <rect x="50" y="75" width="150" height="100" rx="15" fill="rgba(244, 63, 94, 0.2)"
+                                      stroke="#f43f5e" stroke-width="2" filter="url(#glow-api)"/>
+                                <text x="125" y="115" text-anchor="middle" fill="#f43f5e" font-size="18" font-weight="bold">用户应用</text>
+                                <text x="125" y="140" text-anchor="middle" fill="#d4d4d4" font-size="14">Client App</text>
+
+                                <!-- API接口 -->
+                                <rect x="325" y="75" width="150" height="100" rx="15" fill="rgba(168, 85, 247, 0.2)"
+                                      stroke="#a855f7" stroke-width="2" filter="url(#glow-api)"/>
+                                <text x="400" y="115" text-anchor="middle" fill="#a855f7" font-size="18" font-weight="bold">API</text>
+                                <text x="400" y="140" text-anchor="middle" fill="#d4d4d4" font-size="14">接口</text>
+
+                                <!-- 后台系统 -->
+                                <rect x="600" y="75" width="150" height="100" rx="15" fill="rgba(6, 182, 212, 0.2)"
+                                      stroke="#06b6d4" stroke-width="2" filter="url(#glow-api)"/>
+                                <text x="675" y="115" text-anchor="middle" fill="#06b6d4" font-size="18" font-weight="bold">后台系统</text>
+                                <text x="675" y="140" text-anchor="middle" fill="#d4d4d4" font-size="14">Backend</text>
+
+                                <!-- 请求箭头 -->
+                                <line x1="200" y1="110" x2="325" y2="110" stroke="#f43f5e" stroke-width="2"
+                                      marker-end="url(#arrowhead-api)" filter="url(#glow-api)"/>
+                                <text x="262" y="100" text-anchor="middle" fill="#f43f5e" font-size="12">Request</text>
+
+                                <line x1="475" y1="110" x2="600" y2="110" stroke="#a855f7" stroke-width="2"
+                                      marker-end="url(#arrowhead-api)" filter="url(#glow-api)"/>
+                                <text x="537" y="100" text-anchor="middle" fill="#a855f7" font-size="12">传达请求</text>
+
+                                <!-- 响应箭头 -->
+                                <line x1="600" y1="150" x2="475" y2="150" stroke="#06b6d4" stroke-width="2"
+                                      marker-end="url(#arrowhead-api)" filter="url(#glow-api)"/>
+                                <text x="537" y="170" text-anchor="middle" fill="#06b6d4" font-size="12">返回数据</text>
+
+                                <line x1="325" y1="150" x2="200" y2="150" stroke="#06b6d4" stroke-width="2"
+                                      marker-end="url(#arrowhead-api)" filter="url(#glow-api)"/>
+                                <text x="262" y="170" text-anchor="middle" fill="#06b6d4" font-size="12">Response</text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 配置deepseek模型的API（步骤区域1）-->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）实战案例：配置deepseek模型的API</h3>
+
+                            <!-- 步骤导航布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button type="button" class="step-button active" onclick="showStepDeepSeek(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">登录DeepSeek平台</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepDeepSeek(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">创建API Key</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepDeepSeek(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">搜索deepseek节点</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepDeepSeek(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">进入模型设置界面</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepDeepSeek(4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">配置API Keys</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepDeepSeek(5)">
+                                        <div class="step-button-number">6</div>
+                                        <div class="step-button-title">保存并选择模型</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content" id="deepseek-steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1. 登录DeepSeek平台</h4>
+                                        <p class="step-content-description">
+                                            登录 DeepSeek开发者平台：<a href="https://platform.deepseek.com/usage" target="_blank" class="neon-text-cyan">https://platform.deepseek.com/usage</a>
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/1.deepseekAPI/1.登录deepseek平台.jpeg" alt="登录DeepSeek平台" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2. 创建API Key</h4>
+                                        <p class="step-content-description">
+                                            点击 <strong class="neon-text-cyan">API Key</strong> → <strong class="neon-text-purple">创建API keys</strong> → 复制 <strong class="neon-text-pink">API Keys</strong>
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/1.deepseekAPI/2.创建APIkey.jpeg" alt="创建API Key" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3. 搜索deepseek节点</h4>
+                                        <p class="step-content-description">
+                                            点击右侧新增节点搜索 <strong class="neon-text-cyan">'deepseek'</strong>
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/1.deepseekAPI/3.搜索deepseek节点.jpeg" alt="搜索deepseek节点" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4. 进入模型设置界面</h4>
+                                        <p class="step-content-description">
+                                            进入模型设置界面，点击 <strong class="neon-text-purple">create new Credential</strong>
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/1.deepseekAPI/4.进入模型设置界面.jpeg" alt="进入模型设置界面" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">5. 配置API Keys</h4>
+                                        <p class="step-content-description">
+                                            将获取到的 <strong class="neon-text-cyan">API Keys</strong> 组织到相对应的选框中
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/1.deepseekAPI/5.配置API.jpeg" alt="配置API Keys" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤6 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">6. 保存并选择模型</h4>
+                                        <p class="step-content-description">
+                                            保存返回模型界面，可选择模型类型。配置完成！
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/1.deepseekAPI/6.保存并选择选择模型.jpeg" alt="保存并选择模型" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 二、HTTP请求 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🌐 二、HTTP请求</h2>
+
+                            <h3>（一）HTTP 请求是什么</h3>
+
+                            <h4>1. HTTP请求的定义</h4>
+                            <p style="margin-bottom: 20px;">
+                                客户端向服务器发送的，用于索取信息或执行操作的一行指令。
+                            </p>
+
+                            <h4>2. HTTP请求的工作流程</h4>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-globe neon-text-cyan"></i> 以日常浏览网页举例</h4>
+                                <ul>
+                                    <li><strong class="neon-text-cyan">浏览器创建HTTP GET请求：</strong>当你在地址栏输入URL或点击链接时，浏览器首先会构建一个请求消息。</li>
+                                    <li><strong class="neon-text-purple">请求发送至服务器：</strong>这个HTTP GET请求通过互联网传输到目标网站的服务器。</li>
+                                    <li><strong class="neon-text-pink">服务器处理并返回响应：</strong>服务器接收并处理请求，然后返回包含HTML、CSS和JavaScript等内容的HTTP响应。</li>
+                                    <li><strong style="color: var(--neon-yellow);">浏览器渲染网页内容：</strong>浏览器接收响应数据，解析并将其转化为可视化网页界面。</li>
+                                </ul>
+
+                                <!-- HTTP请求流程示意图 -->
+                                <svg class="svg-diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" style="margin: 30px 0;">
+                                    <defs>
+                                        <filter id="glow-http">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                        <marker id="arrowhead-http" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" filter="url(#glow-http)"/>
+                                        </marker>
+                                    </defs>
+
+                                    <!-- 步骤1：浏览器创建请求 -->
+                                    <rect x="50" y="50" width="180" height="80" rx="12" fill="rgba(244, 63, 94, 0.2)"
+                                          stroke="#f43f5e" stroke-width="2" filter="url(#glow-http)"/>
+                                    <text x="140" y="80" text-anchor="middle" fill="#f43f5e" font-size="14" font-weight="bold">1. 浏览器</text>
+                                    <text x="140" y="100" text-anchor="middle" fill="#d4d4d4" font-size="12">创建HTTP请求</text>
+                                    <text x="140" y="115" text-anchor="middle" fill="#a855f7" font-size="11">GET /page</text>
+
+                                    <!-- 步骤2：发送至服务器 -->
+                                    <rect x="310" y="50" width="180" height="80" rx="12" fill="rgba(168, 85, 247, 0.2)"
+                                          stroke="#a855f7" stroke-width="2" filter="url(#glow-http)"/>
+                                    <text x="400" y="80" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">2. 互联网</text>
+                                    <text x="400" y="100" text-anchor="middle" fill="#d4d4d4" font-size="12">传输请求</text>
+                                    <text x="400" y="115" text-anchor="middle" fill="#06b6d4" font-size="11">网络传输</text>
+
+                                    <!-- 步骤3：服务器处理 -->
+                                    <rect x="570" y="50" width="180" height="80" rx="12" fill="rgba(6, 182, 212, 0.2)"
+                                          stroke="#06b6d4" stroke-width="2" filter="url(#glow-http)"/>
+                                    <text x="660" y="80" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">3. 服务器</text>
+                                    <text x="660" y="100" text-anchor="middle" fill="#d4d4d4" font-size="12">处理并返回</text>
+                                    <text x="660" y="115" text-anchor="middle" fill="#f43f5e" font-size="11">200 OK + HTML</text>
+
+                                    <!-- 步骤4：浏览器渲染 -->
+                                    <rect x="360" y="180" width="180" height="80" rx="12" fill="rgba(234, 179, 8, 0.2)"
+                                          stroke="#eab308" stroke-width="2" filter="url(#glow-http)"/>
+                                    <text x="450" y="210" text-anchor="middle" fill="#eab308" font-size="14" font-weight="bold">4. 浏览器</text>
+                                    <text x="450" y="230" text-anchor="middle" fill="#d4d4d4" font-size="12">渲染网页</text>
+                                    <text x="450" y="245" text-anchor="middle" fill="#a855f7" font-size="11">显示页面</text>
+
+                                    <!-- 箭头连接 -->
+                                    <line x1="230" y1="90" x2="310" y2="90" stroke="#f43f5e" stroke-width="2"
+                                          marker-end="url(#arrowhead-http)" filter="url(#glow-http)"/>
+                                    <text x="270" y="80" text-anchor="middle" fill="#f43f5e" font-size="11">请求</text>
+
+                                    <line x1="490" y1="90" x2="570" y2="90" stroke="#a855f7" stroke-width="2"
+                                          marker-end="url(#arrowhead-http)" filter="url(#glow-http)"/>
+                                    <text x="530" y="80" text-anchor="middle" fill="#a855f7" font-size="11">传输</text>
+
+                                    <line x1="660" y1="130" x2="540" y2="180" stroke="#06b6d4" stroke-width="2"
+                                          marker-end="url(#arrowhead-http)" filter="url(#glow-http)"/>
+                                    <text x="620" y="160" text-anchor="middle" fill="#06b6d4" font-size="11">响应</text>
+
+                                    <line x1="360" y1="220" x2="230" y2="90" stroke="#eab308" stroke-width="2" stroke-dasharray="5,5"
+                                          marker-end="url(#arrowhead-http)" filter="url(#glow-http)"/>
+                                    <text x="270" y="140" text-anchor="middle" fill="#eab308" font-size="11">渲染</text>
+                                </svg>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-book neon-text-purple"></i> 用图书馆借书举例</h4>
+                                <ul>
+                                    <li><strong class="neon-text-cyan">创建 HTTP GET 请求：</strong>走进图书馆，向图书管理员说明："我想借《瓦尔登湖》这本书。"</li>
+                                    <li><strong class="neon-text-purple">请求发送至服务器：</strong>图书管理员收到你的借书请求后，开始在图书馆的数据库或书架系统中查找这本书。</li>
+                                    <li><strong class="neon-text-pink">服务器处理并返回响应：</strong>图书管理员找到了这本书的资料，然后把结果交给你，告诉你可以借/已经被借完了。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: HTTP请求节点的组成 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）HTTP请求节点的组成</h3>
+
+                            <h4>1. URL</h4>
+                            <div class="content-card">
+                                <p><strong class="neon-text-cyan">URL的定义：</strong></p>
+                                <ul>
+                                    <li>互联网上资源的唯一地址，俗称"网址"。</li>
+                                    <li>定义了要访问的资源位置，沿用快递的例子，他就是取件码，告诉你要在哪个货架上上面取货。</li>
+                                </ul>
+
+                                <p style="margin-top: 20px;"><strong class="neon-text-purple">URL的组成部分：</strong></p>
+                                <ul>
+                                    <li><strong>协议 (Scheme)：</strong>通常是 <code class="neon-text-cyan">HTTP</code> 或 <code class="neon-text-cyan">HTTPS</code>。</li>
+                                    <li><strong>主机 (Host)：</strong>你请求的后台系统的域名或 <code class="neon-text-cyan">IP</code> 地址。</li>
+                                    <li><strong>端口 (Port)：</strong>可选参数，用于指定连接端口。</li>
+                                    <li><strong>路径 (Path)：</strong>资源在服务器上的具体位置。</li>
+                                    <li><strong>查询参数 (Query Parameters)：</strong>以键值对的形式向服务器传递的参数，用于查询或过滤资源，例如 <code class="neon-text-pink">?id=123&lang=zh</code>。</li>
+                                </ul>
+
+                                <p style="margin-top: 15px; font-size: 0.95rem; opacity: 0.9;">
+                                    <strong>注意：</strong>这些URL信息通常会在你想要请求的服务官方API文档中详细记录，可以直接复制使用。
+                                </p>
+
+                                <!-- URL结构示意图 -->
+                                <svg class="svg-diagram" viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="margin: 30px 0;">
+                                    <defs>
+                                        <filter id="glow-url">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+
+                                    <!-- URL完整示例 -->
+                                    <rect x="50" y="30" width="800" height="50" rx="8" fill="rgba(20, 20, 20, 0.6)"
+                                          stroke="#06b6d4" stroke-width="2" filter="url(#glow-url)"/>
+                                    <text x="450" y="60" text-anchor="middle" fill="#06b6d4" font-size="16" font-family="monospace">
+                                        https://api.example.com:443/users/profile?id=123&lang=zh
+                                    </text>
+
+                                    <!-- 协议 -->
+                                    <rect x="70" y="110" width="100" height="60" rx="8" fill="rgba(244, 63, 94, 0.2)"
+                                          stroke="#f43f5e" stroke-width="2" filter="url(#glow-url)"/>
+                                    <text x="120" y="135" text-anchor="middle" fill="#f43f5e" font-size="13" font-weight="bold">协议</text>
+                                    <text x="120" y="152" text-anchor="middle" fill="#d4d4d4" font-size="11">https://</text>
+                                    <line x1="120" y1="90" x2="120" y2="110" stroke="#f43f5e" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                                    <!-- 主机 -->
+                                    <rect x="200" y="110" width="140" height="60" rx="8" fill="rgba(168, 85, 247, 0.2)"
+                                          stroke="#a855f7" stroke-width="2" filter="url(#glow-url)"/>
+                                    <text x="270" y="135" text-anchor="middle" fill="#a855f7" font-size="13" font-weight="bold">主机</text>
+                                    <text x="270" y="152" text-anchor="middle" fill="#d4d4d4" font-size="10">api.example.com</text>
+                                    <line x1="270" y1="90" x2="270" y2="110" stroke="#a855f7" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                                    <!-- 端口 -->
+                                    <rect x="370" y="110" width="80" height="60" rx="8" fill="rgba(6, 182, 212, 0.2)"
+                                          stroke="#06b6d4" stroke-width="2" filter="url(#glow-url)"/>
+                                    <text x="410" y="135" text-anchor="middle" fill="#06b6d4" font-size="13" font-weight="bold">端口</text>
+                                    <text x="410" y="152" text-anchor="middle" fill="#d4d4d4" font-size="11">:443</text>
+                                    <line x1="410" y1="90" x2="410" y2="110" stroke="#06b6d4" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                                    <!-- 路径 -->
+                                    <rect x="480" y="110" width="150" height="60" rx="8" fill="rgba(234, 179, 8, 0.2)"
+                                          stroke="#eab308" stroke-width="2" filter="url(#glow-url)"/>
+                                    <text x="555" y="135" text-anchor="middle" fill="#eab308" font-size="13" font-weight="bold">路径</text>
+                                    <text x="555" y="152" text-anchor="middle" fill="#d4d4d4" font-size="10">/users/profile</text>
+                                    <line x1="555" y1="90" x2="555" y2="110" stroke="#eab308" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+                                    <!-- 查询参数 -->
+                                    <rect x="660" y="110" width="170" height="60" rx="8" fill="rgba(236, 72, 153, 0.2)"
+                                          stroke="#ec4899" stroke-width="2" filter="url(#glow-url)"/>
+                                    <text x="745" y="135" text-anchor="middle" fill="#ec4899" font-size="13" font-weight="bold">查询参数</text>
+                                    <text x="745" y="152" text-anchor="middle" fill="#d4d4d4" font-size="10">?id=123&lang=zh</text>
+                                    <line x1="745" y1="90" x2="745" y2="110" stroke="#ec4899" stroke-width="1.5" stroke-dasharray="3,3"/>
+                                </svg>
+                            </div>
+
+                            <h4>2. Method（请求方法）</h4>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><span class="neon-text-cyan">GET</span></h4>
+                                    <p>获取数据，通常用于查询资源，不会改变服务器上的数据。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：就像查询图书馆中是否有某本书。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><span class="neon-text-purple">POST</span></h4>
+                                    <p>提交数据，通常用于在服务器上创建新资源。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：类似向图书馆提交一本新书。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><span class="neon-text-pink">PUT</span></h4>
+                                    <p>更新数据，完全覆盖现有资源。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：相当于替换图书馆中的某本书，用新版本完全取代旧版本。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><span style="color: var(--neon-yellow);">DELETE</span></h4>
+                                    <p>删除数据，从服务器中移除指定资源。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：就像将图书馆中的某本书彻底下架并从系统中删除记录。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><span class="neon-text-cyan">HEAD</span></h4>
+                                    <p>只获取响应头信息，不返回实际的响应体。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：类似于只查看书的封面和目录。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><span class="neon-text-purple">OPTIONS</span></h4>
+                                    <p>查询资源支持的HTTP方法，用于检查资源是否存在/能否被访问。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：类似于询问图书管理员："我可以借阅、预订还是只能在馆内阅读这本书？"</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><span class="neon-text-pink">PATCH</span></h4>
+                                    <p>部分更新数据，只修改资源的部分属性。</p>
+                                    <p style="margin-top: 10px; opacity: 0.8;">举例：就像在图书馆的记录中，只修改书籍的一个字段，比如更新书的作者信息或分类标签。</p>
+                                </div>
+                            </div>
+
+                            <h4>3. Authentication（凭证）</h4>
+                            <p style="margin-bottom: 20px;">
+                                根据凭据验明的访问者身份，一般就是输入API。
+                            </p>
+
+                            <h4>4. Query Parameters（查询参数）</h4>
+                            <p style="margin-bottom: 20px;">
+                                以键值对形式传递的参数，用于查询或过滤资源。
+                            </p>
+
+                            <h4>5. Header (请求头)</h4>
+                            <div class="content-card">
+                                <p style="margin-bottom: 15px;">
+                                    提供了更多关于请求的信息，例如请求的地点、语言、数据类型等。
+                                </p>
+
+                                <p><strong class="neon-text-cyan">常见Header示例：</strong></p>
+                                <ul>
+                                    <li><code>Accept: application/json</code>：告诉服务器，我们期望返回的数据格式是 JSON。</li>
+                                    <li><code>Authorization: Bearer YOUR_API_TOKEN</code>：用于身份验证，通常需要填入自己的 API Token 或 API Key。</li>
+                                </ul>
+                            </div>
+
+                            <h4>6. Body (请求体)</h4>
+                            <div class="content-card">
+                                <p style="margin-bottom: 15px;">
+                                    包含了我们要发送给服务器的具体信息或数据。
+                                </p>
+
+                                <p><strong class="neon-text-purple">示例：</strong>当调用 OpenAI 的图像生成 API 时，Body 中需要定义以下参数来生成图像：</p>
+                                <ul>
+                                    <li><code>"model": "dall-e-2"</code> 或 <code>"dall-e-3"</code>：指定图像生成模型。</li>
+                                    <li><code>"prompt": "A cute baby sea otter"</code>：图像生成的提示词 (Prompt)。</li>
+                                    <li><code>"n": 1</code>：生成的图片数量。</li>
+                                    <li><code>"size": "1024x1024"</code>：图像的分辨率。</li>
+                                </ul>
+
+                                <p style="margin-top: 15px; font-size: 0.95rem; opacity: 0.9;">
+                                    <strong>注意：</strong>Body 的内容需要根据 API 文档内的具体要求和自身需求来填写。Body内容必须是合法JSON，否则请求会失败。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 配置HTTP请求（步骤区域2）-->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）实操案例：配置一个来自于外部模型的HTTP请求步骤</h3>
+
+                            <!-- 步骤导航布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button type="button" class="step-button active" onclick="showStepHTTP(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">打开API文档</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepHTTP(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">找到curl示例</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepHTTP(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">配置HTTP节点</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepHTTP(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">注意事项</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content" id="http-steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1. 打开DeepSeek的API文档</h4>
+                                        <p class="step-content-description">
+                                            打开deepseek的API文档：<a href="https://api-docs.deepseek.com/zh-cn/" target="_blank" class="neon-text-cyan">https://api-docs.deepseek.com/zh-cn/</a>
+                                        </p>
+                                        <p class="step-content-description">
+                                            在首次调用界面，会有deepseek的详细的调用配置说明。
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/2.deepseekHttp request/1.打开DeepSeek的API文档.jpeg" alt="打开DeepSeek的API文档" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2. 找到DeepSeek的curl示例</h4>
+                                        <p class="step-content-description">
+                                            在API文档中找到curl示例代码：
+                                        </p>
+                                        <div class="highlight-box">
+                                            <pre><code>curl https://api.deepseek.com/chat/completions \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer ${DEEPSEEK_API_KEY}" \
+-d '{
+     "model": "deepseek-chat",
+     "messages": [
+        {"role": "system", "content": "You are a helpful assistant."},
+        {"role": "user", "content": "Hello!"}
+      ],
+      "stream": false
+     }'</code></pre>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3. 开始配置HTTP节点</h4>
+                                        <p class="step-content-description">
+                                            在N8N中选择 <strong class="neon-text-cyan">HTTP Request</strong> 节点
+                                        </p>
+                                        <ul style="margin-left: 0; padding-left: 0;">
+                                            <li>将刚刚的 curl 整个复制</li>
+                                            <li>点击 <strong class="neon-text-purple">Import</strong>，n8n 会自动解析 cURL 命令</li>
+                                            <li>自动填充 Method、URL、Header 和 Body 等所有配置项</li>
+                                        </ul>
+                                        <div class="step-image-container">
+                                            <img src="images/2.deepseekHttp request/3.配置http节点.jpeg" alt="配置HTTP节点" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4. 注意事项</h4>
+                                        <div class="highlight-box">
+                                            <ul style="margin-left: 0; padding-left: 0;">
+                                                <li>导入后，仍需手动将 <code>Authorization</code> <code>Header</code> 中的 <code>YOUR_OPENAI_API_KEY</code> 替换为自己真实的 OpenAI API Key。</li>
+                                                <li>有时 n8n 自动解析的 Body 可能会将 JSON 结构拆分成多行参数，如果遇到问题，可以切换 Body 类型为 <strong class="neon-text-cyan">Using JSON</strong>，然后将 Body 的 JSON 内容整体复制粘贴进去。</li>
+                                            </ul>
+                                        </div>
+                                        <div class="step-image-container">
+                                            <img src="images/2.deepseekHttp request/4.注意事项.jpeg" alt="注意事项" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: Webhook节点 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）Webhook节点（API）</h3>
+
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                                除了主动发起 HTTP Request，n8n 还提供了 Webhook 节点，它相当于一个<strong class="neon-text-cyan">反向的 HTTP Request</strong>。
+                            </p>
+
+                            <h4>1. Webhook节点的概念</h4>
+                            <p style="margin-bottom: 20px;">
+                                <strong class="neon-text-cyan">HTTP Request</strong> 是我们主动向外部服务请求或发送信息，而 <strong class="neon-text-purple">Webhook</strong> 则是 n8n 在等待外部服务或程序向我们发送信息。
+                            </p>
+
+                            <h4>2. Webhook节点的工作原理</h4>
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <p>Webhook 节点会生成一个独特的 URL。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <p>一旦有 HTTP Request 发送到这个 Webhook URL。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <p>n8n 的整个工作流就会被触发。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <p>工作流会根据接收到的信息执行相应的处理。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <p>最后，n8n 可以将处理结果作为 HTTP Response 返回给发起请求的外部服务或应用。</p>
+                                </div>
+                            </div>
+
+                            <!-- Webhook工作原理示意图 -->
+                            <svg class="svg-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg" style="margin: 40px 0;">
+                                <defs>
+                                    <filter id="glow-webhook">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <marker id="arrowhead-webhook" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" filter="url(#glow-webhook)"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 外部服务/应用 -->
+                                <rect x="50" y="150" width="180" height="100" rx="15" fill="rgba(244, 63, 94, 0.2)"
+                                      stroke="#f43f5e" stroke-width="2" filter="url(#glow-webhook)"/>
+                                <text x="140" y="190" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">外部服务</text>
+                                <text x="140" y="210" text-anchor="middle" fill="#d4d4d4" font-size="13">应用/用户</text>
+
+                                <!-- Webhook URL -->
+                                <rect x="310" y="50" width="180" height="80" rx="12" fill="rgba(168, 85, 247, 0.2)"
+                                      stroke="#a855f7" stroke-width="2" filter="url(#glow-webhook)"/>
+                                <text x="400" y="80" text-anchor="middle" fill="#a855f7" font-size="15" font-weight="bold">Webhook URL</text>
+                                <text x="400" y="100" text-anchor="middle" fill="#d4d4d4" font-size="11">/webhook/abc123</text>
+                                <text x="400" y="115" text-anchor="middle" fill="#06b6d4" font-size="10">等待接收请求</text>
+
+                                <!-- N8N工作流 -->
+                                <rect x="570" y="150" width="180" height="100" rx="15" fill="rgba(6, 182, 212, 0.2)"
+                                      stroke="#06b6d4" stroke-width="2" filter="url(#glow-webhook)"/>
+                                <text x="660" y="190" text-anchor="middle" fill="#06b6d4" font-size="16" font-weight="bold">N8N工作流</text>
+                                <text x="660" y="210" text-anchor="middle" fill="#d4d4d4" font-size="13">自动执行任务</text>
+
+                                <!-- 响应结果 -->
+                                <rect x="310" y="270" width="180" height="80" rx="12" fill="rgba(234, 179, 8, 0.2)"
+                                      stroke="#eab308" stroke-width="2" filter="url(#glow-webhook)"/>
+                                <text x="400" y="300" text-anchor="middle" fill="#eab308" font-size="15" font-weight="bold">HTTP Response</text>
+                                <text x="400" y="320" text-anchor="middle" fill="#d4d4d4" font-size="11">返回处理结果</text>
+
+                                <!-- 步骤标注 -->
+                                <circle cx="30" cy="80" r="18" fill="rgba(244, 63, 94, 0.3)" stroke="#f43f5e" stroke-width="2"/>
+                                <text x="30" y="86" text-anchor="middle" fill="#f43f5e" font-size="14" font-weight="bold">1</text>
+
+                                <circle cx="550" cy="110" r="18" fill="rgba(168, 85, 247, 0.3)" stroke="#a855f7" stroke-width="2"/>
+                                <text x="550" y="116" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">2</text>
+
+                                <circle cx="770" cy="230" r="18" fill="rgba(6, 182, 212, 0.3)" stroke="#06b6d4" stroke-width="2"/>
+                                <text x="770" y="236" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">3</text>
+
+                                <circle cx="280" cy="310" r="18" fill="rgba(234, 179, 8, 0.3)" stroke="#eab308" stroke-width="2"/>
+                                <text x="280" y="316" text-anchor="middle" fill="#eab308" font-size="14" font-weight="bold">4</text>
+
+                                <!-- 箭头：外部服务发送请求到Webhook -->
+                                <line x1="230" y1="180" x2="310" y2="110" stroke="#f43f5e" stroke-width="3"
+                                      marker-end="url(#arrowhead-webhook)" filter="url(#glow-webhook)"/>
+                                <text x="270" y="140" text-anchor="middle" fill="#f43f5e" font-size="12" font-weight="bold">发送HTTP请求</text>
+
+                                <!-- 箭头：Webhook触发工作流 -->
+                                <line x1="490" y1="110" x2="570" y2="180" stroke="#a855f7" stroke-width="3"
+                                      marker-end="url(#arrowhead-webhook)" filter="url(#glow-webhook)"/>
+                                <text x="530" y="140" text-anchor="middle" fill="#a855f7" font-size="12" font-weight="bold">触发工作流</text>
+
+                                <!-- 箭头：工作流返回响应 -->
+                                <line x1="570" y1="220" x2="490" y2="290" stroke="#06b6d4" stroke-width="3"
+                                      marker-end="url(#arrowhead-webhook)" filter="url(#glow-webhook)"/>
+                                <text x="530" y="260" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="bold">处理完成</text>
+
+                                <!-- 箭头：响应返回外部服务 -->
+                                <line x1="310" y1="290" x2="230" y2="220" stroke="#eab308" stroke-width="3"
+                                      marker-end="url(#arrowhead-webhook)" filter="url(#glow-webhook)"/>
+                                <text x="270" y="260" text-anchor="middle" fill="#eab308" font-size="12" font-weight="bold">返回结果</text>
+                            </svg>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 style="margin-top: 0;"><i class="fas fa-lightbulb neon-text-cyan"></i> Webhook vs HTTP Request 对比</h4>
+                                <div class="grid-2" style="margin-top: 15px;">
+                                    <div>
+                                        <h5 class="neon-text-purple">HTTP Request（主动）</h5>
+                                        <p style="margin-top: 10px; font-size: 0.95rem;">我们主动向外部服务发送请求获取数据</p>
+                                    </div>
+                                    <div>
+                                        <h5 class="neon-text-cyan">Webhook（被动）</h5>
+                                        <p style="margin-top: 10px; font-size: 0.95rem;">等待外部服务向我们发送数据触发工作流</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 社区节点 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🧩 四、社区节点</h2>
+
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                                除了配置HTTP请求节点之外，还有一些别人已经写好的HTTP请求节点供我们免费使用，也就是<strong class="neon-text-cyan">社区节点</strong>，可以说是别人帮你写好的HTTP请求节点。
+                            </p>
+
+                            <h3>（一）社区节点在哪里找到？</h3>
+
+                            <!-- 步骤导航布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button type="button" class="step-button active" onclick="showStepCommunity(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">打开设置</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepCommunity(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">找到社区节点</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepCommunity(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">输入节点包名</div>
+                                    </button>
+                                    <button type="button" class="step-button" onclick="showStepCommunity(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">使用节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content" id="community-steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1. 打开设置</h4>
+                                        <p class="step-content-description">
+                                            打开 n8n 主界面 → 点击左侧边栏的 <strong class="neon-text-cyan">Settings（设置）</strong>
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/3.社区节点/1.打开设置.jpeg" alt="打开设置" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2. 找到社区节点</h4>
+                                        <p class="step-content-description">
+                                            在设置中找到 <strong class="neon-text-purple">"Community Nodes（社区节点）"</strong>
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/3.社区节点/2.找到社区节点.jpeg" alt="找到社区节点" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3. 输入节点包名</h4>
+                                        <p class="step-content-description">
+                                            在弹出的窗口中输入节点包名 → 点击安装
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/3.社区节点/4.输入节点名称.jpeg" alt="输入节点包名" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4. 使用节点</h4>
+                                        <p class="step-content-description">
+                                            安装后，这个节点会出现在 "节点面板（Nodes）" 的列表中，像内置节点一样使用
+                                        </p>
+                                        <div class="step-image-container">
+                                            <img src="images/3.社区节点/5.使用节点.jpeg" alt="使用节点" style="width: 100%; height: auto; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 推荐的实用社区节点 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）推荐的实用社区节点</h3>
+                            <div class="badge-container">
+                                <span class="badge">n8n-nodes-feishu</span>
+                                <span class="badge">n8n-nodes-wechat-send</span>
+                                <span class="badge">n8n-nodes-bilibili</span>
+                                <span class="badge">@donney521/n8n-nodes-xiaohongshu</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 实战工作流 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 五、上手制作一个工作流</h2>
+
+                            <h3>实战案例：利用HTTP请求节点构建一个每天给自己邮箱发送音乐推荐的自动化工作流</h3>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    <strong>💡 项目目标：</strong>
+                                </p>
+                                <p style="text-align: center; margin-top: 10px;">
+                                    构建一个自动化工作流，定时向邮箱发送个性化音乐推荐
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button type="button" class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button type="button" class="nav-item" onclick="courseScrollToSection(1)">
+                        一、链接应用之API
+                    </button>
+                    <!-- Section 1: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(1)">
+                        （一）API的原理
+                    </button>
+                    <!-- Section 2: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （二）配置deepseek API
+                    </button>
+
+                    <!-- Section 3: 主标题 -->
+                    <button type="button" class="nav-item" onclick="courseScrollToSection(3)">
+                        二、HTTP请求
+                    </button>
+                    <!-- Section 3: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （一）HTTP请求是什么
+                    </button>
+                    <!-- Section 4: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （二）HTTP请求节点组成
+                    </button>
+                    <!-- Section 5: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （三）配置HTTP请求
+                    </button>
+                    <!-- Section 6: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        （四）Webhook节点
+                    </button>
+
+                    <!-- Section 7: 主标题 -->
+                    <button type="button" class="nav-item" onclick="courseScrollToSection(7)">
+                        四、社区节点
+                    </button>
+                    <!-- Section 7: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        （一）社区节点在哪里找到？
+                    </button>
+                    <!-- Section 8: 子标题 -->
+                    <button type="button" class="nav-item-sub" onclick="courseScrollToSection(8)">
+                        （二）推荐的实用社区节点
+                    </button>
+
+                    <!-- Section 9: 主标题 -->
+                    <button type="button" class="nav-item" onclick="courseScrollToSection(9)">
+                        五、实战工作流
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">实践所学，巩固知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+                                <ol style="margin-top: 30px;">
+                                    <li style="font-size: 1.2rem;">复现课堂中的"音乐推荐"工作流；</li>
+                                    <li style="font-size: 1.2rem;">尝试修改Prompt内容，让AI推荐电影或书籍；</li>
+                                    <li style="font-size: 1.2rem;">下载飞书的社区节点</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 N8N自动化工作流教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

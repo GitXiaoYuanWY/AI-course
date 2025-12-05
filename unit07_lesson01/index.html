@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N8N的安装与部署 | 自动化工作流教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>N8N的安装与部署</h1>
+                    <p class="subtitle">软件的介绍及部署 | 自动化工作流入门课程</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 板块一课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card" style="background: linear-gradient(135deg, rgba(10, 10, 10, 0.5) 0%, rgba(23, 23, 23, 0.4) 100%);">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">（一）学习目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解自动化与工作流的基本概念</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解自动化工作流的实际价值与应用场景</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">学会本地部署N8N并能熟练打开系统界面</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">为后续构建个人自动化项目打下基础</li>
+                            </ol>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">（二）课程章节</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">什么是自动化工作流</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">N8N的工具介绍</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">N8N本地部署</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 N8N 自动化工作流的核心知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 标题卡片 - 什么是自动化 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、什么是自动化工作流</h2>
+                            <h3>（一）什么是自动化</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1a: 自动化的定义 -->
+            <section class="section-scroll-item" data-section="1a">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>自动化的定义</h4>
+                                    <p style="font-size: 1.3rem;">自动化是指通过技术手段,让机器或软件自动执行原本由人完成的重复性任务。比如：数据录入、定时提醒、文件整理、内容发布等，都可以通过自动化系统完成。</p>
+                                </div>
+                            </div>
+
+                            <!-- 新增：16:9图片容器 -->
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/1.什么是自动化/1自动化的定义.png" alt="自动化的定义" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1b: 从几个简单的例子理解自动化 -->
+            <section class="section-scroll-item" data-section="1b">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4>从几个简单的例子理解自动化</h4>
+
+                            <!-- 三个自动化例子卡片 -->
+                            <div class="grid-automation-examples">
+                                <!-- 卡片1: 每天准时发布朋友圈动态 -->
+                                <div class="content-card">
+                                    <!-- 图片占位符 -->
+                                    <div class="image-container-16-9" style="margin-top: 0;">
+                                        <div class="image-container-16-9-content">
+                                            <img src="images/1.什么是自动化/2.1自动发送朋友圈.png" alt="每天准时发布朋友圈动态" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <!-- 文字内容 -->
+                                    <h4 style="margin-top: 20px;"><span class="neon-text-cyan">每天准时发布朋友圈动态</span></h4>
+                                    <p>不需要手动操作，系统可以每天早上8点自动发出一句正能量语录</p>
+                                </div>
+
+                                <!-- 卡片2: 自动备份文件 -->
+                                <div class="content-card">
+                                    <!-- 图片占位符 -->
+                                    <div class="image-container-16-9" style="margin-top: 0;">
+                                        <div class="image-container-16-9-content">
+                                            <img src="images/1.什么是自动化/2.2准时备份文件.png" alt="自动备份文件" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <!-- 文字内容 -->
+                                    <h4 style="margin-top: 20px;"><span class="neon-text-purple">自动备份文件</span></h4>
+                                    <p>每晚12点自动把当天的作业文件上传到云端</p>
+                                </div>
+
+                                <!-- 卡片3: 自动收集信息 -->
+                                <div class="content-card">
+                                    <!-- 图片占位符 -->
+                                    <div class="image-container-16-9" style="margin-top: 0;">
+                                        <div class="image-container-16-9-content">
+                                            <img src="images/1.什么是自动化/2.3自动生成日报.png" alt="自动收集信息" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <!-- 文字内容 -->
+                                    <h4 style="margin-top: 20px;"><span class="neon-text-pink">自动收集信息</span></h4>
+                                    <p>系统定时从新闻网站爬取热点标题，整理成一份日报</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 1c: 总结 -->
+            <section class="section-scroll-item" data-section="1c">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <!-- 总结文字 - 放大并居中 -->
+                            <div class="highlight-box">
+                                <p style="font-size: 1.5rem; text-align: center; margin: 0;">
+                                    <strong>💡 总结：</strong>自动化的核心思想就是——让"重复的事"自动发生。
+                                </p>
+                            </div>
+
+                            <!-- 新增：16:9图片容器 -->
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/1.什么是自动化/3让重复的时区自动发生.png" alt="让重复的事自动发生" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 标题卡片 - 什么是工作流 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）什么是工作流</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2a: 工作流的定义 -->
+            <section class="section-scroll-item" data-section="2a">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>工作流的定义</h4>
+                                    <p>简单的讲，就是用一系列的步骤描述人类从头到尾完成的工作。它像一条流水线，每个环节都清楚地定义了谁要做什么、何时开始、如何结束。</p>
+                                    
+                                    <!-- 工作流定义图片 -->
+                                    <div class="image-container-16-9" style="margin-top: 20px;">
+                                        <div class="image-container-16-9-content">
+                                            <img src="images/9.自动化工作流/1.工作流的定义.jpeg" alt="工作流的定义" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2b: 从几个简单的案例了解工作流 -->
+            <section class="section-scroll-item" data-section="2b">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>从几个简单的案例了解工作流</h4>
+                                    <p>日常生活中，只要是产生行为，都会有一套流程：</p>
+
+                                    <!-- 工作流图片网格 -->
+                                    <div class="workflow-grid">
+                                        <!-- 拍照工作流 -->
+                                        <div class="workflow-item">
+                                            <div class="image-container-vertical">
+                                                <div class="image-container-vertical-content">
+                                                    <img src="images/9.自动化工作流/2.拍照工作流图片占位符.png" alt="拍照工作流" style="width: 100%; height: 100%; object-fit: contain;">
+                                                </div>
+                                            </div>
+                                            <p class="workflow-description">拍照的工作流</p>
+                                        </div>
+
+                                        <!-- 炒菜工作流 -->
+                                        <div class="workflow-item">
+                                            <div class="image-container-vertical">
+                                                <div class="image-container-vertical-content">
+                                                    <img src="images/9.自动化工作流/3.炒菜工作流图片占位符.png" alt="炒菜工作流" style="width: 100%; height: 100%; object-fit: contain;">
+                                                </div>
+                                            </div>
+                                            <p class="workflow-description">炒菜的工作流</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2c1: 删除环节 -->
+            <section class="section-scroll-item" data-section="2c1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>优化方法1：删除多余环节</h4>
+                                    <p>通过减少不必要的流程步骤，让工作流更加高效。</p>
+                                </div>
+                            </div>
+
+                            <!-- 医院挂号流程优化图片 -->
+                            <div class="image-container-horizontal">
+                                <div class="image-container-horizontal-content">
+                                    <img src="images/9.自动化工作流/6.医院挂号流程的优化.png" alt="医院挂号流程的优化" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2c2: 增加环节 -->
+            <section class="section-scroll-item" data-section="2c2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>优化方法2：增加必要步骤</h4>
+                                    <p>通过添加关键环节，补上流程中的缺失点，提升服务质量。</p>
+                                </div>
+                            </div>
+
+                            <!-- 电商客服流程优化图片 -->
+                            <div class="image-container-horizontal">
+                                <div class="image-container-horizontal-content">
+                                    <img src="images/9.自动化工作流/5.电商客服流程优化.png" alt="电商客服流程优化" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2c3: 调整环节的顺序 -->
+            <section class="section-scroll-item" data-section="2c3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>优化方法3：调整环节的顺序</h4>
+                                    <p>通过重新排列步骤顺序，让执行流程更加顺畅合理。</p>
+                                </div>
+                            </div>
+
+                            <!-- 自媒体内容发布流程优化图片 -->
+                            <div class="image-container-horizontal">
+                                <div class="image-container-horizontal-content">
+                                    <img src="images/9.自动化工作流/7.自媒体内容发布流程优化.png" alt="自媒体内容发布流程优化" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2c4: 并行执行多个环节任务 -->
+            <section class="section-scroll-item" data-section="2c4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-container">
+                                <div class="step-number">6</div>
+                                <div class="step-content">
+                                    <h4>优化方法4：并行执行多个环节任务</h4>
+                                    <p>通过同时进行多个任务，缩短总体完成时间。</p>
+                                </div>
+                            </div>
+
+                            <!-- 并行任务执行优化图片 -->
+                            <div class="image-container-horizontal">
+                                <div class="image-container-horizontal-content">
+                                    <img src="images/9.自动化工作流/8.并行任务执行优化.png" alt="并行任务执行优化" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2d: 工作流总结 -->
+            <section class="section-scroll-item" data-section="2d">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                                    <strong>💡 工作流总结</strong>
+                                </p>
+                                <p style="margin-bottom: 15px;">
+                                    工作流，就是用一系列清晰的步骤，描述一件事从开始到结束的过程。它让任务更有条理，也方便系统自动执行。
+                                </p>
+                                <p style="margin-bottom: 15px;">
+                                    <strong class="neon-text-cyan">优化工作流，就是让这条"流程线"更高效：</strong>
+                                </p>
+                                <ul style="list-style: none; padding-left: 20px;">
+                                    <li style="margin-bottom: 10px;">✅ <strong>删掉多余环节</strong>，减少等待；</li>
+                                    <li style="margin-bottom: 10px;">✅ <strong>增加必要步骤</strong>，补上关键点；</li>
+                                    <li style="margin-bottom: 10px;">✅ <strong>调整顺序</strong>，让执行更顺畅；</li>
+                                    <li>✅ <strong>并行操作</strong>，让多个任务同时完成。</li>
+                                </ul>
+                            </div>
+                            
+                            <!-- 优化工作流的方法图片 -->
+                            <div class="image-container-16-9" style="margin-top: 20px;">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/9.自动化工作流/4.优化工作流的方法.png" alt="优化工作流的方法" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 卡片3 - 自动化工作流 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）自动化工作流</h3>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-clock neon-text-cyan"></i>
+                                    <h4>提高效率</h4>
+                                    <p>AI系统可以24小时不间断工作，不需要休息，也不会忘事</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-dollar-sign neon-text-purple"></i>
+                                    <h4>降低成本</h4>
+                                    <p>相比人力，AI可以节省上百上千倍的成本</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-check-circle neon-text-pink"></i>
+                                    <h4>提升准确性</h4>
+                                    <p>AI自动化可以减少人为的错误，提高工作准确性</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 卡片4 - 什么是N8N -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔧 二、自动化的工具介绍</h2>
+
+                            <h3>（一）什么是N8N</h3>
+                            <p style="font-size: 1.2rem; color: var(--cyber-dark-200); margin: 20px 0;">
+                                N8N是一款强大的开源自动化平台，可以让你通过拖拽节点、连接逻辑条件，实现"如果……就……"的自动化流程。它不需要编程基础，却能完成非常复杂的逻辑任务。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 卡片5 - N8N能为我做些什么 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）N8N能为我做些什么</h3>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-graduation-cap neon-text-cyan"></i> 学习方面</h4>
+                                    <ul>
+                                        <li>自动收集课程资源、整理笔记</li>
+                                        <li>定时推送上课提醒</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-share-alt neon-text-purple"></i> 社交方面</h4>
+                                    <ul>
+                                        <li>根据主题自动生成小红书文案+图片</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-video neon-text-pink"></i> 自媒体方面</h4>
+                                    <ul>
+                                        <li>内容自动创作：利用AI大模型自动生成短视频脚本、字幕与配音</li>
+                                        <li>自动搜集素材：自动抓取指定关键词的视频或图文素材</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-briefcase" style="color: var(--neon-yellow);"></i> 企业应用</h4>
+                                    <ul>
+                                        <li>财经/金融：自动化聊天机器人为客户查询基金净值</li>
+                                        <li>日常办公：自动制作PPT、日报与KPI报告</li>
+                                        <li>设计领域：利用AI生成产品海报、广告视频</li>
+                                        <li>计算机领域：自动数据清洗、日志监控、错误警报推送</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 卡片6 - 与其他工具对比 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）与其他工具对比</h3>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>对比项</th>
+                                            <th>N8N</th>
+                                            <th>扣子空间（Koozi）</th>
+                                            <th>Dify</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>定位</strong></td>
+                                            <td>通用型自动化工作流平台</td>
+                                            <td>零代码自动化工具</td>
+                                            <td>AI工作流与大模型平台</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>使用人群</strong></td>
+                                            <td>技术型用户、开发者</td>
+                                            <td>普通用户、学生、运营人员</td>
+                                            <td>AI从业者、研发团队</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>操作方式</strong></td>
+                                            <td>节点拖拽式流程图</td>
+                                            <td>卡片式操作、自然语言配置</td>
+                                            <td>节点+Prompt组合</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>是否开源</strong></td>
+                                            <td>✅ 开源，可本地部署</td>
+                                            <td>❌ 闭源，云端使用</td>
+                                            <td>✅ 开源，可本地部署</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>优点</strong></td>
+                                            <td>功能强大、可定制性高、稳定可靠</td>
+                                            <td>界面简单、上手最快、中文支持好</td>
+                                            <td>AI能力突出、适合智能化场景</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 卡片7 - 选择N8N的原因 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）选择N8N的原因</h3>
+
+                            <div class="badge-container">
+                                <span class="badge">✨ 可视化操作 — 拖拽即用，零代码</span>
+                                <span class="badge">🎯 逻辑灵活 — 支持条件判断、循环执行</span>
+                                <span class="badge">🔗 连接丰富 — 支持上千种软件</span>
+                                <span class="badge">🤖 AI集成 — 可接入ChatGPT、DeepSeek等</span>
+                                <span class="badge">🔓 开源可扩展 — 可本地运行，数据安全</span>
+                                <span class="badge">💰 低成本 — 免费使用，无需额外购买</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 卡片8 - 本地部署N8N -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、N8N本地部署</h2>
+
+                            <h3 style="margin-bottom: 0;">（一）本地部署N8N</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStep(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">本地下载Docker</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">安装好之后选择个人登录</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">在搜索栏搜索n8n，选择最新版本的点击pull</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">查看下载好的n8n</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">创建数据卷</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(5)">
+                                        <div class="step-button-number">6</div>
+                                        <div class="step-button-title">配置并运行容器</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1内容 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1. 本地下载Docker</h4>
+                                        <p class="step-content-description">
+                                            首先需要在本地计算机上安装Docker软件。Docker是一个开源的应用容器引擎，可以让你轻松部署和管理应用程序。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/2.docker部署/1下载docker.jpeg"]'>
+                                            <!-- 左箭头 -->
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+
+                                            <!-- 右箭头 -->
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- 图片索引 -->
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+
+                                            <!-- 图片占位符 -->
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2内容 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2. 安装好之后选择个人登录</h4>
+                                        <p class="step-content-description">
+                                            打开Docker后，选择个人账户登录选项。这将帮助你管理你的容器和镜像。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/2.docker部署/2.1选择个人登录.jpeg", "images/2.docker部署/2.2更改资源位置.jpeg"]' data-descriptions='["打开Docker后，选择个人账户登录选项。这将帮助你管理你的容器和镜像。", "点击设置，在resources可以编辑数据存储位置"]'>
+                                            <!-- 左箭头 -->
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+
+                                            <!-- 右箭头 -->
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- 图片索引 -->
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+
+                                            <!-- 图片占位符 -->
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3内容 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3. 在搜索栏搜索n8n，选择最新版本的点击pull</h4>
+                                        <p class="step-content-description">
+                                            在Docker的镜像搜索功能中找到n8n镜像，并拉取最新版本。Pull操作会下载镜像到本地。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/2.docker部署/3.1.n8n.jpeg"]'>
+                                            <!-- 左箭头 -->
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+
+                                            <!-- 右箭头 -->
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- 图片索引 -->
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+
+                                            <!-- 图片占位符 -->
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4内容 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4. 查看下载好的n8n</h4>
+                                        <p class="step-content-description">
+                                            这样，就可以在侧面 <strong class="neon-text-cyan">images</strong> 栏看到下载好的n8n镜像。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/2.docker部署/4.查看images.jpeg"]'>
+                                            <!-- 左箭头 -->
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+
+                                            <!-- 右箭头 -->
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- 图片索引 -->
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+
+                                            <!-- 图片占位符 -->
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5内容 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">5. 创建数据卷</h4>
+                                        <p class="step-content-description">
+                                            选择 <strong class="neon-text-purple">volumes</strong>，在这边新建一个叫 <strong class="neon-text-pink">n8n_data</strong> 的卷，这是用来存储本地数据的。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/2.docker部署/5.创建卷.jpeg"]'>
+                                            <!-- 左箭头 -->
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+
+                                            <!-- 右箭头 -->
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- 图片索引 -->
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+
+                                            <!-- 图片占位符 -->
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤6内容 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">6. 配置并运行容器</h4>
+                                        <p class="step-content-description">
+                                            点击 <strong class="neon-text-cyan">images</strong>，在n8n的后方点击 <strong class="neon-text-purple">actions</strong>，按照提示进行具体配置。
+                                        </p>
+                                        <div class="step-image-container" data-images='["images/2.docker部署/4.创建容器.jpeg", "images/2.docker部署/6.1配置容器.jpeg", "images/2.docker部署/6.2运行n8n.jpeg", "images/2.docker部署/6.3.jpeg"]' data-descriptions='["点击 <strong class=\"neon-text-cyan\">images</strong>，在n8n的后方点击 <strong class=\"neon-text-purple\">actions</strong>，按照提示进行具体配置。", "点击 <strong class=\"neon-text-cyan\">images</strong>，在n8n的后方点击 <strong class=\"neon-text-purple\">actions</strong>，按照提示进行具体配置。", "返回Containers，选择N8N，点击actions启动N8N", "点击N8N，则可以进入另一个试图，在Logs处可以看见N8N的运行状态，点击下方链接则可以启动N8N"]'>
+                                            <!-- 左箭头 -->
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+
+                                            <!-- 右箭头 -->
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+
+                                            <!-- 图片索引 -->
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">3</span>
+                                            </div>
+
+                                            <!-- 图片占位符 -->
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h3 class="neon-text-cyan">✅ 成功打开N8N</h3>
+                                <p>浏览器显示登录界面时，说明安装成功！通常访问地址为：<strong class="neon-text-pink">http://localhost:5678</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 卡片9 - 后续会用到的软件与工具 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）后续会用到的软件与工具</h3>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-building neon-text-cyan"></i> 办公软件</h4>
+                                    <ul>
+                                        <li><strong>飞书：</strong>主要用来消息推送、记录等等</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-brain neon-text-purple"></i> 大模型</h4>
+                                    <ul>
+                                        <li><strong>DeepSeek</strong>（性价比最高）</li>
+                                        <li><strong>豆包</strong>（火山引擎）</li>
+                                        <li><strong>OpenAI</strong>（较贵）</li>
+                                        <li><strong>Kimi</strong></li>
+                                        <li><strong>Ollama</strong>（本地部署/免费）</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-puzzle-piece neon-text-pink"></i> 浏览器插件</h4>
+                                    <ul>
+                                        <li><strong>Prompt Optimizer</strong> - 提示词优化工具</li>
+                                        <li><strong>沉浸式翻译</strong> - 网页翻译工具</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、自动化工作流
+                    </button>
+                    <!-- Section 1: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">
+                        （一）什么是自动化
+                    </button>
+                    <!-- Section 2: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （二）什么是工作流
+                    </button>
+                    <!-- Section 3: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">
+                        （三）自动化工作流
+                    </button>
+
+                    <!-- Section 4: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(14)">
+                        二、工具介绍
+                    </button>
+                    <!-- Section 4: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(14)">
+                        （一）什么是N8N
+                    </button>
+                    <!-- Section 5: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(15)">
+                        （二）N8N能为我做些什么
+                    </button>
+                    <!-- Section 6: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(16)">
+                        （三）与其他工具对比
+                    </button>
+                    <!-- Section 7: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(17)">
+                        （四）选择N8N的原因
+                    </button>
+
+                    <!-- Section 8: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(18)">
+                        三、本地部署
+                    </button>
+                    <!-- Section 8: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(18)">
+                        （一）本地部署N8N
+                    </button>
+                    <!-- Section 9: 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(19)">
+                        （二）后续会用到的软件与工具
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">完成N8N本地部署验证</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px; color: var(--cyber-dark-100);">
+                                    <strong>任务：</strong>上传自己安装完成的N8N界面截图
+                                </p>
+                                <p style="margin-top: 15px; font-size: 1.1rem; color: var(--cyber-dark-200);">
+                                    请确保截图清晰显示N8N的登录或主界面，以证明你已成功完成本地部署。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 N8N自动化工作流教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
