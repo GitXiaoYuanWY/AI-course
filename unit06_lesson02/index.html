@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二课：网页内容结构与AI辅助开发 | AI课程</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 外部样式表 -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-rings">
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-ring"></div>
+            </div>
+            <div class="loader-logo">AI COURSE</div>
+            <div class="loader-text">加载中<span class="loader-dots"></span></div>
+        </div>
+    </div>
+
+    <!-- 赛博朋克背景特效 -->
+    <div class="cyberpunk-background">
+        <!-- 基础渐变背景 -->
+        <div class="gradient-base"></div>
+
+        <!-- 霓虹网格线 -->
+        <div class="neon-grid-container">
+            <div class="cyber-grid"></div>
+        </div>
+
+        <!-- 霓虹光束 -->
+        <div class="neon-beams-container">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+
+        <!-- 数据雨效果 -->
+        <div class="data-rain-container" id="dataRainContainer"></div>
+
+        <!-- 光晕效果 -->
+        <div class="radial-glow"></div>
+        <div class="edge-glow"></div>
+
+        <!-- CRT扫描线效果 -->
+        <div class="crt-effect"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">第六单元：个人作品集制作</div>
+            <ul class="nav-menu">
+                <li class="nav-dropdown">
+                    <a href="#home" class="nav-link active">课程概述 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#home" class="dropdown-item">首页</a></li>
+                        <li><a href="#review" class="dropdown-item">课程回顾</a></li>
+                        <li><a href="#objectives" class="dropdown-item">学习目标</a></li>
+                        <li><a href="#chapters" class="dropdown-item">课程章节</a></li>
+                    </ul>
+                </li>
+                <li class="nav-dropdown">
+                    <a href="#chapter1" class="nav-link">课程内容 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#chapter1" class="dropdown-item">01 - 网页内容结构化思维</a></li>
+                        <li><a href="#chapter2" class="dropdown-item">02 - HTML5语义化标签</a></li>
+                        <li><a href="#chapter3" class="dropdown-item">03 - AI辅助网页结构设计</a></li>
+                    </ul>
+                </li>
+                <li><a href="#homework" class="nav-link">课后作业</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 英雄区域 -->
+    <section id="home" class="hero-section">
+        <div class="hero-content">
+            <div class="course-badge">第二课</div>
+            <h1 class="hero-title typewriter" id="heroTitle" data-text="2.网页内容结构与AI辅助开发"></h1>
+            <p class="hero-subtitle">
+                掌握结构化思维与语义化标签<br>
+                学会用AI协作设计专业网页框架
+            </p>
+            <div class="hero-buttons">
+                <a href="#content" class="cyber-btn">
+                    <i class="fas fa-rocket"></i> 开始学习
+                </a>
+                <a href="#objectives" class="cyber-btn cyber-btn-outline">
+                    <i class="fas fa-bullseye"></i> 学习目标
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程回顾 -->
+    <section id="review" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课程回顾</h2>
+                <p class="section-description">
+                    回顾第一课的核心内容，为深入学习网页结构化设计打下基础
+                </p>
+            </div>
+            <div class="goals-container">
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>Trae平台基础</h3>
+                            <p>Trae平台的介绍与基本特性，了解了其作为AI原生集成开发环境的定位</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-download"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>安装与设置</h3>
+                            <p>Trae的安装与设置流程，包括下载、安装和初始配置</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-window-restore"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>界面与功能区</h3>
+                            <p>Trae界面的熟悉与核心功能区使用，包括AI面板、编辑区等</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>网页基础概念</h3>
+                            <p>理解了网页的组成与工作原理，掌握HTML、CSS、JavaScript的基础知识</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>AI创建网页</h3>
+                            <p>使用AI创建第一个网页，体验了AI辅助开发的基本流程</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>AI辅助功能</h3>
+                            <p>了解了如何通过自然语言生成网页代码，掌握AI辅助开发的核心能力</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 40px;">
+                <p style="color: var(--text-muted); font-size: 1.1rem; line-height: 1.8; max-width: 900px; margin: 0 auto;">
+                    这些基础知识为我们深入学习网页内容结构化设计与AI辅助开发奠定了重要基础。在本课中，我们将进一步探索如何运用结构化思维和AI工具，创建更加专业、规范的网页结构。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 学习目标 -->
+    <section id="objectives" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">学习目标</h2>
+                <p class="section-description">
+                    掌握网页结构化设计思维，学会运用AI工具高效构建语义化网页
+                </p>
+            </div>
+            <div class="goals-container">
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>理解结构化思维</h3>
+                            <p>掌握网页结构化思维的核心概念，学会内容分层与逻辑组织方法</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>认识语义化标签</h3>
+                            <p>认识HTML5语义化标签的作用，学会用语义标签构建清晰的网页框架</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>掌握AI辅助生成</h3>
+                            <p>掌握AI辅助生成网页结构的基本流程，从需求描述到结构优化</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>独立生成网页框架</h3>
+                            <p>能够独立使用AI生成一个语义化网页框架并完成初步优化</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程章节概览 -->
+    <section id="chapters" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课程章节</h2>
+                <p class="section-description">
+                    3个核心章节，系统掌握网页结构化设计与AI协作开发
+                </p>
+            </div>
+            <div class="chapters-grid">
+                <!-- 第一章 -->
+                <div class="chapter-card glass-card">
+                    <div class="chapter-number">01</div>
+                    <h3 class="chapter-title">网页内容结构化思维</h3>
+                    <p class="chapter-description">
+                        学习结构化思维在网页设计中的应用，掌握信息架构与层次结构设计方法
+                    </p>
+                    <div class="chapter-tags">
+                        <span class="tag">结构化思维</span>
+                        <span class="tag">信息架构</span>
+                        <span class="tag">层次设计</span>
+                    </div>
+                </div>
+
+                <!-- 第二章 -->
+                <div class="chapter-card glass-card">
+                    <div class="chapter-number">02</div>
+                    <h3 class="chapter-title">HTML5语义化标签</h3>
+                    <p class="chapter-description">
+                        深入理解HTML5语义化标签的意义与应用，学习用正确的标签构建网页结构
+                    </p>
+                    <div class="chapter-tags">
+                        <span class="tag">语义化标签</span>
+                        <span class="tag">结构类标签</span>
+                        <span class="tag">多媒体标签</span>
+                    </div>
+                </div>
+
+                <!-- 第三章 -->
+                <div class="chapter-card glass-card">
+                    <div class="chapter-number">03</div>
+                    <h3 class="chapter-title">AI辅助网页结构设计</h3>
+                    <p class="chapter-description">
+                        掌握AI在网页结构设计中的角色，学会通过AI协作快速生成和优化网页框架
+                    </p>
+                    <div class="chapter-tags">
+                        <span class="tag">AI协作</span>
+                        <span class="tag">结构生成</span>
+                        <span class="tag">优化方法</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课程内容详细展示 -->
+    <section id="content" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课程内容</h2>
+                <p class="section-description">
+                    详细的课程内容讲解，配合图片和示例，帮助你深入理解每个知识点
+                </p>
+            </div>
+            <div class="content-detail">
+                <!-- 第一章内容 -->
+                <div id="chapter1" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">01</div>
+                        <h2 class="content-title">网页内容结构化思维</h2>
+                    </div>
+
+                    <!-- 结构化思维的概念与重要性 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>结构化思维的概念与重要性</h3>
+
+                            <h4>1. 什么是结构化思维</h4>
+                            <p><strong>定义：</strong>将复杂信息按照逻辑关系进行拆分、分层、归类，并且以一个稳定的层次结构进行呈现的思维方法。</p>
+                            <p><strong>基本特征：</strong></p>
+                            <ul>
+                                <li><strong>层级清晰</strong>：从总体到局部</li>
+                                <li><strong>关系明确</strong>：父子/并列/交叉</li>
+                                <li><strong>内容可复用</strong>：可迁移到新场景</li>
+                            </ul>
+
+                            <img src="web_image/网页内容结构化思维_结构化思维的概念与重要性.png" alt="结构化思维示意图">
+
+                            <h4>2. 在网页制作中的应用</h4>
+                            <ul>
+                                <li><strong>内容层：</strong>把网站的内容从大到小分成几级，例如"首页 → 栏目 → 页面 → 模块 → 元素"，让每一部分都有清晰的层次和职责。</li>
+                                <li><strong>交互层：</strong>把用户在网站上的操作流程拆解成多个步骤，比如"点击 → 填写 → 提交 → 反馈"，并明确每一步页面该如何反应。</li>
+                                <li><strong>技术层：</strong>在代码结构上实现"结构、样式、行为"分离——HTML负责内容框架，CSS管理视觉样式，JavaScript处理交互逻辑。</li>
+                            </ul>
+
+                            <h4>3. 结构化思维的核心原则</h4>
+                            <ul>
+                                <li><strong>分层：</strong>从站点→栏目→页面→模块→组件→元素逐级拆分。</li>
+                                <li><strong>分类：</strong>按照"功能、主题、任务、时间"等维度对内容进行分类，做到不重复、不遗漏，方便查找和维护。</li>
+                                <li><strong>关联：</strong>明确各部分之间的关系，比如哪些内容被包含、哪些页面相互引用、哪些信息是要提前展示的。</li>
+                                <li><strong>简化：</strong>去掉重复或不必要的内容入口，只保留主要路径，让结构更清晰，避免"层级太多看不清"。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 网页信息架构的设计原则 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>网页信息架构的设计原则</h3>
+
+                            <h4>1. 信息架构的概念</h4>
+                            <ul>
+                                <li><strong>定义：</strong>信息架构就是规划网页内容的摆放方式。它通过合理的分类、命名和导航设计，让用户能快速找到需要的信息，并清楚自己在网站的哪个位置。</li>
+                                <li><strong>与用户体验的关系：</strong>好的信息架构能让用户"找得到、看得懂"；交互设计和视觉设计则在此基础上，让网页"好用、好看"。</li>
+                            </ul>
+
+                            <h4>2. 信息架构设计原则</h4>
+                            <ul>
+                                <li><strong>用户导向：</strong>围绕用户的目标和习惯设计结构，而不是按照公司部门或内部逻辑来划分。</li>
+                                <li><strong>一致性：</strong>网站中导航、命名、按钮样式保持统一，让用户不需要重新了解摸索。</li>
+                                <li><strong>可扩展性：</strong>提前为未来新增内容留出层级或栏目空间，避免结构频繁重做。</li>
+                                <li><strong>可预测性：</strong>用户点击某个入口后，能清楚地预期自己将进入什么内容，不会出现"标题和内容不符"的情况。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 层次结构设计方法 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>层次结构设计方法</h3>
+
+                            <ul>
+                                <li><strong>层级深度：</strong>一般不超过4级；移动端建议≤3级，避免出现"层层点进找不到想要的内容"这种情况。</li>
+                                <li><strong>宽度与深度的平衡：</strong>同层级项目过多会难以选择，过深会路径冗长；可按"7±2"原则粗略限制同层数量。</li>
+                                <li><strong>导航路径设计：</strong>主导航承担一级核心入口；二级内容放在次级导航；页底提供补充链接与法务信息。</li>
+                                <li><strong>面包屑导航：</strong>使用"首页 > 栏目 > 子栏目 > 当前页面"，帮助用户定位与返回上级。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第二章内容 -->
+                <div id="chapter2" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">02</div>
+                        <h2 class="content-title">HTML5语义化标签与结构化实现</h2>
+                    </div>
+
+                    <!-- 语义化标签在结构化设计中的应用 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>语义化标签在结构化设计中的应用</h3>
+
+                            <h4>1. 语义化标签的意义</h4>
+                            <p>语义化标签是"结构化思维"的代码表达方式，用来说明网页中各部分的层级、功能和关系。它让浏览器、搜索引擎和辅助工具（如读屏器）都能理解页面的逻辑结构。</p>
+
+                            <h4>2. 为什么语义化很重要</h4>
+                            <img src="web_image/HTML5语义化标签与结构化实现_为什么语义化很重要.png" alt="语义化标签的重要性">
+
+                            <ul>
+                                <li><strong>结构更清晰：</strong>减少大量 <code>&lt;div&gt;</code> 的堆叠，让代码可读性更高。</li>
+                                <li><strong>便于维护：</strong>标签含义明确，开发者能更容易理解和修改。</li>
+                                <li><strong>机器可读：</strong>有助于搜索引擎识别主要内容，也能提升网页的可访问性。</li>
+                            </ul>
+
+                            <h4>3. 标签选择的基本思路</h4>
+                            <ul>
+                                <li><strong>按层级选：</strong>整体框架使用 <code>&lt;header&gt;、&lt;main&gt;、&lt;section&gt;、&lt;footer&gt;</code>。</li>
+                                <li><strong>按功能选：</strong>独立内容块用 <code>&lt;article&gt;</code>，导航区用 <code>&lt;nav&gt;</code>，侧栏内容用 <code>&lt;aside&gt;</code>。</li>
+                                <li><strong>按内容选：</strong>图文配合时用 <code>&lt;figure&gt;</code> 和 <code>&lt;figcaption&gt;</code>；时间信息用 <code>&lt;time&gt;</code>；引用内容用 <code>&lt;blockquote&gt;</code> 和 <code>&lt;cite&gt;</code>。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 常用HTML5语义化标签详解 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>常用HTML5语义化标签详解</h3>
+
+                            <h4>1. 页面结构类标签</h4>
+                            <img src="web_image/常用HTML5语义化标签详解_页面结构类标签.png" alt="页面结构类标签">
+
+                            <ul>
+                                <li><code>&lt;header&gt;</code>：页面或分区的头部，可放Logo、标题、导航。</li>
+                                <li><code>&lt;nav&gt;</code>：主要或次级导航链接。</li>
+                                <li><code>&lt;article&gt;</code>：独立可复用内容，如文章、产品卡片。</li>
+                                <li><code>&lt;section&gt;</code>：主题分区，通常包含一个标题。</li>
+                                <li><code>&lt;aside&gt;</code>：补充内容区，如侧栏、推荐。</li>
+                                <li><code>&lt;footer&gt;</code>：底部信息区，常含版权与联系方式。</li>
+                            </ul>
+
+                            <h4>2. 内容表达类标签</h4>
+                            <img src="web_image/常用HTML5语义化标签详解_内容表达类标签.png" alt="内容表达类标签">
+
+                            <ul>
+                                <li><code>&lt;figure&gt;</code> / <code>&lt;figcaption&gt;</code>：图或表与说明文字的组合。</li>
+                                <li><code>&lt;blockquote&gt;</code>：长引用文本，可配合 <code>&lt;cite&gt;</code> 表示来源。</li>
+                                <li><code>&lt;time&gt;</code>：标记时间或日期，可加机器可读格式。</li>
+                                <li><code>&lt;mark&gt;</code>：高亮关键词，用于强调或搜索命中。</li>
+                                <li><code>&lt;details&gt;</code> / <code>&lt;summary&gt;</code>：可展开/折叠的信息块，常用于FAQ或补充说明。</li>
+                            </ul>
+
+                            <h4>3. 辅助与数据类标签</h4>
+                            <ul>
+                                <li><code>&lt;address&gt;</code>：放联系信息，常位于页脚。</li>
+                                <li><code>&lt;data&gt;</code>：绑定人类可读数据与机器可识别值（如价格、编号）。</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 多媒体标签在语义化结构中的应用 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>多媒体标签在语义化结构中的应用</h3>
+
+                            <h4>1. 常见的HTML5多媒体标签</h4>
+                            <ul>
+                                <li><strong><code>&lt;img&gt;</code>：</strong>用于插入图片，必须配合 <code>alt</code> 文本（替代文字）说明图片内容。</li>
+                                <li><strong><code>&lt;figure&gt;</code> 与 <code>&lt;figcaption&gt;</code>：</strong>用于为图片、表格或代码片段添加结构化说明。</li>
+                            </ul>
+
+                            <img src="web_image/多媒体标签在语义化结构中的应用_常见的HTML5多媒体标签_figure与figcaption.png" alt="figure与figcaption示例">
+
+                            <ul>
+                                <li><strong><code>&lt;video&gt;</code>：</strong>用于插入视频，可添加 <code>controls</code>（播放控制）、<code>poster</code>（封面图）和 <code>track</code>（字幕）等。</li>
+                                <li><strong><code>&lt;audio&gt;</code>：</strong>用于音频播放，建议加上 <code>controls</code> 以便用户操作。</li>
+                            </ul>
+
+                            <img src="web_image/多媒体标签在语义化结构中的应用_常见的HTML5多媒体标签_audio.png" alt="audio标签示例">
+
+                            <ul>
+                                <li><strong><code>&lt;picture&gt;</code>：</strong>用于响应式图片加载，可根据设备大小、分辨率自动选择最合适的图片资源。</li>
+                            </ul>
+
+                            <h4>2. 多媒体在网页结构中的作用</h4>
+                            <ul>
+                                <li><strong>强化内容表达：</strong>图片、视频、音频不只是装饰，而是承载信息的一部分，应作为"独立内容单元"来设计。</li>
+                                <li><strong>适应不同设备：</strong><code>&lt;picture&gt;</code> 与 <code>srcset/sizes</code> 可让网页在不同屏幕下加载合适的图片大小。</li>
+                                <li><strong>提升可访问性：</strong>为图片添加 <code>alt</code> 文字，为视频提供字幕或音频描述，让更多用户都能理解网页内容。</li>
+                            </ul>
+
+                            <blockquote>
+                                <strong>教学提示：</strong>当你在使用图片或视频时，不只是"让网页更好看"，而且还要思考：它是否表达了一个信息？有没有对应的说明来描述？
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 第三章内容 -->
+                <div id="chapter3" class="chapter-content">
+                    <div class="content-header">
+                        <div class="content-number">03</div>
+                        <h2 class="content-title">AI辅助网页结构设计</h2>
+                    </div>
+
+                    <!-- 理解AI在网页结构设计中的角色 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>理解AI在网页结构设计中的角色</h3>
+
+                            <h4>1. AI是"设计助手"，不是"替代开发"</h4>
+                            <p>AI的作用在于帮助我们更快地实现网页结构构想，而不是取代人工判断。在网页结构设计中，AI的角色类似于一名"结构顾问"。</p>
+
+                            <h4>2. AI可以帮我们完成的三件事</h4>
+                            <ul>
+                                <li><strong>结构转化：</strong>把"文字化的结构思路"转化成标准HTML骨架。</li>
+                                <li><strong>逻辑检查：</strong>帮助我们验证网页结构的层级、语义是否合理。</li>
+                                <li><strong>模板生成：</strong>根据描述生成初始模板，节省从零开始搭建的时间。</li>
+                            </ul>
+
+                            <h4>3. 开发者的任务</h4>
+                            <ul>
+                                <li>提供清晰的结构化思维</li>
+                                <li>学会提出准确的结构需求</li>
+                                <li>判断AI的输出是否合理</li>
+                                <li>对生成结果进行人工微调与优化</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- AI协作工作流程 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>AI协作工作流程</h3>
+
+                            <!-- 流程图：左右两列对照 -->
+                            <div class="workflow-container">
+                                <!-- 第1行 -->
+                                <div class="workflow-row">
+                                    <div class="workflow-step">
+                                        <span class="workflow-number">1</span>
+                                        <span class="workflow-title">输出需求：</span>
+                                        <span class="workflow-description">用自然语言描述页面的主要内容和目标受众</span>
+                                    </div>
+                                    <div class="workflow-example">
+                                        <p class="workflow-example-text">我要一个包含导航栏、个人简介和联系方式的网页。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 第2行 -->
+                                <div class="workflow-row">
+                                    <div class="workflow-step">
+                                        <span class="workflow-number">2</span>
+                                        <span class="workflow-title">设计框架：</span>
+                                        <span class="workflow-description">在脑中或纸上勾勒页面层次结构</span>
+                                    </div>
+                                    <div class="workflow-example">
+                                        <p class="workflow-example-text">头部是导航栏，主体放个人简介，底部是联系方式。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 第3行 -->
+                                <div class="workflow-row">
+                                    <div class="workflow-step">
+                                        <span class="workflow-number">3</span>
+                                        <span class="workflow-title">生成初稿：</span>
+                                        <span class="workflow-description">将需求输入AI，让其输出HTML结构</span>
+                                    </div>
+                                    <div class="workflow-example">
+                                        <p class="workflow-example-text">请帮我生成一个包含导航栏、简介、技能展示的网页结构。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 第4行 -->
+                                <div class="workflow-row">
+                                    <div class="workflow-step">
+                                        <span class="workflow-number">4</span>
+                                        <span class="workflow-title">检查结构：</span>
+                                        <span class="workflow-description">检查层级、标签语义、顺序合理性</span>
+                                    </div>
+                                    <div class="workflow-example">
+                                        <p class="workflow-example-text">确认导航是否在上方，语义标签是否正确，结构清晰。</p>
+                                    </div>
+                                </div>
+
+                                <!-- 第5行 -->
+                                <div class="workflow-row">
+                                    <div class="workflow-step">
+                                        <span class="workflow-number">5</span>
+                                        <span class="workflow-title">优化完善：</span>
+                                        <span class="workflow-description">根据检查结果让AI调整或人工改写</span>
+                                    </div>
+                                    <div class="workflow-example">
+                                        <p class="workflow-example-text">帮我修改导航栏代码，显示异常需要调整。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI生成结构的基础方法 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>AI生成结构的基础方法</h3>
+
+                            <h4>1. 结构生成的核心思路</h4>
+                            <p>与其让AI"写代码"，不如让AI"画出网页框架"。AI并不需要我们写出语法，只要我们清楚地描述网页内容层次，AI即可将描述转化为HTML骨架。</p>
+
+                            <h4>2. 自然语言描述示例</h4>
+                            <p>向AI输入："请帮我生成一个包含导航栏、个人介绍、技能展示和联系方式的网页结构。"</p>
+
+                            <img src="web_image/AI生成结构的基础方法_自然语言描述示例.png" alt="AI生成网页结构示例">
+
+                            <h4>3. 检查要点</h4>
+                            <ul>
+                                <li>层次是否清晰（如：<code>header</code> → <code>main</code> → <code>footer</code>）</li>
+                                <li>标签语义是否正确（如：导航用 <code>&lt;nav&gt;</code>，主要内容放在 <code>&lt;main&gt;</code>）</li>
+                                <li>标题是否有逻辑层级（<code>h1</code>、<code>h2</code>、<code>h3</code> 依次递进）</li>
+                                <li>是否便于扩展（未来是否可轻松加入其他内容）</li>
+                            </ul>
+
+                            <h4>4. 网页框架优化技巧</h4>
+                            <p>在AI输出后，可以继续追问：</p>
+                            <ul>
+                                <li>"请帮我检查结构层次是否合理。"</li>
+                                <li>"有哪些标签可以用语义化标签替代？"</li>
+                                <li>"这个结构是否方便我后续添加'作品展示'部分？"</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 网页生成实践 -->
+                    <div class="sub-content-card">
+                        <div class="content-body">
+                            <h3>网页生成实践</h3>
+
+                            <h4>1. 演示主题</h4>
+                            <p><strong>任务目标：</strong>生成一个包含活动介绍、报名表单和联系方式的"校园活动报名页"结构，使用HTML5语义化标签。</p>
+                            <p><strong>输入示例：</strong>"请帮我生成一个包含活动介绍、报名表单和联系方式的网页结构，使用HTML5语义化标签。"</p>
+
+                            <h4>2. AI生成内容示例</h4>
+                            <img src="web_image/网页生成实践_AI生成内容示例.png" alt="AI生成校园活动报名页">
+
+                            <h4>3. 结构分析与讲解</h4>
+                            <p><strong>（1）结构层次</strong></p>
+                            <p>从 <code>&lt;header&gt;</code> → <code>&lt;main&gt;</code> → <code>&lt;footer&gt;</code> 三段式结构，层次清晰，符合网页的基本逻辑。</p>
+
+                            <p><strong>（2）语义化标签使用</strong></p>
+                            <ul>
+                                <li><code>&lt;nav&gt;</code>：用于定义导航区块</li>
+                                <li><code>&lt;section&gt;</code>：用于划分主要内容模块</li>
+                                <li><code>&lt;footer&gt;</code>：用于底部信息</li>
+                                <li>减少了 <code>&lt;div&gt;</code> 的滥用，使结构更易读、易维护</li>
+                            </ul>
+
+                            <p><strong>（3）标题层级</strong></p>
+                            <ul>
+                                <li><code>&lt;h1&gt;</code> 用于主标题</li>
+                                <li><code>&lt;h2&gt;</code> 用于子模块标题</li>
+                                <li>保证标题层级逐级递进，符合语义规范</li>
+                            </ul>
+
+                            <p><strong>（4）改进建议</strong></p>
+                            <ul>
+                                <li>可在 <code>&lt;footer&gt;</code> 内增加 <code>&lt;address&gt;</code> 表示联系信息</li>
+                                <li>可在"报名信息"部分加入提示文本或示例输入，提升用户体验</li>
+                            </ul>
+
+                            <h4>4. 结构优化演示</h4>
+                            <p>通过追加提示语，AI可进一步优化结构。</p>
+                            <p><strong>优化输入示例：</strong>"在'报名信息'部分加入一个输入提示示例，使用 <code>&lt;fieldset&gt;</code> 和 <code>&lt;legend&gt;</code> 标签，让表单结构更清晰。"</p>
+
+                            <img src="web_image/网页生成实践_结构优化演示.png" alt="结构优化后的表单">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 课后作业 -->
+    <section id="homework" class="content-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">课后作业</h2>
+                <p class="section-description">
+                    通过实践巩固所学知识，完成校园图书馆首页的结构设计
+                </p>
+            </div>
+            <div class="goals-container">
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-tasks"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>任务目标</h3>
+                            <p>生成一个具有语义化结构的"校园图书馆首页"，运用AI完成网页框架的设计与优化</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-list-check"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>具体要求</h3>
+                            <p>使用AI生成校园图书馆首页的整体结构，页面应包含导航栏、公告区、新书推荐、借阅指南、联系方式等主要内容模块</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>技术要求</h3>
+                            <p>使用HTML5语义化标签构建页面结构，保持层次清晰、逻辑合理，对AI生成的结构进行一次优化</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card">
+                    <div class="goal-card">
+                        <div class="goal-icon">
+                            <i class="fas fa-sitemap"></i>
+                        </div>
+                        <div class="goal-content">
+                            <h3>结构要求</h3>
+                            <p>在网页结构中体现内容分层（主内容与辅助内容）和信息分类（不同板块功能区分）</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 整屏导航按钮 -->
+    <div class="section-nav-buttons">
+        <button class="section-nav-btn" id="prevSectionBtn" title="上一页">
+            <i class="fas fa-chevron-up"></i>
+        </button>
+        <button class="section-nav-btn" id="nextSectionBtn" title="下一页">
+            <i class="fas fa-chevron-down"></i>
+        </button>
+    </div>
+
+    <!-- 返回顶部按钮 -->
+    <button class="back-to-top" id="backToTop" title="返回顶部">
+        <i class="fas fa-rocket"></i>
+    </button>
+
+    <!-- 图片预览模态框 -->
+    <div class="image-lightbox" id="imageLightbox">
+        <div class="lightbox-content">
+            <div class="lightbox-close" id="closeLightbox">
+                <i class="fas fa-times"></i>
+            </div>
+            <img src="" alt="" class="lightbox-image" id="lightboxImage">
+            <div class="lightbox-caption" id="lightboxCaption"></div>
+        </div>
+    </div>
+
+    <!-- 外部脚本 -->
+    <script src="script.js"></script>
+</body>
+</html>
