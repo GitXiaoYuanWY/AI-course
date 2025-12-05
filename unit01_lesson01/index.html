@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1.新手也能玩转！N8N 软件安装与快速部署 | AI生态教学</title>
+
+    <!-- Font Awesome 图标库 - 临时使用CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- TODO: 下载Font Awesome到本地后使用下面的引用 -->
+    <!-- <link rel="stylesheet" href="lib/fontawesome/css/all.min.css"> -->
+
+    <!-- 主样式表 -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第一单元：认识AI与提示词</div>
+        <div class="navbar-toggle" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程内容</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <!-- 赛博朋克背景 - AI Course 特效 -->
+        <div class="cyberpunk-background">
+            <!-- 3D 霓虹网格 -->
+            <div class="neon-grid"></div>
+
+            <!-- 霓虹光束 -->
+            <div class="neon-beams">
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+            </div>
+
+            <!-- 日文字符数据雨 -->
+            <div class="matrix-rain" id="matrixRain"></div>
+
+            <!-- 粒子场 -->
+            <div class="particle-field" id="particleField"></div>
+
+            <!-- 故障效果覆盖层 -->
+            <div class="glitch-overlay" id="glitchOverlay"></div>
+
+            <!-- 光晕效果 -->
+            <div class="vignette-overlay"></div>
+        </div>
+
+        <!-- Hero区域 -->
+        <div class="hero">
+            <h1><span class="typewriter">1.新手也能玩转！N8N 软件安装与快速部署</span></h1>
+            <p class="subtitle"><span class="typewriter-subtitle">探索AI世界 | 掌握前沿工具 | 开启智能时代</span></p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="page-content">
+            <div class="container">
+                <div class="cyber-card">
+                    <h2 class="section-title">📚 课程概述</h2>
+
+                    <h3 class="neon-text-cyan">学习目标</h3>
+                    <ol>
+                        <li>理解AI生态的三层结构：模型层、工具层和应用层</li>
+                        <li>掌握当今AI技术的发展趋势与方向</li>
+                        <li>了解各类主流AI工具的特点与使用场景</li>
+                        <li>探索AI带来的价值与变现机会</li>
+                    </ol>
+
+                    <h3 class="neon-text-purple">课程板块</h3>
+                    <ol>
+                        <li>认识当下的AI生态格局</li>
+                        <li>主流AI工具类型与代表产品</li>
+                        <li>AI的价值与变现方式</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 课程内容页面 -->
+    <div class="page" id="page-course">
+        <!-- 赛博朋克背景 - AI Course 特效 -->
+        <div class="cyberpunk-background">
+            <!-- 3D 霓虹网格 -->
+            <div class="neon-grid"></div>
+
+            <!-- 霓虹光束 -->
+            <div class="neon-beams">
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+            </div>
+
+            <!-- 日文字符数据雨 -->
+            <div class="matrix-rain" id="matrixRain2"></div>
+
+            <!-- 粒子场 -->
+            <div class="particle-field" id="particleField2"></div>
+
+            <!-- 故障效果覆盖层 -->
+            <div class="glitch-overlay" id="glitchOverlay2"></div>
+
+            <!-- 光晕效果 -->
+            <div class="vignette-overlay"></div>
+        </div>
+
+        <!-- Section Scroll 容器 -->
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1><span class="typewriter">板块二：课程内容</span></h1>
+                    <p class="subtitle"><span class="typewriter-subtitle">认识AI生态 | 掌握AI工具 | 探索价值变现</span></p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: AI生态的三层架构 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title" id="section1">🌐 一、AI生态的三层架构</h2>
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-layer-group"></i>
+                                （一）AI生态的三层架构
+                            </h2>
+
+                            <div class="card-content-with-image">
+                                <div class="card-text">
+                                    <p style="font-size: 1.2rem; color: var(--cyber-dark-200); margin: 15px 0 15px 20px;">
+                                        ●　人工智能并不是一个单一的技术，而是一个由"底层技术""中间工具""上层应用"组成的生态系统。
+                                    </p>
+                                    <p style="font-size: 1.2rem; color: var(--cyber-dark-200); margin: 15px 0 15px 20px;">
+                                        ●　就像一部智能手机，芯片和系统是基础，App是工具，用户使用的各种功能才是最终的应用。
+                                    </p>
+                                    <p style="font-size: 1.2rem; color: var(--cyber-dark-200); margin: 15px 0 15px 20px;">
+                                        ●　AI的世界也是这样，通常可以分为<strong class="neon-text-cyan">模型层、工具层和应用层</strong>三个部分。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- AI生态三层架构示意图 -->
+                            <svg class="svg-diagram" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg" style="margin: 40px auto; display: block;">
+                                <defs>
+                                    <filter id="glow-ai-arch">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <linearGradient id="grad-model" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.1" />
+                                    </linearGradient>
+                                    <linearGradient id="grad-tool" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.1" />
+                                    </linearGradient>
+                                    <linearGradient id="grad-app" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:0.1" />
+                                    </linearGradient>
+                                </defs>
+
+                                <!-- 标题 -->
+                                <text x="400" y="30" text-anchor="middle" fill="#06b6d4" font-size="20" font-weight="bold">
+                                    AI生态三层架构
+                                </text>
+
+                                <!-- 第一层：模型层 -->
+                                <rect x="150" y="80" width="500" height="100" rx="15" fill="url(#grad-model)"
+                                      stroke="#a855f7" stroke-width="3" filter="url(#glow-ai-arch)"/>
+                                <text x="400" y="120" text-anchor="middle" fill="#a855f7" font-size="22" font-weight="bold">
+                                    模型层 - AI的"大脑"
+                                </text>
+                                <text x="400" y="145" text-anchor="middle" fill="#d4d4d4" font-size="14">
+                                    GPT、Claude、Gemini、文心一言等大语言模型
+                                </text>
+                                <text x="400" y="165" text-anchor="middle" fill="#d4d4d4" font-size="13" opacity="0.8">
+                                    提供核心AI能力：理解、生成、推理
+                                </text>
+
+                                <!-- 箭头1 -->
+                                <defs>
+                                    <marker id="arrow-down" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                        <polygon points="0 0, 10 5, 0 10" fill="#06b6d4" filter="url(#glow-ai-arch)"/>
+                                    </marker>
+                                </defs>
+                                <line x1="400" y1="180" x2="400" y2="220" stroke="#06b6d4" stroke-width="3"
+                                      marker-end="url(#arrow-down)" stroke-dasharray="5,5" filter="url(#glow-ai-arch)"/>
+                                <text x="450" y="205" fill="#06b6d4" font-size="12">封装包装</text>
+
+                                <!-- 第二层：工具层 -->
+                                <rect x="150" y="220" width="500" height="100" rx="15" fill="url(#grad-tool)"
+                                      stroke="#06b6d4" stroke-width="3" filter="url(#glow-ai-arch)"/>
+                                <text x="400" y="260" text-anchor="middle" fill="#06b6d4" font-size="22" font-weight="bold">
+                                    工具层 - 让AI变得"人人能用"
+                                </text>
+                                <text x="400" y="285" text-anchor="middle" fill="#d4d4d4" font-size="14">
+                                    ChatGPT、Claude Desktop、Cursor、N8N等
+                                </text>
+                                <text x="400" y="305" text-anchor="middle" fill="#d4d4d4" font-size="13" opacity="0.8">
+                                    友好交互界面 + 工作流集成 + 场景定制
+                                </text>
+
+                                <!-- 箭头2 -->
+                                <line x1="400" y1="320" x2="400" y2="360" stroke="#06b6d4" stroke-width="3"
+                                      marker-end="url(#arrow-down)" stroke-dasharray="5,5" filter="url(#glow-ai-arch)"/>
+                                <text x="450" y="345" fill="#06b6d4" font-size="12">场景应用</text>
+
+                                <!-- 第三层：应用层 -->
+                                <rect x="150" y="360" width="500" height="100" rx="15" fill="url(#grad-app)"
+                                      stroke="#f43f5e" stroke-width="3" filter="url(#glow-ai-arch)"/>
+                                <text x="400" y="400" text-anchor="middle" fill="#f43f5e" font-size="22" font-weight="bold">
+                                    应用层 - AI进入真实世界
+                                </text>
+                                <text x="400" y="425" text-anchor="middle" fill="#d4d4d4" font-size="14">
+                                    医疗、教育、金融、工业、电商等行业解决方案
+                                </text>
+                                <text x="400" y="445" text-anchor="middle" fill="#d4d4d4" font-size="13" opacity="0.8">
+                                    创造实际价值，形成生产力
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 模型层 - 基础概念 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-brain neon-text-purple"></i>
+                                1. 模型层：AI的"大脑"
+                            </h2>
+
+                            <h3 class="neon-text-cyan">什么是大模型</h3>
+                            <p style="font-size: 1.1rem;">是通过海量数据训练出的通用人工智能模型，具备跨任务的理解与生成能力。它能像"大脑"一样，通过语言、图像、声音等方式感知世界，并生成内容。</p>
+
+                            <h3 class="neon-text-cyan">大模型的应用领域</h3>
+
+                            <!-- 应用领域方形卡片 -->
+                            <div class="application-cards-container">
+                                <div class="application-card">
+                                    <div class="card-image-placeholder">
+                                        <img src="images/2.语言理解与生成.jpeg" alt="语言理解与生成" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                                    </div>
+                                    <div class="card-title">语言理解与生成</div>
+                                    <div class="card-description">聊天对话、写作助手、代码生成、知识问答</div>
+                                </div>
+
+                                <div class="application-card">
+                                    <div class="card-image-placeholder">
+                                        <img src="images/3.图像理解与生成.png" alt="图像与视觉分析" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                                    </div>
+                                    <div class="card-title">图像与视觉分析</div>
+                                    <div class="card-description">图像识别、风格迁移、视觉生成</div>
+                                </div>
+
+                                <div class="application-card">
+                                    <div class="card-image-placeholder">
+                                        <img src="images/4.音视频内容创作.png" alt="音视频内容创作" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                                    </div>
+                                    <div class="card-title">音视频内容创作</div>
+                                    <div class="card-description">AI配音、音乐生成、视频脚本生成</div>
+                                </div>
+
+                                <div class="application-card">
+                                    <div class="card-image-placeholder">
+                                        <img src="images/5.数据与逻辑处理.jpeg" alt="数据与逻辑处理" style="width:100%; height:100%; object-fit:cover; border-radius:10px;">
+                                    </div>
+                                    <div class="card-title">数据与逻辑处理</div>
+                                    <div class="card-description">自动分析报表、决策建议</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 模型层 - 分类与类型 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h4 class="neon-text-cyan">大模型的分类</h4>
+
+                            <div class="highlight-box">
+                                <strong>📝 语言大模型</strong>
+                                <p>在自然语言处理领域中的大模型，通常用于处理文本数据和理解自然语言。在大规模语料库上进行训练，学习各种语法、语义和语境规则。</p>
+                                <p class="neon-text-cyan"><strong>例如：</strong> GPT系列(OpenAI)、Bard(Google)、DeepSeek、文心一言(百度)</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <strong>🖼️ 视觉大模型</strong>
+                                <p>在计算机视觉领域中使用的大模型，用于图像处理和分析。通过在大规模图像数据上训练，实现图像分类、目标检测、图像分割、姿态估计、人脸识别等任务。</p>
+                                <p class="neon-text-purple"><strong>例如：</strong> VIT系列(Google)、文心UFO、华为盘古CV、INTERN(商汤)</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <strong>🎭 多模态大模型</strong>
+                                <p>能够处理多种不同类型数据的大模型，如文本、图像、音频等。结合了NLP和CV的能力，实现对多模态信息的综合理解和分析，能够更全面地理解和处理复杂数据。</p>
+                                <p class="neon-text-pink"><strong>例如：</strong> GPT-4V、Gemini 1.5、Claude 3、Kosmo、豆包seed1.6</p>
+                            </div>
+
+                            <!-- 大模型分类示意图 -->
+                            <svg class="svg-diagram" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg" style="margin: 40px auto; display: block;">
+                                <defs>
+                                    <filter id="glow-model-types">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <linearGradient id="grad-language" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.1" />
+                                    </linearGradient>
+                                    <linearGradient id="grad-vision" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.1" />
+                                    </linearGradient>
+                                    <linearGradient id="grad-multimodal" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:0.3" />
+                                        <stop offset="100%" style="stop-color:#f43f5e;stop-opacity:0.1" />
+                                    </linearGradient>
+                                    <marker id="arrow-merge" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto">
+                                        <polygon points="0 0, 10 5, 0 10" fill="#f43f5e" filter="url(#glow-model-types)"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 标题 -->
+                                <text x="450" y="30" text-anchor="middle" fill="#06b6d4" font-size="20" font-weight="bold">
+                                    大模型的三大类型
+                                </text>
+
+                                <!-- 语言大模型 -->
+                                <rect x="50" y="80" width="240" height="140" rx="15" fill="url(#grad-language)"
+                                      stroke="#06b6d4" stroke-width="3" filter="url(#glow-model-types)"/>
+                                <text x="170" y="115" text-anchor="middle" fill="#06b6d4" font-size="20" font-weight="bold">
+                                    📝 语言大模型
+                                </text>
+                                <text x="170" y="140" text-anchor="middle" fill="#d4d4d4" font-size="13">
+                                    自然语言处理 (NLP)
+                                </text>
+                                <text x="170" y="165" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 文本理解与生成
+                                </text>
+                                <text x="170" y="185" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 语义分析
+                                </text>
+                                <text x="170" y="205" text-anchor="middle" fill="#06b6d4" font-size="11" opacity="0.8">
+                                    GPT / 文心一言 / DeepSeek
+                                </text>
+
+                                <!-- 视觉大模型 -->
+                                <rect x="330" y="80" width="240" height="140" rx="15" fill="url(#grad-vision)"
+                                      stroke="#a855f7" stroke-width="3" filter="url(#glow-model-types)"/>
+                                <text x="450" y="115" text-anchor="middle" fill="#a855f7" font-size="20" font-weight="bold">
+                                    🖼️ 视觉大模型
+                                </text>
+                                <text x="450" y="140" text-anchor="middle" fill="#d4d4d4" font-size="13">
+                                    计算机视觉 (CV)
+                                </text>
+                                <text x="450" y="165" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 图像识别与分析
+                                </text>
+                                <text x="450" y="185" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 目标检测
+                                </text>
+                                <text x="450" y="205" text-anchor="middle" fill="#a855f7" font-size="11" opacity="0.8">
+                                    VIT / 盘古CV / INTERN
+                                </text>
+
+                                <!-- 连接箭头 - 从语言和视觉到多模态 -->
+                                <line x1="170" y1="220" x2="380" y2="290" stroke="#06b6d4" stroke-width="2"
+                                      marker-end="url(#arrow-merge)" stroke-dasharray="5,5" filter="url(#glow-model-types)"/>
+                                <line x1="450" y1="220" x2="480" y2="290" stroke="#a855f7" stroke-width="2"
+                                      marker-end="url(#arrow-merge)" stroke-dasharray="5,5" filter="url(#glow-model-types)"/>
+
+                                <!-- 融合标识 -->
+                                <circle cx="430" cy="280" r="25" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2" filter="url(#glow-model-types)"/>
+                                <text x="430" y="288" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">+</text>
+
+                                <!-- 多模态大模型 -->
+                                <rect x="210" y="310" width="480" height="120" rx="15" fill="url(#grad-multimodal)"
+                                      stroke="#f43f5e" stroke-width="3" filter="url(#glow-model-types)"/>
+                                <text x="450" y="345" text-anchor="middle" fill="#f43f5e" font-size="20" font-weight="bold">
+                                    🎭 多模态大模型
+                                </text>
+                                <text x="450" y="370" text-anchor="middle" fill="#d4d4d4" font-size="13">
+                                    融合多种模态的综合AI能力
+                                </text>
+                                <text x="300" y="395" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 文本 + 图像
+                                </text>
+                                <text x="450" y="395" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 音频 + 视频
+                                </text>
+                                <text x="600" y="395" text-anchor="middle" fill="#d4d4d4" font-size="12" opacity="0.9">
+                                    ✓ 跨模态理解
+                                </text>
+                                <text x="450" y="415" text-anchor="middle" fill="#f43f5e" font-size="11" opacity="0.8">
+                                    GPT-4V / Gemini 1.5 / Claude 3 / 豆包
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 工具层 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card loose-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-tools neon-text-cyan"></i>
+                                2. 工具层：让AI变得"人人能用"
+                            </h2>
+
+                            <h4 class="neon-text-purple">通过一个简单的例子了解工具：GPT模型与ChatGPT的对比</h4>
+
+                            <p><strong class="neon-text-cyan">GPT模型</strong>本质上是一种"语言理解与生成系统"。它能根据输入文本生成回应，但最早的模型接口是这样的：</p>
+
+                            <pre><code>{
+  "model": "gpt-3.5-turbo",
+  "messages": [
+    {"role": "user", "content": "请帮我写一首关于春天的诗"}
+  ]
+}</code></pre>
+
+                            <p>这是一种程序接口格式(API)，格式为JSON数据，普通用户看不懂，也不会写。</p>
+
+                            <p><strong class="neon-text-purple">开发者为了让更多人能用AI，就在模型外层做了一个"包装"：</strong></p>
+                            <ul>
+                                <li>加上对话框</li>
+                                <li>自动处理JSON与参数</li>
+                                <li>可记录历史对话</li>
+                            </ul>
+
+                            <!-- 模型包装成工具的示意图 -->
+                            <svg class="svg-diagram" viewBox="0 0 900 350" xmlns="http://www.w3.org/2000/svg" style="margin: 40px auto; display: block;">
+                                <defs>
+                                    <filter id="glow-wrapper">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <marker id="arrow-wrapper" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" filter="url(#glow-wrapper)"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 左侧：原始模型API -->
+                                <rect x="50" y="80" width="200" height="180" rx="12" fill="rgba(168, 85, 247, 0.15)"
+                                      stroke="#a855f7" stroke-width="2" filter="url(#glow-wrapper)"/>
+                                <text x="150" y="110" text-anchor="middle" fill="#a855f7" font-size="16" font-weight="bold">
+                                    原始模型 API
+                                </text>
+
+                                <!-- JSON代码示例 -->
+                                <rect x="70" y="130" width="160" height="110" rx="6" fill="rgba(10, 10, 10, 0.7)"
+                                      stroke="#a855f7" stroke-width="1"/>
+                                <text x="150" y="150" text-anchor="middle" fill="#06b6d4" font-size="10" font-family="monospace">
+                                    {
+                                </text>
+                                <text x="150" y="165" text-anchor="middle" fill="#d4d4d4" font-size="9" font-family="monospace">
+                                    "model": "gpt-4",
+                                </text>
+                                <text x="150" y="180" text-anchor="middle" fill="#d4d4d4" font-size="9" font-family="monospace">
+                                    "messages": [...]
+                                </text>
+                                <text x="150" y="195" text-anchor="middle" fill="#d4d4d4" font-size="9" font-family="monospace">
+                                    "temperature": 0.7
+                                </text>
+                                <text x="150" y="210" text-anchor="middle" fill="#06b6d4" font-size="10" font-family="monospace">
+                                    }
+                                </text>
+                                <text x="150" y="230" text-anchor="middle" fill="#f43f5e" font-size="11">
+                                    普通用户看不懂 ❌
+                                </text>
+
+                                <!-- 中间：包装过程 -->
+                                <g>
+                                    <!-- 箭头 -->
+                                    <line x1="250" y1="170" x2="350" y2="170" stroke="#06b6d4" stroke-width="3"
+                                          marker-end="url(#arrow-wrapper)" filter="url(#glow-wrapper)"/>
+
+                                    <!-- 包装说明 -->
+                                    <rect x="280" y="100" width="90" height="130" rx="8" fill="rgba(6, 182, 212, 0.1)"
+                                          stroke="#06b6d4" stroke-width="2" stroke-dasharray="5,5" filter="url(#glow-wrapper)"/>
+                                    <text x="325" y="125" text-anchor="middle" fill="#06b6d4" font-size="13" font-weight="bold">
+                                        包装层
+                                    </text>
+                                    <text x="325" y="145" text-anchor="middle" fill="#d4d4d4" font-size="10">
+                                        + 对话框
+                                    </text>
+                                    <text x="325" y="165" text-anchor="middle" fill="#d4d4d4" font-size="10">
+                                        + 历史记录
+                                    </text>
+                                    <text x="325" y="185" text-anchor="middle" fill="#d4d4d4" font-size="10">
+                                        + 自动处理
+                                    </text>
+                                    <text x="325" y="205" text-anchor="middle" fill="#d4d4d4" font-size="10">
+                                        + 友好界面
+                                    </text>
+                                </g>
+
+                                <!-- 右侧：工具应用 -->
+                                <rect x="400" y="80" width="450" height="180" rx="12" fill="rgba(6, 182, 212, 0.15)"
+                                      stroke="#06b6d4" stroke-width="2" filter="url(#glow-wrapper)"/>
+                                <text x="625" y="110" text-anchor="middle" fill="#06b6d4" font-size="16" font-weight="bold">
+                                    用户友好的AI工具
+                                </text>
+
+                                <!-- 工具界面模拟 -->
+                                <rect x="420" y="130" width="410" height="110" rx="8" fill="rgba(20, 20, 20, 0.8)"
+                                      stroke="#06b6d4" stroke-width="1"/>
+
+                                <!-- 模拟聊天界面 -->
+                                <rect x="430" y="140" width="390" height="30" rx="6" fill="rgba(168, 85, 247, 0.3)"
+                                      stroke="#a855f7" stroke-width="1"/>
+                                <text x="625" y="160" text-anchor="middle" fill="#d4d4d4" font-size="12">
+                                    💬 请帮我写一首关于春天的诗
+                                </text>
+
+                                <rect x="430" y="180" width="390" height="50" rx="6" fill="rgba(6, 182, 212, 0.2)"
+                                      stroke="#06b6d4" stroke-width="1"/>
+                                <text x="625" y="198" text-anchor="middle" fill="#d4d4d4" font-size="10">
+                                    🤖 春风拂面暖阳照，
+                                </text>
+                                <text x="625" y="213" text-anchor="middle" fill="#d4d4d4" font-size="10">
+                                    万物复苏绿意浓...
+                                </text>
+
+                                <text x="625" y="255" text-anchor="middle" fill="#06b6d4" font-size="11" font-weight="bold">
+                                    人人都能用 ✅
+                                </text>
+
+                                <!-- 底部说明 -->
+                                <text x="450" y="300" fill="#eab308" font-size="14" font-weight="bold">
+                                    <tspan fill="#a855f7">模型层</tspan>
+                                    <tspan fill="#d4d4d4"> → </tspan>
+                                    <tspan fill="#06b6d4">包装</tspan>
+                                    <tspan fill="#d4d4d4"> → </tspan>
+                                    <tspan fill="#06b6d4">工具层</tspan>
+                                    <tspan fill="#d4d4d4"> = 人人可用的AI</tspan>
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 工具层（续） -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card loose-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-tools neon-text-cyan"></i>
+                                2. 工具层：让AI变得"人人能用"
+                            </h2>
+
+                            <h4 class="neon-text-pink">工具层的定义</h4>
+                            <p>把复杂的模型包装成人人可用的应用工具，让AI走出实验室、进入日常学习与工作场景。</p>
+
+                            <h4 class="neon-text-cyan">最直观的感受</h4>
+                            <p>降低了用户的使用门槛，非专业用户也能够使用AI；不需要懂代码或算法，只需通过文字、图片或操作界面即可调用模型能力。</p>
+
+                            <h4 class="neon-text-purple">三种功能特征</h4>
+                            <ul>
+                                <li><strong class="neon-text-cyan">交互友好：</strong> 可通过自然语言代替复杂的操作，一句话就可以让GPT、GLM帮助你生成文章</li>
+                                <li><strong class="neon-text-purple">工作流集成：</strong> 不同工具间可互联协作(n8n、dify、扣子空间等自动化工具可任意调取大模型的API)</li>
+                                <li><strong class="neon-text-pink">场景定制化：</strong> 每个工具都会针对特定应用优化，使得输出的内容更符合该领域的习惯与要求</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 应用层 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-rocket neon-text-pink"></i>
+                                3. 应用层：AI进入真实世界
+                            </h2>
+
+                            <h4 class="neon-text-cyan">应用层的定义</h4>
+                            <p>AI工具与具体工作、具体行业、具体场景的融合，让AI能力直接创造价值，形成个人或企业生产力。</p>
+
+                            <h4 class="neon-text-purple">具体案例</h4>
+                            <div class="grid-2">
+                                <div class="icon-card" style="background-image: url('images/应用层/8.应用层医疗健康.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <i class="fas fa-hospital neon-text-cyan"></i>
+                                        <h4>医疗健康</h4>
+                                        <p>三诺生物将AI用于持续葡萄糖监测，为糖尿病患者提供个性化管理方案</p>
+                                        <p>中医科学院研发的经络调理机器人</p>
+                                        <p>北京儿童医院上线的"AI儿科医生"辅助诊断</p>
+                                    </div>
+                                </div>
+
+                                <div class="icon-card" style="background-image: url('images/应用层/9.应用层工业制造.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <i class="fas fa-industry neon-text-purple"></i>
+                                        <h4>工业制造</h4>
+                                        <p>AgiBot公司将强化学习机器人部署在真实工厂中，机器人能自主适应和优化任务</p>
+                                    </div>
+                                </div>
+
+                                <div class="icon-card" style="background-image: url('images/应用层/10.应用层金融服务.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <i class="fas fa-dollar-sign neon-text-pink"></i>
+                                        <h4>金融服务</h4>
+                                        <p>中国建设银行采用"AI辅助+专家决策"模式进行授信审批</p>
+                                    </div>
+                                </div>
+
+                                <div class="icon-card" style="background-image: url('images/应用层/11.零售电商.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <i class="fas fa-shopping-cart neon-text-green"></i>
+                                        <h4>零售电商</h4>
+                                        <p>零售企业使用AIGC技术自动完成商品拍摄和背景替换</p>
+                                        <p>电商企业使用AI客服Agent处理客服问题</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: AI技术发展趋势 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-chart-line"></i>
+                                4.当今AI技术发展的趋势
+                            </h2>
+
+                            <div class="grid-3">
+                                <div class="icon-card">
+                                    <i class="fas fa-project-diagram neon-text-cyan"></i>
+                                    <h4>从"单一模型"走向"多模态融合"</h4>
+                                    <p>AI不再"只看一种信息"，而是能够同时理解文字、图像、声音、视频等多种输入，甚至可以在不同模态间转换。</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-network-wired neon-text-purple"></i>
+                                    <h4>从"独立应用"走向"全场景工作流"</h4>
+                                    <p>不同AI工具可以通过平台或API相互调用、协同完成复杂任务。用户可以搭建自己的"自动化AI生产线"。</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-users neon-text-pink"></i>
+                                    <h4>从"技术工具"转变为"生产力伙伴"</h4>
+                                    <p>AI逐渐融入到现在的工作中，成为生产力的一部分。</p>
+                                </div>
+                            </div>
+
+                            <!-- AI技术发展趋势示意图 -->
+                            <svg class="svg-diagram" viewBox="0 0 1000 400" xmlns="http://www.w3.org/2000/svg" style="margin: 40px auto; display: block;">
+                                <defs>
+                                    <filter id="glow-trends">
+                                        <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                        <feMerge>
+                                            <feMergeNode in="coloredBlur"/>
+                                            <feMergeNode in="SourceGraphic"/>
+                                        </feMerge>
+                                    </filter>
+                                    <marker id="arrow-trend" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                        <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" filter="url(#glow-trends)"/>
+                                    </marker>
+                                </defs>
+
+                                <!-- 标题 -->
+                                <text x="500" y="30" text-anchor="middle" fill="#06b6d4" font-size="20" font-weight="bold">
+                                    AI技术发展的三大趋势
+                                </text>
+
+                                <!-- 趋势1: 单一模型 → 多模态融合 -->
+                                <g>
+                                    <!-- 左侧：单一模型 -->
+                                    <rect x="50" y="70" width="180" height="80" rx="12" fill="rgba(168, 85, 247, 0.15)"
+                                          stroke="#a855f7" stroke-width="2" filter="url(#glow-trends)"/>
+                                    <text x="140" y="100" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">
+                                        单一模型
+                                    </text>
+                                    <text x="140" y="120" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        📝 只处理文本
+                                    </text>
+                                    <text x="140" y="138" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🖼️ 只处理图像
+                                    </text>
+
+                                    <!-- 箭头 -->
+                                    <line x1="230" y1="110" x2="290" y2="110" stroke="#06b6d4" stroke-width="3"
+                                          marker-end="url(#arrow-trend)" filter="url(#glow-trends)"/>
+                                    <text x="260" y="100" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="bold">进化</text>
+
+                                    <!-- 右侧：多模态融合 -->
+                                    <rect x="290" y="70" width="180" height="80" rx="12" fill="rgba(6, 182, 212, 0.2)"
+                                          stroke="#06b6d4" stroke-width="2" filter="url(#glow-trends)"/>
+                                    <text x="380" y="100" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">
+                                        多模态融合
+                                    </text>
+                                    <text x="380" y="120" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🎭 文字+图像+音频+视频
+                                    </text>
+                                    <text x="380" y="138" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        ✨ 跨模态理解与转换
+                                    </text>
+                                </g>
+
+                                <!-- 趋势2: 独立应用 → 全场景工作流 -->
+                                <g>
+                                    <!-- 左侧：独立应用 -->
+                                    <rect x="50" y="180" width="180" height="80" rx="12" fill="rgba(168, 85, 247, 0.15)"
+                                          stroke="#a855f7" stroke-width="2" filter="url(#glow-trends)"/>
+                                    <text x="140" y="210" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">
+                                        独立应用
+                                    </text>
+                                    <text x="140" y="230" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🔒 各自为战
+                                    </text>
+                                    <text x="140" y="248" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        ⚠️ 数据孤岛
+                                    </text>
+
+                                    <!-- 箭头 -->
+                                    <line x1="230" y1="220" x2="290" y2="220" stroke="#06b6d4" stroke-width="3"
+                                          marker-end="url(#arrow-trend)" filter="url(#glow-trends)"/>
+                                    <text x="260" y="210" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="bold">进化</text>
+
+                                    <!-- 右侧：全场景工作流 -->
+                                    <rect x="290" y="180" width="180" height="80" rx="12" fill="rgba(6, 182, 212, 0.2)"
+                                          stroke="#06b6d4" stroke-width="2" filter="url(#glow-trends)"/>
+                                    <text x="380" y="210" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">
+                                        全场景工作流
+                                    </text>
+                                    <text x="380" y="230" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🔗 API互联协作
+                                    </text>
+                                    <text x="380" y="248" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🤖 自动化生产线
+                                    </text>
+                                </g>
+
+                                <!-- 趋势3: 技术工具 → 生产力伙伴 -->
+                                <g>
+                                    <!-- 左侧：技术工具 -->
+                                    <rect x="50" y="290" width="180" height="80" rx="12" fill="rgba(168, 85, 247, 0.15)"
+                                          stroke="#a855f7" stroke-width="2" filter="url(#glow-trends)"/>
+                                    <text x="140" y="320" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">
+                                        技术工具
+                                    </text>
+                                    <text x="140" y="340" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🛠️ 被动使用
+                                    </text>
+                                    <text x="140" y="358" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        📋 执行指令
+                                    </text>
+
+                                    <!-- 箭头 -->
+                                    <line x1="230" y1="330" x2="290" y2="330" stroke="#06b6d4" stroke-width="3"
+                                          marker-end="url(#arrow-trend)" filter="url(#glow-trends)"/>
+                                    <text x="260" y="320" text-anchor="middle" fill="#06b6d4" font-size="12" font-weight="bold">进化</text>
+
+                                    <!-- 右侧：生产力伙伴 -->
+                                    <rect x="290" y="290" width="180" height="80" rx="12" fill="rgba(6, 182, 212, 0.2)"
+                                          stroke="#06b6d4" stroke-width="2" filter="url(#glow-trends)"/>
+                                    <text x="380" y="320" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">
+                                        生产力伙伴
+                                    </text>
+                                    <text x="380" y="340" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        🤝 主动协作
+                                    </text>
+                                    <text x="380" y="358" text-anchor="middle" fill="#d4d4d4" font-size="11">
+                                        💡 智能建议与决策
+                                    </text>
+                                </g>
+
+                                <!-- 右侧说明框 -->
+                                <rect x="520" y="100" width="420" height="240" rx="15" fill="rgba(244, 63, 94, 0.1)"
+                                      stroke="#f43f5e" stroke-width="2" stroke-dasharray="5,5" filter="url(#glow-trends)"/>
+
+                                <text x="730" y="130" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">
+                                    🚀 AI发展的核心方向
+                                </text>
+
+                                <text x="540" y="165" fill="#06b6d4" font-size="13" font-weight="bold">
+                                    1. 能力融合
+                                </text>
+                                <text x="555" y="185" fill="#d4d4d4" font-size="11">
+                                    突破单一模态限制，实现文本、图像、
+                                </text>
+                                <text x="555" y="200" fill="#d4d4d4" font-size="11">
+                                    音频、视频等多种信息的综合处理
+                                </text>
+
+                                <text x="540" y="230" fill="#06b6d4" font-size="13" font-weight="bold">
+                                    2. 系统互联
+                                </text>
+                                <text x="555" y="250" fill="#d4d4d4" font-size="11">
+                                    打破应用边界，构建全场景AI工作流，
+                                </text>
+                                <text x="555" y="265" fill="#d4d4d4" font-size="11">
+                                    实现多工具协同与自动化处理
+                                </text>
+
+                                <text x="540" y="295" fill="#06b6d4" font-size="13" font-weight="bold">
+                                    3. 角色转变
+                                </text>
+                                <text x="555" y="315" fill="#d4d4d4" font-size="11">
+                                    从被动的技术工具升级为主动的智能
+                                </text>
+                                <text x="555" y="330" fill="#d4d4d4" font-size="11">
+                                    伙伴，深度融入工作与生活场景
+                                </text>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 文本类AI工具 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h2 class="section-title" id="section2">🛠️ 二、主流AI工具类型与代表产品</h2>
+
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-pen-fancy"></i>
+                                1.文本类生成工具
+                            </h2>
+
+                            <h3 class="neon-text-cyan">定义</h3>
+                            <p>文本类AI生成工具是最普及的人工智能应用类型，它通过自然语言理解(NLP)模型，能够自动理解、总结、生成和润色文字内容。</p>
+
+                            <h3 class="neon-text-purple">核心能力</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-pen neon-text-cyan"></i> 内容创作与改写</h4>
+                                    <p>生成文章、脚本、广告文案、教学资料</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-book neon-text-purple"></i> 信息理解与总结</h4>
+                                    <p>概括报告、提炼要点、自动摘要</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-language neon-text-pink"></i> 语言翻译与润色</h4>
+                                    <p>多语种切换、语气调整、逻辑优化</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-table neon-text-green"></i> 结构化表达</h4>
+                                    <p>输出Markdown、JSON、表格等可读格式</p>
+                                </div>
+                            </div>
+
+                            <h3 class="neon-text-cyan">典型代表工具与特点</h3>
+                            <div class="grid">
+                                <div class="tool-card" style="background-image: url('images/文本创作类工具/1.chatGPT.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">ChatGPT</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 通用性最强、生态最成熟的主流模型，擅长对话、创作与编程任务</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 逻辑稳定、表达自然</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 对最新信息和中文语境略有局限</p>
+                                        <p><strong class="neon-text-green">适合场景：</strong> 教育、写作、科研与国际化场景</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/文本创作类工具/2.Claude.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Claude</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 以"安全性与深度推理"著称，思考链条长、逻辑分析能力强</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 语言表达严谨自然，适合结构化内容和专业写作</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 成本略高，中文支持一般</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/文本创作类工具/3.doubao.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">豆包</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 字节跳动出品，多模态生成能力突出</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 中文场景适配度高，输出风格年轻化、自然流畅</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 逻辑推理略弱</p>
+                                        <p><strong class="neon-text-green">适合场景：</strong> 多媒体与交互体验</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/文本创作类工具/4.同义千问.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">通义千问</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 中文能力出色，本地化和企业级应用兼顾</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 支持多模态(图文、语音、代码)，部署灵活、生态开放</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 国际化与创意性略逊于海外顶级模型</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/文本创作类工具/5.deepseek.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">DeepSeek</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 主打高效推理与性价比</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 在逻辑分析和工具调用上表现突出，技术路线先进(MoE架构)，性能强、成本低</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 生态仍在完善，国际化支持相对有限</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/文本创作类工具/6.kimi.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Kimi</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 以开源、低成本和智能体(Agent)能力见长</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 代码生成和工具协作能力强</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 稳定性与通用对话能力尚不及顶级商用模型</p>
+                                        <p><strong class="neon-text-green">适合场景：</strong> 开发者与企业自建场景</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 图像创作类工具 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-image"></i>
+                                2.图像创作类工具
+                            </h2>
+
+                            <h3 class="neon-text-cyan">概念</h3>
+                            <p style="margin-bottom: 25px;">图像生成AI是利用扩散模型(Diffusion Model)技术，根据文字描述自动生成或修改图像的工具。它让设计与创作不再依赖专业软件，是视觉创意行业的重要变革者。</p>
+                            <p class="neon-text-pink"><strong>⚠️ 行业影响：</strong> 自AI发展以来，2025年游戏行业美术岗位的裁员率上涨到了53%，设计师的需求也下降33%</p>
+
+                            <h3 class="neon-text-purple">核心能力</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-magic neon-text-cyan"></i> 文生图</h4>
+                                    <p>根据文字提示生成原创图像。例如输入"日落下的海边咖啡馆"，AI会生成多张画面可选。</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-palette neon-text-purple"></i> 图生图</h4>
+                                    <p>基于已有图片修改风格或结构。比如把草图变成写实图，把夏天的照片改成冬天场景。</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-paint-brush neon-text-pink"></i> 风格迁移/艺术化</h4>
+                                    <p>转换成水彩、赛博、现实等多种风格。</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-expand neon-text-green"></i> 高清修复/放大</h4>
+                                    <p>让模糊照片变清晰，自动补光、补细节。</p>
+                                </div>
+                            </div>
+
+                            <h3 class="neon-text-cyan">代表性工具与特点</h3>
+                            <div class="grid-2">
+                                <div class="tool-card" style="background-image: url('images/图像创作工具/1.coumfyUI.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">ComfyUI</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 自由度最高的节点式图像生成系统，可完全掌控模型、提示词与流程</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 适合专业创作者和研发人员打造定制化AI工作流，功能极强</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 学习曲线陡峭，对新手不太友好</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/图像创作工具/2.webui.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Web UI (Stable Diffusion)</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> Stable Diffusion最常用的网页前端，界面直观、上手容易</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 功能齐全、插件丰富，是个人创作与实验的理想平台</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 可控性中等，外观略显老旧</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/图像创作工具/3.Midjourney.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Midjourney (MD)</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 商业化程度最高的AI绘图平台，以艺术感强、构图稳定著称</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 无需技术基础即可生成高质量图片，输出风格统一且审美出色</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 封闭生态、参数受限，不适合深度定制</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/图像创作工具/4.seedream.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Seedream</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 中文优化良好的视觉创作平台，内置多种商业视觉模板</p>
+                                        <p><strong class="neon-text-purple">优势：</strong> 生成速度快、界面友好</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 艺术性与自定义程度不如专业工具</p>
+                                        <p><strong class="neon-text-green">适合场景：</strong> 广告、营销、产品视觉等场景</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 音视频生成类工具 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-video"></i>
+                                3.音视频生成类工具
+                            </h2>
+
+                            <h3 class="neon-text-cyan">概念</h3>
+                            <p>音频与视频AI是AI多模态技术的重要分支，能自动生成声音、配乐、旁白或根据文本生成短视频、动画。它正在重塑媒体与教育行业的内容生产模式。</p>
+
+                            <h3 class="neon-text-purple">核心能力</h3>
+                            <ul>
+                                <li><strong class="neon-text-cyan">文本生成语音：</strong> 将文字转换为自然人声，并能选择声音类型(男声、女声、语气)</li>
+                                <li><strong class="neon-text-purple">语音生成音乐：</strong> 输入歌词或风格标签自动作曲</li>
+                                <li><strong class="neon-text-pink">文本生成视频：</strong> 输入一句描述即可生成视频</li>
+                                <li><strong class="neon-text-green">视频自动编辑：</strong> 自动识别片段内容，添加字幕、节奏匹配背景音乐</li>
+                                <li><strong class="neon-text-cyan">AI调色：</strong> AI自动去背景、转风格、补帧</li>
+                            </ul>
+
+                            <h3 class="neon-text-cyan">代表性工具与特点</h3>
+                            <div class="grid">
+                                <div class="tool-card" style="background-image: url('images/音视频生成工具/1.sora2.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Sora 2.0</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 只需一句文字描述即可生成高保真、长镜头视频，画面逼真、物理逻辑精确</p>
+                                        <p><strong class="neon-text-purple">能力：</strong> 可理解复杂场景、镜头语言与人物动作，被视为"AI视频生成的天花板"</p>
+                                        <p><strong class="neon-text-pink">现状：</strong> 目前尚未全面开放，主要展示于技术研究和电影级创作领域</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/音视频生成工具/2.veo3.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Veo</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> Google出品的视频生成模型，可生成高质量长镜头视频</p>
+                                        <p><strong class="neon-text-purple">能力：</strong> 理解复杂场景、镜头语言与人物动作</p>
+                                        <p><strong class="neon-text-pink">现状：</strong> 目前尚未全面开放</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/音视频生成工具/3.PikaLabs.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">PikaLabs</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 输入文字或图像即可生成短视频</p>
+                                        <p><strong class="neon-text-purple">功能：</strong> 支持视频延展、动画化、镜头切换等功能</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 上手简单、生成速度快、风格多样，是目前创作者社区最活跃的AI视频平台之一</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/音视频生成工具/4.Suno.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Suno</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 输入歌词或描述即可生成完整歌曲</p>
+                                        <p><strong class="neon-text-purple">能力：</strong> 可自动编曲、配乐、演唱，生成旋律自然、风格多样</p>
+                                        <p><strong class="neon-text-green">应用：</strong> 广泛用于短视频配乐、广告音乐、创意音效制作</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/音视频生成工具/5.ElevenLabs.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">ElevenLabs</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 可将文字转化为高度拟真的人声</p>
+                                        <p><strong class="neon-text-purple">功能：</strong> 支持语气、情绪与音色自定义，可克隆声音、合成多语言语音</p>
+                                        <p><strong class="neon-text-green">应用：</strong> 用于配音、旁白、播客、影视解说</p>
+                                        <p><strong class="neon-text-pink">水平：</strong> 语音自然度和情感表达目前居行业领先水平</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: 编程类工具 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-code"></i>
+                                4.编程类工具
+                            </h2>
+
+                            <h3 class="neon-text-cyan">概念</h3>
+                            <p>是帮助用户理解、生成、调试代码的智能工具。它让非计算机专业的学生也能通过自然语言"说人话写程序"。</p>
+
+                            <h3 class="neon-text-purple">核心能力</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-project-diagram neon-text-cyan"></i> 项目结构建议</h4>
+                                    <p>指导用户搭建完整的项目框架</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-cogs neon-text-purple"></i> 算法逻辑优化</h4>
+                                    <p>自动重写和简化复杂逻辑</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-file-code neon-text-pink"></i> 代码生成</h4>
+                                    <p>根据需求自动生成Python、JavaScript等语言代码</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-bug neon-text-green"></i> 代码解释与调试</h4>
+                                    <p>分析错误信息，提供修改建议</p>
+                                </div>
+                            </div>
+
+                            <h3 class="neon-text-cyan">代表性工具与特点</h3>
+                            <div class="grid-2">
+                                <div class="tool-card" style="background-image: url('images/编程类工具/1.GitHub Copilot.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">GitHub Copilot</div>
+                                        <p><strong class="neon-text-cyan">开发者：</strong> GitHub与OpenAI联合开发</p>
+                                        <p><strong class="neon-text-purple">特点：</strong> 最成熟的"代码自动补全"工具，能在编写代码时实时预测并生成函数、注释、测试样例</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 与VS Code、JetBrains等主流IDE深度集成，上手即用，生产力提升明显</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 依赖网络与订阅服务，对复杂逻辑的理解仍有限</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/编程类工具/2.GLM (CodeGeeX).png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">GLM (CodeGeeX)</div>
+                                        <p><strong class="neon-text-cyan">开发者：</strong> 清华大学团队与智谱AI</p>
+                                        <p><strong class="neon-text-purple">特点：</strong> 专注多语言编程与中文理解</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 中文注释、文档生成能力强，适合国内开发者</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 生态相对较小，IDE插件和云协作仍在完善</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/编程类工具/3.Claude.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">Claude</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 虽然是通用大模型，但在代码理解与重构上表现非常突出</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 能快速阅读长代码文件、解释逻辑、生成文档或测试用例，推理链长、理解复杂结构能力强</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 不能直接嵌入IDE，主要通过网页或API交互</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/编程类工具/4.豆包.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">豆包</div>
+                                        <p><strong class="neon-text-cyan">开发者：</strong> 字节跳动</p>
+                                        <p><strong class="neon-text-purple">特点：</strong> 国产多模态模型，内置强大的编程与应用构建能力</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 支持"自然语言描述→生成代码→自动运行结果"一体化流程，中文体验优秀</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 底层模型仍在演进中，专业开发深度尚不及Copilot或Claude</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: 自动化类工具 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card large-text-card">
+                            <h2 class="section-subtitle">
+                                <i class="fas fa-robot"></i>
+                                5.自动化类工具
+                            </h2>
+
+                            <h3 class="neon-text-cyan">概念</h3>
+                            <p>自动化类AI工具是连接多个AI与软件的"桥梁"，通过可视化流程，让AI任务自动执行、互相调用。它是从"AI工具"到"AI系统"的关键转折。</p>
+
+                            <h3 class="neon-text-purple">核心能力</h3>
+                            <ul>
+                                <li><strong class="neon-text-cyan">任务触发与调度：</strong> 定时或事件触发AI任务</li>
+                                <li><strong class="neon-text-purple">跨平台连接：</strong> 让ChatGPT、微信、QQ、邮箱等互通</li>
+                                <li><strong class="neon-text-pink">工作流自动执行：</strong> 多步任务串联自动化运行。如"生成文章→制作图片→上传网站"</li>
+                                <li><strong class="neon-text-green">无代码操作：</strong> 用户拖拽节点即可构建AI工作流</li>
+                            </ul>
+
+                            <h3 class="neon-text-cyan">代表性工具与特点</h3>
+                            <div class="grid-3">
+                                <div class="tool-card" style="background-image: url('images/自动化类工具/1.N8N.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">n8n</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 开源的可视化自动化工作流平台</p>
+                                        <p><strong class="neon-text-purple">功能：</strong> 用户可以通过"节点"将不同API、数据库、AI模型、第三方应用连接起来</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 自由度极高、可自建、支持上百种集成</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 上手需要一定技术背景，界面逻辑偏开发者导向</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/自动化类工具/2.dify.jpeg'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">dify</div>
+                                        <p><strong class="neon-text-cyan">特点：</strong> 可以像搭积木一样拖拽模块，将大模型、接口、表格、数据库等资源串联</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 界面直观、中文友好、支持调用多种AI模型</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 插件生态还在成长中，复杂逻辑处理能力略低于n8n</p>
+                                    </div>
+                                </div>
+
+                                <div class="tool-card" style="background-image: url('images/自动化类工具/3.扣子.png'); background-size: cover; background-position: center; position: relative;">
+                                    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10, 10, 10, 0.7); border-radius: 10px;"></div>
+                                    <div style="position: relative; z-index: 1;">
+                                        <div class="tool-name">扣子空间</div>
+                                        <p><strong class="neon-text-cyan">定位：</strong> "零代码AI应用构建与自动化平台"</p>
+                                        <p><strong class="neon-text-purple">功能：</strong> 用户可直接通过可视化界面，将文字描述、数据处理、AI模型调用、网页交互整合成完整应用</p>
+                                        <p><strong class="neon-text-green">优势：</strong> 中文体验优秀、与字节生态无缝衔接，能快速生成可发布的AI工具</p>
+                                        <p><strong class="neon-text-pink">局限：</strong> 开放性较低、第三方API支持有限，更偏向轻量级应用构建</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div> <!-- 关闭section-scroll-container -->
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav" id="course-navigation">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" data-section="0">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" data-section="1">
+                        一、AI生态架构
+                    </button>
+
+                    <!-- Section 2-6: 子标题 -->
+                    <button class="nav-item-sub" data-section="2">
+                        1. 模型层:AI的"大脑"
+                    </button>
+                    <button class="nav-item-sub" data-section="4">
+                        2. 工具层:让AI变得"人人能用"
+                    </button>
+                    <button class="nav-item-sub" data-section="6">
+                        3. 应用层:AI进入真实世界
+                    </button>
+                    <button class="nav-item-sub" data-section="7">
+                        4. 当今AI技术发展的趋势
+                    </button>
+
+                    <!-- Section 7: 主标题 -->
+                    <button class="nav-item" data-section="8">
+                        二、主流AI工具类型
+                    </button>
+
+                    <!-- Section 8-11: 子标题 -->
+                    <button class="nav-item-sub" data-section="8">
+                        1. 文本类生成工具
+                    </button>
+                    <button class="nav-item-sub" data-section="9">
+                        2. 图像创作类工具
+                    </button>
+                    <button class="nav-item-sub" data-section="10">
+                        3. 音视频生成类工具
+                    </button>
+                    <button class="nav-item-sub" data-section="11">
+                        4. 编程类工具
+                    </button>
+                    <button class="nav-item-sub" data-section="12">
+                        5. 自动化类工具
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- 底部 -->
+        <div class="footer">
+        </div>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <!-- 赛博朋克背景 - AI Course 特效 -->
+        <div class="cyberpunk-background">
+            <!-- 3D 霓虹网格 -->
+            <div class="neon-grid"></div>
+
+            <!-- 霓虹光束 -->
+            <div class="neon-beams">
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+                <div class="neon-beam"></div>
+            </div>
+
+            <!-- 日文字符数据雨 -->
+            <div class="matrix-rain" id="matrixRain3"></div>
+
+            <!-- 粒子场 -->
+            <div class="particle-field" id="particleField3"></div>
+
+            <!-- 故障效果覆盖层 -->
+            <div class="glitch-overlay" id="glitchOverlay3"></div>
+
+            <!-- 光晕效果 -->
+            <div class="vignette-overlay"></div>
+        </div>
+
+        <!-- Hero区域 -->
+        <div class="hero">
+            <h1><span class="typewriter">板块三：课后作业</span></h1>
+            <p class="subtitle"><span class="typewriter-subtitle">实践应用 | 巩固知识 | 提升能力</span></p>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+        <section class="page-content section-scroll-item">
+            <div class="container">
+                <section class="cyber-card section-scroll-item">
+                    <h2 class="section-title">📝 课后作业</h2>
+
+                    <div class="highlight-box">
+                        <p style="font-size: 1.5rem; text-align: center; padding: 60px 0;">
+                            本节课暂无课后作业
+                        </p>
+                    </div>
+                </section>
+
+                <!-- 底部 -->
+                <section class="footer section-scroll-item">
+                </section>
+            </div>
+        </section>
+        </div> <!-- 关闭section-scroll-container -->
+    </div>
+
+    <!-- 主脚本文件 -->
+    <script src="js/main.js"></script>
+</body>
+</html>
