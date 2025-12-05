@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI写歌为何这么牛？背后逻辑揭秘 | AI音乐教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第五单元：AI音乐创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>1. AI写歌为何这么牛?</h1>
+                    <p class="subtitle">背后逻辑揭秘 | AI音乐创作入门课程</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 学习目标 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一:课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">一、学习目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">认识AI在音乐创作中的作用与发展趋势</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解AI音乐的基本原理</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">熟悉当前主流AI音乐工具的功能与特点</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解AI音乐对音乐产业的影响及未来趋势</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 课程目录 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple" style="font-size: 1.5rem;">二、课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">AI音乐的概念与发展</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">AI音乐工具生态</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">AI音乐爆发对产业的影响与未来趋势</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二:课程章节</h1>
+                    <p class="subtitle">深入学习AI音乐的核心知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 一、AI音乐的概念与发展 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎵 一、AI音乐的概念与发展</h2>
+                            <h3>（一）AI音乐的定义</h3>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem; line-height: 1.8;">
+                                    <strong class="neon-text-pink">AI音乐</strong>,简单来说,就是让人工智能(AI)"学会写歌"。它能根据人输入的文字提示(比如"写一首温柔的钢琴曲"),自动生成旋律、伴奏、甚至歌词和人声。
+                                </p>
+                                <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 15px;">
+                                    传统的作曲要靠音乐人会乐器、懂谱子,而AI音乐只需要<strong class="neon-text-cyan">文字提示</strong>。
+                                </p>
+                                <p style="font-size: 1.3rem; line-height: 1.8; margin-top: 20px; text-align: center;">
+                                    <strong class="neon-text-purple">任何人只要能描述自己想听的感觉,就能创作出属于自己的音乐。</strong>
+                                </p>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.15));">
+                                <h4 class="neon-text-cyan" style="text-align: center; font-size: 1.5rem;">AI音乐最大的革命</h4>
+                                <p style="font-size: 1.3rem; text-align: center; margin-top: 15px;">
+                                    从"用乐器写歌",变成"用语言写歌"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI音乐是怎么"写歌"的 -->
+            <section class="section-scroll-item" data-section="1b">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）AI音乐是怎么"写歌"的?</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>学习阶段</h4>
+                                    <p>AI首先会"听"大量不同类型的音乐作品,比如流行、古典、摇滚、电子等。</p>
+                                    <p style="margin-top: 10px;">在这个过程中,它会分析并学习音乐中的几个基本要素:</p>
+                                    <ul style="margin-top: 10px;">
+                                        <li><strong class="neon-text-cyan">旋律:</strong> 就是那条你能"哼出来"的主线,例如《小星星》的"哆哆·嗖嗖·拉拉·嗖"</li>
+                                        <li><strong class="neon-text-purple">节奏:</strong> 决定音乐的快慢和拍子,比如舞曲的节奏就比较快,而抒情歌节奏较慢</li>
+                                        <li><strong class="neon-text-pink">和弦(或"和声"):</strong> 可以理解成支撑旋律的"背景音乐",让歌曲更有层次感</li>
+                                        <li><strong style="color: var(--neon-yellow);">音色:</strong> 不同乐器或人声的"声音质感"。比如钢琴声音清脆温柔,电吉他声音有力量</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>创作阶段</h4>
+                                    <p>当AI理解了音乐的规律之后,它就能开始创作。</p>
+                                    <p style="margin-top: 10px;">这一步中,AI会根据学到的模式,用算法去"预测"下一步的音乐走向。</p>
+                                    <p style="margin-top: 10px;">就像人类作曲家在脑中构思:"这里旋律上升一点会更动听","这里换个节奏更有力量"。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>合成阶段</h4>
+                                    <p>当AI写完一首歌后,它其实只是生成了一堆"数字信息",就像是一张<strong class="neon-text-cyan">没有声音的乐谱</strong>。</p>
+                                    <p style="margin-top: 10px;">这时候,就需要进入"声音合成"这一步。系统会用一种叫做<strong class="neon-text-purple">"声码器(Vocoder)"</strong>的技术,把这些数字信号变成我们能听到的音乐。</p>
+                                    <p style="margin-top: 10px;">这样,AI创作的"数据音乐"就真正变成了我们耳朵能听到的<strong class="neon-text-pink">完整歌曲</strong>。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI音乐的起源与发展历程 -->
+            <section class="section-scroll-item" data-section="1c">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）AI音乐的起源与发展历程</h3>
+
+                            <div class="content-card timeline-card">
+                                <div class="timeline-card-image">
+                                    <img src="images/一、AI音乐的概念与发展-（三）AI音乐的起源与发展历程- AI音乐早期(20世纪50年代).png" alt="AI音乐早期" style="box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);">
+                                </div>
+                                <div class="timeline-card-content">
+                                    <h4><i class="fas fa-history neon-text-cyan"></i> AI音乐早期(20世纪50年代)</h4>
+                                    <p>早在20世纪50年代,科学家就让计算机"试着写音乐"。那时候的AI还很笨,只能按照人写好的规则去拼旋律,这种方法叫做"算法作曲"。</p>
+                                    <p style="margin-top: 10px;">当时最有名的例子是<strong class="neon-text-purple">1957年</strong>由Lejaren Hiller和Leonard Isaacson创作的<strong>《Illiac Suite》</strong>,它被认为是世界上第一首由计算机创作的音乐。</p>
+                                </div>
+                            </div>
+
+                            <div class="content-card timeline-card">
+                                <div class="timeline-card-image">
+                                    <img src="images/一、AI音乐的概念与发展-（三）AI音乐的起源与发展历程-进入学习时代(21世纪初).png" alt="进入学习时代" style="box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);">
+                                </div>
+                                <div class="timeline-card-content">
+                                    <h4><i class="fas fa-graduation-cap neon-text-purple"></i> 进入学习时代(21世纪初)</h4>
+                                    <p>到了21世纪,随着机器学习和神经网络技术的发展,AI开始变聪明了。</p>
+                                    <p style="margin-top: 10px;">它不再需要人手把规则写出来,而是能自己"听"成千上万首歌,从中学习各种风格、节奏和和声规律。</p>
+                                </div>
+                            </div>
+
+                            <div class="content-card timeline-card">
+                                <div class="timeline-card-image">
+                                    <img src="images/一、AI音乐的概念与发展-（三）AI音乐的起源与发展历程-深度学习时代(2009年以后).png" alt="深度学习时代" style="box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);">
+                                </div>
+                                <div class="timeline-card-content">
+                                    <h4><i class="fas fa-brain neon-text-pink"></i> 深度学习时代(2009年以后)</h4>
+                                    <p>到了<strong class="neon-text-cyan">2009年以后</strong>,一种叫做"深度学习"的技术让AI变得更聪明了。</p>
+                                    <p style="margin-top: 10px;">这一时期出现了许多代表性的AI音乐系统,比如<strong>Google的Magenta</strong>、<strong>OpenAI的MuseNet</strong>和<strong>Jukebox</strong>。</p>
+                                    <p style="margin-top: 10px;">它们可以根据人输入的文字提示自动生成完整的音乐,包括<strong class="neon-text-purple">旋律、伴奏、歌词,甚至模拟人声演唱</strong>。</p>
+                                </div>
+                            </div>
+
+                            <div class="content-card timeline-card" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(249, 115, 22, 0.2)); border-color: rgba(234, 179, 8, 0.5);">
+                                <div class="timeline-card-image">
+                                    <img src="images/一、AI音乐的概念与发展-（三）AI音乐的起源与发展历程- 生成式AI时代(2023年以后).png" alt="生成式AI时代" style="box-shadow: 0 4px 20px rgba(234, 179, 8, 0.4);">
+                                </div>
+                                <div class="timeline-card-content">
+                                    <h4><i class="fas fa-rocket" style="color: var(--neon-yellow);"></i> 生成式AI时代(2023年以后)</h4>
+                                    <p>到了2023年以后,AI音乐进入了真正的爆发期。</p>
+                                    <p style="margin-top: 10px;">新的生成式AI(Generative AI)让音乐创作变得像打字一样简单。</p>
+                                    <p style="margin-top: 10px;">只要输入一句话,比如"写一首轻快的夏日流行歌",AI工具(如<strong style="color: var(--neon-yellow);">Suno、Udio、Beatbot</strong>)就能几分钟内生成整首歌——旋律、伴奏、人声全都有。</p>
+                                    <p style="margin-top: 10px; font-weight: 600;">音乐创作变得人人可参与,不需要懂乐理也能做出作品。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 音乐创作的普及化革命 -->
+            <section class="section-scroll-item" data-section="1d">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）音乐创作的普及化革命</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8;">AI音乐大幅降低了创作门槛,使音乐制作从专业工作室走向更广泛的公众应用。</p>
+
+                            <div class="highlight-box" style="margin-top: 20px;">
+                                <p style="font-size: 1.2rem;">例如,在<strong class="neon-text-pink">Suno</strong>平台中,只需输入一句提示词"阳光下午的轻快旋律",系统就能自动生成包含歌词、旋律和伴奏的完整歌曲,甚至可模拟不同歌手的音色。</p>
+                            </div>
+
+                            <h4 class="neon-text-cyan" style="margin-top: 30px;">AI音乐的普及化主要体现在三个方面:</h4>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-hand-pointer neon-text-cyan"></i>
+                                    <h4>创作工具的易用化</h4>
+                                    <p>用户无需专业设备或软件,只需通过网页或APP即可生成音乐</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-comments neon-text-purple"></i>
+                                    <h4>创作表达的自然化</h4>
+                                    <p>提示词(Prompt)取代乐谱,用户可以直接用文字描述情感与风格</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-share-nodes neon-text-pink"></i>
+                                    <h4>创作传播的一体化</h4>
+                                    <p>许多AI平台内置发布与分享功能,让音乐作品能快速传播与互动</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px; background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.15));">
+                                <p style="font-size: 1.3rem; text-align: center; font-weight: 600;">
+                                    这种趋势推动了"人人皆可创作音乐"的时代,形成了<strong class="neon-text-cyan">音乐创作的普适化格局</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI音乐已成为短视频与新媒体的音乐引擎 -->
+            <section class="section-scroll-item" data-section="1e">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（五）AI音乐已成为短视频与新媒体的音乐引擎</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8;">AI音乐已成为短视频、广告、影视、播客等新媒体内容的"背景音乐引擎"。</p>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 10px;">在抖音、B站等平台,创作者可用AI生成BGM、片头片尾曲或品牌配乐,几分钟内完成过去需数小时的工作。</p>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">典型应用场景</h4>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-video neon-text-cyan"></i> 短视频内容配乐</h4>
+                                    <div style="margin: 15px 0; overflow: hidden; border-radius: 10px;">
+                                        <img src="images/一、AI音乐的概念与发展-（五）AI音乐已成为短视频与新媒体的音乐引擎- 短视频内容配乐.png" alt="短视频内容配乐" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);">
+                                    </div>
+                                    <ul>
+                                        <li>自动识别视频节奏与画面情绪,生成契合氛围的背景音乐</li>
+                                        <li>常见于vlog、旅游、探店、美食等场景</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-ad neon-text-purple"></i> 广告与品牌音效设计</h4>
+                                    <div style="margin: 15px 0; overflow: hidden; border-radius: 10px;">
+                                        <img src="images/一、AI音乐的概念与发展-（五）AI音乐已成为短视频与新媒体的音乐引擎-  广告与品牌音效设计.png" alt="广告与品牌音效设计" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);">
+                                    </div>
+                                    <ul>
+                                        <li>企业可利用AI快速生成符合品牌调性的旋律</li>
+                                        <li>音色风格可根据品牌形象定制</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-film neon-text-pink"></i> 影视与短片配乐辅助</h4>
+                                    <div style="margin: 15px 0; overflow: hidden; border-radius: 10px;">
+                                        <img src="images/一、AI音乐的概念与发展-（五）AI音乐已成为短视频与新媒体的音乐引擎-   影视与短片配乐辅助.png" alt="影视与短片配乐辅助" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);">
+                                    </div>
+                                    <ul>
+                                        <li>在剧情创作阶段使用AI生成"参考音乐"</li>
+                                        <li>节省后期制作成本,提高创意效率</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-podcast" style="color: var(--neon-yellow);"></i> 播客与旁白背景音乐</h4>
+                                    <div style="margin: 15px 0; overflow: hidden; border-radius: 10px;">
+                                        <img src="images/一、AI音乐的概念与发展-（五）AI音乐已成为短视频与新媒体的音乐引擎-   播客与旁白背景音乐.png" alt="播客与旁白背景音乐" style="width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; border-radius: 10px; box-shadow: 0 4px 20px rgba(234, 179, 8, 0.4);">
+                                    </div>
+                                    <ul>
+                                        <li>AI可根据节目类型生成不同情绪层次的配乐</li>
+                                        <li>实现语音节奏与音乐律动的自动匹配</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 二、AI音乐工具生态 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔧 二、AI音乐工具生态</h2>
+                            <h3>（一）国内AI音乐平台概览</h3>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4 class="neon-text-cyan">豆包音乐</h4>
+                                    <div style="text-align: center; margin: 15px 0;">
+                                        <img src="images/二、AI音乐工具生态-（一）国内AI音乐平台概览-豆包音乐.png" alt="豆包音乐" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);">
+                                    </div>
+                                    <p>定位于入门级创作平台,提供一键生成完整歌曲的功能,支持歌词输入、情绪选择和曲风定制。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4 class="neon-text-purple">网易天音</h4>
+                                    <div style="text-align: center; margin: 15px 0;">
+                                        <img src="images/二、AI音乐工具生态-（一）国内AI音乐平台概览-网易天音.png" alt="网易天音" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3);">
+                                    </div>
+                                    <p>面向专业用户,支持多音轨编辑、虚拟歌手合唱及高质量音色输出,适合具备基础乐理知识的创作者。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4 class="neon-text-pink">音控APP</h4>
+                                    <div style="text-align: center; margin: 15px 0;">
+                                        <img src="images/二、AI音乐工具生态-（一）国内AI音乐平台概览-音控APP.png" alt="音控APP" style="max-width: 100%; border-radius: 10px; box-shadow: 0 4px 20px rgba(244, 63, 94, 0.3);">
+                                    </div>
+                                    <p>以社群化创作为核心,用户可在平台中协作改编、合唱与再创作,形成音乐"二创"生态。</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 20px;">
+                                <p style="font-size: 1.2rem;">国内AI音乐工具以"实用性与互动性"为主要特征,强调快速产出与社交分享功能,对短视频创作者与自媒体从业者尤为友好。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 国际AI音乐平台概览 -->
+            <section class="section-scroll-item" data-section="2a">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）国际AI音乐平台概览</h3>
+
+                            <div class="content-card platform-card" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(168, 85, 247, 0.2)); border-color: rgba(244, 63, 94, 0.5);">
+                                <div class="platform-card-image">
+                                    <img src="images/二、AI音乐工具生态-（二）国际AI音乐平台概览- Suno.png" alt="Suno" style="box-shadow: 0 4px 20px rgba(244, 63, 94, 0.4);">
+                                </div>
+                                <div class="platform-card-content">
+                                    <h4 class="neon-text-pink"><i class="fas fa-star"></i> Suno</h4>
+                                    <p style="font-weight: 600;">以文本到音乐(Text-to-Music)为核心功能,被称为"音乐界的ChatGPT"</p>
+                                    <p style="margin-top: 10px;"><strong>优势:</strong></p>
+                                    <ul>
+                                        <li>支持自然语言生成完整歌曲,包括歌词、旋律与人声演唱</li>
+                                        <li>通过提示词可以指定风格、乐器、节奏等参数</li>
+                                        <li>生成质量接近专业录音棚水准</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="content-card platform-card" style="margin-top: 25px;">
+                                <div class="platform-card-image">
+                                    <img src="images/二、AI音乐工具生态-（二）国际AI音乐平台概览-AIVA.png" alt="AIVA" style="box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3);">
+                                </div>
+                                <div class="platform-card-content">
+                                    <h4 class="neon-text-cyan">AIVA</h4>
+                                    <p>面向影视配乐与商业广告,具有较高的风格控制与版权合规性</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 为什么选择Suno -->
+            <section class="section-scroll-item" data-section="2b">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）为什么选择Suno</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8;">Suno的突出优势在于其"语言驱动音乐"的生成逻辑。相比传统AI音乐平台,Suno将自然语言理解与音乐生成模型深度结合,使用户能以更直观方式控制音乐内容。</p>
+
+                            <h4 class="neon-text-cyan" style="margin-top: 30px;">独特优势</h4>
+
+                            <div class="grid-2">
+                                <div class="icon-card">
+                                    <i class="fas fa-bolt neon-text-cyan"></i>
+                                    <h4>即时反馈与高保真输出</h4>
+                                    <p>生成速度快,音质接近商业水准</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-sliders-h neon-text-purple"></i>
+                                    <h4>多层控制能力</h4>
+                                    <p>用户可同时指定主题、节奏、乐器与情绪</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-plug neon-text-pink"></i>
+                                    <h4>强兼容性</h4>
+                                    <p>支持视频配乐、播客、广告音频等多场景使用</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-graduation-cap" style="color: var(--neon-yellow);"></i>
+                                    <h4>低学习成本</h4>
+                                    <p>不要求乐理/编曲/混音基础,通过自然语言完成创作闭环</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem; line-height: 1.8;">
+                                    <strong class="neon-text-purple">相较于入门级/简单AI工具:</strong> Suno在音质、编配完整度、风格一致性与可重现性上更稳定,提示词对成品走向的影响更可控。
+                                </p>
+                                <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 10px;">
+                                    <strong class="neon-text-cyan">相较于专业制作软件:</strong> Suno上手快、学习成本低,无需搭建复杂插件链路,就能通过自然语言完成从创意到可用成品的闭环。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 三、AI音乐爆发对产业的影响与未来趋势 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🚀 三、AI音乐爆发对产业的影响与未来趋势</h2>
+                            <h3>（一）对传统音乐人的冲击与转型</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>创作模式的改变</h4>
+                                    <p>AI音乐的出现重塑了音乐创作的逻辑。</p>
+                                    <p style="margin-top: 10px;">过去依赖灵感与经验的人工创作,被算法的高效率与可复制性部分取代。</p>
+                                    <p style="margin-top: 10px;">AI可以在几秒钟内生成多种旋律或伴奏方案,使"原创"这一核心概念面临重新定义。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>音乐人的角色转变</h4>
+                                    <ul>
+                                        <li>从"独立创作者" → "AI协作创作者":专业音乐人开始将AI作为"灵感生成器"或"创作助手"</li>
+                                        <li>从"技法导向" → "审美导向":创作重点从技术执行转向内容策划、风格控制与艺术判断</li>
+                                        <li>出现"人机共创"新范式:AI负责初稿生成,人类完成艺术打磨与情感塑造</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    <strong class="neon-text-cyan">机遇与挑战并存</strong>
+                                </p>
+                                <p style="font-size: 1.1rem; margin-top: 10px;">
+                                    AI带来了高效与灵感,但也可能导致音乐风格同质化。未来的竞争不在于"谁能用AI",而在于<strong class="neon-text-pink">"谁能让AI为自己的艺术服务"</strong>。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI音乐的版权与原创争议 -->
+            <section class="section-scroll-item" data-section="3a">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）AI音乐的版权与原创争议</h3>
+
+                            <div class="content-card" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(249, 115, 22, 0.2)); border-color: rgba(234, 179, 8, 0.5);">
+                                <h4><i class="fas fa-exclamation-triangle" style="color: var(--neon-yellow);"></i> 问题核心</h4>
+                                <p>AI音乐最大的法律与伦理争议在于<strong style="color: var(--neon-yellow);">"原创性与归属"</strong>。</p>
+                                <p style="margin-top: 10px;">当AI模型学习了大量受版权保护的作品后,生成的新音乐是否仍算原创?</p>
+                                <p style="margin-top: 10px; font-weight: 600;">目前各国法律尚未形成统一标准。</p>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">主流观点</h4>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4 class="neon-text-cyan">人类主导创作</h4>
+                                    <p>若人类对AI生成内容进行了创意性加工或选择,可视为"人类作品"</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4 class="neon-text-purple">AI自主生成</h4>
+                                    <p>若完全由AI自主生成且无人工干预,多被视为公共领域内容或平台所有</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4 style="color: var(--neon-yellow);">探索阶段</h4>
+                                    <p>一些国家(如日本、英国)正在尝试将AI生成音乐纳入特定版权框架,但仍处探索阶段</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-pink" style="text-align: center;">未来趋势</h4>
+                                <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 15px;">
+                                    AI音乐的发展迫使行业重新思考"创作"的定义。
+                                </p>
+                                <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 10px;">
+                                    未来的版权体系可能会从"作品归属"<strong class="neon-text-cyan">转向</strong>"创作过程归属",
+                                </p>
+                                <p style="font-size: 1.2rem; line-height: 1.8; margin-top: 10px;">
+                                    即:谁设计了提示词、谁主导了生成流程,谁就享有主要署名权。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、AI音乐的概念与发展</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">（一）AI音乐的定义</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">（二）AI音乐是怎么"写歌"的</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">（三）起源与发展历程</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">（四）普及化革命</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">（五）新媒体音乐引擎</button>
+                    <button class="nav-item" onclick="courseScrollToSection(6)">二、AI音乐工具生态</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">（一）国内平台概览</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">（二）国际平台概览</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">（三）为什么选择Suno</button>
+                    <button class="nav-item" onclick="courseScrollToSection(9)">三、产业影响与未来趋势</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">（一）对音乐人的冲击</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">（二）版权与原创争议</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">检验学习成果</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 单项选择题 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 单项选择题</h2>
+
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4 class="neon-text-cyan">1. 下列哪一项最能体现AI音乐与传统作曲方式的根本区别?</h4>
+                                <div style="margin-top: 15px; margin-left: 20px;">
+                                    <p>A. AI音乐使用电子乐器进行创作</p>
+                                    <p>B. AI音乐通过算法从文字或数据生成音乐</p>
+                                    <p>C. AI音乐依赖人工灵感与经验</p>
+                                    <p>D. AI音乐只能创作电子风格作品</p>
+                                </div>
+                                <div class="highlight-box" style="margin-top: 15px; background: rgba(6, 182, 212, 0.15);">
+                                    <p><strong class="neon-text-cyan">正确答案:B</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4 class="neon-text-purple">2. 在AI音乐生成的技术流程中,"声码器(Vocoder)"的主要作用是:</h4>
+                                <div style="margin-top: 15px; margin-left: 20px;">
+                                    <p>A. 让AI识别用户输入的提示词</p>
+                                    <p>B. 将数字信号转化为可听见的声音</p>
+                                    <p>C. 调整歌曲的节奏与旋律</p>
+                                    <p>D. 自动生成歌词</p>
+                                </div>
+                                <div class="highlight-box" style="margin-top: 15px; background: rgba(168, 85, 247, 0.15);">
+                                    <p><strong class="neon-text-purple">正确答案:B</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4 class="neon-text-pink">3. 相较于其他AI音乐工具,Suno的最大优势在于:</h4>
+                                <div style="margin-top: 15px; margin-left: 20px;">
+                                    <p>A. 可以离线运行,无需网络连接</p>
+                                    <p>B. 能自动生成乐谱文件供打印</p>
+                                    <p>C. 支持用自然语言控制音乐生成过程</p>
+                                    <p>D. 只适用于专业音乐制作人</p>
+                                </div>
+                                <div class="highlight-box" style="margin-top: 15px; background: rgba(244, 63, 94, 0.15);">
+                                    <p><strong class="neon-text-pink">正确答案:C</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 判断题 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✅ 判断题</h2>
+
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4 class="neon-text-cyan">4. AI音乐完全可以取代人类音乐创作者,不再需要人工参与。</h4>
+                                <div class="highlight-box" style="margin-top: 15px; background: rgba(244, 63, 94, 0.15);">
+                                    <p><strong class="neon-text-pink">正确答案:错误</strong></p>
+                                    <p style="margin-top: 10px; font-style: italic;">说明:AI能高效生成音乐,但仍需要人类进行艺术判断与情感表达。</p>
+                                </div>
+                            </div>
+
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4 class="neon-text-purple">5. 在当前法律环境下,AI自动生成的音乐作品,其版权归属问题尚无统一国际标准。</h4>
+                                <div class="highlight-box" style="margin-top: 15px; background: rgba(6, 182, 212, 0.15);">
+                                    <p><strong class="neon-text-cyan">正确答案:正确</strong></p>
+                                    <p style="margin-top: 10px; font-style: italic;">说明:不同国家法规差异较大,多数仍在讨论与制定中。</p>
+                                </div>
+                            </div>
+
+                            <div class="footer" style="margin-top: 60px;">
+                                <p>© 2024 AI音乐教学 | 赛博朋克风格界面</p>
+                                <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
