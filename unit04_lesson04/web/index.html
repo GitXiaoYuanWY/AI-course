@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>从0-1带你制作一个AI视频 | AI视频创作实战教程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第四单元:AI视频创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>4. 从0-1带你制作一个AI视频</h1>
+                    <p class="subtitle">掌握AI视频创作核心技能 | 提示词模板与角色系统实战</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan">一、课程回顾</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                前两节课程分别介绍了 <strong class="neon-text-pink">AI视频创作的基本概念与流程</strong>，以及 <strong class="neon-text-purple">提示词与脚本、分镜、文案的编写技巧</strong>。学生已经掌握了如何使用提示词表达画面意图，如何通过结构化的脚本控制镜头表现，以及如何运用镜头语言、光影与氛围等要素让AI视频生成更加符合视觉叙事逻辑。
+                            </p>
+
+                            <div class="highlight-box">
+                                <h4 class="neon-text-cyan">实际操作中存在的问题：</h4>
+                                <ul>
+                                    <li><strong>描述不精确</strong> —— 如果提示词表述不清晰，AI模型会生成与预期不符的画面</li>
+                                    <li><strong>操作繁琐</strong> —— 每个镜头都需手动编写细节，如动作、角度、光线、景深等</li>
+                                    <li><strong>主体不统一</strong> —— 在多镜头组合中，不同分镜的角色或主体可能出现差异，影响成片一致性</li>
+                                </ul>
+                            </div>
+
+                            <div class="highlight-box" style="border-left-color: var(--neon-purple); background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.15));">
+                                <h4 class="neon-text-purple">💡 因此，本课程将进入AI视频创作的高级阶段——批量化与系统化的生成控制</h4>
+                                <p style="font-size: 1.2rem; margin-top: 15px;">学习重点在于：</p>
+                                <ul style="margin-top: 10px;">
+                                    <li>利用参考图提升视觉一致性与内容精度</li>
+                                    <li>使用提示词模板快速生成分镜与脚本</li>
+                                    <li>通过角色系统维持主角造型与性格的统一</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">二、学习目标</h3>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-code neon-text-cyan"></i>
+                                    <h4>掌握CGML语言</h4>
+                                    <p>学会运用CGML（电影生成标记语言）描述视频结构与镜头逻辑</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-user-circle neon-text-purple"></i>
+                                    <h4>角色系统运用</h4>
+                                    <p>理解并熟练使用Sora2角色系统以维持角色一致性</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-image neon-text-pink"></i>
+                                    <h4>参考图使用</h4>
+                                    <p>学会利用参考图提升视觉一致性与内容精度</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 AI视频创作的核心技术与实战方法</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 主标题 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎬 一、使用提示词模板与图片快速生成AI视频</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: （一）参考图与视觉输入的重要性 - 完整内容 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（一）参考图与视觉输入的重要性</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>参考图定义</h4>
+                                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                                        在AI视频生成中，<strong class="neon-text-cyan">"参考图"（Reference Image）</strong>是用于指导视觉风格与构图方向的核心输入之一。
+                                    </p>
+                                    <p style="margin-top: 15px;">
+                                        它相当于<strong class="neon-text-purple">"视觉样本"</strong>，帮助模型理解场景、主体造型、色彩倾向等元素，使生成的画面更接近设计目标。在Sora2等AI视频平台中，参考图的输入形式通常为一张或多张图像文件。模型会分析其内容特征，并将其与提示词信息融合，生成具有更高一致性和视觉可信度的动态画面。
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 30px;">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>参考图的功能</h4>
+
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>功能类别</th>
+                                                    <th>说明</th>
+                                                    <th>示例</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>造型一致性</strong></td>
+                                                    <td>保证人物或动物在不同镜头中的外观保持稳定</td>
+                                                    <td>同一角色在多个镜头中服装、发型不变</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>风格参考</strong></td>
+                                                    <td>指导画面整体的色调、氛围或光线风格</td>
+                                                    <td>使用阳光泳池照片确定色彩风格</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>构图参考</strong></td>
+                                                    <td>帮助AI理解主体比例与背景位置</td>
+                                                    <td>提供航拍照片以维持空间布局</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>动作参考</strong></td>
+                                                    <td>提供运动姿态或关键帧方向</td>
+                                                    <td>例如狗跳入水的瞬间照片</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: （二）提示词模板的核心结构 - 完整内容 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）提示词模板的核心结构</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>CGML提示词定义</h4>
+                                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                                        AI视频生成的关键在于"语言如何转化为视觉"。为了实现精确控制，需要将自然语言提示词转化为可解析的结构化描述语言。
+                                    </p>
+                                    <div class="highlight-box" style="margin-top: 20px;">
+                                        <p style="font-size: 1.3rem;">
+                                            <strong class="neon-text-cyan">"电影生成标记语言"（Cinematic Generator Markup Language, CGML）</strong>正是为此目的而设计的格式。它类似于电影分镜脚本的机器语言版本，通过规范化语法让AI理解镜头顺序、时长、动作、光影等要素。
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 40px;">
+                                <h4 class="neon-text-purple">CGML格式核心要素</h4>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-film neon-text-cyan"></i> 角色与定位</h4>
+                                    <p>你是一名专业的<strong>电影式AI视频生成提示词架构师</strong>。你的核心职能是将用户模糊的创意想法，转化为结构严谨、描述精确、可直接用于驱动专业级AI视频生成模型的提示词。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-project-diagram neon-text-purple"></i> 核心工作流程</h4>
+                                    <ul>
+                                        <li><strong>需求澄清：</strong>主动与用户对话，挖掘并确认其创意中的关键细节</li>
+                                        <li><strong>结构化构建：</strong>将确认后的信息，系统地填充到标准的CGML框架中</li>
+                                        <li><strong>最终输出：</strong>生成完整的CGML提示词，并可选择性地附上"导演阐述"</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-code neon-text-pink"></i> CGML输出格式规范</h4>
+                                    <pre style="background: rgba(10, 10, 10, 0.8); padding: 20px; border-radius: 10px; border: 1px solid rgba(6, 182, 212, 0.3); overflow-x: auto; color: var(--cyber-dark-100); font-size: 0.95rem; line-height: 1.6;">
+[项目标题] — [场景描述] ## Structure (total [总时长]s; content [内容时长]s + [黑场时长]s blackout; mode: [模式]; tempo_factor: [节奏因子])
+
+- [ #1 [镜头时长]s ] ACTION:{描述场景内发生的具体动作} ; CAMERA:{描述摄像机的运动、角度和构图} — [[STATIC/DYNAMIC]]
+| SUBJECT:{描述主体（如角色）的外观、服装、装备及状态}
+| SCENE:{描述环境、背景及场地细节}
+| LIGHT:{描述灯光类型、方向、性质、主次光源}
+| GRADE:{描述色彩风格、对比度、饱和度、滤镜等后期处理}
+| CAM:{描述镜头焦距、景深、镜头类型及任何技术细节}
+| AUDIO:{描述环境音、音效、音乐氛围}
+                                    </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: （三）案例：边牧犬的夏日泳池 - 完整内容 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）案例：边牧犬的夏日泳池</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>提供参考图</h4>
+                                    <p>在AI视频生成中，参考图的作用是让AI理解视觉风格与主体特征。在本案例中，选用一张<strong class="neon-text-cyan">边境牧羊犬叼着橙色球的照片</strong>作为参考图。</p>
+
+                                    <div class="image-container-real" style="margin-top: 20px; text-align: center;">
+                                        <img src="images/1addeb49579d1a1fff72592b76ae5373.png" alt="参考图：边境牧羊犬叼着橙色球" style="max-width: 70%; height: auto; border-radius: 15px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);">
+                                        <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.8; color: var(--neon-cyan);">参考图：边境牧羊犬叼着橙色球</p>
+                                    </div>
+
+                                    <div style="margin-top: 20px;">
+                                        <p><strong class="neon-text-purple">这张图帮助AI确定：</strong></p>
+                                        <ul style="margin-top: 10px;">
+                                            <li>主体外观：黑白毛发、橙色球</li>
+                                            <li>场景色调：蓝色泳池、水花反光</li>
+                                            <li>光线特征：阳光直射、暖调高光</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 30px;">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>输入视频需求</h4>
+                                    <div class="content-card" style="background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.4);">
+                                        <pre style="margin: 0; font-size: 1.1rem; line-height: 1.8; color: var(--cyber-dark-100);">
+核心概念：一直叼着橙色球的边牧犬在泳池里玩水
+主角：边牧犬
+动作：追逐、嬉戏
+风格：活泼、快乐
+特别要求：有特写
+                                        </pre>
+                                    </div>
+                                    <p style="margin-top: 15px;">这一部分是视频生成的要求，帮助AI明确故事主题和镜头情绪基调。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 30px;">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>生成提示词（CGML格式）</h4>
+                                    <p>通过提示词模板系统自动生成以下结构化脚本：</p>
+
+                                    <div style="max-height: 500px; overflow-y: auto; margin-top: 15px; border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 10px;">
+                                        <pre style="background: rgba(10, 10, 10, 0.9); padding: 20px; margin: 0; color: var(--cyber-dark-100); font-size: 0.9rem; line-height: 1.6;">
+[项目标题] — 边牧犬的夏日泳池 ## Structure (total 12s; content 12s + 0s blackout; mode: cinematic_realism; tempo_factor: 1.0)
+
+[ #1 4s ] ACTION:{一只叼着橙色球的边牧犬跃入泳池，水花飞溅，阳光下形成金色波光。} ; CAMERA:{航拍俯视镜头，缓慢推近，展示水面纹理与犬的动态轨迹。} — [DYNAMIC]
+| SUBJECT:{边境牧羊犬，黑白相间毛色，毛发被水打湿，嘴叼鲜艳橙色球，神态兴奋、专注。}
+| SCENE:{户外泳池，水面清澈，四周环绕棕榈与木质平台，背景模糊的夏日庭院。}
+| LIGHT:{自然光，强烈日照，阳光反射在水面形成高光闪烁。}
+| GRADE:{高饱和度色彩，明亮蓝绿调，色温偏暖，营造夏日清爽感。}
+| CAM:{无人机镜头，焦距约35mm，广角轻微畸变增强动感。}
+| AUDIO:{清脆水花声与犬的呼吸声，背景为轻快的夏日音乐节奏。}
+
+[ #2 5s ] ACTION:{边牧在水中扑腾、咬住橙色球并抬头甩动，水珠飞溅四散。} ; CAMERA:{从中景缓慢切换至低角度仰拍，随后短暂推镜至特写，捕捉水珠飞舞瞬间。} — [DYNAMIC]
+| SUBJECT:{毛发滴水的边牧，表情兴奋，橙球在嘴中轻微滚动，舌头微露。}
+| SCENE:{泳池中央区域，水波层叠，阳光穿透波纹。}
+| LIGHT:{逆光拍摄，阳光从后上方照射，形成金色边缘光。}
+| GRADE:{略带镜头炫光与柔焦效果，增强梦幻质感。}
+| CAM:{使用中长焦镜头（约85mm），浅景深突出主体，慢速快门捕捉水滴轨迹。}
+| AUDIO:{强化水声与犬吠回响，配以轻节奏鼓点背景。}
+
+[ #3 3s ] ACTION:{边牧叼球回游至池边，抬头望向镜头，眼神充满期待与快乐。} ; CAMERA:{手持式近景镜头稳定推进，定格在犬的脸部特写。} — [STATIC]
+| SUBJECT:{边牧面部特写，湿润毛发与橙球形成强烈对比，眼中倒映阳光。}
+| SCENE:{背景虚化，仅留浅蓝水面与微光反射。}
+| LIGHT:{正面柔光与微微闪动的反射光结合，突出毛发细节。}
+| GRADE:{高对比、暖调滤镜，强调阳光质感。}
+| CAM:{手持镜头，焦距50mm，浅景深对焦于犬眼与橙球。}
+| AUDIO:{环境声逐渐淡出，仅保留轻音乐尾声与呼吸声。}
+                                        </pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 30px;">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>输入到Sora2中</h4>
+                                    <p>将上述提示词粘贴至 Sora2平台的文本输入框：</p>
+                                    <ul style="margin-top: 10px;">
+                                        <li>附加参考图</li>
+                                        <li>确认时长、分辨率与风格参数后点击生成</li>
+                                    </ul>
+                                    <p style="margin-top: 15px;">Sora系统会自动解析CGML格式文本，并根据参考图特征与提示词语义生成连续镜头画面。</p>
+                                </div>
+                            </div>
+
+                            <div class="image-container-real" style="margin-top: 30px; text-align: center;">
+                                <img src="images/image.png" alt="AI生成结果" style="max-width: 70%; height: auto; border-radius: 15px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);">
+                                <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.8; color: var(--neon-cyan);">AI生成结果</p>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px; border-left-color: var(--neon-cyan);">
+                                <h4 class="neon-text-cyan">✅ 生成结果特点：</h4>
+                                <ul style="margin-top: 10px;">
+                                    <li><strong>主体一致：</strong>边牧犬在所有镜头中形象稳定</li>
+                                    <li><strong>动作流畅：</strong>跳跃、水花、特写衔接自然</li>
+                                    <li><strong>光影真实：</strong>阳光高光与反射层次清晰</li>
+                                    <li><strong>氛围匹配：</strong>整体风格轻快、活泼，符合"夏日泳池"主题</li>
+                                </ul>
+                                <p style="margin-top: 15px; font-size: 1.1rem;">
+                                    从生成结果可见，使用模板与参考图协同的方法能够显著提升AI视频的专业度与完成度。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 二、Sora2角色系统 - 标题 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">👤 二、Sora2角色创建与一致性控制</h2>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: （一）Sora2角色系统概述 - 完整内容 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（一）Sora2角色系统概述</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>角色功能定义</h4>
+                                    <p style="font-size: 1.2rem; line-height: 1.8;">
+                                        Sora2是基于文本的视频生成平台，其角色系统用于实现<strong class="neon-text-cyan">视觉与性格的一致性管理</strong>。在AI生成多镜头视频时，角色一致性是决定成片质量的关键因素。
+                                    </p>
+
+                                    <div class="image-container-real" style="margin-top: 20px; text-align: center;">
+                                        <img src="images/image 1.png" alt="Sora2角色系统界面" style="max-width: 70%; height: auto; border-radius: 15px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 20px rgba(6, 182, 212, 0.15);">
+                                        <p style="font-size: 0.9rem; margin-top: 10px; opacity: 0.8; color: var(--neon-cyan);">Sora2角色系统界面</p>
+                                    </div>
+
+                                    <div class="grid-2" style="margin-top: 30px;">
+                                        <div class="content-card">
+                                            <h4><i class="fas fa-eye neon-text-cyan"></i> 视觉一致性</h4>
+                                            <p>确保角色在不同镜头或项目中保持相同面部特征与服饰风格</p>
+                                        </div>
+
+                                        <div class="content-card">
+                                            <h4><i class="fas fa-running neon-text-purple"></i> 动作一致性</h4>
+                                            <p>AI可根据角色视频学习其动作节奏，使其行为更符合人设</p>
+                                        </div>
+
+                                        <div class="content-card">
+                                            <h4><i class="fas fa-smile neon-text-pink"></i> 性格呈现</h4>
+                                            <p>通过描述字段，系统可在语义层面保持性格逻辑一致</p>
+                                        </div>
+
+                                        <div class="content-card">
+                                            <h4><i class="fas fa-rocket" style="color: var(--neon-yellow);"></i> 制作效率提升</h4>
+                                            <p>角色模板可复用于多个视频项目，减少重复定义</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 30px;">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>角色功能应用场景</h4>
+                                    <p>Sora2允许在同一项目中同时调用<strong class="neon-text-cyan">多个角色（最多3个）</strong>。系统会根据提示词内容与镜头结构自动分配出镜角色。</p>
+
+                                    <div class="highlight-box" style="margin-top: 20px;">
+                                        <h4 class="neon-text-purple">📌 特别适合：</h4>
+                                        <ul style="margin-top: 10px;">
+                                            <li><strong>对话类视频</strong>（如访谈、剧情）</li>
+                                            <li><strong>多人物场景</strong>（如团队活动、舞蹈片段）</li>
+                                        </ul>
+                                        <p style="margin-top: 15px;">若需确保角色不混淆，可在提示词中明确标注各自的行动与视角。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: （二）角色创建流程详解 - 完整内容 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）角色创建流程详解</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>视频素材准备</h4>
+                                    <ul>
+                                        <li>输入文件必须为<strong class="neon-text-cyan">视频格式（≥3秒）</strong>，图片不被系统接受</li>
+                                        <li>推荐使用动画片段或实拍片段中的清晰镜头</li>
+                                        <li>禁止使用360°环绕视频，以防系统识别失败</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>上传与命名</h4>
+                                    <ul>
+                                        <li>打开主页，点击<strong class="neon-text-purple">创建角色</strong>，上传你准备的视频素材</li>
+                                        <li>成功上传后进入角色描述页面</li>
+                                        <li>角色命名可自定义，避免使用已有知名名称，以防冲突</li>
+                                    </ul>
+
+                                    <div class="image-grid-4" style="margin-top: 20px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px;">
+                                        <div class="image-item" style="text-align: center;">
+                                            <img src="images/image 2.png" alt="创建角色入口" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 15px rgba(6, 182, 212, 0.15);">
+                                            <p style="font-size: 0.85rem; margin-top: 8px; color: var(--neon-cyan);">步骤1：点击创建角色</p>
+                                        </div>
+                                        <div class="image-item" style="text-align: center;">
+                                            <img src="images/image 3.png" alt="上传视频素材" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 15px rgba(6, 182, 212, 0.15);">
+                                            <p style="font-size: 0.85rem; margin-top: 8px; color: var(--neon-cyan);">步骤2：上传视频素材</p>
+                                        </div>
+                                        <div class="image-item" style="text-align: center;">
+                                            <img src="images/image 4.png" alt="填写角色信息" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 15px rgba(6, 182, 212, 0.15);">
+                                            <p style="font-size: 0.85rem; margin-top: 8px; color: var(--neon-cyan);">步骤3：填写角色信息</p>
+                                        </div>
+                                        <div class="image-item" style="text-align: center;">
+                                            <img src="images/image 5.png" alt="完成角色创建" style="width: 100%; height: auto; border-radius: 10px; border: 1px solid rgba(6, 182, 212, 0.3); box-shadow: 0 4px 15px rgba(6, 182, 212, 0.15);">
+                                            <p style="font-size: 0.85rem; margin-top: 8px; color: var(--neon-cyan);">步骤4：完成创建</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>角色描述填写</h4>
+                                    <ul>
+                                        <li>默认描述即可满足大多数场景</li>
+                                        <li>若需增强一致性，可补充性格、语气或行为特征</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>保存与调用</h4>
+                                    <ul>
+                                        <li>保存后角色即创建完成</li>
+                                        <li>可通过<strong class="neon-text-pink">"@角色名"</strong>方式直接调用</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: （三）常见问题与解决方法 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）常见问题与解决方法</h3>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>问题类型</th>
+                                            <th>可能原因</th>
+                                            <th>解决方法</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>角色上传失败</strong></td>
+                                            <td>视频太短或360°视频</td>
+                                            <td>使用≥3秒的固定视角片段</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>角色生成崩坏</strong></td>
+                                            <td>3D素材比例不符</td>
+                                            <td>采用实拍或2D片段</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>角色调用失败</strong></td>
+                                            <td>名称错误或缓存未刷新</td>
+                                            <td>手动输入名称并刷新页面</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>图像失真</strong></td>
+                                            <td>光线或背景复杂</td>
+                                            <td>使用干净背景、均匀光线素材</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    <strong class="neon-text-cyan">💡 提示：</strong>角色系统的有效运用，可以显著提升AI视频的连续性与专业度，尤其在叙事型作品中尤为重要。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 一、提示词模板与图片 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、提示词模板与图片
+                    </button>
+                    <!-- 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （一）参考图的重要性
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （二）提示词模板结构
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （三）案例：边牧犬
+                    </button>
+
+                    <!-- Section 5: 二、Sora2角色系统 -->
+                    <button class="nav-item" onclick="courseScrollToSection(5)">
+                        二、Sora2角色系统
+                    </button>
+                    <!-- 子标题 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        （一）角色系统概述
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        （二）角色创建流程
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">
+                        （三）常见问题
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 板块三：课后实战任务</h1>
+                    <p class="subtitle">创建角色并使用CGML生成完整AI视频</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">一、任务名称</h2>
+                                <p style="font-size: 1.4rem; margin-top: 20px; color: var(--cyber-dark-100); text-align: center; line-height: 1.8;">
+                                    创建一个喜欢的角色并生成一版提示词，<br>使用CGML提示词模板生成完整AI视频。
+                                </p>
+                            </div>
+
+                            <h3 class="neon-text-cyan" style="margin-top: 40px;">二、操作步骤与要求</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>角色创建阶段</h4>
+                                    <ul>
+                                        <li>录制或选取一段清晰的3秒以上视频</li>
+                                        <li>上传至Sora2并命名角色</li>
+                                        <li>填写角色描述，保持默认即可</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>提示词生成阶段</h4>
+                                    <ul>
+                                        <li>使用CGML模板输入创意概念</li>
+                                        <li>明确主体、动作、氛围与风格</li>
+                                        <li>若需统一风格，可引用前述光影类型</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>生成与验证阶段</h4>
+                                    <ul>
+                                        <li>将提示词输入Sora2</li>
+                                        <li>调整镜头顺序与时长以获得最佳节奏</li>
+                                        <li>检查角色一致性与画面细节</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>成果展示阶段</h4>
+                                    <ul>
+                                        <li>保存生成视频</li>
+                                        <li>对比角色与脚本一致性效果</li>
+                                        <li>分析光影与氛围是否匹配预期</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h3 class="neon-text-purple" style="margin-top: 40px;">三、评估要点</h3>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>评估维度</th>
+                                            <th>内容说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>脚本完整性</strong></td>
+                                            <td>提示词结构符合CGML标准，字段齐全</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>角色一致性</strong></td>
+                                            <td>同一角色在多镜头中形象统一</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>光影与氛围</strong></td>
+                                            <td>画面风格与主题匹配</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>动作自然度</strong></td>
+                                            <td>镜头衔接平滑、动作连贯</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>创意表达</strong></td>
+                                            <td>场景具备故事感或视觉冲击力</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI视频创作实战课程 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
