@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第九课：网页完善、优化与部署 | AI网页设计课程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>9.网页完善、优化与部署</h1>
+                    <p class="subtitle">从本地到线上，让你的作品集被世界看见</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 一、课程回顾</h2>
+                            <div class="content-grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-sitemap neon-text-cyan"></i>
+                                    <h4>确立网页结构</h4>
+                                    <p>建立了作品集的典型结构：首页/关于我/项目展示/联系方式等</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-layer-group neon-text-purple"></i>
+                                    <h4>整理项目资料</h4>
+                                    <p>将真实项目按结构化方式整理，让AI生成专业的项目卡片</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-magic neon-text-pink"></i>
+                                    <h4>提示词控制</h4>
+                                    <p>掌握了通过提示词控制模块顺序与个性化风格的方法</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 二、学习目标</h2>
+                            <ol class="target-list">
+                                <li>掌握发布前的完善流程与检查清单</li>
+                                <li>了解常见静态托管与部署方式</li>
+                                <li>能使用GitHub Pages将静态网页上线</li>
+                                <li>学会用AI做代码级优化</li>
+                                <li>完成一个可访问的示范页面</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 三、课程目录</h2>
+                            <ol class="clickable-list">
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">作品集网页的完善流程与检查清单</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">部署方式概览：GitHub Pages / Netlify / Vercel</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">GitHub Pages 部署实操（从零开始）</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">AI 辅助网页优化与结构整理</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">最终网页上线展示与常见错误排查</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习网页完善与部署的核心知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 一、完善流程 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 一、网页部署前需要检查什么？</h2>
+
+                            <!-- 检查清单四大维度 -->
+                            <div class="check-grid">
+                                <!-- 1. 视觉一致性 -->
+                                <div class="check-card">
+                                    <div class="check-icon">
+                                        <i class="fas fa-palette"></i>
+                                    </div>
+                                    <h3>视觉一致性</h3>
+                                    <ul>
+                                        <li>字体体系统一（标题/正文字号级差、字重一致）</li>
+                                        <li>主辅色与中性色统一（按钮、链接、标签颜色与状态一致）</li>
+                                        <li>间距刻度统一（如 8/16/24/32）</li>
+                                        <li>卡片圆角、阴影风格一致</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 2. 内容准确性 -->
+                                <div class="check-card">
+                                    <div class="check-icon">
+                                        <i class="fas fa-check-circle"></i>
+                                    </div>
+                                    <h3>内容准确性</h3>
+                                    <ul>
+                                        <li>个人简介 100–150 字，信息密度明确</li>
+                                        <li>项目卡片标题 ≤12 字</li>
+                                        <li>项目摘要 40–60 字</li>
+                                        <li>技能标签 3–6 个</li>
+                                        <li>链接/按钮文案清晰明确</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 3. 结构完整性 -->
+                                <div class="check-card">
+                                    <div class="check-icon">
+                                        <i class="fas fa-sitemap"></i>
+                                    </div>
+                                    <h3>结构完整性</h3>
+                                    <ul>
+                                        <li>导航跳转正常（锚点 id 是否对应）</li>
+                                        <li>模块顺序符合预期</li>
+                                        <li>语义化标签正确</li>
+                                        <li>Hero → About → Projects → Contact → Footer</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 4. 移动端适配 -->
+                                <div class="check-card">
+                                    <div class="check-icon">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </div>
+                                    <h3>移动端基础适配</h3>
+                                    <ul>
+                                        <li>viewport 元标签已添加</li>
+                                        <li>断点下网格列数与留白合理</li>
+                                        <li>图片不溢出（max-width:100%）</li>
+                                        <li>文字大小适合触屏操作</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 检查清单详细版 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📋 详细检查清单</h2>
+
+                            <div class="checklist-container">
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>HTML元信息</strong>：&lt;title&gt; 与 &lt;meta name="description"&gt; 是否编写
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>网站图标</strong>：favicon 是否配置
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>页面顺序</strong>：About → Skills → Projects → Contact 是否按规划呈现
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>链接可用性</strong>：所有按钮/链接可用（外链新开窗 target="_blank" rel="noopener"）
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>图片资源</strong>：路径正确、大小适中（建议 120–200KB 级别）
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>内容完整性</strong>：无错别字、空白模块、占位文案未替换
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>颜色对比</strong>：标题/正文与背景对比度≥4.5:1
+                                    </div>
+                                </div>
+                                <div class="checklist-item">
+                                    <div class="checkbox">✓</div>
+                                    <div class="checklist-content">
+                                        <strong>代码组织</strong>：使用CSS变量/统一间距刻度，无重复样式
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 为什么要部署 -->
+            <section class="section-scroll-item compact-section" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🚀 二、为什么要部署？</h2>
+
+                            <div class="reason-grid">
+                                <div class="reason-card">
+                                    <div class="reason-number">1</div>
+                                    <h3>获得可分享的网址</h3>
+                                    <p>从本地文件变成真实URL，HR和面试官可以随时查看，无需下载文件</p>
+                                </div>
+                                <div class="reason-card">
+                                    <div class="reason-number">2</div>
+                                    <h3>形成线上作品</h3>
+                                    <p>可持续迭代更新，展示你的成长轨迹和技术进步</p>
+                                </div>
+                                <div class="reason-card">
+                                    <div class="reason-number">3</div>
+                                    <h3>进入发布阶段</h3>
+                                    <p>与"本地文件"阶段区分开，真正进入"对外发布"的专业阶段</p>
+                                </div>
+                            </div>
+
+                            <!-- SVG: 本地vs线上对比图 -->
+                            <div class="comparison-diagram">
+                                <svg viewBox="0 0 600 300" class="comparison-svg">
+                                    <!-- 本地文件 -->
+                                    <g class="local-side">
+                                        <rect x="20" y="80" width="240" height="140" rx="10" class="comp-box local-box"/>
+                                        <text x="140" y="110" class="comp-title">本地文件</text>
+                                        <text x="140" y="140" class="comp-text">❌ 只能自己看</text>
+                                        <text x="140" y="165" class="comp-text">❌ 需要打包发送</text>
+                                        <text x="140" y="190" class="comp-text">❌ 难以分享</text>
+                                    </g>
+
+                                    <!-- VS -->
+                                    <text x="300" y="155" class="vs-text">VS</text>
+
+                                    <!-- 线上网站 -->
+                                    <g class="online-side">
+                                        <rect x="340" y="80" width="240" height="140" rx="10" class="comp-box online-box"/>
+                                        <text x="460" y="110" class="comp-title">线上网站</text>
+                                        <text x="460" y="140" class="comp-text">✓ 任何人可访问</text>
+                                        <text x="460" y="165" class="comp-text">✓ 一键分享链接</text>
+                                        <text x="460" y="190" class="comp-text">✓ 持续迭代</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GitHub Pages部署 - 标题 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">💻 三、GitHub Pages 部署实操</h2>
+                            <p class="intro-text">从零开始，手把手教你将网页部署到GitHub Pages</p>
+
+                            <!-- 部署步骤总览图 -->
+                            <div class="deployment-steps-diagram">
+                                <svg viewBox="0 0 800 400" class="steps-svg">
+                                    <!-- 步骤1 -->
+                                    <g class="step-group">
+                                        <circle cx="100" cy="100" r="50" class="step-circle step-1"/>
+                                        <text x="100" y="95" class="step-num">1</text>
+                                        <text x="100" y="115" class="step-label-sm">注册</text>
+                                        <text x="100" y="180" class="step-desc">注册GitHub</text>
+                                        <text x="100" y="200" class="step-desc">创建账户</text>
+                                    </g>
+
+                                    <!-- 箭头1 -->
+                                    <path d="M 150 100 L 230 100" class="step-arrow"/>
+                                    <polygon points="230,100 225,95 225,105" class="step-arrow-head"/>
+
+                                    <!-- 步骤2 -->
+                                    <g class="step-group">
+                                        <circle cx="280" cy="100" r="50" class="step-circle step-2"/>
+                                        <text x="280" y="95" class="step-num">2</text>
+                                        <text x="280" y="115" class="step-label-sm">仓库</text>
+                                        <text x="280" y="180" class="step-desc">创建仓库</text>
+                                        <text x="280" y="200" class="step-desc">设置公开</text>
+                                    </g>
+
+                                    <!-- 箭头2 -->
+                                    <path d="M 330 100 L 410 100" class="step-arrow"/>
+                                    <polygon points="410,100 405,95 405,105" class="step-arrow-head"/>
+
+                                    <!-- 步骤3 -->
+                                    <g class="step-group">
+                                        <circle cx="460" cy="100" r="50" class="step-circle step-3"/>
+                                        <text x="460" y="95" class="step-num">3</text>
+                                        <text x="460" y="115" class="step-label-sm">上传</text>
+                                        <text x="460" y="180" class="step-desc">上传文件</text>
+                                        <text x="460" y="200" class="step-desc">保持结构</text>
+                                    </g>
+
+                                    <!-- 箭头3 -->
+                                    <path d="M 510 100 L 590 100" class="step-arrow"/>
+                                    <polygon points="590,100 585,95 585,105" class="step-arrow-head"/>
+
+                                    <!-- 步骤4 -->
+                                    <g class="step-group">
+                                        <circle cx="640" cy="100" r="50" class="step-circle step-4"/>
+                                        <text x="640" y="95" class="step-num">4</text>
+                                        <text x="640" y="115" class="step-label-sm">启用</text>
+                                        <text x="640" y="180" class="step-desc">启用Pages</text>
+                                        <text x="640" y="200" class="step-desc">获得链接</text>
+                                    </g>
+
+                                    <!-- 底部箭头弯回 -->
+                                    <path d="M 640 160 L 640 280 L 100 280 L 100 160" class="cycle-arrow"/>
+                                    <text x="370" y="300" class="cycle-text">持续更新迭代</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 步骤1: 注册GitHub -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-header">
+                                <div class="step-badge">步骤 1</div>
+                                <h3>注册 GitHub 账户</h3>
+                            </div>
+
+                            <div class="step-content-box">
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">1</span>
+                                        <p>访问 <a href="https://github.com/" target="_blank" rel="noopener">github.com</a></p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_访问 github.com.png" alt="访问GitHub官网" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">2</span>
+                                        <p>点击右上角"Sign up"创建账号（邮箱 + 密码）</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_点击右上角创建账号.png" alt="点击Sign up注册" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">3</span>
+                                        <p>验证邮箱后登录，进入主页</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_登录后进入主页.png" alt="GitHub主页界面" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="tip-box">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <p><strong>提示：</strong>用户名建议使用专业化的名称，因为它会出现在你的网页URL中</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 步骤2: 创建仓库 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-header">
+                                <div class="step-badge">步骤 2</div>
+                                <h3>创建新仓库（Repository）</h3>
+                            </div>
+
+                            <div class="step-content-box">
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">1</span>
+                                        <p>点击右上角 "+" → New repository</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_创建一个新仓库_点击右上角New repository.png" alt="点击New repository" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">2</span>
+                                        <p>填写仓库名称（建议：my-portfolio）</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">3</span>
+                                        <p>选择 <strong class="neon-text-pink">Public</strong>（必须公开，否则无法部署）</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">4</span>
+                                        <p>点击 "Create repository" 创建仓库</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_创建一个新仓库_选择选项.png" alt="填写仓库信息并选择Public" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="highlight-box">
+                                    <strong>💡 什么是仓库？</strong>
+                                    <p>仓库相当于一个"网盘文件夹"，部署就从这里开始。它存储你的所有网页文件，并提供版本管理功能。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 步骤3: 上传文件 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-header">
+                                <div class="step-badge">步骤 3</div>
+                                <h3>上传网页文件</h3>
+                            </div>
+
+                            <div class="step-content-box">
+                                <h4 class="neon-text-cyan">1. 准备文件</h4>
+                                <p>在部署前，需要把网页相关的所有文件整理成一个清晰的文件夹结构：</p>
+
+                                <!-- 文件结构树状图 -->
+                                <div class="file-tree">
+                                    <div class="file-tree-item">
+                                        <i class="fas fa-folder folder-icon"></i>
+                                        <span>my-portfolio/</span>
+                                    </div>
+                                    <div class="file-tree-item level-1">
+                                        <i class="fas fa-file-code file-icon"></i>
+                                        <span>index.html</span>
+                                    </div>
+                                    <div class="file-tree-item level-1">
+                                        <i class="fas fa-folder folder-icon"></i>
+                                        <span>assets/</span>
+                                    </div>
+                                    <div class="file-tree-item level-2">
+                                        <i class="fas fa-folder folder-icon"></i>
+                                        <span>css/</span>
+                                    </div>
+                                    <div class="file-tree-item level-3">
+                                        <i class="fas fa-file-code file-icon"></i>
+                                        <span>style.css</span>
+                                    </div>
+                                    <div class="file-tree-item level-2">
+                                        <i class="fas fa-folder folder-icon"></i>
+                                        <span>js/</span>
+                                    </div>
+                                    <div class="file-tree-item level-3">
+                                        <i class="fas fa-file-code file-icon"></i>
+                                        <span>script.js</span>
+                                    </div>
+                                    <div class="file-tree-item level-2">
+                                        <i class="fas fa-folder folder-icon"></i>
+                                        <span>img/</span>
+                                    </div>
+                                    <div class="file-tree-item level-3">
+                                        <i class="fas fa-file-image file-icon"></i>
+                                        <span>project1.jpg</span>
+                                    </div>
+                                    <div class="file-tree-item level-3">
+                                        <i class="fas fa-file-image file-icon"></i>
+                                        <span>avatar.png</span>
+                                    </div>
+                                    <div class="file-tree-item level-1">
+                                        <i class="fas fa-file file-icon"></i>
+                                        <span>favicon.ico</span>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_上传网页文件_准备文件.png" alt="实际文件结构示例" class="tutorial-screenshot">
+                                </div>
+
+                                <h4 class="neon-text-purple" style="margin-top: 30px;">2. 上传步骤</h4>
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">1</span>
+                                        <p>进入仓库页面</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">2</span>
+                                        <p>点击 "Add file" → "Upload files"</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_上传步骤_点击 Add file.png" alt="点击Add file上传文件" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">3</span>
+                                        <p>拖入所有网页文件与文件夹（保持原结构）</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_上传步骤_拖入所有网页文件与文件夹.png" alt="拖入文件和文件夹" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">4</span>
+                                        <p>下拉页面，点击 "Commit changes"</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 步骤4: 启用Pages -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="step-header">
+                                <div class="step-badge">步骤 4</div>
+                                <h3>启用 GitHub Pages</h3>
+                            </div>
+
+                            <div class="step-content-box">
+                                <h4 class="neon-text-cyan">1. 进入设置</h4>
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">1</span>
+                                        <p>打开仓库</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">2</span>
+                                        <p>点击右上角 "Settings"</p>
+                                    </div>
+                                </div>
+
+                                <h4 class="neon-text-purple" style="margin-top: 30px;">2. 启用 Pages</h4>
+                                <div class="step-instruction">
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">1</span>
+                                        <p>左侧选择 "Pages"</p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">2</span>
+                                        <p>在 Source 中选择：Branch: <strong class="neon-text-pink">main</strong></p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">3</span>
+                                        <p>Folder: <strong class="neon-text-cyan">/ (root)</strong></p>
+                                    </div>
+                                    <div class="instruction-item">
+                                        <span class="instruction-num">4</span>
+                                        <p>点击 "Save"</p>
+                                    </div>
+                                </div>
+
+                                <div class="screenshot-box">
+                                    <img src="web_image/GitHub Pages 部署实操_启用 GitHub Pages_启用 Pages.png" alt="启用GitHub Pages设置" class="tutorial-screenshot">
+                                </div>
+
+                                <div class="success-box">
+                                    <i class="fas fa-check-circle"></i>
+                                    <div>
+                                        <h4>🎉 部署成功！</h4>
+                                        <p>稍等数十秒，页面会刷新并显示：</p>
+                                        <div class="code-box">
+                                            Your site is published at:<br>
+                                            https://你的用户名.github.io/仓库名/
+                                        </div>
+                                        <div class="screenshot-box">
+                                            <img src="web_image/GitHub Pages 部署实操_启用 GitHub Pages_稍等数十秒，页面会刷新并显示.png" alt="部署成功显示链接" class="tutorial-screenshot">
+                                        </div>
+                                        <p class="tip">这就是你的网页访问链接！可以发送给HR、放在简历上、分享给他人随时访问</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 部署常见问题 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚠️ 四、部署常见问题与解决方式</h2>
+
+                            <div class="problem-accordion">
+                                <!-- 问题1 -->
+                                <div class="problem-item">
+                                    <div class="problem-header">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                        <h4>访问链接显示 404 / Not Found</h4>
+                                    </div>
+                                    <div class="problem-content">
+                                        <div class="problem-reason">
+                                            <strong>常见原因：</strong>
+                                            <ul>
+                                                <li>根目录缺少 index.html</li>
+                                                <li>部署目录不是 / (root)</li>
+                                                <li>Pages 尚未构建完成</li>
+                                            </ul>
+                                        </div>
+                                        <div class="problem-solution">
+                                            <strong>解决方式：</strong>
+                                            <ul>
+                                                <li>将首页改名为 index.html</li>
+                                                <li>Pages 设置：Branch = main / Folder = / (root)</li>
+                                                <li>等待构建完成后刷新链接</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 问题2 -->
+                                <div class="problem-item">
+                                    <div class="problem-header">
+                                        <i class="fas fa-file-image"></i>
+                                        <h4>图片不显示</h4>
+                                    </div>
+                                    <div class="problem-content">
+                                        <div class="problem-reason">
+                                            <strong>常见原因：</strong>
+                                            <ul>
+                                                <li>路径大小写不一致</li>
+                                                <li>图片未上传</li>
+                                                <li>使用了绝对路径 /assets/...</li>
+                                            </ul>
+                                        </div>
+                                        <div class="problem-solution">
+                                            <strong>解决方式：</strong>
+                                            <ul>
+                                                <li>将目录和文件名统一小写</li>
+                                                <li>使用相对路径如 ./assets/...</li>
+                                                <li>检查仓库中的真实路径</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 问题3 -->
+                                <div class="problem-item">
+                                    <div class="problem-header">
+                                        <i class="fas fa-code"></i>
+                                        <h4>CSS / JS 不生效</h4>
+                                    </div>
+                                    <div class="problem-content">
+                                        <div class="problem-reason">
+                                            <strong>常见原因：</strong>
+                                            <ul>
+                                                <li>路径错误</li>
+                                                <li>文件名拼写错误</li>
+                                                <li>浏览器缓存</li>
+                                            </ul>
+                                        </div>
+                                        <div class="problem-solution">
+                                            <strong>解决方式：</strong>
+                                            <ul>
+                                                <li>校对文件名是否完全一致</li>
+                                                <li>强制刷新（Ctrl+F5）</li>
+                                                <li>引入 ?v=1 破缓存</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 问题4 -->
+                                <div class="problem-item">
+                                    <div class="problem-header">
+                                        <i class="fas fa-mobile-alt"></i>
+                                        <h4>移动端错位 / 布局乱</h4>
+                                    </div>
+                                    <div class="problem-content">
+                                        <div class="problem-reason">
+                                            <strong>常见原因：</strong>
+                                            <ul>
+                                                <li>缺少 viewport 标签</li>
+                                                <li>图片宽度未限制</li>
+                                                <li>Flex/Grid 断点未设置</li>
+                                            </ul>
+                                        </div>
+                                        <div class="problem-solution">
+                                            <strong>解决方式：</strong>
+                                            <ul>
+                                                <li>添加 viewport 元标签</li>
+                                                <li>设置 img{max-width:100%}</li>
+                                                <li>基础断点写法：@media (max-width:768px)</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 更新网页 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔄 五、更新与修改网页文件</h2>
+
+                            <p class="intro-text">部署完成后，你可以随时更新网页内容。GitHub Pages 会在检测到新提交时自动重新构建。</p>
+
+                            <div class="update-methods">
+                                <!-- 方法1 -->
+                                <div class="update-card">
+                                    <div class="update-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </div>
+                                    <h3>方法1：直接替换文件</h3>
+                                    <div class="update-steps">
+                                        <p>1. 点击 "Add file" → "Upload files"</p>
+                                        <p>2. 拖入新版本文件</p>
+                                        <p>3. GitHub 自动识别并覆盖旧版本</p>
+                                        <p>4. 点击 "Commit changes"</p>
+                                    </div>
+                                    <div class="screenshot-box">
+                                        <img src="web_image/如何更新已有文件_直接替换文件.png" alt="直接替换文件操作" class="tutorial-screenshot">
+                                    </div>
+                                    <div class="update-usecase">
+                                        <strong>适用：</strong>更新 HTML、CSS、JS、图片等
+                                    </div>
+                                </div>
+
+                                <!-- 方法2 -->
+                                <div class="update-card">
+                                    <div class="update-icon">
+                                        <i class="fas fa-edit"></i>
+                                    </div>
+                                    <h3>方法2：在线编辑文件</h3>
+                                    <div class="update-steps">
+                                        <p>1. 打开文件后，点击铅笔图标（Edit）</p>
+                                        <p>2. 在 GitHub 编辑器中修改内容</p>
+                                        <p>3. 下拉选择 "Commit changes"</p>
+                                    </div>
+                                    <div class="screenshot-box">
+                                        <img src="web_image/如何更新已有文件_在线编辑文件(1).png" alt="在线编辑文件步骤1" class="tutorial-screenshot">
+                                    </div>
+                                    <div class="screenshot-box">
+                                        <img src="web_image/如何更新已有文件_在线编辑文件(2).png" alt="在线编辑文件步骤2" class="tutorial-screenshot">
+                                    </div>
+                                    <div class="update-usecase">
+                                        <strong>适用：</strong>修改文案、调整 CSS 颜色值、修正路径等
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="time-info">
+                                <i class="fas fa-clock"></i>
+                                <div>
+                                    <h4>更新后多久能看到变化？</h4>
+                                    <p>GitHub Pages 一般需要 <strong class="neon-text-pink">20秒～2分钟</strong> 自动构建</p>
+                                    <ul>
+                                        <li>刷新浏览器查看</li>
+                                        <li>如未更新，可尝试清理缓存（Ctrl + Shift + R）</li>
+                                        <li>若3分钟仍未更新，检查是否提交到 main 分支</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 更新目录结构 -->
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-cyan">💡 更新目录结构（添加新文件夹）</h4>
+                                <p>如果需要新增文件夹（如 assets/img）：</p>
+                                <ol>
+                                    <li>点击 "Add file" → "Create new file"</li>
+                                    <li>在名称处输入：assets/img/占位.txt</li>
+                                    <li>Commit 后，即可上传真实图片文件</li>
+                                    <li>删除 占位.txt（可选）</li>
+                                </ol>
+                                <div class="screenshot-box">
+                                    <img src="web_image/更新目录结构（添加新文件夹）.png" alt="添加新文件夹操作" class="tutorial-screenshot">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI优化 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🤖 六、AI 辅助网页优化</h2>
+
+                            <p class="intro-text">使用AI可以帮助你进行代码级优化，提升网页质量和可维护性</p>
+
+                            <div class="ai-optimization-grid">
+                                <!-- 优化1 -->
+                                <div class="ai-opt-card">
+                                    <div class="ai-opt-icon">
+                                        <i class="fas fa-broom"></i>
+                                    </div>
+                                    <h3>清理未用代码</h3>
+                                    <p>让AI帮你识别并删除未使用的CSS样式和JS函数</p>
+                                    <div class="prompt-example">
+                                        <strong>提示词示例：</strong>
+                                        <code>"帮我检查这个CSS文件，找出所有未在HTML中使用的样式，并删除它们"</code>
+                                    </div>
+                                </div>
+
+                                <!-- 优化2 -->
+                                <div class="ai-opt-card">
+                                    <div class="ai-opt-icon">
+                                        <i class="fas fa-layer-group"></i>
+                                    </div>
+                                    <h3>统一CSS变量</h3>
+                                    <p>将重复的颜色、字号、间距值提取为CSS变量</p>
+                                    <div class="prompt-example">
+                                        <strong>提示词示例：</strong>
+                                        <code>"将这个CSS文件中重复出现的颜色值统一为CSS变量"</code>
+                                    </div>
+                                </div>
+
+                                <!-- 优化3 -->
+                                <div class="ai-opt-card">
+                                    <div class="ai-opt-icon">
+                                        <i class="fas fa-comments"></i>
+                                    </div>
+                                    <h3>补充注释</h3>
+                                    <p>为关键代码段添加清晰的注释，提高可读性</p>
+                                    <div class="prompt-example">
+                                        <strong>提示词示例：</strong>
+                                        <code>"为这段JavaScript代码添加清晰的注释，说明每个函数的作用"</code>
+                                    </div>
+                                </div>
+
+                                <!-- 优化4 -->
+                                <div class="ai-opt-card">
+                                    <div class="ai-opt-icon">
+                                        <i class="fas fa-compress-arrows-alt"></i>
+                                    </div>
+                                    <h3>合并重复样式</h3>
+                                    <p>识别并合并重复的CSS规则，减少代码冗余</p>
+                                    <div class="prompt-example">
+                                        <strong>提示词示例：</strong>
+                                        <code>"帮我找出所有重复的CSS样式，并将它们合并优化"</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ai-workflow">
+                                <h3 class="neon-text-cyan">AI优化工作流</h3>
+                                <svg viewBox="0 0 700 150" class="ai-flow-svg">
+                                    <!-- 步骤1 -->
+                                    <rect x="20" y="40" width="130" height="70" rx="8" class="ai-flow-box"/>
+                                    <text x="85" y="70" class="ai-flow-text">1. 提供代码</text>
+                                    <text x="85" y="90" class="ai-flow-text-sm">给AI</text>
+
+                                    <path d="M 150 75 L 180 75" class="ai-flow-arrow"/>
+                                    <polygon points="180,75 175,70 175,80" class="ai-flow-arrow-head"/>
+
+                                    <!-- 步骤2 -->
+                                    <rect x="180" y="40" width="130" height="70" rx="8" class="ai-flow-box"/>
+                                    <text x="245" y="70" class="ai-flow-text">2. 描述需求</text>
+                                    <text x="245" y="90" class="ai-flow-text-sm">清晰具体</text>
+
+                                    <path d="M 310 75 L 340 75" class="ai-flow-arrow"/>
+                                    <polygon points="340,75 335,70 335,80" class="ai-flow-arrow-head"/>
+
+                                    <!-- 步骤3 -->
+                                    <rect x="340" y="40" width="130" height="70" rx="8" class="ai-flow-box"/>
+                                    <text x="405" y="70" class="ai-flow-text">3. AI优化</text>
+                                    <text x="405" y="90" class="ai-flow-text-sm">自动处理</text>
+
+                                    <path d="M 470 75 L 500 75" class="ai-flow-arrow"/>
+                                    <polygon points="500,75 495,70 495,80" class="ai-flow-arrow-head"/>
+
+                                    <!-- 步骤4 -->
+                                    <rect x="500" y="40" width="130" height="70" rx="8" class="ai-flow-box"/>
+                                    <text x="565" y="70" class="ai-flow-text">4. 测试验证</text>
+                                    <text x="565" y="90" class="ai-flow-text-sm">确保正确</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 最终展示 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎉 七、最终网页上线展示</h2>
+
+                            <div class="final-checklist">
+                                <h3 class="neon-text-cyan">课堂展示要点</h3>
+                                <div class="final-check-grid">
+                                    <div class="final-check-item">
+                                        <i class="fas fa-link"></i>
+                                        <p>打开 GitHub Pages 访问链接，逐块浏览页面</p>
+                                    </div>
+                                    <div class="final-check-item">
+                                        <i class="fas fa-mouse-pointer"></i>
+                                        <p>验证导航与锚点跳转（桌面与移动端）是否正常</p>
+                                    </div>
+                                    <div class="final-check-item">
+                                        <i class="fas fa-check-double"></i>
+                                        <p>对照检查清单：视觉、内容、结构、适配</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="success-celebration">
+                                <div class="celebration-icon">
+                                    <i class="fas fa-rocket"></i>
+                                </div>
+                                <h3>恭喜！你的作品集已经成功上线</h3>
+                                <p>现在你拥有了一个真实可访问的网页作品集</p>
+                                <div class="next-steps">
+                                    <h4>接下来你可以：</h4>
+                                    <ul>
+                                        <li>✓ 将链接添加到简历中</li>
+                                        <li>✓ 分享给朋友和HR</li>
+                                        <li>✓ 持续优化和更新内容</li>
+                                        <li>✓ 添加更多项目和功能</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(1)">一、检查清单</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">部署前检查</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">详细清单</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">二、为什么部署</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">三、GitHub Pages</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">注册账户</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">创建仓库</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">上传文件</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">启用Pages</button>
+                    <button class="nav-item" onclick="courseScrollToSection(9)">四、常见问题</button>
+                    <button class="nav-item" onclick="courseScrollToSection(10)">五、更新网页</button>
+                    <button class="nav-item" onclick="courseScrollToSection(11)">六、AI优化</button>
+                    <button class="nav-item" onclick="courseScrollToSection(12)">七、最终展示</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">完成可在线访问的作品集基础版</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px;">
+                                    <strong>目标：</strong>完成"可在线访问"的作品集基础版，为下一节综合项目课打底。
+                                </p>
+
+                                <div class="homework-steps">
+                                    <div class="homework-step">
+                                        <div class="homework-num">1</div>
+                                        <div class="homework-content">
+                                            <h4>整理项目文件</h4>
+                                            <p>将作品集整理为完整项目文件夹（index.html + /assets/css + /assets/js + /assets/img + favicon.ico）</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-step">
+                                        <div class="homework-num">2</div>
+                                        <div class="homework-content">
+                                            <h4>完成自检</h4>
+                                            <p>对照发布前检查清单完成一次自检：视觉一致性 / 内容准确性 / 结构完整性 / 移动端基础适配</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-step">
+                                        <div class="homework-num">3</div>
+                                        <div class="homework-content">
+                                            <h4>选择部署方式上线</h4>
+                                            <p>任选其一：GitHub Pages（优先） / Netlify / Vercel / 其他静态托管</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-step">
+                                        <div class="homework-num">4</div>
+                                        <div class="homework-content">
+                                            <h4>AI代码优化</h4>
+                                            <p>使用AI完成一次"代码优化回合"：清理未用CSS、统一变量、补注释、合并重复样式或函数</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="homework-step">
+                                        <div class="homework-num">5</div>
+                                        <div class="homework-content">
+                                            <h4>记录关键变化</h4>
+                                            <p>记录两点"上线前后"的关键变化：示例：加载速度变化、路径错误修复、移动端展示改善等</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="homework-tip">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <p><strong>建议：</strong>将访问链接保存到简历与社交名片中，后续课程将基于此链接继续做风格与交互的进阶迭代。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,3833 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>李若宁 - 高速铁路客运服务专业 | 极光物流简历</title>
+
+    <meta name="description" content="李若宁个人简历 - 高速铁路客运服务专业，致力于交通物流行业发展">
+    <meta name="keywords" content="高速铁路,客运服务,交通物流,智慧物流,供应链管理">
+    <meta name="author" content="李若宁">
+
+    <!-- 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <!-- 引入高级主题 -->
+    <link rel="stylesheet" href=".superdesign/design_iterations/logistics_theme_premium.css">
+
+    <!-- Chart.js for data visualization -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--aurora-600) var(--aurora-900);
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--aurora-900);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-full);
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gradient-premium);
+        }
+
+        /* 背景装饰层 */
+        .bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -10;
+            background: var(--bg-primary);
+            overflow: hidden;
+        }
+
+        .bg-gradient-mesh {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-mesh);
+            opacity: 0.6;
+            animation: gradientShift 20s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-10px, -10px); }
+        }
+
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: var(--pattern-grid);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            animation: patternMove 30s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(60px, 60px); }
+        }
+
+        /* 悬浮粒子背景 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--cyan-400);
+            border-radius: var(--radius-full);
+            opacity: 0;
+            animation: floatParticle 20s linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh);
+            }
+            10% {
+                opacity: 0.5;
+                transform: translateY(90vh);
+            }
+            90% {
+                opacity: 0.5;
+                transform: translateY(10vh);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(0);
+            }
+        }
+
+        /* 高级导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: var(--space-4) 0;
+            background: var(--glass-dark);
+            backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid var(--border-default);
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 14, 39, 0.95);
+            box-shadow: var(--shadow-neon);
+            padding: var(--space-3) 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--space-6);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+            font-family: var(--font-display);
+            font-size: var(--text-xl);
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-primary);
+            position: relative;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-lg);
+            position: relative;
+            box-shadow: var(--shadow-neon);
+        }
+
+
+        .logo-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientText 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientText {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-8);
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: var(--text-sm);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding: var(--space-2) 0;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--gradient-aurora);
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform var(--duration-normal) var(--ease-out);
+        }
+
+        .nav-link:hover {
+            color: var(--cyan-400);
+            text-shadow: var(--glow-blue);
+        }
+
+        .nav-link:hover::before {
+            transform: scaleX(1);
+        }
+
+        .nav-actions {
+            display: flex;
+            gap: var(--space-4);
+        }
+
+        .btn {
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            border: none;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-glass {
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            color: var(--text-primary);
+        }
+
+        .btn-glass:hover {
+            background: var(--glass-white-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glass);
+        }
+
+        .btn-glow {
+            background: var(--gradient-aurora);
+            color: white;
+            box-shadow: 0 4px 15px rgba(147, 51, 234, 0.3);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn-glow:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4),
+                        0 2px 10px rgba(34, 211, 238, 0.3);
+            background: linear-gradient(135deg, var(--purple-600), var(--cyan-500));
+        }
+
+        .btn-glow:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn-glow:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 8px rgba(147, 51, 234, 0.3);
+        }
+
+        /* Hero Section 高级版 */
+        .hero {
+            margin-top: 80px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: var(--space-20) 0;
+            overflow: hidden;
+        }
+
+        .hero-bg-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+        }
+
+        .aurora-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                linear-gradient(90deg, transparent, var(--purple-500), transparent),
+                linear-gradient(180deg, transparent, var(--cyan-500), transparent);
+            background-size: 200% 200%;
+            opacity: 0.1;
+            animation: auroraWave 10s ease infinite;
+        }
+
+        @keyframes auroraWave {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-16);
+            align-items: center;
+            z-index: 1;
+        }
+
+        .hero-text {
+            animation: heroEntry 1s var(--ease-out);
+        }
+
+        @keyframes heroEntry {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--glass-purple);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--purple-400);
+            color: var(--purple-300);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-6);
+            animation: badgePulse 2s ease infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(168, 85, 247, 0); }
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: var(--text-6xl);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: var(--space-6);
+            letter-spacing: -2px;
+        }
+
+        .hero-title-line1 {
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .hero-title-name {
+            background: var(--gradient-premium);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .hero-title-name::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-full);
+            animation: underlinePulse 2s ease infinite;
+        }
+
+        @keyframes underlinePulse {
+            0%, 100% { transform: scaleX(1); opacity: 1; }
+            50% { transform: scaleX(1.1); opacity: 0.8; }
+        }
+
+        .hero-description {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-10);
+            max-width: 600px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-4);
+            margin-bottom: var(--space-10);
+        }
+
+        .stat-card {
+            padding: var(--space-4);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-xl);
+            text-align: center;
+            transition: all var(--duration-normal) var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-card);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-out);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            border-color: var(--cyan-500);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card:hover::before {
+            opacity: 1;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto var(--space-3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-lg);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-value {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        /* 3D 物流可视化 */
+        .hero-visual {
+            position: relative;
+            height: 600px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: visualFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes visualFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .logistics-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+
+        .orbit-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            border: 2px solid var(--purple-500);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: orbitPulse 3s ease-in-out infinite;
+        }
+
+        .orbit-ring:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            border-color: var(--cyan-500);
+            animation-delay: 1s;
+        }
+
+        .orbit-ring:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            border-color: var(--aurora-400);
+            animation-delay: 2s;
+        }
+
+        @keyframes orbitPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.2; }
+            50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.4; }
+        }
+
+        .logistics-icon-3d {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-neon);
+            color: white;
+            font-size: 24px;
+            top: 50%;
+            left: 50%;
+            transform-origin: center;
+        }
+
+        /* 船 - 第一个图标 */
+        .logistics-icon-3d:nth-child(4) {
+            animation: orbit1 20s linear infinite;
+        }
+
+        @keyframes orbit1 {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg) translateX(150px) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg) translateX(150px) rotate(-360deg);
+            }
+        }
+
+        /* 飞机 - 第二个图标 */
+        .logistics-icon-3d:nth-child(5) {
+            animation: orbit2 20s linear infinite;
+        }
+
+        @keyframes orbit2 {
+            0% {
+                transform: translate(-50%, -50%) rotate(90deg) translateX(150px) rotate(-90deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(450deg) translateX(150px) rotate(-450deg);
+            }
+        }
+
+        /* 卡车 - 第三个图标 */
+        .logistics-icon-3d:nth-child(6) {
+            animation: orbit3 20s linear infinite;
+        }
+
+        @keyframes orbit3 {
+            0% {
+                transform: translate(-50%, -50%) rotate(180deg) translateX(150px) rotate(-180deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(540deg) translateX(150px) rotate(-540deg);
+            }
+        }
+
+        /* 火车 - 第四个图标 */
+        .logistics-icon-3d:nth-child(7) {
+            animation: orbit4 20s linear infinite;
+        }
+
+        @keyframes orbit4 {
+            0% {
+                transform: translate(-50%, -50%) rotate(270deg) translateX(150px) rotate(-270deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(630deg) translateX(150px) rotate(-630deg);
+            }
+        }
+
+        .center-globe {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-premium);
+            border-radius: 50%;
+            box-shadow: 0 0 60px var(--purple-500),
+                        inset 0 0 30px var(--cyan-500);
+            animation: globePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes globePulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        /* About Section 高级版 */
+        .about {
+            padding: var(--space-24) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--space-20);
+        }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-2) var(--space-4);
+            background: var(--glass-purple);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--purple-400);
+            color: var(--purple-300);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-4);
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: var(--text-5xl);
+            font-weight: 800;
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% 200%;
+            animation: gradientText 3s ease infinite;
+            margin-bottom: var(--space-4);
+        }
+
+        .section-subtitle {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: var(--space-16);
+            align-items: center;
+        }
+
+        .profile-card {
+            position: relative;
+            padding: var(--space-8);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-card);
+            text-align: center;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto var(--space-6);
+        }
+
+        .profile-img-border {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-2xl);
+            opacity: 0.8;
+        }
+
+        /* 减少阴影复杂度优化性能 */
+        .stat-card:hover,
+        .skill-card:hover,
+        .project-card:hover,
+        .contact-card:hover {
+            box-shadow: var(--shadow-card);
+        }
+
+        .profile-img {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: var(--aurora-800);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 0%; /* 将图片往下移动，显示更多下方部分 */
+        }
+
+        .profile-name {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .profile-title {
+            font-size: var(--text-sm);
+            color: var(--cyan-400);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: var(--space-6);
+        }
+
+        .profile-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--space-4);
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-white);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            color: var(--text-secondary);
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .social-link:hover {
+            background: var(--gradient-aurora);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .about-text {
+            padding: var(--space-10);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-2xl);
+        }
+
+        .about-text h3 {
+            font-family: var(--font-display);
+            font-size: var(--text-3xl);
+            color: var(--text-primary);
+            margin-bottom: var(--space-6);
+        }
+
+        .about-text p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-6);
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-lg);
+            color: white;
+        }
+
+        .highlight-text {
+            flex: 1;
+        }
+
+        .highlight-text strong {
+            display: block;
+            color: var(--text-primary);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-1);
+        }
+
+        .highlight-text span {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        /* 教育经历卡片 - 高级版 */
+        .education {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .education-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            padding: 32px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--purple-500), var(--cyan-500));
+        }
+
+        .education-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .education-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #6B5DD3, #5B7EC2);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .education-icon i {
+            width: 32px;
+            height: 32px;
+            color: white;
+        }
+
+        .education-info {
+            flex: 1;
+        }
+
+        .education-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .education-subtitle {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        .education-date {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-size: 14px;
+        }
+
+        .education-date i {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* 课程部分样式 */
+        .education-courses {
+            margin-top: 0;
+        }
+
+        .courses-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .course-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .course-tag {
+            padding: 6px 14px;
+            background: rgba(59, 130, 246, 0.08);
+            color: #3B82F6;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            transition: all 0.2s ease;
+        }
+
+        .course-tag:hover {
+            background: rgba(59, 130, 246, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.1);
+        }
+
+
+        /* 技能矩阵 - 高级版 */
+        .skills {
+            padding: var(--space-24) 0;
+            position: relative;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+        }
+
+        .skill-card {
+            padding: var(--space-8);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-2xl);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-aurora);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform var(--duration-slow) var(--ease-out);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan-500);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        /* 新增技能选项卡和列表样式 */
+        .skill-tabs {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-8);
+            margin-bottom: var(--space-10);
+            justify-content: center;
+        }
+
+        .skill-tab {
+            padding: var(--space-4) var(--space-8);
+            background: var(--glass-white);
+            border: 2px solid var(--border-default);
+            border-radius: var(--radius-xl);
+            color: var(--text-secondary);
+            font-size: var(--text-lg);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--duration-normal) var(--ease-out);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+
+        .skill-tab:hover {
+            background: var(--gradient-aurora);
+            color: white;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .skill-tab.active {
+            background: var(--gradient-aurora);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-glow);
+        }
+
+        .skill-content {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .skill-content.active {
+            display: block;
+        }
+
+        /* 技能列表 - 采用交错网格布局 */
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-5);
+            padding: var(--space-4) 0;
+        }
+
+        @media (max-width: 1024px) {
+            .skills-list {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .skills-list {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 单个技能项 - 卡片式设计 */
+        .skill-item {
+            display: flex;
+            flex-direction: column;
+            padding: var(--space-6);
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.03) 0%, rgba(34, 211, 238, 0.02) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: var(--radius-2xl);
+            position: relative;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-height: 180px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(34, 211, 238, 0.08);
+        }
+
+        /* 交错排列效果 */
+        .skill-item:nth-child(3n-1) {
+            transform: translateY(20px);
+        }
+
+        .skill-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-aurora);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .skill-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(147, 51, 234, 0.05), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* 柔和的hover效果 */
+        .skill-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(34, 211, 238, 0.15);
+            border-color: rgba(34, 211, 238, 0.5);
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(34, 211, 238, 0.03) 100%);
+        }
+
+        .skill-item:nth-child(3n-1):hover {
+            transform: translateY(17px);
+        }
+
+        .skill-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-item:hover::after {
+            opacity: 1;
+        }
+
+        .skill-item:hover .skill-number {
+            opacity: 0.15;
+        }
+
+        .skill-item:hover .skill-title {
+            color: var(--purple-600);
+        }
+
+        .skill-item:hover .level-bar {
+            opacity: 1;
+        }
+
+        /* 技能编号 - 背景装饰 */
+        .skill-number {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            font-size: var(--text-6xl);
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--purple-400), var(--cyan-400));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            opacity: 0.1;
+            transition: all 0.3s ease;
+            font-family: var(--font-mono);
+            line-height: 1;
+        }
+
+        /* 技能内容包装 */
+        .skill-content-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+            z-index: 1;
+            position: relative;
+        }
+
+        /* 技能标题 */
+        .skill-title {
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-display);
+            line-height: 1.3;
+            margin-bottom: var(--space-3);
+            transition: color 0.3s ease;
+        }
+
+        /* 技能描述 */
+        .skill-description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: var(--text-sm);
+            flex: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* 技能等级指示器 - 底部进度条 */
+        .skill-level-indicator {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: rgba(147, 51, 234, 0.1);
+            overflow: hidden;
+        }
+
+        .level-bar {
+            height: 100%;
+            background: var(--gradient-aurora);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 0;
+            opacity: 0.9;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .skill-header {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-bottom: var(--space-6);
+        }
+
+        .skill-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-xl);
+            position: relative;
+        }
+
+        .skill-icon-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--gradient-premium);
+            border-radius: var(--radius-xl);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-out);
+            z-index: -1;
+        }
+
+        .skill-card:hover .skill-icon-wrapper::after {
+            opacity: 1;
+            animation: iconGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes iconGlow {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .skill-info h3 {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-2);
+        }
+
+        .skill-level {
+            display: flex;
+            gap: var(--space-1);
+        }
+
+        .level-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--aurora-700);
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .level-dot.active {
+            background: var(--gradient-aurora);
+            box-shadow: 0 0 10px var(--cyan-500);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+        }
+
+        .skill-tag {
+            padding: var(--space-1) var(--space-3);
+            background: var(--glass-purple);
+            border: 1px solid var(--purple-500);
+            color: var(--purple-300);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .skill-tag:hover {
+            background: var(--purple-500);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .skill-progress {
+            margin-top: var(--space-6);
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+            font-size: var(--text-sm);
+            color: var(--text-secondary);
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: var(--aurora-800);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-full);
+            transition: width 1s var(--ease-out);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent);
+            animation: progressShine 2s linear infinite;
+        }
+
+        @keyframes progressShine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* 项目展示 - 高级版 */
+        .projects {
+            padding: var(--space-24) 0;
+            background: linear-gradient(180deg, transparent, rgba(6, 182, 212, 0.05), transparent);
+            position: relative;
+        }
+
+        .projects-container {
+            margin-top: var(--space-12);
+        }
+
+        .project-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-12);
+            align-items: center;
+            margin-bottom: var(--space-16);
+            padding: var(--space-10);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-3xl);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .project-card:nth-child(even) {
+            grid-template-columns: 1fr 1fr;
+            direction: rtl;
+        }
+
+        .project-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan-500);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .project-visual {
+            position: relative;
+            height: 400px;
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            background: var(--gradient-mesh);
+        }
+
+        .project-map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .route-animation {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .route-svg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .route-path {
+            stroke: var(--cyan-400);
+            stroke-width: 2;
+            fill: none;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawPath 3s ease-in-out infinite;
+        }
+
+        @keyframes drawPath {
+            0% { stroke-dashoffset: 1000; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -1000; }
+        }
+
+        .route-node {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-aurora);
+            border: 3px solid white;
+            border-radius: 50%;
+            box-shadow: var(--shadow-neon);
+            animation: nodeBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes nodeBounce {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.3); }
+        }
+
+        .project-content {
+            padding: var(--space-6);
+        }
+
+        .project-number {
+            display: inline-block;
+            padding: var(--space-1) var(--space-3);
+            background: var(--gradient-aurora);
+            color: white;
+            border-radius: var(--radius-full);
+            font-family: var(--font-display);
+            font-size: var(--text-sm);
+            font-weight: 700;
+            margin-bottom: var(--space-4);
+        }
+
+        .project-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: var(--space-6);
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-6);
+        }
+
+        .tech-tag {
+            padding: var(--space-2) var(--space-4);
+            background: var(--glass-cyan);
+            border: 1px solid var(--cyan-500);
+            color: var(--cyan-300);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        .project-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-4);
+            padding-top: var(--space-6);
+            border-top: 1px solid var(--border-default);
+        }
+
+        .project-stat {
+            display: flex;
+            align-items: center;
+            gap: var(--space-3);
+        }
+
+        .project-stat-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-md);
+            color: white;
+        }
+
+        .project-stat-text {
+            flex: 1;
+        }
+
+        .project-stat-value {
+            display: block;
+            font-size: var(--text-lg);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .project-stat-label {
+            display: block;
+            font-size: var(--text-xs);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Contact Section - 高级版 */
+        .contact {
+            padding: var(--space-24) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-8);
+            margin-top: var(--space-12);
+        }
+
+        .contact-card {
+            padding: var(--space-8);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-2xl);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all var(--duration-normal) var(--ease-out);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: var(--gradient-aurora);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: all var(--duration-slow) var(--ease-out);
+            opacity: 0.1;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--cyan-500);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .contact-card:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto var(--space-4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-xl);
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-label {
+            font-size: var(--text-sm);
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: var(--space-2);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-value {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--text-primary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-cta {
+            margin-top: var(--space-16);
+            text-align: center;
+        }
+
+        .cta-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-4);
+        }
+
+        .cta-description {
+            font-size: var(--text-lg);
+            color: var(--text-secondary);
+            margin-bottom: var(--space-8);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--space-4);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* Footer */
+        .footer {
+            padding: var(--space-8) 0;
+            background: var(--aurora-950);
+            border-top: 1px solid var(--border-default);
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--text-muted);
+            font-size: var(--text-sm);
+        }
+
+        .footer-heart {
+            color: var(--purple-400);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* 项目图片样式增强 */
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform var(--duration-slow) var(--ease-out);
+        }
+
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(10, 14, 39, 0.8) 100%);
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-out);
+            pointer-events: none;
+        }
+
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .view-detail-btn {
+            position: absolute;
+            bottom: var(--space-6);
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            padding: var(--space-3) var(--space-6);
+            background: var(--gradient-aurora);
+            color: white;
+            border: none;
+            border-radius: var(--radius-full);
+            font-weight: 600;
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            opacity: 0;
+            transition: all var(--duration-normal) var(--ease-out);
+            pointer-events: auto;
+        }
+
+        .project-card:hover .view-detail-btn {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* 项目详情弹窗 */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 39, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            opacity: 0;
+            transition: opacity var(--duration-normal) var(--ease-out);
+        }
+
+        .modal-overlay.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.9);
+            width: 95%;
+            max-width: 1600px;
+            height: 90vh;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-2xl);
+            overflow: hidden;
+            z-index: 2001;
+            display: none;
+            opacity: 0;
+            transition: all var(--duration-normal) var(--ease-out);
+            box-shadow: var(--shadow-2xl);
+        }
+
+        .modal-container.active {
+            display: block;
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        /* 弹窗头部 */
+        .modal-header {
+            padding: var(--space-6);
+            background: var(--glass-dark);
+            backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid var(--border-default);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-family: var(--font-display);
+            font-size: var(--text-2xl);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-white);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-lg);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .modal-close:hover {
+            background: var(--gradient-aurora);
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* 流程导航栏 */
+        .process-nav {
+            padding: var(--space-4) var(--space-6);
+            background: var(--glass-white);
+            backdrop-filter: var(--backdrop-blur);
+            border-bottom: 1px solid var(--border-default);
+            display: flex;
+            gap: var(--space-2);
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .process-nav-item {
+            padding: var(--space-3) var(--space-6);
+            background: transparent;
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            transition: all var(--duration-fast) var(--ease-out);
+        }
+
+        .process-nav-item.active {
+            background: var(--gradient-aurora);
+            color: white;
+            border-color: transparent;
+            box-shadow: var(--shadow-neon);
+        }
+
+        .process-nav-item:hover:not(.active) {
+            background: var(--glass-purple);
+            color: var(--purple-300);
+            border-color: var(--purple-400);
+        }
+
+        /* 流程内容区 */
+
+
+        .process-text {
+            padding-right: var(--space-6);
+        }
+
+        .process-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 2px solid var(--cyan-500);
+        }
+
+        .process-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .process-list-item {
+            position: relative;
+            padding-left: var(--space-8);
+            margin-bottom: var(--space-4);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .process-list-item::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-full);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+
+        .process-image-container {
+            position: sticky;
+            top: var(--space-6);
+            height: fit-content;
+        }
+
+        .process-image {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-2xl);
+            border: 1px solid var(--border-default);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero-content,
+            .about-content,
+            .timeline-item,
+            .project-card {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:nth-child(even) {
+                direction: ltr;
+            }
+
+            .timeline-path {
+                left: 30px;
+            }
+
+            .timeline-node {
+                left: 30px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: var(--text-4xl);
+            }
+
+            .section-title {
+                font-size: var(--text-3xl);
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-visual {
+                height: 400px;
+            }
+
+            .logistics-3d {
+                transform: scale(0.8);
+            }
+        }
+
+        /* 加载动画 */
+        .loader-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--bg-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+
+        .loader-circle {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 3px solid transparent;
+            border-top-color: var(--purple-500);
+            border-radius: 50%;
+            animation: loaderRotate 1s linear infinite;
+        }
+
+        .loader-circle:nth-child(2) {
+            border-top-color: var(--cyan-500);
+            animation-delay: 0.2s;
+            transform: scale(0.8);
+        }
+
+        .loader-circle:nth-child(3) {
+            border-top-color: var(--aurora-500);
+            animation-delay: 0.4s;
+            transform: scale(0.6);
+        }
+
+        @keyframes loaderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* 性能优化 */
+        * {
+            will-change: auto;
+        }
+
+        .hero-visual,
+        .logistics-icon-3d,
+        .orbit-ring {
+            will-change: transform;
+        }
+
+        .loader-wrapper.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div class="loader-wrapper" id="loader">
+        <div class="loader">
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+            <div class="loader-circle"></div>
+        </div>
+    </div>
+
+    <!-- 背景装饰 -->
+    <div class="bg-container">
+        <div class="bg-gradient-mesh"></div>
+        <div class="bg-pattern"></div>
+    </div>
+
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <a href="#home" class="logo">
+                    <div class="logo-icon">
+                        <i data-lucide="zap"></i>
+                    </div>
+                    <span class="logo-text">个人简历</span>
+                </a>
+
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link">首页</a></li>
+                    <li><a href="#about" class="nav-link">关于</a></li>
+                    <li><a href="#education" class="nav-link">教育</a></li>
+                    <li><a href="#skills" class="nav-link">技能</a></li>
+                    <li><a href="#projects" class="nav-link">项目</a></li>
+                    <li><a href="#contact" class="nav-link">联系</a></li>
+                </ul>
+
+                <div class="nav-actions">
+                    <a href="#contact" class="btn btn-glass">
+                        <i data-lucide="mail" style="width: 16px; height: 16px;"></i>
+                        联系
+                    </a>
+                    <button class="btn btn-glow">
+                        <i data-lucide="download" style="width: 16px; height: 16px;"></i>
+                        简历
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-bg-animation">
+            <div class="aurora-lines"></div>
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-right">
+                    <div class="hero-badge">
+                        <i data-lucide="award" style="width: 14px; height: 14px;"></i>
+                        高速铁路客运服务专业
+                    </div>
+
+                    <h1 class="hero-title">
+                        <div class="hero-title-line1">你好，我是</div>
+                        <div class="hero-title-name">李若宁</div>
+                    </h1>
+
+
+                    <div class="hero-cta">
+                        <button class="btn btn-glow">
+                            <i data-lucide="arrow-right" style="width: 20px; height: 20px;"></i>
+                            了解更多
+                        </button>
+                        <a href="#projects" class="btn btn-glass">
+                            <i data-lucide="briefcase" style="width: 20px; height: 20px;"></i>
+                            查看项目
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" data-aos="fade-left">
+                    <div class="logistics-3d">
+                        <div class="orbit-ring"></div>
+                        <div class="orbit-ring"></div>
+                        <div class="orbit-ring"></div>
+
+                        <div class="logistics-icon-3d">
+                            <i data-lucide="ship"></i>
+                        </div>
+                        <div class="logistics-icon-3d">
+                            <i data-lucide="plane"></i>
+                        </div>
+                        <div class="logistics-icon-3d">
+                            <i data-lucide="truck"></i>
+                        </div>
+                        <div class="logistics-icon-3d">
+                            <i data-lucide="train"></i>
+                        </div>
+
+                        <div class="center-globe"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">
+                    <i data-lucide="user" style="width: 14px; height: 14px;"></i>
+                    关于我
+                </span>
+                <h2 class="section-title">个人介绍</h2>
+                <p class="section-subtitle">专注物流行业，追求卓越服务</p>
+            </div>
+
+            <div class="about-content">
+                <div class="profile-card" data-aos="fade-right">
+                    <div class="profile-img-wrapper">
+                        <div class="profile-img-border"></div>
+                        <div class="profile-img">
+                            <img src="李若宁.png" alt="李若宁" />
+                        </div>
+                    </div>
+
+                    <h3 class="profile-name">李若宁</h3>
+
+                    <div class="profile-social">
+                        <a href="#" class="social-link">
+                            <i data-lucide="github" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i data-lucide="linkedin" style="width: 20px; height: 20px;"></i>
+                        </a>
+                        <a href="#" class="social-link">
+                            <i data-lucide="mail" style="width: 20px; height: 20px;"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="about-text" data-aos="fade-left">
+                    <h3>专业背景与职业愿景</h3>
+                    <p>
+                        我是一名刚完成实习的大专毕业生，具备较强的学习适应能力和团队协作意识。
+                        在实习期间以物流运营专员身份参与物流运营各环节工作，认真完成主管布置的任务，并主动跟进流程细节与问题反馈。
+                    </p>
+                    <p>
+                        我熟悉物流系统操作、数据整理与异常记录流程，能与不同岗位协同配合，推动问题及时解决。
+                        虽然经验尚浅，但我对物流运营专员岗位充满热情，乐于钻研并积极承接新任务，
+                        愿意在贵公司不断完善能力、承担更多责任，希望能获得进一步锻炼与成长机会。
+                    </p>
+
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i data-lucide="graduation-cap"></i>
+                            </div>
+                            <div class="highlight-text">
+                                <strong>教育背景</strong>
+                                <span>渤海理工职业学院</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i data-lucide="briefcase"></i>
+                            </div>
+                            <div class="highlight-text">
+                                <strong>实习经验</strong>
+                                <span>1.5年物流运营经验</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i data-lucide="target"></i>
+                            </div>
+                            <div class="highlight-text">
+                                <strong>专业方向</strong>
+                                <span>高速铁路客运服务</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">
+                                <i data-lucide="map-pin"></i>
+                            </div>
+                            <div class="highlight-text">
+                                <strong>工作地点</strong>
+                                <span>江苏南京</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education" id="education">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">
+                    <i data-lucide="graduation-cap" style="width: 14px; height: 14px;"></i>
+                    教育经历
+                </span>
+                <h2 class="section-title">学习历程</h2>
+                <p class="section-subtitle">专业知识与实践能力并重</p>
+            </div>
+
+            <div class="education-container">
+                <div class="education-card" data-aos="fade-up">
+                    <div class="education-header">
+                        <div class="education-icon">
+                            <i data-lucide="graduation-cap"></i>
+                        </div>
+                        <div class="education-info">
+                            <h3 class="education-title">渤海理工职业学院</h3>
+                            <p class="education-subtitle">高速铁路客运服务专业 | 大专</p>
+                            <div class="education-date">
+                                <i data-lucide="calendar"></i>
+                                <span>2019.9 - 2022.6</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="education-courses">
+                        <h4 class="courses-title">主要专业课程</h4>
+                        <div class="course-tags">
+                            <span class="course-tag">铁路运输管理</span>
+                            <span class="course-tag">高速铁路客运组织</span>
+                            <span class="course-tag">铁路客运规章</span>
+                            <span class="course-tag">物流管理学</span>
+                            <span class="course-tag">供应链管理</span>
+                            <span class="course-tag">仓储与配送管理</span>
+                            <span class="course-tag">运输经济学</span>
+                            <span class="course-tag">客户关系管理</span>
+                            <span class="course-tag">服务礼仪</span>
+                            <span class="course-tag">安全管理</span>
+                            <span class="course-tag">票务系统操作</span>
+                            <span class="course-tag">物流信息系统</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">
+                    <i data-lucide="zap" style="width: 14px; height: 14px;"></i>
+                    专业技能
+                </span>
+                <h2 class="section-title">专业能力矩阵</h2>
+                <p class="section-subtitle">工业机器人与智能物流全方位技能体系</p>
+            </div>
+
+            <!-- 选项卡导航 -->
+            <div class="skill-tabs" data-aos="fade-up">
+                <button class="skill-tab active" onclick="switchSkillTab('core')">
+                    <i data-lucide="cpu" style="width: 16px; height: 16px;"></i>
+                    核心能力
+                </button>
+                <button class="skill-tab" onclick="switchSkillTab('compound')">
+                    <i data-lucide="layers" style="width: 16px; height: 16px;"></i>
+                    复合能力
+                </button>
+            </div>
+
+            <!-- 核心能力内容 -->
+            <div id="core-skills" class="skill-content active">
+                <div class="skills-list">
+                    <!-- 1. 工业机器人安装流程 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+                        <span class="skill-number">01</span>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">熟悉工业机器人安装流程</h3>
+                            <p class="skill-description">协助完成机器人本体的吊装定位、基座固定与末端执行器校准，具备实地安装操作经验</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 电气布线与接地测试 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
+                        <span class="skill-number">02</span>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">精通电气布线与接地测试</h3>
+                            <p class="skill-description">掌握动力线与信号线分布布局、接地电阻测量与屏蔽效果确认，确保系统稳定性</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 示教器操作与轨迹调试 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+                        <span class="skill-number">03</span>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">掌握机器人示教器操作与轨迹调试</h3>
+                            <p class="skill-description">能建立坐标系、配置路径控制参数，参与运动误差测试与重复定位精度验证</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 4. PLC基础 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="skill-number">04</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">了解机器人电气控制板与PLC基础</h3>
+                            <p class="skill-description">具备PLC编程意识与电路图识读能力，能配合识别布线逻辑并支持控制系统调试</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 70%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 5. 网络与通讯系统 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="skill-number">05</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">有基本网络与通讯系统应用经验</h3>
+                            <p class="skill-description">参与控制柜组网、权限分级设定及系统通信稳定性验证，支持控制系统集成</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 65%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. 视觉识别与力控测试 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="350">
+                        <div class="skill-number">06</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">掌握视觉识别与力控测试流程</h3>
+                            <p class="skill-description">协助执行视觉对齐、力控触发参数测试、节拍与定位精度记录，支持柔性换型工艺验证</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 7. 故障排查与调试记录 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-number">07</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">具备系统级故障排查与调试记录能力</h3>
+                            <p class="skill-description">能够协助定位安装、布线、控制、电气测试等环节异常并做好日志归档</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 8. 机器人校准与安全规范 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="450">
+                        <div class="skill-number">08</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">了解机器人校准与安全规范</h3>
+                            <p class="skill-description">接触Level-1/2标定方法，对机器人校准理论有初步认知，并熟悉ISO 10218等工业机器人安全规范</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 70%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 9. 问题解决与团队协作 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="skill-number">09</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">具备较强问题解决与团队协作能力</h3>
+                            <p class="skill-description">在实习中多次配合工程师，协助完成项目FAT/SAT验收资料整理与客户培训协助，沟通清晰，执行力强</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 复合能力内容 -->
+            <div id="compound-skills" class="skill-content">
+                <div class="skills-list">
+                    <!-- 1. 物流自动化控制基础 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="skill-number">01</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">物流自动化控制基础能力</h3>
+                            <p class="skill-description">了解物流自动化中涉及的电机驱动、传感器控制、PLC输入输出等电路元件的作用；基本掌握常见控制电路的图纸识读与布线逻辑</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. 物流自动化设备认知 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="150">
+                        <div class="skill-number">02</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">物流自动化设备认知与识别能力</h3>
+                            <p class="skill-description">熟悉物流机器人在搬运与分拣中的基本功能与区别，了解AGV沿固定轨道导航原理；能基本识别控制界面中的任务队列和速度参数</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 70%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 3. 智慧物流系统应用 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="skill-number">03</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">智慧物流系统应用操作能力</h3>
+                            <p class="skill-description">了解智慧物流中订单、仓库、运输、客户服务等业务与系统（如WMS、TMS、OMS）之间的流程衔接；熟悉WMS系统中库位设置、波次管理、出库策略等基础功能</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 80%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 4. 物流安全与质量意识 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="250">
+                        <div class="skill-number">04</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">物流安全与质量意识</h3>
+                            <p class="skill-description">了解仓储搬运、货车装卸、高频出入等环节的作业安全规范与常见隐患；熟悉物流标准作业程序（SOP）和质量验收要求</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 5. 客户需求对接服务 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="300">
+                        <div class="skill-number">05</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">客户需求对接服务能力</h3>
+                            <p class="skill-description">了解从客户需求收集、物流服务方案设计、交付执行、问题处理、满意度跟踪的基本服务流程；熟悉客户在运输时效、配送精准度、交货灵活性等方面的核心关注点</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 90%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 6. 数据采集与可视化 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="350">
+                        <div class="skill-number">06</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">数据采集与物流信息可视化能力</h3>
+                            <p class="skill-description">了解从条码/RFID采集、系统汇总、平台展示、数据分析、异常监控的基本路径；熟悉各类物流数据可视化工具与信息仪表板设计逻辑</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 7. 供应链与库存管理 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="400">
+                        <div class="skill-number">07</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">供应链与库存管理基础能力</h3>
+                            <p class="skill-description">了解从采购计划、供应商对接、入库、库存周转、缺货/积压预警、数据报表分析的管理流程；熟悉库存分类、盘点方法与安全库存机制</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 75%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 8. 现代物流运营流程执行 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="450">
+                        <div class="skill-number">08</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">现代物流运营流程执行能力</h3>
+                            <p class="skill-description">了解从订单生成、仓储收发、出入库、拣选包装、配送追踪、客户签收的基本物流作业流程；熟悉现代物流活动中“人、货、场”的协同机制</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 85%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- 9. 精益物流与现场改善 -->
+                    <div class="skill-item" data-aos="fade-up" data-aos-delay="500">
+                        <div class="skill-number">09</div>
+                        <div class="skill-content-wrapper">
+                            <h3 class="skill-title">精益物流与现场改善能力</h3>
+                            <p class="skill-description">了解精益物流中的“七大浪费”、现场5S、拉动系统与看板管理基本概念；熟悉流程优化、配送线路规划与作业平衡分析工具</p>
+                        </div>
+                        <div class="skill-level-indicator">
+                            <div class="level-bar" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">
+                    <i data-lucide="briefcase" style="width: 14px; height: 14px;"></i>
+                    项目经验
+                </span>
+                <h2 class="section-title">实践案例展示</h2>
+                <p class="section-subtitle">理论与实践结合，持续创造价值</p>
+            </div>
+
+            <div class="projects-container">
+                <div class="project-card" data-aos="fade-up" onclick="openModal('project1')">
+                    <div class="project-visual">
+                        <img src="public/淘宝某旗舰店男式短袖物流运营项目/淘宝某旗舰店男式短袖物流运营项目-总图.jpg"
+                             alt="淘宝物流项目" class="project-image">
+                        <div class="project-overlay"></div>
+                        <button class="view-detail-btn">查看详情</button>
+                    </div>
+
+                    <div class="project-content">
+                        <span class="project-number">01</span>
+                        <h3 class="project-title">淘宝旗舰店物流运营优化</h3>
+                        <p class="project-description">
+                            负责某男装旗舰店双11大促期间的物流运营，日订单量从2000单提升至1万单。
+                            通过OMS、WMS、TMS系统协同，实现订单处理准确率99%，出库及时率95%，
+                            将退换货周期缩短至7天以内。
+                        </p>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">OMS系统</span>
+                            <span class="tech-tag">WMS仓储</span>
+                            <span class="tech-tag">波次拣选</span>
+                            <span class="tech-tag">数据分析</span>
+                        </div>
+
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">2024.7~2024.9</span>
+                                    <span class="project-stat-label">实习时间</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="briefcase" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">物流专员</span>
+                                    <span class="project-stat-label">实习岗位</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="building-2" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">科捷物流</span>
+                                    <span class="project-stat-label">实习企业</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="200" onclick="openModal('project2')">
+                    <div class="project-visual">
+                        <img src="public/城市商超配送调度优化项目/城市商超配送调度优化项目.jpg"
+                             alt="城市商超配送项目" class="project-image">
+                        <div class="project-overlay"></div>
+                        <button class="view-detail-btn">查看详情</button>
+                    </div>
+
+                    <div class="project-content">
+                        <span class="project-number">02</span>
+                        <h3 class="project-title">城市商超配送调度优化</h3>
+                        <p class="project-description">
+                            参与广深两地80+商超门店配送项目，管理60辆配送车辆（含15辆冷藏车），
+                            日均处理1500单以上订单。通过TMS系统和GPS监控，将配送准时率从85%提升至96%，
+                            车辆利用率提升12%，整体运营成本降低8%。
+                        </p>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">TMS系统</span>
+                            <span class="tech-tag">GPS监控</span>
+                            <span class="tech-tag">路线优化</span>
+                            <span class="tech-tag">冷链管理</span>
+                        </div>
+
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">2024.4~2024.6</span>
+                                    <span class="project-stat-label">实习时间</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="briefcase" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">物流调度员</span>
+                                    <span class="project-stat-label">实习岗位</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="building-2" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">J&T极兔速递</span>
+                                    <span class="project-stat-label">实习企业</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="400" onclick="openModal('project4')">
+                    <div class="project-visual">
+                        <img src="public/鲜葡萄冷链物流与仓储项目/鲜葡萄冷链物流与仓储项目-主图.jpg"
+                             alt="鲜葡萄冷链项目" class="project-image">
+                        <div class="project-overlay"></div>
+                        <button class="view-detail-btn">查看详情</button>
+                    </div>
+
+                    <div class="project-content">
+                        <span class="project-number">03</span>
+                        <h3 class="project-title">鲜葡萄冷链物流管理</h3>
+                        <p class="project-description">
+                            负责高价值水果的全程冷链管理，覆盖入库预冷、在库保鲜、出库交接等环节。
+                            通过温湿度双闭环控制和HACCP质量体系，实现货架期延长25%以上，
+                            建立了完善的批次追溯机制和质量控制标准。
+                        </p>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">冷链控制</span>
+                            <span class="tech-tag">HACCP</span>
+                            <span class="tech-tag">FEFO策略</span>
+                            <span class="tech-tag">质量管理</span>
+                        </div>
+
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">2024.1~2024.3</span>
+                                    <span class="project-stat-label">实习时间</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="briefcase" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">冷库管理员</span>
+                                    <span class="project-stat-label">实习岗位</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="building-2" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">江苏快而捷物流</span>
+                                    <span class="project-stat-label">实习企业</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="600" onclick="openModal('project3')">
+                    <div class="project-visual">
+                        <img src="public/宁波港至德国汉堡港机电设备出口船务代理项目/宁波港至德国汉堡港机电设备出口船务代理项目-主图.jpg"
+                             alt="宁波港船务代理项目" class="project-image">
+                        <div class="project-overlay"></div>
+                        <button class="view-detail-btn">查看详情</button>
+                    </div>
+
+                    <div class="project-content">
+                        <span class="project-number">04</span>
+                        <h3 class="project-title">宁波港至德国汉堡港机电设备出口船务代理</h3>
+                        <p class="project-description">
+                            负责大型机电设备出口海运全程服务，涵盖报关、订舱、装箱、运输等环节。
+                            通过EDI系统对接海关，实现单证准确率100%，平均清关时间缩短至2天，
+                            建立了完整的国际物流风险控制体系。
+                        </p>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">国际海运</span>
+                            <span class="tech-tag">EDI报关</span>
+                            <span class="tech-tag">危险品管理</span>
+                            <span class="tech-tag">单证处理</span>
+                        </div>
+
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">2023.10~2023.12</span>
+                                    <span class="project-stat-label">实习时间</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="briefcase" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">船务代理</span>
+                                    <span class="project-stat-label">实习岗位</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="building-2" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">广西大展宏图贸易</span>
+                                    <span class="project-stat-label">实习企业</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card" data-aos="fade-up" data-aos-delay="800" onclick="openModal('project5')">
+                    <div class="project-visual">
+                        <img src="public/智慧物流销售配送与用户反馈数据分析项目 /智慧物流销售配送与用户反馈数据分析项目-主图.png"
+                             alt="智慧物流数据分析项目" class="project-image">
+                        <div class="project-overlay"></div>
+                        <button class="view-detail-btn">查看详情</button>
+                    </div>
+
+                    <div class="project-content">
+                        <span class="project-number">05</span>
+                        <h3 class="project-title">智慧物流销售配送与用户反馈数据分析</h3>
+                        <p class="project-description">
+                            运用大数据分析技术优化物流配送网络，通过Python处理海量订单数据，
+                            建立预测模型精准预测销售峰值。整合客户反馈形成决策支持系统，
+                            助力运营效率提升15%，客户满意度达到95%。
+                        </p>
+
+                        <div class="project-tech">
+                            <span class="tech-tag">数据分析</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">BI报表</span>
+                            <span class="tech-tag">预测模型</span>
+                        </div>
+
+                        <div class="project-stats">
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="calendar" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">2023.6~2023.9</span>
+                                    <span class="project-stat-label">实习时间</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="briefcase" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">数据分析专员</span>
+                                    <span class="project-stat-label">实习岗位</span>
+                                </div>
+                            </div>
+                            <div class="project-stat">
+                                <div class="project-stat-icon">
+                                    <i data-lucide="building-2" style="width: 18px; height: 18px;"></i>
+                                </div>
+                                <div class="project-stat-text">
+                                    <span class="project-stat-value">广东博达科技</span>
+                                    <span class="project-stat-label">实习企业</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-label">
+                    <i data-lucide="mail" style="width: 14px; height: 14px;"></i>
+                    联系方式
+                </span>
+                <h2 class="section-title">与我联系</h2>
+                <p class="section-subtitle">期待与您的合作机会</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon">
+                        <i data-lucide="mail"></i>
+                    </div>
+                    <div class="contact-label">电子邮箱</div>
+                    <div class="contact-value">liruoning@gmail.com</div>
+                </div>
+
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-icon">
+                        <i data-lucide="phone"></i>
+                    </div>
+                    <div class="contact-label">联系电话</div>
+                    <div class="contact-value">138-6219-8596</div>
+                </div>
+
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-icon">
+                        <i data-lucide="map-pin"></i>
+                    </div>
+                    <div class="contact-label">所在地区</div>
+                    <div class="contact-value">江苏 南京</div>
+                </div>
+
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="contact-icon">
+                        <i data-lucide="linkedin"></i>
+                    </div>
+                    <div class="contact-label">LinkedIn</div>
+                    <div class="contact-value">李若宁</div>
+                </div>
+            </div>
+
+            <div class="contact-cta" data-aos="fade-up">
+                <h3 class="cta-title">开启合作之旅</h3>
+                <p class="cta-description">
+                    如果您正在寻找一位专业、热情、有责任心的物流管理人才，
+                    我期待与您探讨合作机会。
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-glow" style="padding: var(--space-4) var(--space-8); font-size: var(--text-base);">
+                        <i data-lucide="send" style="width: 20px; height: 20px;"></i>
+                        发送邮件
+                    </button>
+                    <button class="btn btn-glass" style="padding: var(--space-4) var(--space-8); font-size: var(--text-base);">
+                        <i data-lucide="download" style="width: 20px; height: 20px;"></i>
+                        下载简历
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-text">
+                © 2024 李若宁. All rights reserved. Made with
+                <span class="footer-heart">❤</span>
+                for logistics industry
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // 初始化 AOS（优化性能）
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 50,
+            disable: 'mobile'  // 在移动端禁用AOS以提升性能
+        });
+
+        // 初始化 Lucide 图标
+        lucide.createIcons();
+
+        // 页面加载动画
+        window.addEventListener('load', function() {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1000);
+        });
+
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 生成粒子背景（减少数量优化性能）
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 20; // 减少粒子数量
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (20 + Math.random() * 10) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        createParticles();
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const navHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = target.offsetTop - navHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 技能进度条动画
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px'
+        };
+
+        const progressObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressFills = entry.target.querySelectorAll('.progress-fill');
+                    progressFills.forEach(fill => {
+                        const width = fill.style.width;
+                        fill.style.width = '0';
+                        setTimeout(() => {
+                            fill.style.width = width;
+                        }, 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-card').forEach(card => {
+            progressObserver.observe(card);
+        });
+
+        // 技能选项卡切换功能
+        function switchSkillTab(type) {
+            // 切换选项卡状态
+            const tabs = document.querySelectorAll('.skill-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // 切换内容显示
+            const contents = document.querySelectorAll('.skill-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // 激活对应的选项卡和内容
+            if (type === 'core') {
+                tabs[0].classList.add('active');
+                document.getElementById('core-skills').classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+                document.getElementById('compound-skills').classList.add('active');
+            }
+
+            // 重新初始化图标
+            lucide.createIcons();
+
+            // 重新触发技能条动画
+            const activeContent = document.querySelector('.skill-content.active');
+            if (activeContent) {
+                const levelBars = activeContent.querySelectorAll('.level-bar');
+                levelBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 200);
+                });
+            }
+        }
+
+        // 观察技能项动画
+        const skillObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const levelBar = entry.target.querySelector('.level-bar');
+                    if (levelBar) {
+                        const width = levelBar.style.width;
+                        levelBar.style.width = width;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.skill-item').forEach(item => {
+            skillObserver.observe(item);
+        });
+
+        // 打字机效果
+        function typeWriter(element, text, speed = 50) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+
+            type();
+        }
+
+        // 鼠标跟随效果（节流优化）
+        let mouseTimeout;
+        document.addEventListener('mousemove', (e) => {
+            if (!mouseTimeout) {
+                mouseTimeout = setTimeout(() => {
+                    const x = e.clientX / window.innerWidth;
+                    const y = e.clientY / window.innerHeight;
+
+                    document.querySelector('.bg-gradient-mesh').style.transform =
+                        `translate(${x * 10}px, ${y * 10}px)`;
+                    mouseTimeout = null;
+                }, 50);
+            }
+        });
+
+        // 动态数字计数
+        function animateValue(element, start, end, duration) {
+            const startTimestamp = Date.now();
+            const step = () => {
+                const timestamp = Date.now();
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.dataset.suffix || '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // 页面可见时触发数字动画
+        const valueObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = entry.target;
+                    const endValue = parseInt(target.textContent);
+                    if (!isNaN(endValue)) {
+                        animateValue(target, 0, endValue, 2000);
+                        valueObserver.unobserve(target);
+                    }
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('.stat-value').forEach(value => {
+            if (!value.textContent.includes('+') && !value.textContent.includes('%') && !value.textContent.includes('专业')) {
+                valueObserver.observe(value);
+            }
+        });
+        // Modal Functions
+        function openModal(projectId) {
+            const modal = document.getElementById('projectModal');
+            const modalContent = document.getElementById('modalContent');
+
+            const projectData = {
+                project1: {
+                    title: '淘宝某旗舰店男式短袖物流运营项目',
+                    images: [
+                        'public/淘宝某旗舰店男式短袖物流运营项目/淘宝某旗舰店男式短袖物流运营项目-总图.jpg',
+                        'public/淘宝某旗舰店男式短袖物流运营项目/流程一：订单接入与前置校验.jpg',
+                        'public/淘宝某旗舰店男式短袖物流运营项目/流程二：仓储作业优化与出库调度.jpg',
+                        'public/淘宝某旗舰店男式短袖物流运营项目/流程三：运输途径可视化.png',
+                        'public/淘宝某旗舰店男式短袖物流运营项目/流程四：售后与退换货处理.jpg'
+                    ],
+                    processes: ['总览', '订单接入与前置校验', '仓储作业优化与出库调度', '运输途径可视化', '售后与退换货处理'],
+                    contents: [
+                        `<h3>流程概述</h3><p>在订单暴增背景下，协助完成 OMS 系统订单导入、前置校验与异常拦截，确保订单数据准确无误进入仓库。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>批量订单接入：协助 OMS 系统在高峰时段 1 小时内导入超 1 万条订单，保证无延迟。</li>
+                            <li>订单信息核查：对收货地址、尺码、付款状态进行复核，减少错发、漏发。</li>
+                            <li>库存预占操作：按照"已付款优先"策略锁定库存，避免超卖与重复扣减。</li>
+                            <li>异常订单处理：标记缺货与地址错误订单，协助客服进行二次确认。</li>
+                            <li>数据报表输出：整理日度订单处理与异常统计表，用于运营复盘。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在仓库环节，参与拣货、复核、打包和出库任务，利用波次拣选与电子看板提高作业效率，保证高峰期间的出库时效。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>波次拣选协助：将大批订单按区域与尺码分批次拣选，减少作业拥堵。</li>
+                            <li>扫码复核与打包：逐件完成扫码确认与双人复核，控制错发率低于 0.2%。</li>
+                            <li>智能承运商分配：协助系统完成顺丰、中通、极兔等承运商订单分配，提升配送效率。</li>
+                            <li>出库进度监控：利用电子看板检查出库节拍，确保每小时约 2000 件出库。</li>
+                            <li>滞留件处理：对 500 件未揽收订单进行复核加急处理，防止延误。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>协助 TMS 系统跟踪订单运输节点，监控延误和异常，推动问题件在 24 小时内闭环，提升客户体验。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>全链路节点监控：导入揽收、中转、派送、签收等承运商轨迹，确保物流可追踪。</li>
+                            <li>异常预警工单：发现延误或派送失败订单，系统生成工单并分派跟进。</li>
+                            <li>承运商沟通：协助与顺丰、中通等网点保持联系，加急处理延误件。</li>
+                            <li>客户信息同步：通过短信或 APP 向客户推送进度提醒，降低咨询量。</li>
+                            <li>异常数据复盘：汇总每日延误率、破损率，提交承运商考核参考。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在售后环节，协助处理退换货工单、逆向物流对接与仓库退货验收，缩短退货周期并保证客户体验。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>工单分类处理：根据尺码不符、破损、错发三类原因分类退换货需求。</li>
+                            <li>逆向物流操作：协助生成退货单号并对接承运商，保证退货件 72 小时内返仓。</li>
+                            <li>仓库退货验收：逐件扫码确认退货短袖，良品入库，不良品报损登记。</li>
+                            <li>客户进度反馈：将退换货进度实时更新至客服系统，减少二次投诉。</li>
+                            <li>周报数据整理：整理退换货比例与区域分布，形成周报供团队优化。</li>
+                        </ul>`
+                    ]
+                },
+                project2: {
+                    title: '城市商超配送调度优化项目',
+                    images: [
+                        'public/城市商超配送调度优化项目/城市商超配送调度优化项目.jpg',
+                        'public/城市商超配送调度优化项目/流程一：订单接收与任务生成.jpg',
+                        'public/城市商超配送调度优化项目/流程二：车辆调度与线路规划.png',
+                        'public/城市商超配送调度优化项目/流程三：仓库装车与出车管理.png',
+                        'public/城市商超配送调度优化项目/流程四：在途运输监控与异常处理.png',
+                        'public/城市商超配送调度优化项目/流程五：门店交付与回单管理.jpg',
+                        'public/城市商超配送调度优化项目/流程六：数据分析与持续优化.jpg'
+                    ],
+                    processes: ['总览', '订单接收与任务生成', '车辆调度与线路规划', '仓库装车与出车管理', '在途运输监控与异常处理', '门店交付与回单管理', '数据分析与持续优化'],
+                    contents: [
+                        `<h3>流程概述</h3><p>在订单接收阶段，负责利用系统汇总门店需求并生成配送任务，保障数据完整与时效准确。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>订单数据录入：通过 POS 与 TMS 系统对接，自动生成每日门店配送清单。</li>
+                            <li>订单分类整理：将冷链与常温品类分开，避免温控冲突。</li>
+                            <li>任务包生成：系统按体积、重量计算配送包，作为后续调度依据。</li>
+                            <li>时效标记：根据门店"上午9点前到货"等要求，为订单打上时限标签。</li>
+                            <li>异常订单审核：对数量异常的大单进行人工确认，防止错单流入。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在调度环节，合理分配车辆与司机，利用 TMS 系统规划线路，兼顾冷链需求与运力利用。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>车辆排班：60 辆车按冷链与常温任务区分排班，优先保证冷链订单。</li>
+                            <li>路径优化：TMS 计算最优路线，结合交通限行与门店时段微调。</li>
+                            <li>司机任务分配：依据司机熟悉区域指派路线，降低迷路与延误。</li>
+                            <li>运力补充：高峰期临时外租 3–5 辆车，填补运力缺口。</li>
+                            <li>成本核算：审核系统输出的油耗、里程预测，优化调度方案。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在仓库作业环节，协助组织拣货、复核和车辆装载，确保冷链与常温货物分区管理并按时出车。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>拣货复核：在仓库完成二次校对，保证 SKU 数量与批次准确。</li>
+                            <li>装车规范执行：冷链车配温度仪，货物分层堆放，避免压损。</li>
+                            <li>出车核查：逐一检查司机证件、车辆油量与 GPS 设备状态。</li>
+                            <li>发车调度：统一在凌晨 5:00–6:00 分批发车，保障时效。</li>
+                            <li>异常替补：若司机缺勤，及时调配替补司机，防止延误。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在运输过程中，依托 GPS 和冷链监控系统，实时掌握车辆位置与温度状态，及时响应突发情况。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>GPS 实时监控：所有车辆运行轨迹与里程自动上传。</li>
+                            <li>冷链温控预警：监控冷藏车温度保持 2–8℃，超标自动报警。</li>
+                            <li>路况调整：遇到拥堵，TMS 自动重规划路线并通知司机。</li>
+                            <li>异常处理：门店拒收、地址变更时，与门店即时沟通解决。</li>
+                            <li>在途信息推送：每隔 2 小时更新车辆位置与 ETA 给客户系统。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在交付环节，确认卸货、签收与回单，保障交付准确性和信息透明。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>到货签收：司机与门店共同点数，并签署电子交付单。</li>
+                            <li>时效考核：系统比对到货时间与时限，标记准时/延误情况。</li>
+                            <li>回单上传：司机通过 APP 上传签收单照片，后台统一归档。</li>
+                            <li>异常登记：拒收、退货单独记录并反馈运营团队。</li>
+                            <li>数据导入：交付结果同步进 BI 系统，为次日优化提供数据。</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在项目收尾阶段，整理配送数据并输出分析报告，持续优化车辆利用与配送准时率。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>KPI 统计：记录准时率、车辆利用率、异常率与油耗成本等核心指标。</li>
+                            <li>数据采集：通过 TMS、GPS 自动抓取运输与里程数据，减少人工误差。</li>
+                            <li>可视化输出：协助生成运力负荷与异常告警的 BI 看板。</li>
+                            <li>趋势分析：对比周度与月度数据，识别高峰时段与问题线路。</li>
+                            <li>策略优化：根据分析结果调整排班与线路规划，提升整体效率。</li>
+                        </ul>`
+                    ]
+                },
+                project3: {
+                    title: '宁波港至德国汉堡港机电设备出口船务代理项目',
+                    images: [
+                        'public/宁波港至德国汉堡港机电设备出口船务代理项目/宁波港至德国汉堡港机电设备出口船务代理项目-主图.jpg',
+                        'public/宁波港至德国汉堡港机电设备出口船务代理项目/流程一：构建客户委托与协议签订机制.jpg',
+                        'public/宁波港至德国汉堡港机电设备出口船务代理项目/流程二：规范订舱与舱位确认操作.jpg',
+                        'public/宁波港至德国汉堡港机电设备出口船务代理项目/流程三：制定单证制作与审核规范.jpg',
+                        'public/宁波港至德国汉堡港机电设备出口船务代理项目/流程四：实施报关报检与合规协调.jpeg',
+                        'public/宁波港至德国汉堡港机电设备出口船务代理项目/流程五：建设船舶在港调度与现场管控机制.jpg'
+                    ],
+                    processes: ['总览', '客户委托与协议签订', '订舱与舱位确认', '单证制作与审核', '报关报检与合规协调', '船舶在港调度与现场管控'],
+                    contents: [
+                        `<h3>流程概述</h3><p>完成客户需求沟通，签订船务代理协议，明确服务范围、责任划分与费用标准。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>接收客户询价，了解货物信息与运输需求</li>
+                            <li>制定船务代理方案，报价并协商条款</li>
+                            <li>签订代理协议，明确双方责任与义务</li>
+                            <li>建立客户档案，录入系统管理</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>根据客户需求完成船公司订舱，确保舱位与船期符合要求。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>联系船公司询价，比较运价与船期</li>
+                            <li>提交订舱申请，提供货物详细信息</li>
+                            <li>跟进舱位确认，获取订舱号</li>
+                            <li>通知客户装货时间与地点</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>制作提单、装箱单等单证，确保信息准确无误。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>收集货物信息，制作装箱单与发票</li>
+                            <li>缮制海运提单，三重审核机制</li>
+                            <li>办理产地证、保险等附加单证</li>
+                            <li>单证归档管理，确保可追溯</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>完成海关报关与商检，确保货物合规出口。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>准备报关资料，录入单一窗口</li>
+                            <li>提交报关申请，跟进审核进度</li>
+                            <li>配合海关查验，处理异常问题</li>
+                            <li>获取放行通知，安排装船</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>监督货物装船作业，确保安全高效完成。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>与码头协调装船时间与泊位</li>
+                            <li>现场监装，确保货物安全装载</li>
+                            <li>处理装船异常，协调各方资源</li>
+                            <li>获取装船单据，确认开航信息</li>
+                        </ul>`
+                    ]
+                },
+                project4: {
+                    title: '鲜葡萄冷链物流与仓储项目',
+                    images: [
+                        'public/鲜葡萄冷链物流与仓储项目/鲜葡萄冷链物流与仓储项目-主图.jpg',
+                        'public/鲜葡萄冷链物流与仓储项目/流程一：到货接收与入库前检.jpg',
+                        'public/鲜葡萄冷链物流与仓储项目/流程二：预冷与一次保鲜处理.jpeg',
+                        'public/鲜葡萄冷链物流与仓储项目/流程三：入库上架与库区规划.jpeg',
+                        'public/鲜葡萄冷链物流与仓储项目/流程四：在库保鲜与巡检纠偏.jpeg',
+                        'public/鲜葡萄冷链物流与仓储项目/流程五：出库复检与装车交接.jpeg'
+                    ],
+                    processes: ['总览', '到货接收与入库前检', '预冷与一次保鲜处理', '入库上架与库区规划', '在库保鲜与巡检纠偏', '出库复检与装车交接'],
+                    contents: [
+                        `<h3>流程概述</h3><p>该流程是冷库环节的首要任务，确保入库前车辆与货品温度、外观和批次信息符合标准。作为冷库管理员，我主要负责基础抽检与信息留痕，协助导师完成温度门槛核验与批次标识，保证入库环节合规可追溯。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>月台温控检查：核查月台温度维持在≤8℃，记录开门时长，协助导师降低断链风险</li>
+                            <li>车辆箱温核对：使用温度计抽测箱温保持2–5℃，若发现异常立即登记并报备</li>
+                            <li>批次标识整理：协助打印与张贴箱贴、托盘卡，录入产地/采收日编码，确保批次可追溯</li>
+                            <li>外观抽检记录：跟随导师学习AQL抽样标准，对果粒完整度、梗鲜度进行抽检并记录</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>预冷环节直接关系到鲜果田间热的快速移除与后续品质保持。我在该流程中学习操作心温探针与数据表，跟踪心温变化并整理降温曲线，协助完成保鲜剂配置与作业卫生留痕。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>心温探针抽测：按照规范每2小时使用探针抽测葡萄心温并登记，确保心温降至目标区间</li>
+                            <li>降温曲线记录：协助绘制并整理降温曲线，学习发现异常批次并延长预冷时间</li>
+                            <li>保鲜剂配置：协助导师按批次准备缓释SO₂纸与内衬袋，学习配置剂量与更换周期</li>
+                            <li>作业区清洁留痕：执行预冷区工具分色使用与班后清洁消杀，完成留痕记录表格</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>上架是冷库日常的核心环节，涉及分区规划与托盘堆码。我主要负责在导师指导下完成托盘搬运、点位温湿度抄录与风道检查，确保库区布局合理、气流均匀。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>分区上架执行：按照品种/成熟度指令，将托盘分区放置在近拣区或长存区</li>
+                            <li>托盘堆码作业：学习执行“品”字型堆码，注意层高与通风间距，避免果实受压</li>
+                            <li>温湿度点位抄录：每日定时抄录各监测点温湿度数据并汇总，异常情况立即报备</li>
+                            <li>风道畅通检查：巡检库区通道，确保货物未遮挡回风口，保持冷风循环均匀</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>保持恒定温湿度，定期巡检及时处理异常。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>温湿度控制：保持温度2-5℃，湿度85-90%</li>
+                            <li>日常巡检：每天4次检查货物状态</li>
+                            <li>异常处理：发现腿烂立即隔离处理</li>
+                            <li>通风管理：保证库内空气流通</li>
+                            <li>数据记录：完整记录巡检日志</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>出库前综合检查，确保冷链不断链。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>出库复检：再次检查葡萄品质</li>
+                            <li>温度适配：提前将货物转移至缓冲区</li>
+                            <li>装车作业：快速装车，减少温度波动</li>
+                            <li>温控设备：检查车辆制冷设备</li>
+                            <li>交接确认：与司机确认货物信息</li>
+                        </ul>`
+                    ]
+                },
+                project5: {
+                    title: '智慧物流销售配送与用户反馈数据分析项目',
+                    images: [
+                        'public/智慧物流销售配送与用户反馈数据分析项目 /智慧物流销售配送与用户反馈数据分析项目-主图.png',
+                        'public/智慧物流销售配送与用户反馈数据分析项目 /流程一：数据清洗与完整性校核.jpg',
+                        'public/智慧物流销售配送与用户反馈数据分析项目 /流程二：数据规整与特征构建.jpg',
+                        'public/智慧物流销售配送与用户反馈数据分析项目 /流程三：配送服务时效性分析.jpg',
+                        'public/智慧物流销售配送与用户反馈数据分析项目 /流程四：潜力市场与销售趋势挖掘.jpg',
+                        'public/智慧物流销售配送与用户反馈数据分析项目 /流程五：可视化报表与成果呈现.png'
+                    ],
+                    processes: ['总览', '数据清洗与完整性校核', '数据规整与特征构建', '配送服务时效性分析', '潜力市场与销售趋势挖掘', '可视化报表与成果呈现'],
+                    contents: [
+                        `<h3>流程概述</h3><p>在项目启动阶段，主要协助对订单、交货和销售金额等原始数据进行清洗与校核，保证后续分析的可靠性与一致性。这一环节帮助我掌握了基础数据清洗与异常值处理的实操方法，是物流数据分析的核心基础。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>重复值剔除：使用Excel筛选订单号字段，删除9条重复记录，避免交货率和销售额出现虚高统计</li>
+                            <li>缺失值处理：检查关键字段，剔除缺少订单号与金额的数据，保证分组聚合统计时样本有效</li>
+                            <li>金额字段统一：将“万元”和“元”混合单位统一转化为float数值，确保跨区域金额口径一致</li>
+                            <li>异常值排查：识别销售金额为0的记录并剔除，避免不合理数据拉低平均销售额</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在清洗后的基础上，对时间、区域、交货状态和用户反馈字段进行标准化处理，并构建衍生特征字段，提高分析效率与口径统一性。该环节让我理解了如何通过特征工程提升数据可用性。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>时间维度处理：将销售时间统一转化为标准日期格式，并提取“月份”字段，用于趋势分析</li>
+                            <li>区域字段标准化：将“华东地区”“华东”等不同表述合并处理，避免区域销售额统计误差</li>
+                            <li>状态字段统一：对“按时交货”“延迟交货”等交付状态进行标准化编码，确保交货率计算无偏差</li>
+                            <li>用户反馈标签规整：将“质量合格”“返修”“拒收”等反馈信息统一编码，避免统计分类不一致</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在结构化数据基础上，协助开展季度、区域与货品多维度的交货时效性分析，定位配送环节瓶颈，并通过图表输出结果，为优化运力调度提供依据。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>季度趋势分析：用Excel透视表对比季度交货率，发现第四季度延迟率上升，与冬季气候相关</li>
+                            <li>区域差异识别：统计发现西北地区按时交货率显著低于华东和海外市场，需优化运输路线</li>
+                            <li>货品维度对比：发现货品3延迟交货比例最高，是拉低整体交货率的关键因素</li>
+                            <li>图表化呈现：利用柱状图与折线图展示交货率变化，支持团队直观识别问题环节</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在时效分析之后，协助进行销售量与区域分布的趋势研究，挖掘高增长市场和淡季销售空档，为市场策略提供数据支撑。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>时间序列分析：统计月度销量，发现货品2在10月和12月销售激增，推测与促销相关</li>
+                            <li>区域差异分析：识别华东市场对货品2的需求增长明显，是未来重点资源投放区域</li>
+                            <li>销售淡季识别：发现货品2在7-9月和11月销量低迷，为企业提供淡季促销参考</li>
+                            <li>策略支持：协助整理趋势报告，提出加大华东市场投入、优化马来西亚市场资源配置的建议</li>
+                        </ul>`,
+                        `<h3>流程概述</h3><p>在分析结果基础上，利用Excel与Power BI制作多维度可视化报表，呈现配送效率、销售趋势与客户反馈结果，为管理层决策提供直观支撑。</p>
+                        <h3>工作内容</h3>
+                        <ul>
+                            <li>可视化设计：使用Excel透视图、Power BI柱状图与折线图展示交货率、销售趋势与反馈数据</li>
+                            <li>指标看板制作：搭建配送效率与区域销售趋势的实时监控看板，提升可读性与管理效率</li>
+                            <li>报告编制：将分析结果整理为图文并茂的分析文档，支持部门周会与管理层汇报</li>
+                            <li>档案归档：维护数据分析过程文档与可视化记录，保证过程可追溯并支持后续复盘</li>
+                        </ul>`
+                    ]
+                }
+            };
+
+            const project = projectData[projectId];
+            if (!project) return;
+
+            let currentImageIndex = 0;
+
+            // 跳过第一个元素（总览），只显示流程
+            const processes = project.processes.slice(1);
+            const processImages = project.images.slice(1);
+            const processContents = project.contents || [];  // 内容数组直接使用
+
+
+            const processNavHTML = processes.map((process, index) =>
+                `<button class="process-btn ${index === 0 ? 'active' : ''}" data-index="${index}">流程${['一', '二', '三', '四', '五', '六'][index]}：${process}</button>`
+            ).join('');
+
+            // 先创建HTML结构，内容稍后设置
+            modalContent.innerHTML = `
+                <h2 class="modal-title">${project.title}</h2>
+                <div class="process-navigation">
+                    ${processNavHTML}
+                </div>
+                <div class="modal-body">
+                    <div class="process-content" id="processContent">
+                        <!-- Content will be inserted here -->
+                    </div>
+                    <div class="modal-image-container">
+                        <img src="${processImages[0]}" alt="${project.title}" class="modal-image" id="modalImage">
+                    </div>
+                </div>
+                <button class="close-modal" onclick="closeModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            `;
+
+            // 设置初始内容
+            const processContentDiv = document.getElementById('processContent');
+            if (processContentDiv && processContents && processContents.length > 0) {
+                processContentDiv.innerHTML = processContents[0];
+            } else {
+                processContentDiv.innerHTML = '<h3>暂无内容</h3><p>请稍后重试</p>';
+            }
+
+            // Add event listeners to process buttons
+            const processButtons = modalContent.querySelectorAll('.process-btn');
+            processButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const index = parseInt(this.dataset.index);
+                    currentImageIndex = index;
+
+                    // 更新图片
+                    const modalImage = document.getElementById('modalImage');
+                    if (modalImage && processImages[index]) {
+                        modalImage.src = processImages[index];
+                    }
+
+                    // 更新内容
+                    const processContentDiv = document.getElementById('processContent');
+                    if (processContentDiv) {
+                        const content = processContents[index];
+                        if (content) {
+                            processContentDiv.innerHTML = content;
+                        } else {
+                            processContentDiv.innerHTML = '<h3>内容加载中...</h3><p>该流程的详细内容正在准备中。</p>';
+                        }
+                    }
+
+                    // 更新按钮状态
+                    processButtons.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            lucide.createIcons();
+
+            modal.style.display = 'flex';
+            setTimeout(() => modal.classList.add('active'), 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            setTimeout(() => modal.style.display = 'none', 300);
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Close modal on background click
+        document.getElementById('projectModal')?.addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') {
+                closeModal();
+            }
+        });
+    </script>
+
+    <!-- Modal Structure -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content" id="modalContent">
+            <!-- Dynamic content will be inserted here -->
+        </div>
+    </div>
+
+    <!-- Modal Styles -->
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 14, 39, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--glass-dark);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-2xl);
+            padding: var(--space-8);
+            max-width: 90%;
+            height: 90vh;
+            width: 1200px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-hover);
+            animation: modalEntry 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes modalEntry {
+            from {
+                transform: scale(0.9) translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-title {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-6);
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .modal-image-container {
+            width: 100%;
+            height: 100%;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            background: var(--glass-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .process-navigation {
+            display: flex;
+            gap: var(--space-2);
+            justify-content: flex-start;
+            flex-wrap: nowrap;
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-4);
+            border-bottom: 1px solid var(--border-default);
+            overflow-x: auto;
+            scrollbar-width: thin;
+        }
+
+        .modal-body {
+            display: grid !important;
+            grid-template-columns: 1.2fr 1fr !important;
+            gap: 32px !important;
+            align-items: flex-start !important;
+            flex: 1 !important;
+            overflow: hidden !important;
+            height: calc(100% - 140px) !important;
+            padding: 0 !important;
+        }
+
+        .modal .process-content {
+            display: block !important;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(139, 249, 251, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            height: 100%;
+            overflow-y: auto;
+            color: #e0e6ed !important;
+        }
+
+        .process-content h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #8bf9fb !important;
+            margin-bottom: 12px;
+            padding-left: 20px;
+            position: relative;
+            display: block;
+        }
+
+        .process-content h3:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 20px;
+            background: var(--gradient-aurora);
+            border-radius: var(--radius-sm);
+        }
+
+        .process-content p {
+            color: #b0b8c4 !important;
+            line-height: 1.8;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .process-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: block;
+        }
+
+        .process-content li {
+            padding: 12px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid #c77dff;
+            border-radius: 8px;
+            color: #a8b2c1 !important;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .process-content li:hover {
+            background: var(--glass-white-hover);
+            transform: translateX(5px);
+        }
+
+        .process-btn {
+            padding: var(--space-2) var(--space-3);
+            background: var(--glass-white);
+            border: 1px solid var(--border-default);
+            color: var(--text-secondary);
+            border-radius: var(--radius-lg);
+            font-size: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: fit-content;
+            flex-shrink: 0;
+        }
+
+        .process-btn:hover {
+            background: var(--glass-white-hover);
+            border-color: var(--cyan-400);
+            color: var(--cyan-400);
+            transform: translateY(-2px);
+        }
+
+        .process-btn.active {
+            background: var(--gradient-aurora);
+            color: white;
+            border-color: transparent;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: var(--space-4);
+            right: var(--space-4);
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--glass-white);
+            border: 1px solid var(--border-default);
+            border-radius: var(--radius-full);
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: var(--glass-white-hover);
+            border-color: var(--cyan-400);
+            color: var(--cyan-400);
+            transform: rotate(90deg);
+        }
+    </style>
+</body>
+</html>

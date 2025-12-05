@@ -1,0 +1,208 @@
+/* 视觉设计师作品集 - 柔和优雅配色主题 */
+
+:root {
+  /* ===== 柔和的黑灰红色彩系统 ===== */
+  
+  /* 黑色系 - 柔和深邃 */
+  --black-pure: #000000;
+  --black-soft: #0D0D0D;
+  --black-warm: #1A1616;
+  --black-medium: #242020;
+  --black-light: #2E2828;
+  
+  /* 灰色系 - 温暖中性 */
+  --gray-dark: #3A3535;
+  --gray-medium-dark: #4A4545;
+  --gray-medium: #5A5555;
+  --gray-neutral: #6A6565;
+  --gray-warm: #7A7575;
+  --gray-light: #8A8585;
+  --gray-lighter: #9A9595;
+  --gray-pale: #AAA5A5;
+  --gray-soft: #BAB5B5;
+  --gray-mist: #CAC5C5;
+  --gray-cloud: #DAD5D5;
+  --gray-white: #EAE5E5;
+  
+  /* 红色系 - 低饱和度 */
+  --red-deepest: #2A1515;  /* 极深酒红 */
+  --red-deeper: #3A2020;   /* 深酒红 */
+  --red-deep: #4A2525;     /* 暗红褐 */
+  --red-dark: #5A3030;     /* 暗红 */
+  --red-muted: #6A3535;    /* 柔红 */
+  --red-medium: #7A4040;   /* 中红 */
+  --red-soft: #8A4545;     /* 软红 */
+  --red-warm: #9A5050;     /* 暖红 */
+  --red-light: #AA5555;    /* 浅红 */
+  --red-pale: #BA6060;     /* 淡红 */
+  
+  /* 白色系 */
+  --white-pure: #FFFFFF;
+  --white-soft: #FAF8F8;
+  --white-warm: #F5F0F0;
+  
+  /* ===== 柔和光影系统 ===== */
+  
+  /* 高光效果 - 更柔和 */
+  --highlight-white-subtle: rgba(255, 255, 255, 0.02);
+  --highlight-white-soft: rgba(255, 255, 255, 0.04);
+  --highlight-white-medium: rgba(255, 255, 255, 0.08);
+  --highlight-white-strong: rgba(255, 255, 255, 0.12);
+  
+  --highlight-red-subtle: rgba(122, 64, 64, 0.05);
+  --highlight-red-soft: rgba(122, 64, 64, 0.1);
+  --highlight-red-medium: rgba(122, 64, 64, 0.15);
+  --highlight-red-strong: rgba(122, 64, 64, 0.2);
+  
+  --highlight-gray: rgba(150, 145, 145, 0.1);
+  
+  /* 辉光效果 - 更内敛 */
+  --glow-white: 0 0 15px rgba(255, 255, 255, 0.05), 
+                0 0 30px rgba(255, 255, 255, 0.03);
+                
+  --glow-red: 0 0 15px rgba(122, 64, 64, 0.2),
+              0 0 30px rgba(122, 64, 64, 0.1),
+              0 0 45px rgba(122, 64, 64, 0.05);
+              
+  --glow-gray: 0 0 15px rgba(150, 145, 145, 0.1),
+               0 0 30px rgba(150, 145, 145, 0.05);
+  
+  /* 内发光 - 微妙 */
+  --inner-glow-white: inset 0 0 20px rgba(255, 255, 255, 0.03),
+                      inset 0 0 40px rgba(255, 255, 255, 0.01);
+                      
+  --inner-glow-red: inset 0 0 20px rgba(122, 64, 64, 0.08),
+                    inset 0 0 40px rgba(122, 64, 64, 0.04);
+  
+  /* ===== 阴影系统 - 更柔和 ===== */
+  
+  /* 标准阴影 */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.2),
+                   0 0 1px rgba(255, 255, 255, 0.01) inset;
+                   
+  --shadow-soft: 0 2px 4px rgba(0, 0, 0, 0.25),
+                 0 1px 2px rgba(0, 0, 0, 0.2);
+                 
+  --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.3),
+                   0 2px 4px rgba(0, 0, 0, 0.25),
+                   0 0 1px rgba(255, 255, 255, 0.02);
+                   
+  --shadow-strong: 0 8px 16px rgba(0, 0, 0, 0.35),
+                   0 4px 8px rgba(0, 0, 0, 0.3),
+                   0 0 1px rgba(255, 255, 255, 0.03);
+                   
+  --shadow-intense: 0 12px 24px rgba(0, 0, 0, 0.4),
+                    0 6px 12px rgba(0, 0, 0, 0.35),
+                    0 0 2px rgba(255, 255, 255, 0.04);
+  
+  /* 彩色阴影 - 低饱和 */
+  --shadow-red-soft: 0 2px 8px rgba(122, 64, 64, 0.15),
+                     0 1px 4px rgba(122, 64, 64, 0.1);
+                     
+  --shadow-red-medium: 0 4px 16px rgba(122, 64, 64, 0.2),
+                       0 2px 8px rgba(122, 64, 64, 0.15);
+                       
+  --shadow-gray: 0 2px 8px rgba(150, 145, 145, 0.15),
+                 0 1px 4px rgba(150, 145, 145, 0.1);
+  
+  /* 浮动阴影 */
+  --shadow-float: 0 10px 30px rgba(0, 0, 0, 0.3),
+                  0 5px 15px rgba(0, 0, 0, 0.25),
+                  0 0 1px rgba(255, 255, 255, 0.02) inset;
+  
+  /* 凹陷阴影 */
+  --shadow-inset-soft: inset 0 1px 2px rgba(0, 0, 0, 0.3),
+                       inset 0 0 1px rgba(0, 0, 0, 0.2);
+                       
+  --shadow-inset-deep: inset 0 2px 4px rgba(0, 0, 0, 0.4),
+                       inset 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  /* 文字阴影 */
+  --text-shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.3);
+                      
+  --text-shadow-glow: 0 0 5px rgba(122, 64, 64, 0.3),
+                      0 0 10px rgba(122, 64, 64, 0.1);
+  
+  /* ===== 渐变系统 - 低饱和度 ===== */
+  
+  /* 黑灰渐变 */
+  --gradient-black-gray: linear-gradient(135deg, #0D0D0D 0%, #3A3535 100%);
+  --gradient-gray: linear-gradient(135deg, #3A3535 0%, #6A6565 100%);
+  --gradient-gray-soft: linear-gradient(135deg, #5A5555 0%, #9A9595 100%);
+  
+  /* 红色渐变 - 柔和 */
+  --gradient-red: linear-gradient(135deg, #3A2020 0%, #7A4040 50%, #8A4545 100%);
+  --gradient-red-dark: linear-gradient(135deg, #2A1515 0%, #4A2525 100%);
+  --gradient-red-soft: linear-gradient(135deg, #6A3535 0%, #9A5050 100%);
+  
+  /* 混合渐变 */
+  --gradient-black-red: linear-gradient(135deg, #0D0D0D 0%, #3A2020 50%, #5A3030 100%);
+  --gradient-gray-red: linear-gradient(135deg, #3A3535 0%, #5A5555 50%, #7A4040 100%);
+  --gradient-tricolor: linear-gradient(135deg, #0D0D0D 0%, #4A4545 33%, #6A3535 66%, #2E2828 100%);
+  
+  /* 径向渐变 */
+  --gradient-radial-red: radial-gradient(circle, rgba(122, 64, 64, 0.1) 0%, transparent 70%);
+  --gradient-radial-gray: radial-gradient(circle, rgba(150, 145, 145, 0.15) 0%, transparent 70%);
+  --gradient-radial-mixed: radial-gradient(circle at 30% 50%, rgba(122, 64, 64, 0.08) 0%, transparent 50%),
+                           radial-gradient(circle at 70% 50%, rgba(150, 145, 145, 0.1) 0%, transparent 50%);
+  
+  /* 网格渐变 */
+  --gradient-mesh: radial-gradient(at 20% 30%, rgba(122, 64, 64, 0.06) 0%, transparent 40%),
+                   radial-gradient(at 60% 70%, rgba(150, 145, 145, 0.08) 0%, transparent 40%),
+                   radial-gradient(at 80% 20%, rgba(255, 255, 255, 0.02) 0%, transparent 40%),
+                   radial-gradient(at 40% 80%, rgba(122, 64, 64, 0.04) 0%, transparent 40%);
+  
+  /* ===== 材质效果 ===== */
+  
+  /* 玻璃效果 */
+  --glass-dark: rgba(13, 13, 13, 0.7);
+  --glass-gray: rgba(58, 53, 53, 0.5);
+  --glass-red: rgba(122, 64, 64, 0.08);
+  --glass-blur: blur(16px);
+  --glass-blur-strong: blur(32px);
+  
+  /* 噪点纹理 */
+  --noise: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+  
+  /* 扫光效果 */
+  --shine: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.05) 50%, transparent 60%);
+  --shine-red: linear-gradient(105deg, transparent 40%, rgba(122, 64, 64, 0.1) 50%, transparent 60%);
+  
+  /* ===== 动画时长 ===== */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-medium: 400ms;
+  --duration-slow: 600ms;
+  --duration-slower: 800ms;
+  --duration-slowest: 1200ms;
+  
+  /* ===== 动画缓动 ===== */
+  --ease-sharp: cubic-bezier(0.4, 0, 0.6, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-bounce: cubic-bezier(0.87, -0.41, 0.19, 1.44);
+  
+  /* ===== 字体系统 ===== */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', sans-serif;
+  --font-mono: 'SF Mono', 'JetBrains Mono', monospace;
+  --font-display: 'SF Pro Display', -apple-system, sans-serif;
+  
+  /* ===== 间距系统 ===== */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+  --space-48: 12rem;
+}

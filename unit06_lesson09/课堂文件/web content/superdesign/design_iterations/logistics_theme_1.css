@@ -1,0 +1,114 @@
+:root {
+  /* 交通物流产业专业配色 */
+  --primary-blue: #0052CC;      /* 铁路蓝 - 主色调 */
+  --secondary-red: #D32F2F;      /* 高铁红 - 强调色 */
+  --logistics-green: #00897B;    /* 物流绿 - 成功状态 */
+  --steel-gray: #455A64;         /* 钢铁灰 - 专业感 */
+  --cloud-white: #FAFAFA;        /* 云白 - 背景色 */
+
+  /* 功能性色彩 */
+  --track-silver: #B0BEC5;       /* 轨道银 */
+  --signal-yellow: #FFA726;      /* 信号黄 */
+  --night-blue: #1A237E;         /* 夜航蓝 */
+  --cargo-brown: #5D4037;        /* 货运棕 */
+
+  /* 渐变色 */
+  --gradient-primary: linear-gradient(135deg, #0052CC 0%, #1976D2 100%);
+  --gradient-speed: linear-gradient(90deg, #0052CC 0%, #00897B 50%, #FFA726 100%);
+  --gradient-track: linear-gradient(180deg, rgba(0,82,204,0.1) 0%, rgba(0,82,204,0) 100%);
+
+  /* 文字颜色 */
+  --text-primary: #263238;
+  --text-secondary: #546E7A;
+  --text-light: #90A4AE;
+  --text-white: #FFFFFF;
+
+  /* 背景色 */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F5F7FA;
+  --bg-card: #FFFFFF;
+  --bg-hover: rgba(0, 82, 204, 0.05);
+
+  /* 边框 */
+  --border-light: #E0E0E0;
+  --border-medium: #BDBDBD;
+  --border-focus: #0052CC;
+
+  /* 字体 */
+  --font-primary: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* 字体大小 */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+
+  /* 间距 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+
+  /* 圆角 */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* 阴影 */
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  --shadow-card: 0 2px 8px rgba(0, 82, 204, 0.08);
+  --shadow-hover: 0 8px 16px rgba(0, 82, 204, 0.12);
+
+  /* 动画时长 */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 800ms;
+
+  /* 动画缓动 */
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+  /* 特效 */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
+  --blur-xl: blur(16px);
+}
+
+/* 深色模式变量（可选） */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #0F172A;
+    --bg-secondary: #1E293B;
+    --bg-card: #1E293B;
+    --text-primary: #F1F5F9;
+    --text-secondary: #CBD5E1;
+    --border-light: #334155;
+    --border-medium: #475569;
+  }
+}

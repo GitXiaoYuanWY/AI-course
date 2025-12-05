@@ -1,0 +1,177 @@
+:root {
+  /* 统一蓝色系 - 交通物流专业配色 */
+  --primary-900: #0C1929;      /* 深夜蓝 - 最深色 */
+  --primary-800: #1A2F4B;      /* 深海蓝 */
+  --primary-700: #234567;      /* 海军蓝 */
+  --primary-600: #2C5F8D;      /* 标准蓝 */
+  --primary-500: #3B7CB8;      /* 主色调 - 铁路蓝 */
+  --primary-400: #5A9FD4;      /* 天空蓝 */
+  --primary-300: #7FB5E1;      /* 浅天蓝 */
+  --primary-200: #A5CEEC;      /* 云朵蓝 */
+  --primary-100: #D2E5F5;      /* 薄雾蓝 */
+  --primary-50: #EBF4FB;       /* 极浅蓝 */
+
+  /* 中性色 - 带蓝色调 */
+  --gray-900: #1A1F2B;         /* 深灰蓝 */
+  --gray-800: #2C3241;         /* 暗灰蓝 */
+  --gray-700: #3E4557;         /* 中深灰蓝 */
+  --gray-600: #525A70;         /* 中灰蓝 */
+  --gray-500: #6B7489;         /* 标准灰蓝 */
+  --gray-400: #8892A6;         /* 浅灰蓝 */
+  --gray-300: #A8B2C3;         /* 更浅灰蓝 */
+  --gray-200: #CAD2DD;         /* 很浅灰蓝 */
+  --gray-100: #E5E9EF;         /* 极浅灰蓝 */
+  --gray-50: #F5F7FA;          /* 背景灰蓝 */
+
+  /* 功能色 - 蓝色系调和 */
+  --accent-teal: #2E7D8C;      /* 青蓝 - 成功/完成 */
+  --accent-slate: #4A5F7A;     /* 石板蓝 - 信息 */
+  --accent-steel: #546B84;     /* 钢铁蓝 - 次要 */
+  --accent-ice: #6B9BD2;       /* 冰蓝 - 高亮 */
+
+  /* 语义色彩 */
+  --success: #2E7D8C;          /* 成功 - 青蓝色 */
+  --warning: #7A8BA3;          /* 警告 - 中性蓝灰 */
+  --error: #5A6B84;            /* 错误 - 深蓝灰 */
+  --info: #3B7CB8;             /* 信息 - 主蓝色 */
+
+  /* 渐变 */
+  --gradient-primary: linear-gradient(135deg, var(--primary-600) 0%, var(--primary-400) 100%);
+  --gradient-hero: linear-gradient(180deg, var(--primary-900) 0%, var(--primary-700) 50%, var(--primary-500) 100%);
+  --gradient-card: linear-gradient(135deg, var(--primary-50) 0%, var(--gray-50) 100%);
+  --gradient-mesh: radial-gradient(at 20% 80%, var(--primary-100) 0%, transparent 50%),
+                   radial-gradient(at 80% 20%, var(--primary-200) 0%, transparent 50%);
+
+  /* 文字颜色 */
+  --text-primary: var(--gray-900);
+  --text-secondary: var(--gray-700);
+  --text-muted: var(--gray-500);
+  --text-light: var(--gray-400);
+  --text-white: #FFFFFF;
+  --text-on-primary: #FFFFFF;
+
+  /* 背景色 */
+  --bg-primary: #FFFFFF;
+  --bg-secondary: var(--gray-50);
+  --bg-tertiary: var(--primary-50);
+  --bg-card: #FFFFFF;
+  --bg-overlay: rgba(12, 25, 41, 0.6);
+  --bg-hover: rgba(59, 124, 184, 0.08);
+  --bg-active: rgba(59, 124, 184, 0.12);
+
+  /* 边框 */
+  --border-light: var(--gray-200);
+  --border-default: var(--gray-300);
+  --border-medium: var(--gray-400);
+  --border-focus: var(--primary-500);
+  --border-hover: var(--primary-400);
+
+  /* 字体 */
+  --font-primary: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-heading: 'Space Grotesk', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  /* 字体大小 */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --text-6xl: 3.75rem;
+
+  /* 字体粗细 */
+  --font-thin: 100;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-black: 900;
+
+  /* 间距 */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* 圆角 */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-3xl: 2rem;
+  --radius-full: 9999px;
+
+  /* 阴影 - 蓝色调 */
+  --shadow-xs: 0 1px 2px 0 rgba(12, 25, 41, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(12, 25, 41, 0.1), 0 1px 2px 0 rgba(12, 25, 41, 0.06);
+  --shadow-md: 0 4px 6px -1px rgba(12, 25, 41, 0.1), 0 2px 4px -1px rgba(12, 25, 41, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(12, 25, 41, 0.1), 0 4px 6px -2px rgba(12, 25, 41, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(12, 25, 41, 0.12), 0 10px 10px -5px rgba(12, 25, 41, 0.04);
+  --shadow-2xl: 0 25px 50px -12px rgba(12, 25, 41, 0.25);
+  --shadow-card: 0 2px 8px rgba(59, 124, 184, 0.1);
+  --shadow-hover: 0 8px 20px rgba(59, 124, 184, 0.15);
+  --shadow-focus: 0 0 0 3px rgba(59, 124, 184, 0.2);
+
+  /* 动画时长 */
+  --duration-instant: 100ms;
+  --duration-fast: 200ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-slower: 700ms;
+  --duration-slowest: 1000ms;
+
+  /* 动画缓动 */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* 特效 */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
+  --blur-xl: blur(20px);
+  --blur-2xl: blur(40px);
+
+  /* 透明度 */
+  --opacity-0: 0;
+  --opacity-5: 0.05;
+  --opacity-10: 0.1;
+  --opacity-20: 0.2;
+  --opacity-30: 0.3;
+  --opacity-40: 0.4;
+  --opacity-50: 0.5;
+  --opacity-60: 0.6;
+  --opacity-70: 0.7;
+  --opacity-80: 0.8;
+  --opacity-90: 0.9;
+  --opacity-100: 1;
+
+  /* 层级 */
+  --z-0: 0;
+  --z-10: 10;
+  --z-20: 20;
+  --z-30: 30;
+  --z-40: 40;
+  --z-50: 50;
+  --z-modal: 1000;
+  --z-popover: 1100;
+  --z-tooltip: 1200;
+  --z-notification: 1300;
+}
