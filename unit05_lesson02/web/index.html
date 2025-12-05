@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI音乐创作提示词攻略 | 想清这一步</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第五单元：AI音乐创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>2. 想让AI写好歌？先想清这一步</h1>
+                    <p class="subtitle">AI音乐创作提示词攻略 | 创作逻辑训练课程</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.8rem;">一、课程回顾</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                上一节课程讲解了AI音乐的发展历程、核心技术以及当前主流AI音乐平台的基本原理，使学生对AI音乐创作的整体生态有了系统认识。
+                            </p>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-history neon-text-cyan"></i> 发展历程</h4>
+                                    <p>介绍了从规则生成、机器学习到生成式AI阶段的技术演变过程。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-brain neon-text-purple"></i> 核心技术</h4>
+                                    <p>讲解了深度学习、神经网络、音乐特征建模等关键原理。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-music neon-text-pink"></i> 主流平台</h4>
+                                    <p>分析了当前AI音乐平台的运作机制与特点。以及我们为什么选择suno。</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem; line-height: 1.8;">
+                                    本节课程《AI音乐创作提示词攻略》，是在理解AI音乐工作原理的基础上，进一步学习<strong class="neon-text-cyan">如何用文字语言与AI"对话"进行创作</strong>。AI音乐创作的过程并非单一操作，而是一个系统思维的训练过程。提示词课程分为两个阶段共两节课，本节课主要讲第一阶段——<strong class="neon-text-pink">想清楚（创作逻辑）</strong>，明确主题、情绪、听众和场景，建立创作蓝图。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程目标与目录 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple" style="font-size: 1.8rem;">二、课程目标</h3>
+                            <p style="font-size: 1.15rem; margin: 20px 0;">本课程结束后，学习者将能够：</p>
+
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">能够明确歌曲的核心创作方向</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">能够分析主题、情绪与听众之间的关系</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">能够理解音乐四大表达维度并运用：节奏、旋律、和声、音色</li>
+                            </ol>
+
+                            <h3 class="neon-text-cyan" style="margin-top: 40px; font-size: 1.8rem;">三、课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">确定创作需求——定义音乐的功能</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">选择主题——构建音乐的核心故事</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">设定情感基调——音乐的"语气系统"</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">分析听众——理解音乐的接受者</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">创作方向的综合确定</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 AI 音乐创作的核心逻辑</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 确定创作需求 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 一、确定创作需求——定义音乐的功能</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                在AI音乐生成系统中，"创作需求"相当于作品的功能设计。它定义了歌曲存在的意义与使用场景。若无明确定义，AI往往会随机生成音乐，缺乏针对性与表现力。
+                            </p>
+
+                            <h3>（一）创作需求的四个维度</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>用途（Purpose）</h4>
+                                    <p>歌曲是为哪种情境而写？</p>
+                                    <ul>
+                                        <li>视频配乐：节奏需贴合画面节奏，情绪与内容呼应。</li>
+                                        <li>商业广告：旋律简短易记，情绪积极。</li>
+                                        <li>游戏音乐：循环性强，空间感丰富。</li>
+                                        <li>背景音乐：旋律简洁、衔接平滑。</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>听众（Audience）</h4>
+                                    <p>不同受众的音乐喜好差异明显。青少年倾向电子与嘻哈，中年群体更偏向旋律流行或摇滚。AI提示词中的风格设定应以听众类型为基础。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>情绪（Emotion）</h4>
+                                    <p>情绪是歌曲最核心的表达维度。创作者应明确希望听众产生何种感受：兴奋、平静、忧伤或怀旧。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>场景（Scene）</h4>
+                                    <p>场景为音乐提供画面感。例如"夜晚城市街头"对应电子风格，"海边日出"则适合流行民谣或轻摇滚。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 案例分析 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）案例分析</h3>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4 class="neon-text-cyan">示例一</h4>
+                                    <p style="margin: 10px 0;"><strong>用途：</strong>运动短视频配乐</p>
+                                    <p style="margin: 10px 0;"><strong>听众：</strong>年轻人</p>
+                                    <p style="margin: 10px 0;"><strong>情绪：</strong>兴奋、能量</p>
+                                    <p style="margin: 10px 0;"><strong>场景：</strong>户外晨跑</p>
+                                    <div class="highlight-box" style="margin-top: 15px;">
+                                        <p><strong>→ 提示词方向：</strong>节奏强烈的电子流行，加入鼓点和电子贝斯。</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4 class="neon-text-purple">示例二</h4>
+                                    <p style="margin: 10px 0;"><strong>用途：</strong>毕业纪念MV</p>
+                                    <p style="margin: 10px 0;"><strong>听众：</strong>学生群体</p>
+                                    <p style="margin: 10px 0;"><strong>情绪：</strong>温暖、怀旧</p>
+                                    <p style="margin: 10px 0;"><strong>场景：</strong>校园黄昏</p>
+                                    <div class="highlight-box" style="margin-top: 15px;">
+                                        <p><strong>→ 提示词方向：</strong>流行+摇滚风格，小调旋律、钢琴与弦乐搭配。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    <strong>💡 核心思维：</strong>通过"用途+听众+情绪+场景"的思维模式，创作逻辑将变得清晰可控。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 选择主题 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 二、选择主题——构建音乐的核心故事</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                主题（Theme）是歌曲的思想中心。它定义了音乐想传达的"故事"或"观点"。在AI音乐创作中，主题可以通过关键词或语义描述呈现。例如，"追梦""告别""重生""孤独"都可成为提示词的核心成分。
+                            </p>
+
+                            <h3>（一）常见主题类型</h3>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>类别</th>
+                                            <th>内容特征</th>
+                                            <th>音乐表现倾向</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>爱情类</strong></td>
+                                            <td>甜蜜、失恋、思念</td>
+                                            <td>抒情、慢节奏、小调</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>梦想类</strong></td>
+                                            <td>奋斗、成长、希望</td>
+                                            <td>中快节奏、激昂旋律</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>自然类</strong></td>
+                                            <td>四季、山川、海洋</td>
+                                            <td>空灵、柔和、旋律线长</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>社会类</strong></td>
+                                            <td>友情、家庭、时代</td>
+                                            <td>多层情绪结构、叙事歌词</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 主题与情绪的关系 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）主题与情绪的关系</h3>
+                            <p style="font-size: 1.15rem; line-height: 1.8; margin: 20px 0;">
+                                主题决定内容的"叙事"，情绪决定音乐的"表达"。例如，同样是"爱情"主题，可以有截然不同的音乐风格：
+                            </p>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-heart neon-text-pink"></i>
+                                    <h4>甜蜜爱情</h4>
+                                    <p>流行、明亮音色、快节奏</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-heartbeat neon-text-cyan"></i>
+                                    <h4>失恋情绪</h4>
+                                    <p>小调、慢速、钢琴或弦乐为主</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-hand-holding-heart neon-text-purple"></i>
+                                    <h4>重逢主题</h4>
+                                    <p>逐步推进的旋律结构，象征希望与情感复燃</p>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">（三）案例说明</h3>
+
+                            <div class="video-grid">
+                                <div class="video-card">
+                                    <h4 class="neon-text-cyan">周杰伦《稻香》</h4>
+                                    <p>主题为成长与回归，以轻快民谣节奏表现温暖感。</p>
+                                    <audio controls class="video-player">
+                                        <source src="../图片/二、选择主题——构建音乐的核心故事-（三）案例说明-周杰伦《稻香》：主题为成长与回归，以轻快民谣节奏表现温暖感。.mp3" type="audio/mpeg">
+                                        您的浏览器不支持音频播放。
+                                    </audio>
+                                </div>
+
+                                <div class="video-card">
+                                    <h4 class="neon-text-purple">五月天《倔强》</h4>
+                                    <p>主题为梦想与坚持，采用摇滚风格强化力量感。</p>
+                                    <audio controls class="video-player">
+                                        <source src="../图片/二、选择主题——构建音乐的核心故事-（三）案例说明-五月天《倔强》：主题为梦想与坚持，采用摇滚风格强化力量感。.mp3" type="audio/mpeg">
+                                        您的浏览器不支持音频播放。
+                                    </audio>
+                                </div>
+
+                                <div class="video-card">
+                                    <h4 class="neon-text-pink">李宗盛《山丘》</h4>
+                                    <p>主题为时间与人生反思，以叙事性旋律和低频配器表达成熟情绪。</p>
+                                    <audio controls class="video-player">
+                                        <source src="../图片/李宗盛《山丘》：主题为时间与人生反思，以叙事性旋律和低频配器表达成熟情绪。.mp3" type="audio/mpeg">
+                                        您的浏览器不支持音频播放。
+                                    </audio>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 25px;">
+                                <p style="font-size: 1.15rem;">
+                                    <strong>💡 小结：</strong>主题选择需兼顾创作需求与听众偏好，使音乐的故事线更具方向性。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 设定情感基调 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎵 三、设定情感基调——音乐的"语气系统"</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                情感基调是音乐的核心灵魂。它不仅决定了旋律线条和节奏速度，还影响歌词与配器的组织方式。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 核心控制维度1 - 流派 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="section-subtitle">
+                                <i class="fas fa-music"></i>
+                                核心控制维度1：流派（Genre）——音乐的"文化语境"
+                            </h3>
+
+                            <div class="content-card">
+                                <h4>1. 是什么</h4>
+                                <ul>
+                                    <li>音乐的"风格身份"，决定整体语言体系、律动方式、编曲逻辑和文化背景。</li>
+                                    <li>流派可比喻为<strong class="neon-text-cyan">料理菜系</strong>：意大利菜不会忽然加麻辣椒油，嘻哈也不会突然变古典弦乐独奏。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 常见流派表格 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4>2. 常见流派与感觉</h4>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>流派（Genre）</th>
+                                            <th>核心特点</th>
+                                            <th>典型音色</th>
+                                            <th>适用情绪/场景</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Pop（流行）</strong></td>
+                                            <td>旋律好记、结构清晰、最大众</td>
+                                            <td>钢琴、合成器、轻鼓组</td>
+                                            <td>日常、甜美、轻松</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Rock（摇滚）</strong></td>
+                                            <td>力量、节奏强、电吉他主导</td>
+                                            <td>电吉他、贝斯、鼓</td>
+                                            <td>热血、青春、爆发</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Hip-Hop / Rap</strong></td>
+                                            <td>强节奏、态度感、押韵</td>
+                                            <td>808低频、Trap鼓点</td>
+                                            <td>酷、街头感、自信</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>R&B（节奏蓝调）</strong></td>
+                                            <td>柔和、灵魂感、细腻</td>
+                                            <td>电子钢琴、柔和Bass</td>
+                                            <td>暧昧、夜晚、浪漫</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Electronic（电子）</strong></td>
+                                            <td>合成器主导、未来感</td>
+                                            <td>EDM鼓、Synth、Bass</td>
+                                            <td>科技、能量、运动</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Lo-fi（轻松氛围）</strong></td>
+                                            <td>柔和、暖、轻节奏</td>
+                                            <td>Vinyl噪声、合成器</td>
+                                            <td>学习、深夜、放松</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Folk / Indie</strong></td>
+                                            <td>干净、故事感、朴实</td>
+                                            <td>木吉他、浅鼓</td>
+                                            <td>校园、旅行、情绪流动</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Jazz（爵士）</strong></td>
+                                            <td>摇摆、慵懒、氛围感</td>
+                                            <td>萨克斯、钢琴、低音提琴</td>
+                                            <td>咖啡馆、轻松、大人感</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Classical / Orchestral</strong></td>
+                                            <td>庄重、宏大、叙事感</td>
+                                            <td>弦乐、铜管、打击</td>
+                                            <td>史诗、电影、仪式</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Cinematic（电影感）</strong></td>
+                                            <td>氛围巨大、画面感强</td>
+                                            <td>弦乐、鼓、合唱</td>
+                                            <td>剧情、史诗、幻想</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>City Pop（城市流行）</strong></td>
+                                            <td>80s复古、都市浪漫</td>
+                                            <td>爽朗鼓、复古Bass、合成器</td>
+                                            <td>霓虹、海风、都市夜</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>China-Chic / Guofeng</strong></td>
+                                            <td>传统+现代混合、东方味</td>
+                                            <td>古筝、笛子、埙、电子鼓</td>
+                                            <td>东方浪漫、古风、国潮</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 style="margin-top: 40px;">流派示例</h4>
+                            <div class="video-grid-2">
+                                <div class="video-card">
+                                    <h4 class="neon-text-cyan"><i class="fas fa-music"></i> Pop（流行）</h4>
+                                    <p>旋律好记、结构清晰、最大众</p>
+                                    <audio controls class="video-player">
+                                        <source src="../图片/三、设定情感基调——2.\ 常见流派与感觉-Pop（流行）.mp3" type="audio/mpeg">
+                                        您的浏览器不支持音频播放。
+                                    </audio>
+                                </div>
+
+                                <div class="video-card">
+                                    <h4 class="neon-text-pink"><i class="fas fa-guitar"></i> Rock（摇滚）</h4>
+                                    <p>力量、节奏强、电吉他主导</p>
+                                    <audio controls class="video-player">
+                                        <source src="../图片/三、设定情感基调——2.\ 常见流派与感觉-Rock（摇滚）.mp3" type="audio/mpeg">
+                                        您的浏览器不支持音频播放。
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 流派使用技巧 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="content-card">
+                                <h4>3. 初学者常见误区</h4>
+                                <ul>
+                                    <li>只写情绪，不写流派，导致音乐风格与主题冲突。</li>
+                                    <li>同时塞入多个矛盾流派，例如"古风+重金属+Lo-fi"。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>4. 写到提示词的说法</h4>
+                                <ul>
+                                    <li>"<strong class="neon-text-cyan">Electronic（电子） + Dream Pop（梦幻流行）</strong> 的混合风格，轻盈梦幻"</li>
+                                    <li>"<strong class="neon-text-purple">China-Chic（国潮流行）</strong>，古筝点缀，整体现代感"</li>
+                                    <li>"<strong class="neon-text-pink">Cinematic Epic（电影史诗）</strong>，宏大、故事推进感"</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 核心控制维度2 - 节奏 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="section-subtitle">
+                                <i class="fas fa-drum"></i>
+                                核心控制维度2：节奏（Tempo）——音乐的"行走速度"
+                            </h3>
+
+                            <div class="content-card">
+                                <h4>1. 是什么</h4>
+                                <ul>
+                                    <li>一分钟里有多少下"嘀嗒"（=拍子）。用 <strong class="neon-text-cyan">BPM</strong> 表示（Beats Per Minute）。</li>
+                                    <li><strong>数值越大越快</strong>，给人更有劲、更想动的感觉；<strong>数值越小越慢</strong>，更舒缓、沉静。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>2. 怎么听出来</h4>
+                                <p>跟着鼓点或低音"咚—咚"用手指<strong class="neon-text-pink">打拍子</strong>。能打得很密，就是快；很稀，就是慢。</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>3. 常见感觉与BPM参考</h4>
+                                <ul>
+                                    <li><strong>60–80 BPM</strong>：慢、抒情、沉思（夜晚、独处、告别）</li>
+                                    <li><strong>90–110 BPM</strong>：中速、自然流动（多数流行歌、vlog日常）</li>
+                                    <li><strong>120–130 BPM</strong>：偏快、提神（运动、励志、舞曲）</li>
+                                    <li><strong>140+ BPM</strong>：很快、紧张/狂欢（战斗、疾驰、高潮段）</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>4. 初学者常见误区</h4>
+                                <ul>
+                                    <li>只写"快一点/慢一点"不够明确；建议<strong class="neon-text-cyan">给区间或具体 BPM</strong>。</li>
+                                    <li>情绪和速度打架：比如说"疗愈放松"，却写 140 BPM。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>5. 写到提示词的说法</h4>
+                                <ul>
+                                    <li>"<strong>中速 100 BPM</strong>，轻松感"</li>
+                                    <li>"<strong>偏快 125 BPM</strong>，适合跑步节奏"</li>
+                                    <li>"<strong>缓慢 70 BPM</strong>，温柔、留白多"</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: 核心控制维度3 - 旋律 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="section-subtitle">
+                                <i class="fas fa-wave-square"></i>
+                                核心控制维度3：旋律（Melody）——会"哼"的那条线
+                            </h3>
+
+                            <div class="content-card">
+                                <h4>1. 是什么</h4>
+                                <ul>
+                                    <li>能被<strong class="neon-text-cyan">哼出来/唱出来</strong>的主线，像一句一句的"话"。</li>
+                                    <li>旋律有<strong>走向</strong>：向上（上扬）、向下（下行）、起伏（忽高忽低）。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>2. 怎么听出来</h4>
+                                <p>跟着主唱或主乐器<strong class="neon-text-pink">轻轻哼</strong>。如果越唱越高，是上扬；越唱越低，是下行；忽高忽低是起伏。</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>3. 常见感觉与走向</h4>
+                                <ul>
+                                    <li><strong class="neon-text-cyan">上扬旋律</strong>：抬头、希望、打开（适合励志、日出、重逢）</li>
+                                    <li><strong class="neon-text-purple">下行旋律</strong>：回落、哀伤、释怀（适合告别、回忆、夜晚）</li>
+                                    <li><strong class="neon-text-pink">大跳/大起伏</strong>：戏剧张力、惊喜（副歌爆发）</li>
+                                    <li><strong>级进/小步走</strong>：温柔、细腻（叙事、安静心情）</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>4. 初学者常见误区</h4>
+                                <ul>
+                                    <li>只说"好听的旋律"却不告诉 AI"朝上/朝下/起伏大不大"。</li>
+                                    <li>旋律和情绪冲突：说要"治愈"，却要求"大跳+高音爆发"。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>5. 写到提示词的说法</h4>
+                                <ul>
+                                    <li>"<strong>上扬型旋律</strong>，结尾略提升，表达希望"</li>
+                                    <li>"<strong>下行旋律线</strong>，平稳收束，带一点惆怅"</li>
+                                    <li>"<strong>副歌大起伏</strong>、可哼唱，洗脑度高"</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: 核心控制维度4 - 和声 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="section-subtitle">
+                                <i class="fas fa-layer-group"></i>
+                                核心控制维度4：和声（Harmony）——背景"颜色"和空气
+                            </h3>
+
+                            <div class="content-card">
+                                <h4>1. 是什么</h4>
+                                <ul>
+                                    <li>伴随旋律同时响的<strong class="neon-text-cyan">和弦</strong>（多种音叠在一起），决定音乐"背后的颜色"。</li>
+                                    <li><strong>和谐度高</strong>（悦耳、稳定）⇄ <strong>不和谐/张力强</strong>（紧张、悬疑、未解决）。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>2. 怎么听出来</h4>
+                                <p>注意<strong class="neon-text-pink">旋律停下来时</strong>背景的感觉：</p>
+                                <ul>
+                                    <li>如果像"安全着陆"，多半是<strong>稳定和声</strong>（大调/常规和弦）。</li>
+                                    <li>如果像"还没落地、悬着"，多半用了<strong>张力和弦/未解决和声</strong>。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>3. 常见感觉与和声类型</h4>
+                                <ul>
+                                    <li><strong class="neon-text-cyan">大调（明亮）</strong>：晴朗、温暖、积极</li>
+                                    <li><strong class="neon-text-purple">小调（偏忧郁）</strong>：内省、感伤、冷静</li>
+                                    <li><strong>延伸/不和谐音</strong>：爵士感、暧昧、悬疑</li>
+                                    <li><strong>反复和弦循环</strong>：流行、好记、易入耳</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>4. 初学者常见误区</h4>
+                                <ul>
+                                    <li>只说"明亮/悲伤"，不说明<strong>大调/小调</strong>或"要不要张力"。</li>
+                                    <li>全程一种和声颜色，导致<strong>平（没层次）</strong>。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>5. 写到提示词的说法</h4>
+                                <ul>
+                                    <li>"<strong>大调</strong>、温暖稳定的和声，副歌更明亮"</li>
+                                    <li>"<strong>小调</strong>、带一点<strong>未解决</strong>的悬浮感"</li>
+                                    <li>"流行四和弦循环，<strong>副歌更丰富的和声堆叠</strong>"</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: 核心控制维度5 - 音色 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="section-subtitle">
+                                <i class="fas fa-guitar"></i>
+                                核心控制维度5：音色（Timbre）——声音的"材质感"
+                            </h3>
+
+                            <div class="content-card">
+                                <h4>1. 是什么</h4>
+                                <ul>
+                                    <li>同一个音高，不同"材质"的乐器/嗓音听起来完全不同。</li>
+                                    <li>就像布料：棉（柔）、丝（滑）、皮（厚）、金属（硬）。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>2. 常见音色与情绪联想</h4>
+                                <ul>
+                                    <li><strong class="neon-text-pink">钢琴</strong>：亲近、温柔、清晰</li>
+                                    <li><strong class="neon-text-cyan">木吉他</strong>：自然、轻松、户外气息</li>
+                                    <li><strong class="neon-text-purple">弦乐</strong>：细腻、感性、电影感</li>
+                                    <li><strong>电吉他</strong>：力量、热血、青春</li>
+                                    <li><strong>合成器</strong>：未来、科幻、梦境</li>
+                                    <li><strong>铜管/打击</strong>：宏大、史诗、仪式</li>
+                                    <li><strong>人声</strong>：最具"人味儿"，语气决定亲近/距离</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>3. 初学者常见误区</h4>
+                                <ul>
+                                    <li>只写风格不点名乐器，AI会<strong>随便配器</strong>。</li>
+                                    <li>同时塞很多乐器，结果<strong>糊</strong>；或乐器与情绪冲突（疗愈却用硬质电吉他）。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>4. 写到提示词的说法</h4>
+                                <ul>
+                                    <li>"<strong>钢琴+弦乐</strong>主导，质感柔和，有空气感混响"</li>
+                                    <li>"<strong>电吉他+鼓组</strong>突出，有颗粒感、现场感"</li>
+                                    <li>"<strong>合成器铺底</strong>，电子质感，清透不拥挤"</li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: 五维度配合 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（六）五维度如何"配合发力"</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <p>先定流派（Genre）：决定音乐的大框架与文化语境。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <p>再定节奏（Tempo）：建立律动速度。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <p>设计旋律（Melody）走向：希望 vs 沉静 vs 爆发。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <p>选择和声（Harmony）颜色：大调/小调/张力。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <p>挑主乐器音色（Timbre）：确定主材质与质感。</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-pink">新手避坑清单</h4>
+                                <ul>
+                                    <li>情绪要<strong>一致</strong>：疗愈就别要"强失真电吉他"；战斗就别要求"轻柔木吉他"。</li>
+                                    <li>元素别贪多：<strong>1–2个主乐器</strong>足够清晰，其它作为点缀。</li>
+                                    <li>先给<strong>一句总体目标</strong>，再列参数；AI更容易抓主线。</li>
+                                    <li>生成后不满意，优先改 <strong>BPM 或主导乐器</strong>，其次再动旋律描述/和声颜色。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 14: 常见情感类型表格 -->
+            <section class="section-scroll-item" data-section="14">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（七）常见情感类型与音乐特征</h3>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>情感类型</th>
+                                            <th>速度 (BPM)</th>
+                                            <th>调式</th>
+                                            <th>音色特征</th>
+                                            <th>示例</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>快乐</strong></td>
+                                            <td>120–140</td>
+                                            <td>大调</td>
+                                            <td>明亮、节奏强</td>
+                                            <td>《Sugar》- Maroon 5</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>悲伤</strong></td>
+                                            <td>60–80</td>
+                                            <td>小调</td>
+                                            <td>柔和、低沉</td>
+                                            <td>《Someone Like You》- Adele</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>温柔</strong></td>
+                                            <td>80–100</td>
+                                            <td>大调或小调</td>
+                                            <td>钢琴、弦乐</td>
+                                            <td>《Perfect》- Ed Sheeran</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>紧张</strong></td>
+                                            <td>130以上</td>
+                                            <td>多变调式</td>
+                                            <td>鼓点密集、电子音效</td>
+                                            <td>游戏或战斗BGM</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>梦幻</strong></td>
+                                            <td>90–110</td>
+                                            <td>大调</td>
+                                            <td>淡混响、合成器</td>
+                                            <td>Lo-Fi、氛围音乐</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 25px;">
+                                <p style="font-size: 1.15rem;">
+                                    <strong>💡 小结：</strong>情感基调的设置，是AI理解"表达意图"的关键环节。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 15: 分析听众 -->
+            <section class="section-scroll-item" data-section="15">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">👥 四、分析听众——理解音乐的接受者</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                AI音乐的创作不仅关乎音乐生成，也关乎"被谁听见"。目标听众决定了风格、节奏、语言及表现方式。
+                            </p>
+
+                            <h3>（一）不同听众群体偏好特征</h3>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>听众类型</th>
+                                            <th>偏好风格</th>
+                                            <th>情绪倾向</th>
+                                            <th>典型特征</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>青少年（Z世代）</strong></td>
+                                            <td>电子、说唱、节奏感强</td>
+                                            <td>兴奋、叛逆</td>
+                                            <td>注重节奏冲击与个性表达</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>青年（20–30岁）</strong></td>
+                                            <td>流行、R&B、轻摇滚</td>
+                                            <td>浪漫、励志</td>
+                                            <td>注重旋律与歌词的共鸣</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>中年群体</strong></td>
+                                            <td>抒情流行、怀旧摇滚</td>
+                                            <td>情感深沉</td>
+                                            <td>强调旋律性与叙事性</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>老年群体</strong></td>
+                                            <td>民族、经典老歌</td>
+                                            <td>平和、怀旧</td>
+                                            <td>音色温暖、节奏缓慢</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 16: 创作方向的综合确定 -->
+            <section class="section-scroll-item" data-section="16">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎨 五、创作方向的综合确定</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                当主题、情感与听众三要素结合后，AI音乐创作就具备完整的逻辑起点。
+                            </p>
+
+                            <h3>示例：</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>元素</th>
+                                            <th>内容</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>主题</strong></td>
+                                            <td>成长与告别</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>听众</strong></td>
+                                            <td>大学生</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>情感</strong></td>
+                                            <td>温柔、略带忧伤</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>节奏</strong></td>
+                                            <td>中速（90BPM）</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>调式</strong></td>
+                                            <td>小调</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>乐器</strong></td>
+                                            <td>钢琴、弦乐、鼓</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; text-align: center;">
+                                    <strong>→ 音乐风格方向：</strong><span class="neon-text-cyan">"流行抒情"</span>，可用于毕业短片或青春回忆主题。
+                                </p>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 25px; border-left-color: var(--neon-purple);">
+                                <p style="font-size: 1.2rem;">
+                                    <strong>💡 阶段总结：</strong>这一阶段的目标，是让AI"理解你想表达什么"，从而进入提示词撰写阶段。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 260px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、确定创作需求</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">（一）四个维度</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">（二）案例分析</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">二、选择主题</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">（一）常见主题类型</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">（二）主题与情绪</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">（三）案例说明</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">三、设定情感基调</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">（一）流派</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">（二）节奏</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">（三）旋律</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">（四）和声</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(12)">（五）音色</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">（六）五维度配合</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(14)">（七）常见情感类型</button>
+                    <button class="nav-item" onclick="courseScrollToSection(15)">四、分析听众</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(15)">（一）听众群体特征</button>
+                    <button class="nav-item" onclick="courseScrollToSection(16)">五、创作方向确定</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">检验学习成果 | 单选题与判断题</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 单项选择题 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">一、单项选择题（共 6 题，每题 12.5 分）</h2>
+
+                            <!-- 题目1 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">1. 在"创作需求的四个维度"中，最直接决定音乐功能定位的是：</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="A">
+                                        <span>A. 听众</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="B">
+                                        <span>B. 用途</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="C">
+                                        <span>C. 情绪</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q1" value="D">
+                                        <span>D. 场景</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：B</strong></p>
+                                        <p>解释：用途（Purpose）决定音乐"用来做什么"，如广告、运动、电影等，是创作需求的核心锚点。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 题目2 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">2. 哪一组"用途–风格"匹配更合理？</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="A">
+                                        <span>A. 游戏战斗场景 → 60–70 BPM、钢琴独奏</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="B">
+                                        <span>B. 运动短视频 → 120–130 BPM、鼓点 + 电子贝斯</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="C">
+                                        <span>C. 广告洗脑旋律 → 和声复杂、节奏多变</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q2" value="D">
+                                        <span>D. vlog日常 → 140+ BPM 强打击</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：B</strong></p>
+                                        <p>解释：运动音乐需要强节奏与能量，因此适合 120–130 BPM 的电子流行/鼓点节奏。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 题目3 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">3. 关于旋律走向与情感的表述，哪项正确？</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q3" value="A">
+                                        <span>A. 上扬旋律更适合悲伤告别</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q3" value="B">
+                                        <span>B. 下行旋律常用于表达希望</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q3" value="C">
+                                        <span>C. 上扬旋律更易传达希望与打开感</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q3" value="D">
+                                        <span>D. 旋律走向与情绪无明显关联</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：C</strong></p>
+                                        <p>解释：上扬旋律让听感"抬头""亮起"，常用于希望、重生与积极情绪。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 题目4 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">4. 关于和声（Harmony）的说法正确的是：</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q4" value="A">
+                                        <span>A. 大调一定悲伤，小调一定明亮</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q4" value="B">
+                                        <span>B. 使用不和谐音通常会增强张力</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q4" value="C">
+                                        <span>C. 只要提高 BPM 就能解决"未落地"感</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q4" value="D">
+                                        <span>D. 四和弦循环让歌曲难记</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：B</strong></p>
+                                        <p>解释：扩展和弦与不和谐音会带来张力和悬疑感，是常见的"未解决"效果来源。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 题目5 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">5. 提示词写为"中速、温柔偏感伤、小调、钢琴与弦乐主导"，合理的 BPM 是：</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q5" value="A">
+                                        <span>A. 65 BPM</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q5" value="B">
+                                        <span>B. 90–100 BPM</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q5" value="C">
+                                        <span>C. 125 BPM</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q5" value="D">
+                                        <span>D. 150 BPM</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：B</strong></p>
+                                        <p>解释：抒情流行的小调作品多在 90–100 BPM，既不太慢也不太快，表达"温柔感伤"更自然。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 题目6 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">6. 下列哪项不属于 Suno 的"DNA 五要素"？</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q6" value="A">
+                                        <span>A. 流派（Genre）</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q6" value="B">
+                                        <span>B. 情绪（Mood）</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q6" value="C">
+                                        <span>C. 乐器（Instruments）</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q6" value="D">
+                                        <span>D. 版权授权（License）</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：D</strong></p>
+                                        <p>解释：DNA 五要素包括：流派、情绪、乐器、人声、节奏速度。没有"版权授权"这项。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 判断题 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">二、判断题（共 2 题，每题 12.5 分）</h2>
+
+                            <!-- 题目7 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">7. 情绪与速度相关："疗愈放松"的感觉通常适合慢速或中速 BPM。</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q7" value="true">
+                                        <span>对</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q7" value="false">
+                                        <span>错</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：对</strong></p>
+                                        <p>解释：平静、温柔类情绪更适合 70–100 BPM，过快速度会破坏放松氛围。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 题目8 -->
+                            <div class="content-card question-card">
+                                <h4 class="neon-text-cyan">8. 场景（Scene）能帮助 AI 建立画面感。例如"夜晚城市街头"更容易引导到电子风格。</h4>
+                                <div class="quiz-options">
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q8" value="true">
+                                        <span>对</span>
+                                    </label>
+                                    <label class="quiz-option">
+                                        <input type="radio" name="q8" value="false">
+                                        <span>错</span>
+                                    </label>
+                                </div>
+                                <div class="answer-explanation" style="display: none;">
+                                    <div class="highlight-box">
+                                        <p><strong class="neon-text-pink">正确答案：对</strong></p>
+                                        <p>解释：场景词会触发特定风格联想，影响配器、节奏与氛围生成。</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 提交按钮 -->
+                            <div style="text-align: center; margin-top: 40px;">
+                                <button class="submit-quiz-btn" onclick="submitQuiz()">
+                                    <i class="fas fa-paper-plane"></i> 提交答案
+                                </button>
+                            </div>
+
+                            <!-- 成绩显示区域 -->
+                            <div id="quiz-result" style="display: none; margin-top: 30px;">
+                                <div class="highlight-box" style="border-left-color: var(--neon-cyan); text-align: center;">
+                                    <h3 class="neon-text-cyan" style="font-size: 2.5rem; margin-bottom: 20px;">
+                                        <i class="fas fa-trophy"></i> 您的成绩
+                                    </h3>
+                                    <p style="font-size: 3rem; font-weight: 900; margin: 20px 0;" id="score-display"></p>
+                                    <p style="font-size: 1.3rem;" id="result-message"></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI音乐创作提示词攻略 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
