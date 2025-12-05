@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第六课：AI 网页生成控制实战</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>6.AI 网页生成控制实战</h1>
+                    <p class="subtitle">掌握结构化提示词 | 实现可控的个性化网页生成</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">课程概述</h2>
+
+                            <h3 class="neon-text-cyan">课程回顾</h3>
+                            <ol>
+                                <li>识别并拆解 AI 生成网页的三层结构：<strong>HTML（结构）/ CSS（样式）/ JavaScript（行为）</strong></li>
+                                <li>通过示例阅读 AI 代码，能判断哪些片段属于结构、视觉或交互</li>
+                                <li>理解同一提示词可能产生不同结果，具备基础的"阅读 AI / 检查 AI"的意识</li>
+                            </ol>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px;">学习目标</h3>
+                            <ol>
+                                <li>掌握<strong>结构化提示词</strong>写法，能对 HTML/CSS/JS 输出进行明确约束与控制</li>
+                                <li>理解网页"个性化表达"的三方向：<strong>视觉风格（CSS）/ 结构风格（HTML）/ 语气风格（文案）</strong></li>
+                                <li>使用提示词模板生成风格一致、结构清晰、交互合理的页面骨架</li>
+                                <li>能围绕"极简 / 科技 / 卡通 / 时尚"等风格，设计可复用的<strong>风格化提示词模板</strong></li>
+                                <li>完成一次从"AI 自由生成"到"按规范生成"的提示词迭代实践</li>
+                            </ol>
+
+                            <h3 class="neon-text-pink" style="margin-top: 35px;">课程目录</h3>
+                            <ol>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">网页生成中的提示词控制基础</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">页面结构控制：让 AI 严格按所需格式输出</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">网页个性化方向一：视觉风格控制（CSS 层）</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">网页个性化方向二：结构风格控制（HTML 层）</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">网页个性化方向三：表达风格控制（文案与语气）</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">综合示范:生成一个可控且具有个性化风格的网页</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习 AI 网页生成的精准控制方法</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 一、提示词控制基础 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">一、提示词控制基础与结构化表达</h2>
+                            <h3>（一）AI输出"风格不一致"的原因分析</h3>
+
+                            <!-- AI问题示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 标题 -->
+                                    <text x="400" y="30" class="diagram-title">AI 输出不一致的三大原因</text>
+
+                                    <!-- 原因1 -->
+                                    <g class="diagram-item">
+                                        <circle cx="150" cy="120" r="50" class="diagram-circle pink"/>
+                                        <text x="150" y="100" class="diagram-number">1</text>
+                                        <text x="150" y="130" class="diagram-label">理解不足</text>
+                                        <text x="150" y="200" class="diagram-desc">AI 根据相似说法推测</text>
+                                        <text x="150" y="220" class="diagram-desc">并不真正理解规范</text>
+                                    </g>
+
+                                    <!-- 原因2 -->
+                                    <g class="diagram-item">
+                                        <circle cx="400" cy="120" r="50" class="diagram-circle purple"/>
+                                        <text x="400" y="100" class="diagram-number">2</text>
+                                        <text x="400" y="130" class="diagram-label">自动补全</text>
+                                        <text x="400" y="200" class="diagram-desc">缺少信息时会自己补</text>
+                                        <text x="400" y="220" class="diagram-desc">补法不可控且随机</text>
+                                    </g>
+
+                                    <!-- 原因3 -->
+                                    <g class="diagram-item">
+                                        <circle cx="650" cy="120" r="50" class="diagram-circle cyan"/>
+                                        <text x="650" y="100" class="diagram-number">3</text>
+                                        <text x="650" y="130" class="diagram-label">随意发挥</text>
+                                        <text x="650" y="200" class="diagram-desc">结构、样式、命名</text>
+                                        <text x="650" y="220" class="diagram-desc">缺少约束时会随意</text>
+                                    </g>
+
+                                    <!-- 解决方案箭头 -->
+                                    <line x1="400" y1="260" x2="400" y2="300" class="diagram-arrow"/>
+                                    <polygon points="400,300 395,290 405,290" class="diagram-arrow-head"/>
+
+                                    <!-- 解决方案 -->
+                                    <rect x="250" y="310" width="300" height="60" rx="10" class="solution-box"/>
+                                    <text x="400" y="335" class="solution-text">解决方案</text>
+                                    <text x="400" y="355" class="solution-desc">使用结构化提示词</text>
+                                </svg>
+                            </div>
+
+                            <div class="content-card">
+                                <ul>
+                                    <li><strong class="neon-text-pink">理解不足：</strong>AI是根据已有文字去"找相似说法"，并不真正理解网页规范；结果可能看着像对的，但细节容易不统一</li>
+                                    <li><strong class="neon-text-purple">自动补全：</strong>提示里少了关键信息时，AI会自己补模块、名字和顺序；这个补法不可控，不同次输出就会不一样</li>
+                                    <li><strong class="neon-text-cyan">随意发挥：</strong>没有规定清楚"要用什么结构和格式"时，AI在结构层级、样式命名和排版细节上会随意发挥，整体看起来就不一致</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结构化提示词的五段式骨架 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）结构化提示词的五段式骨架</h3>
+
+                            <!-- 五段式骨架示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 标题 -->
+                                    <text x="400" y="30" class="diagram-title">结构化提示词五段式骨架</text>
+
+                                    <!-- 第1段 -->
+                                    <g class="step-block" transform="translate(0, 60)">
+                                        <rect x="100" y="0" width="600" height="80" rx="10" class="step-rect step-1"/>
+                                        <circle cx="140" cy="40" r="20" class="step-number"/>
+                                        <text x="140" y="48" class="step-num-text">1</text>
+                                        <text x="180" y="30" class="step-title">类型 Type</text>
+                                        <text x="180" y="55" class="step-desc">这个页面是做什么用的</text>
+                                        <text x="580" y="45" class="step-example">例：着陆页、作品集、博客</text>
+                                    </g>
+
+                                    <!-- 第2段 -->
+                                    <g class="step-block" transform="translate(0, 160)">
+                                        <rect x="100" y="0" width="600" height="80" rx="10" class="step-rect step-2"/>
+                                        <circle cx="140" cy="40" r="20" class="step-number"/>
+                                        <text x="140" y="48" class="step-num-text">2</text>
+                                        <text x="180" y="30" class="step-title">目的 Purpose</text>
+                                        <text x="180" y="55" class="step-desc">希望读者做什么</text>
+                                        <text x="580" y="45" class="step-example">例：了解信息、留联系方式</text>
+                                    </g>
+
+                                    <!-- 第3段 -->
+                                    <g class="step-block" transform="translate(0, 260)">
+                                        <rect x="100" y="0" width="600" height="80" rx="10" class="step-rect step-3"/>
+                                        <circle cx="140" cy="40" r="20" class="step-number"/>
+                                        <text x="140" y="48" class="step-num-text">3</text>
+                                        <text x="180" y="30" class="step-title">页面结构 Structure</text>
+                                        <text x="180" y="55" class="step-desc">按顺序列出区块</text>
+                                        <text x="580" y="45" class="step-example">例：Header→Hero→Features→Footer</text>
+                                    </g>
+
+                                    <!-- 第4段 -->
+                                    <g class="step-block" transform="translate(0, 360)">
+                                        <rect x="100" y="0" width="600" height="80" rx="10" class="step-rect step-4"/>
+                                        <circle cx="140" cy="40" r="20" class="step-number"/>
+                                        <text x="140" y="48" class="step-num-text">4</text>
+                                        <text x="180" y="30" class="step-title">样式方向 Style</text>
+                                        <text x="180" y="55" class="step-desc">主色、字体、留白、动效</text>
+                                        <text x="580" y="45" class="step-example">例：极简黑白、科技蓝色</text>
+                                    </g>
+
+                                    <!-- 第5段 -->
+                                    <g class="step-block" transform="translate(0, 460)">
+                                        <rect x="100" y="0" width="600" height="80" rx="10" class="step-rect step-5"/>
+                                        <circle cx="140" cy="40" r="20" class="step-number"/>
+                                        <text x="140" y="48" class="step-num-text">5</text>
+                                        <text x="180" y="30" class="step-title">额外说明 Constraints</text>
+                                        <text x="180" y="55" class="step-desc">命名规范、注释、禁止项</text>
+                                        <text x="580" y="45" class="step-example">例：BEM命名、禁行内样式</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem;">
+                                    <strong class="neon-text-pink">💡 核心思想：</strong>
+                                    通过明确的五段式结构，给AI提供完整、清晰、无歧义的指令，确保输出的可控性和一致性。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 可直接写进提示词的约束要点 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）可直接写进提示词的约束要点</h3>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-th neon-text-cyan"></i>
+                                    <h4>指定布局方式</h4>
+                                    <p>横向排列还是网格排列；移动端如何换行</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-palette neon-text-purple"></i>
+                                    <h4>指定配色变量</h4>
+                                    <p>把颜色起统一名字（如 --primary），方便全站一致调整</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-tag neon-text-pink"></i>
+                                    <h4>指定命名规则</h4>
+                                    <p>类名按固定写法（如"模块__元素--状态"）统一起来</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-file-code" style="color: var(--neon-yellow);"></i>
+                                    <h4>指定文件分离</h4>
+                                    <p>要求分别输出 HTML / CSS / JS，互不混在一起</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 二、页面结构控制 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">二、页面结构控制——让 AI 按所需格式生成</h2>
+                            <h3>（一）用"结构树 + 顺序"说清要什么</h3>
+
+                            <!-- 结构树示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 标题 -->
+                                    <text x="400" y="30" class="diagram-title">页面结构树示例</text>
+
+                                    <!-- 根节点 -->
+                                    <rect x="330" y="50" width="140" height="50" rx="8" class="tree-node root"/>
+                                    <text x="400" y="82" class="tree-text">网页 Page</text>
+
+                                    <!-- 连接线 -->
+                                    <line x1="400" y1="100" x2="400" y2="130" class="tree-line"/>
+                                    <line x1="150" y1="130" x2="650" y2="130" class="tree-line"/>
+
+                                    <!-- 第一层节点 -->
+                                    <line x1="150" y1="130" x2="150" y2="150" class="tree-line"/>
+                                    <rect x="90" y="150" width="120" height="40" rx="6" class="tree-node level1"/>
+                                    <text x="150" y="175" class="tree-text-small">Header</text>
+
+                                    <line x1="400" y1="130" x2="400" y2="150" class="tree-line"/>
+                                    <rect x="340" y="150" width="120" height="40" rx="6" class="tree-node level1"/>
+                                    <text x="400" y="175" class="tree-text-small">Main</text>
+
+                                    <line x1="650" y1="130" x2="650" y2="150" class="tree-line"/>
+                                    <rect x="590" y="150" width="120" height="40" rx="6" class="tree-node level1"/>
+                                    <text x="650" y="175" class="tree-text-small">Footer</text>
+
+                                    <!-- Main的子节点连接线 -->
+                                    <line x1="400" y1="190" x2="400" y2="210" class="tree-line"/>
+                                    <line x1="200" y1="210" x2="600" y2="210" class="tree-line"/>
+
+                                    <!-- Main的子节点 -->
+                                    <line x1="200" y1="210" x2="200" y2="230" class="tree-line"/>
+                                    <rect x="150" y="230" width="100" height="35" rx="5" class="tree-node level2"/>
+                                    <text x="200" y="253" class="tree-text-tiny">Hero</text>
+
+                                    <line x1="330" y1="210" x2="330" y2="230" class="tree-line"/>
+                                    <rect x="280" y="230" width="100" height="35" rx="5" class="tree-node level2"/>
+                                    <text x="330" y="253" class="tree-text-tiny">Features</text>
+
+                                    <line x1="460" y1="210" x2="460" y2="230" class="tree-line"/>
+                                    <rect x="410" y="230" width="100" height="35" rx="5" class="tree-node level2"/>
+                                    <text x="460" y="253" class="tree-text-tiny">Gallery</text>
+
+                                    <line x1="600" y1="210" x2="600" y2="230" class="tree-line"/>
+                                    <rect x="550" y="230" width="100" height="35" rx="5" class="tree-node level2"/>
+                                    <text x="600" y="253" class="tree-text-tiny">Contact</text>
+
+                                    <!-- 说明文字 -->
+                                    <g transform="translate(50, 320)">
+                                        <rect x="0" y="0" width="700" height="150" rx="10" class="info-box"/>
+                                        <text x="20" y="30" class="info-title">关键要求：</text>
+                                        <text x="20" y="60" class="info-text">✓ 层级清单：定死模块和先后顺序</text>
+                                        <text x="20" y="85" class="info-text">✓ 必须标签：使用语义化标签（header/main/section/footer）</text>
+                                        <text x="20" y="110" class="info-text">✓ 唯一标识：给关键区块加固定的 id</text>
+                                        <text x="20" y="135" class="info-text">✓ 严格约束：不要新增模块、不要改动顺序</text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 写进提示词的关键要求 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）写进提示词的关键要求</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>说明约束</h4>
+                                    <p><strong class="neon-text-pink">不要新增模块</strong>、<strong class="neon-text-purple">不要改动顺序</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>添加注释</h4>
+                                    <p>每个 <code>section</code> 开头加<strong class="neon-text-cyan">一句注释</strong>，指明这个区块需要做的是什么</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>规定文字长度</h4>
+                                    <p>使用<strong>示例文字</strong>（占位）时的长度规则</p>
+                                    <p class="neon-text-purple">例：标题不超过 8 个字；简介 20–40 字</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 生成后进行查验 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）生成后进行查验</h3>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-list-ol neon-text-cyan"></i> 顺序检查</h4>
+                                    <p>是否完全按清单输出，<strong>一个不多、一个不少</strong>？</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-tags neon-text-purple"></i> 标签检查</h4>
+                                    <p>是否用了上面规定的那些<strong>有含义的标签</strong>？</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-crosshairs neon-text-pink"></i> 定位检查</h4>
+                                    <p>关键区块是否都有固定 <code>id</code>，<strong>能被样式和 JS 精准选中</strong>？</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-ban" style="color: var(--neon-yellow);"></i> 控制检查</h4>
+                                    <p>有没有<strong>多出来的模块或内容</strong>，属于 AI 自己加的？</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 三、视觉风格控制 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">三、网页个性化方向一——视觉风格控制（CSS 层）</h2>
+                            <h3>（一）风格控制的核心抓手</h3>
+
+                            <!-- CSS变量系统示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 900 650" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 标题 -->
+                                    <text x="30" y="30" class="diagram-title-left">CSS 风格控制体系</text>
+
+                                    <!-- 第1个维度：配色系统（上方） -->
+                                    <line x1="450" y1="290" x2="450" y2="200" class="dimension-line"/>
+                                    <circle cx="450" cy="185" r="12" class="dimension-dot pink"/>
+                                    <g transform="translate(450, 75)">
+                                        <rect x="-120" y="0" width="240" height="95" rx="8" class="dimension-card pink"/>
+                                        <text x="0" y="25" class="dimension-card-title">CSS 变量统一管理</text>
+                                        <text x="0" y="50" class="dimension-card-desc">用变量给颜色、文字颜色、背景、</text>
+                                        <text x="0" y="70" class="dimension-card-desc">圆角、阴影起固定名字</text>
+                                        <text x="0" y="90" class="dimension-card-example">--primary / --text / --bg</text>
+                                    </g>
+
+                                    <!-- 中心圆 -->
+                                    <circle cx="450" cy="360" r="70" class="center-circle"/>
+                                    <text x="450" y="350" class="center-text">CSS 变量</text>
+                                    <text x="450" y="375" class="center-text-small">统一管理</text>
+
+                                    <!-- 第2个维度：排版体系（右方） -->
+                                    <line x1="520" y1="360" x2="620" y2="360" class="dimension-line"/>
+                                    <circle cx="635" cy="360" r="12" class="dimension-dot purple"/>
+                                    <g transform="translate(650, 315)">
+                                        <rect x="0" y="0" width="220" height="95" rx="8" class="dimension-card purple"/>
+                                        <text x="110" y="25" class="dimension-card-title">排版体系</text>
+                                        <text x="110" y="50" class="dimension-card-desc">标题与正文的字号层级、</text>
+                                        <text x="110" y="70" class="dimension-card-desc">行高和字重</text>
+                                        <text x="110" y="90" class="dimension-card-example">H1 > H2 > H3，正文 16px</text>
+                                    </g>
+
+                                    <!-- 第3个维度：空间体系（下方） -->
+                                    <line x1="450" y1="430" x2="450" y2="510" class="dimension-line"/>
+                                    <circle cx="450" cy="525" r="12" class="dimension-dot cyan"/>
+                                    <g transform="translate(450, 540)">
+                                        <rect x="-120" y="0" width="240" height="95" rx="8" class="dimension-card cyan"/>
+                                        <text x="0" y="25" class="dimension-card-title">空间体系</text>
+                                        <text x="0" y="50" class="dimension-card-desc">统一用一套间距刻度</text>
+                                        <text x="0" y="70" class="dimension-card-desc">模块与卡片都用同一套间距</text>
+                                        <text x="0" y="90" class="dimension-card-example">8 / 16 / 24 / 32</text>
+                                    </g>
+
+                                    <!-- 第4个维度：动效节奏（左方） -->
+                                    <line x1="380" y1="360" x2="280" y2="360" class="dimension-line"/>
+                                    <circle cx="265" cy="360" r="12" class="dimension-dot yellow"/>
+                                    <g transform="translate(30, 315)">
+                                        <rect x="0" y="0" width="220" height="95" rx="8" class="dimension-card yellow"/>
+                                        <text x="110" y="25" class="dimension-card-title">动效节奏</text>
+                                        <text x="110" y="50" class="dimension-card-desc">过渡时长控制在</text>
+                                        <text x="110" y="70" class="dimension-card-desc">200–300ms，曲线用 ease-out</text>
+                                        <text x="110" y="90" class="dimension-card-example">效果轻、克制、不抢眼</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <!-- 统一管理的优势 -->
+                            <div class="content-card" style="margin-top: 30px;">
+                                <h4 class="neon-text-cyan">统一管理的优势：</h4>
+                                <ul style="margin-top: 15px;">
+                                    <li>改一次变量，全站同步更新</li>
+                                    <li>设计规范清晰，避免随意数值</li>
+                                    <li>易于维护和扩展</li>
+                                    <li>风格一致性有保障</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CSS变量示例代码 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）可复用风格片段（示例）</h3>
+
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span class="code-lang">CSS</span>
+                                    <span class="code-title">变量与基准样式示例</span>
+                                </div>
+                                <pre class="code-content"><code>:root{
+  --primary:#2b6cff;
+  --text:#222; --muted:#666; --bg:#f7f8fa;
+  --radius:12px; --shadow:0 6px 18px rgba(0,0,0,.06);
+  --space-1:8px; --space-2:16px; --space-3:24px; --space-4:32px;
+}
+
+body{
+  color:var(--text);
+  background:var(--bg);
+}
+
+.section-title{
+  font-weight:700;
+  margin-bottom:var(--space-2);
+}
+
+.card{
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:var(--space-3);
+  background:#fff;
+}
+
+.btn{
+  padding:.6em 1.2em;
+  border-radius:8px;
+  background:var(--primary);
+  color:#fff;
+  transition:.25s ease-out;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}</code></pre>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-cyan">提示词锚点（可直接写入提示词）</h4>
+                                <ul>
+                                    <li>使用 <strong>CSS 变量</strong> 统一配色、文字、间距，<strong>禁止行内样式</strong></li>
+                                    <li>按钮采用<strong>轻微悬浮</strong>动效，过渡不超过 <strong>300ms</strong>，使用 <strong>ease-out</strong></li>
+                                    <li>标题样式统一（字重、字号、下边距），卡片统一圆角与阴影</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 风格控制检查清单 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）风格控制检查清单</h3>
+
+                            <div class="checklist">
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle neon-text-pink"></i>
+                                    <div class="checklist-content">
+                                        <h4>变量化程度</h4>
+                                        <p>一处改变量，能否全站换风格？（主色、背景、圆角、阴影是否都走变量）</p>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle neon-text-purple"></i>
+                                    <div class="checklist-content">
+                                        <h4>排版一致性</h4>
+                                        <p>标题层级清楚，正文字号与行高统一</p>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle neon-text-cyan"></i>
+                                    <div class="checklist-content">
+                                        <h4>间距统一性</h4>
+                                        <p>是否都用 8/16/24/32，避免随意数值</p>
+                                    </div>
+                                </div>
+
+                                <div class="checklist-item">
+                                    <i class="fas fa-check-circle" style="color: var(--neon-yellow);"></i>
+                                    <div class="checklist-content">
+                                        <h4>动效克制性</h4>
+                                        <p>时长 200–300ms，ease-out，无过度动画</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 四、结构风格控制 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">四、网页个性化方向二——结构风格控制（HTML 层）</h2>
+                            <h3>（一）三类结构风格（用途与要点）</h3>
+
+                            <!-- 三类结构风格对比图 -->
+                            <div class="structure-comparison">
+                                <!-- 扁平化结构 -->
+                                <div class="structure-card">
+                                    <div class="structure-visual flat">
+                                        <div class="structure-block"></div>
+                                        <div class="structure-spacer"></div>
+                                        <div class="structure-block"></div>
+                                        <div class="structure-spacer"></div>
+                                        <div class="structure-block"></div>
+                                    </div>
+                                    <h4 class="neon-text-pink">扁平化结构</h4>
+                                    <p><strong>用途：</strong>内容导览、信息浏览为主的页面</p>
+                                    <ul class="structure-features">
+                                        <li>区块之间留白更大</li>
+                                        <li>段落更舒展</li>
+                                        <li>强调"扫一眼就懂"</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 紧凑信息块 -->
+                                <div class="structure-card">
+                                    <div class="structure-visual compact">
+                                        <div class="structure-row">
+                                            <div class="structure-mini"></div>
+                                            <div class="structure-mini"></div>
+                                        </div>
+                                        <div class="structure-row">
+                                            <div class="structure-mini"></div>
+                                            <div class="structure-mini"></div>
+                                        </div>
+                                        <div class="structure-row">
+                                            <div class="structure-mini"></div>
+                                            <div class="structure-mini"></div>
+                                        </div>
+                                    </div>
+                                    <h4 class="neon-text-purple">紧凑信息块</h4>
+                                    <p><strong>用途：</strong>产品列表、功能清单、对比信息</p>
+                                    <ul class="structure-features">
+                                        <li>卡片密度更高</li>
+                                        <li>条目数量固定</li>
+                                        <li>强调"同屏展示更多"</li>
+                                    </ul>
+                                </div>
+
+                                <!-- 叙事式结构 -->
+                                <div class="structure-card">
+                                    <div class="structure-visual narrative">
+                                        <div class="narrative-step">
+                                            <div class="narrative-dot"></div>
+                                            <div class="narrative-line"></div>
+                                            <div class="narrative-content"></div>
+                                        </div>
+                                        <div class="narrative-step">
+                                            <div class="narrative-dot"></div>
+                                            <div class="narrative-line"></div>
+                                            <div class="narrative-content"></div>
+                                        </div>
+                                        <div class="narrative-step">
+                                            <div class="narrative-dot"></div>
+                                            <div class="narrative-content"></div>
+                                        </div>
+                                    </div>
+                                    <h4 class="neon-text-cyan">叙事式结构</h4>
+                                    <p><strong>用途：</strong>作品集、品牌故事、时间线展示</p>
+                                    <ul class="structure-features">
+                                        <li>按时间或故事顺序</li>
+                                        <li>每个模块有承接关系</li>
+                                        <li>结尾有行动引导</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结构风格的提示词约束 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）结构风格的提示词约束</h3>
+
+                            <div class="constraint-grid-2row">
+                                <!-- 第一行：2个卡片 -->
+                                <div class="constraint-card">
+                                    <div class="constraint-icon">
+                                        <i class="fas fa-hashtag neon-text-pink"></i>
+                                    </div>
+                                    <h4>定量</h4>
+                                    <p>明确模块数量与条目数</p>
+                                    <div class="constraint-example">
+                                        例："Features 固定 3 条，Testimonials 固定 2 条，不多不少。"
+                                    </div>
+                                </div>
+
+                                <div class="constraint-card">
+                                    <div class="constraint-icon">
+                                        <i class="fas fa-file-alt neon-text-purple"></i>
+                                    </div>
+                                    <h4>定模版</h4>
+                                    <p>给每个模块规定字段与字数</p>
+                                    <div class="constraint-example">
+                                        例："Work 卡片包含：标题（≤10 字）/ 简介（≤30 字）/ 图片（占位名）。简介只写一行，不换行。"
+                                    </div>
+                                </div>
+
+                                <!-- 第二行：3个卡片 -->
+                                <div class="constraint-card">
+                                    <div class="constraint-icon">
+                                        <i class="fas fa-ban neon-text-cyan"></i>
+                                    </div>
+                                    <h4>定边界</h4>
+                                    <p>禁止新增与目标无关的模块</p>
+                                    <div class="constraint-example">
+                                        例："不要生成相关文章、随机推荐、订阅弹窗等与本页无关的内容。"
+                                    </div>
+                                </div>
+
+                                <div class="constraint-card">
+                                    <div class="constraint-icon">
+                                        <i class="fas fa-fingerprint" style="color: var(--neon-yellow);"></i>
+                                    </div>
+                                    <h4>定标识</h4>
+                                    <p>关键区块要有稳定 id，顶端加一句注释</p>
+                                    <div class="constraint-example">
+                                        例："`section#work` 顶部加入注释：'作品展示区：3 张卡片'。"
+                                    </div>
+                                </div>
+
+                                <div class="constraint-card">
+                                    <div class="constraint-icon">
+                                        <i class="fas fa-sort-amount-down neon-text-pink"></i>
+                                    </div>
+                                    <h4>定顺序</h4>
+                                    <p>按给定顺序输出，不得改序</p>
+                                    <div class="constraint-example">
+                                        例："严格执行 Header → Hero → About → Work → Testimonials → Contact → Footer 的顺序。"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 五、表达风格控制 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">五、网页个性化方向三——表达风格控制（文案与语气）</h2>
+
+                            <h3>（一）语气为何影响"个性化"</h3>
+                            <div class="content-card">
+                                <p style="font-size: 1.2rem;">
+                                    <i class="fas fa-quote-left neon-text-cyan"></i>
+                                    文案是页面的"说话方式"，决定给人的第一印象。
+                                    <i class="fas fa-quote-right neon-text-cyan"></i>
+                                </p>
+                                <p style="margin-top: 15px;">
+                                    语气与视觉相互叠加：简洁的语气配简洁的版式，更统一；温暖的语气配柔和的配色，更贴合。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 常见语气类型 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）常见语气类型、用途及特征</h3>
+
+                            <!-- 语气类型对比图 -->
+                            <div class="tone-comparison">
+                                <div class="tone-card formal">
+                                    <div class="tone-icon">
+                                        <i class="fas fa-building"></i>
+                                    </div>
+                                    <h4>正式</h4>
+                                    <p class="tone-usage">企业 / 政务</p>
+                                    <ul class="tone-features">
+                                        <li>客观、克制</li>
+                                        <li>信息准确</li>
+                                        <li>少用感叹</li>
+                                    </ul>
+                                    <div class="tone-example">
+                                        "我们致力于为客户提供高质量的解决方案。"
+                                    </div>
+                                </div>
+
+                                <div class="tone-card casual">
+                                    <div class="tone-icon">
+                                        <i class="fas fa-smile"></i>
+                                    </div>
+                                    <h4>轻松</h4>
+                                    <p class="tone-usage">个人 / 生活方式</p>
+                                    <ul class="tone-features">
+                                        <li>口语化</li>
+                                        <li>亲和力强</li>
+                                        <li>有生活场景</li>
+                                    </ul>
+                                    <div class="tone-example">
+                                        "嘿，来看看我最近做的小项目！"
+                                    </div>
+                                </div>
+
+                                <div class="tone-card tech">
+                                    <div class="tone-icon">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                    <h4>科技感</h4>
+                                    <p class="tone-usage">产品 / 创新</p>
+                                    <ul class="tone-features">
+                                        <li>短句</li>
+                                        <li>精确名词</li>
+                                        <li>强调功能与数据</li>
+                                    </ul>
+                                    <div class="tone-example">
+                                        "99.9% 正常运行时间。毫秒级响应。"
+                                    </div>
+                                </div>
+
+                                <div class="tone-card emotional">
+                                    <div class="tone-icon">
+                                        <i class="fas fa-heart"></i>
+                                    </div>
+                                    <h4>情绪化</h4>
+                                    <p class="tone-usage">品牌 / 故事</p>
+                                    <ul class="tone-features">
+                                        <li>画面感强</li>
+                                        <li>节奏有起伏</li>
+                                        <li>比喻适度</li>
+                                    </ul>
+                                    <div class="tone-example">
+                                        "每一个像素，都承载着我们的热爱。"
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 语气控制要点 -->
+            <section class="section-scroll-item" data-section="14">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）语气控制要点（写进提示词即可）</h3>
+
+                            <div class="grid">
+                                <div class="control-point-card">
+                                    <i class="fas fa-text-width neon-text-pink"></i>
+                                    <h4>标题与副标题</h4>
+                                    <p>限定<strong>句长</strong>与<strong>结构</strong></p>
+                                    <div class="example-text">如"标题≤10字；副标题为短句或中英对照"</div>
+                                </div>
+
+                                <div class="control-point-card">
+                                    <i class="fas fa-ban neon-text-purple"></i>
+                                    <h4>避免项</h4>
+                                    <p>禁止营销腔、口号化</p>
+                                    <div class="example-text">空洞的形容词堆砌</div>
+                                </div>
+
+                                <div class="control-point-card">
+                                    <i class="fas fa-compress neon-text-cyan"></i>
+                                    <h4>信息密度</h4>
+                                    <p>一条只说一个重点</p>
+                                    <div class="example-text">每段只围绕一个主旨</div>
+                                </div>
+
+                                <div class="control-point-card">
+                                    <i class="fas fa-equals" style="color: var(--neon-yellow);"></i>
+                                    <h4>一致性</h4>
+                                    <p>全站同一种称呼方式</p>
+                                    <div class="example-text">同一标点风格（如统一用"："或"-"）</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 六、综合示范 -->
+            <section class="section-scroll-item" data-section="15">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">六、综合示范——可控与个性化的整合生成</h2>
+                            <h3>（一）综合提示词模板（可直接改写）</h3>
+
+                            <div class="prompt-template">
+                                <div class="prompt-section">
+                                    <div class="prompt-label">类型</div>
+                                    <div class="prompt-content">单页作品集（Portfolio Landing）</div>
+                                </div>
+
+                                <div class="prompt-section">
+                                    <div class="prompt-label">目的</div>
+                                    <div class="prompt-content">展示 3 个代表作品并引导联系</div>
+                                </div>
+
+                                <div class="prompt-section">
+                                    <div class="prompt-label">结构</div>
+                                    <div class="prompt-content">
+                                        <p>严格按顺序输出，禁止新增或改序：</p>
+                                        <ol style="margin-top: 10px;">
+                                            <li><code>header</code>（logo、nav）</li>
+                                            <li><code>section#hero</code>（主标题≤12字、副标题≤24字、主按钮）</li>
+                                            <li><code>section#works</code>（3 张卡片：title≤10字、desc≤30字、img 占位）</li>
+                                            <li><code>section#about</code>（一段 40–60 字说明）</li>
+                                            <li><code>section#contact</code>（表单：name/email/message）</li>
+                                            <li><code>footer</code>（版权/社交链接）</li>
+                                        </ol>
+                                    </div>
+                                </div>
+
+                                <div class="prompt-section">
+                                    <div class="prompt-label">CSS 风格</div>
+                                    <div class="prompt-content">
+                                        极简黑白，使用 CSS 变量：<code>--primary/--text/--bg/--radius/--shadow</code>；
+                                        统一间距刻度（8/16/24/32），按钮 hover 轻微上浮，过渡 ≤300ms。
+                                    </div>
+                                </div>
+
+                                <div class="prompt-section">
+                                    <div class="prompt-label">命名规范</div>
+                                    <div class="prompt-content">
+                                        BEM；禁止行内样式；媒体查询支持 360–1440 宽度。
+                                    </div>
+                                </div>
+
+                                <div class="prompt-section">
+                                    <div class="prompt-label">JS 行为</div>
+                                    <div class="prompt-content">
+                                        提交表单时校验必填，按钮点击有轻微动效；
+                                        所有 JS 与 CSS 请分段输出，附少量注释。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 示范讲解要点 -->
+            <section class="section-scroll-item" data-section="16">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）示范讲解要点</h3>
+
+                            <!-- 提示词控制流程图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 900 450" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 标题 -->
+                                    <text x="450" y="30" class="diagram-title">提示词控制与验证流程</text>
+
+                                    <!-- 步骤1：编写提示词 -->
+                                    <g transform="translate(50, 70)">
+                                        <rect x="0" y="0" width="180" height="80" rx="10" class="flow-box step-1"/>
+                                        <text x="90" y="30" class="flow-title">1. 编写提示词</text>
+                                        <text x="90" y="55" class="flow-text">明确五段式要求</text>
+                                    </g>
+
+                                    <!-- 箭头1 -->
+                                    <path d="M 240 110 L 310 110" class="flow-arrow"/>
+                                    <polygon points="310,110 300,105 300,115" class="flow-arrow-head"/>
+
+                                    <!-- 步骤2：AI生成 -->
+                                    <g transform="translate(310, 70)">
+                                        <rect x="0" y="0" width="180" height="80" rx="10" class="flow-box step-2"/>
+                                        <text x="90" y="30" class="flow-title">2. AI 生成代码</text>
+                                        <text x="90" y="55" class="flow-text">HTML/CSS/JS</text>
+                                    </g>
+
+                                    <!-- 箭头2 -->
+                                    <path d="M 500 110 L 570 110" class="flow-arrow"/>
+                                    <polygon points="570,110 560,105 560,115" class="flow-arrow-head"/>
+
+                                    <!-- 步骤3：对照核查 -->
+                                    <g transform="translate(570, 70)">
+                                        <rect x="0" y="0" width="180" height="80" rx="10" class="flow-box step-3"/>
+                                        <text x="90" y="30" class="flow-title">3. 对照核查</text>
+                                        <text x="90" y="50" class="flow-text">结构、模块数量</text>
+                                        <text x="90" y="65" class="flow-text">命名规范</text>
+                                    </g>
+
+                                    <!-- 箭头3向下 -->
+                                    <path d="M 660 150 L 660 190" class="flow-arrow"/>
+                                    <polygon points="660,190 655,180 665,180" class="flow-arrow-head"/>
+
+                                    <!-- 步骤4：检视一致性 -->
+                                    <g transform="translate(570, 190)">
+                                        <rect x="0" y="0" width="180" height="80" rx="10" class="flow-box step-4"/>
+                                        <text x="90" y="30" class="flow-title">4. 检视一致性</text>
+                                        <text x="90" y="50" class="flow-text">变量化程度</text>
+                                        <text x="90" y="65" class="flow-text">间距/字重/阴影</text>
+                                    </g>
+
+                                    <!-- 箭头4向左 -->
+                                    <path d="M 570 230 L 500 230" class="flow-arrow"/>
+                                    <polygon points="500,230 510,225 510,235" class="flow-arrow-head"/>
+
+                                    <!-- 步骤5：验证行为 -->
+                                    <g transform="translate(310, 190)">
+                                        <rect x="0" y="0" width="180" height="80" rx="10" class="flow-box step-5"/>
+                                        <text x="90" y="30" class="flow-title">5. 验证行为层</text>
+                                        <text x="90" y="50" class="flow-text">表单校验</text>
+                                        <text x="90" y="65" class="flow-text">DOM 选择器</text>
+                                    </g>
+
+                                    <!-- 箭头5向左 -->
+                                    <path d="M 310 230 L 240 230" class="flow-arrow"/>
+                                    <polygon points="240,230 250,225 250,235" class="flow-arrow-head"/>
+
+                                    <!-- 步骤6：迭代优化 -->
+                                    <g transform="translate(50, 190)">
+                                        <rect x="0" y="0" width="180" height="80" rx="10" class="flow-box step-6"/>
+                                        <text x="90" y="30" class="flow-title">6. 迭代策略</text>
+                                        <text x="90" y="50" class="flow-text">只改提示词</text>
+                                        <text x="90" y="65" class="flow-text">不直接改代码</text>
+                                    </g>
+
+                                    <!-- 循环箭头 -->
+                                    <path d="M 140 190 Q 140 110 200 110" class="flow-arrow-dash"/>
+                                    <polygon points="200,110 190,105 190,115" class="flow-arrow-head"/>
+
+                                    <!-- 说明文字 -->
+                                    <g transform="translate(50, 310)">
+                                        <rect x="0" y="0" width="700" height="100" rx="10" class="flow-note"/>
+                                        <text x="20" y="30" class="flow-note-title">核心理念：</text>
+                                        <text x="40" y="55" class="flow-note-text">✓ 通过提示词控制输出，而非事后手动修改代码</text>
+                                        <text x="40" y="80" class="flow-note-text">✓ 验证"可控性"：能否通过修改提示词达到预期效果</text>
+                                    </g>
+                                </svg>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-cyan">💡 关键要点</h4>
+                                <ol>
+                                    <li><strong>对照输出核查：</strong>结构顺序、模块数量、命名规范是否符合要求</li>
+                                    <li><strong>检视风格一致性：</strong>变量化程度、间距/字重/阴影是否统一</li>
+                                    <li><strong>行为层合理性：</strong>表单校验是否生效、DOM 选择器是否与结构一致</li>
+                                    <li><strong>迭代策略：</strong>只改<strong>提示词中的变量与约束</strong>，不直接改代码，以验证"可控性"</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、提示词控制基础</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">（一）AI输出不一致原因</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">（二）五段式骨架</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">（三）约束要点</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">二、页面结构控制</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">（一）结构树+顺序</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">（二）关键要求</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">（三）生成后查验</button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">三、视觉风格控制</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">（一）核心抓手</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">（二）可复用片段</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">（三）检查清单</button>
+                    <button class="nav-item" onclick="courseScrollToSection(10)">四、结构风格控制</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">（一）三类结构风格</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">（二）提示词约束</button>
+                    <button class="nav-item" onclick="courseScrollToSection(12)">五、表达风格控制</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(12)">（一）语气影响</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">（二）语气类型</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(14)">（三）控制要点</button>
+                    <button class="nav-item" onclick="courseScrollToSection(15)">六、综合示范</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(15)">（一）综合模板</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(16)">（二）讲解要点</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课后作业</h1>
+                    <p class="subtitle">编写个性化网页生成提示词</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+
+                                <p style="font-size: 1.3rem; margin-top: 20px; color: var(--cyber-dark-100);">
+                                    <strong>总体目标：</strong>
+                                    编写一份<strong>个性化网页生成提示词</strong>，控制 AI 按规范输出结构清晰、风格一致、可复用的页面骨架。
+                                </p>
+
+                                <h3 class="neon-text-cyan" style="margin-top: 30px;">具体要求：</h3>
+                                <ol style="font-size: 1.1rem; margin-top: 20px;">
+                                    <li>明确网页类型与目的（如着陆页/商详页/作品集）</li>
+                                    <li>用层级列表写出页面结构树与模块顺序（禁止自动新增）</li>
+                                    <li>指定 CSS 风格基线（设计令牌/间距刻度/动效约束/响应式范围）</li>
+                                    <li>约定命名规范与禁止项（BEM、禁行内样式、禁额外库）</li>
+                                    <li>设定文案与语气（标题句长、信息密度、避免项）</li>
+                                </ol>
+
+                                <div class="highlight-box" style="margin-top: 30px; background: rgba(234, 179, 8, 0.15);">
+                                    <h4 class="neon-text-yellow">💡 提交内容</h4>
+                                    <p>一份完整的结构化提示词文档，并附上使用该提示词生成的网页截图或代码链接。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI 网页生成控制实战 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
