@@ -1,0 +1,273 @@
+课程标题：实战课：自动搜索信息工作流
+# 板块一
+## 一、课程回顾
+1. 理解表单与switch的节点应用
+2. code节点的数据处理
+3. 简单的自动化工作流
+## 二、学习目标
+1. 飞书的导出节点应用
+2. 谷歌账号的配置
+3. 循环节点的具体应用
+### 三、课程内容
+1. 实战案例
+2. 案例分析
+3. 案例实现步骤
+# 板块二
+## 一、案例实战：
+### （一）案例主题
+构建一个完整的自动化工作流：
+每周日，都可以根据特定主题在YouTube上搜索过去一周的相关视频并自动整理周报的形式发送到飞书群聊，并且相关视频信息与链接也会同步记录在飞书多维表格中。
+## 二、案例分析
+### （一）工作流逻辑分析
+1. 每周日会按时触发
+2. 需要根据特定的主题
+	- 课自定义主题，也可以放置多个主题
+3. youtobe搜索视频并获取视频信息
+	- 根据什么信息去搜索视频
+		- 自定义的主题
+		- 发布的时间
+		- 地区
+		- 语言
+	- 获取视频信息
+		- 获取那些视频信息
+		- 用什么方式获取
+4. 自动整理成周报的形式
+	- 周报的格式
+	- 周报所含有的信息
+	- 发送到飞书
+5. 相关信息整理到飞书的多维表格中
+	- 相关信息指的是那些信息？
+		- 视频标题
+		- 发布时间
+		- 观看量
+		- 链接
+	- 多维表格的字段名称确定
+### （二）工作流技术选型
+1. 按时触发——定时触发器
+2. 根据特定主题——
+	- set节点（自定义数据）
+	- 多个主题：code节点转化成数组→拆分数组项目→进入循环节点→依次搜索信息
+3. 获取视频信息——
+	- YouTube_get many videos，n8n中自带油管获取视频信息的节点（获取的信息有限）
+	- 使用http请求继续获取
+4. 整理周报——
+	- 使用code节点将获取到的信息进行整理（筛选）
+	- 使用AI agent 节点统一格式将周报内容进行整理归纳
+5. 飞书信息发送/多为表格整理
+	- 飞书节点
+## 三、案例实现步骤
+### （一）定时触发器与时区设置
+1. 节点作用：用于开始触发工作流
+2. 设置Schedule Trigger节点
+	- 按照每周周日、早上九点开始执行工作流
+2. 时区设置
+	- 右上角“...”→setting→timezone→Asia/shanghai→保存
+### （二）Set节点设置
+1. 节点作用：设置用于搜索视频的一些主题信息
+2. mode选择手动映射
+3. 添加字段
+	- 字段名称“searchterms”、字段类型“string”、字段内容”你想要搜索的主题“
+	- 字段名称”publishedAfter“、字段类型“string”、字段内容”表示一周前发布内容的表达式“
+	- 字段名称“relevanceLanguage”、字段类型“string”、字段内容”zh-Hans“
+	- 字段名称“max”、字段类型“string”、字段内容”100“
+### （三）Code节点设置
+1. 节点作用：将”set“节点中的类型为字符串的”searchterms“转换成数组，输出多个item
+2. 添加code节点
+3. 将需求正确表达给大语言模型，将内容复制到code节点中
+### （四）Split Out节点设置
+1. 节点作用：将”Code节点“的多个item依次送入后方的Loop循环节点中
+2. 添加spilt out节点，将code节点的输出拖入节点中的”fields to split out“中
+### （五）Loop节点设置
+1. 节点作用，若set节点中，“searchterms”有多个内容，可以循环执行任务
+2. 添加loop节点，无需做任何修改，删除后续的节点。
+### （六）Youtobe节点设置
+1. 节点作用：根据”set“节点中的字段内容，大量获取视频信息
+2.n8n节点设置
+   1.搜索youtube节点
+   2.选择 get many videos功能
+   3.按照如下内容使用set节点的参数进行配置
+   4.options处，点击add option，添加safe search，设定为strict（严格）
+   5.点击创建YouTube account
+3. Youtobe account设置
+	1. 进入google API控制台[https://console.cloud.google.com/apis/library]
+	2. 左上角新建项目文件夹→命名为”N8N project“
+	3. 点击页面中的配置”Google Auth Platform“
+	4. 应用名称填写”n8nweb“、邮箱设置自己的gmail邮箱
+	5. 受众群体选择外部
+	6. 联系信息填写自己的gmail邮箱
+	7. 点击同意完成创建
+                8.创建完成后的页面
+4. 创建OAuth客户端
+	1. 来到创建Oauth客户端界面
+                2. 点击创建oauth客户端
+	3. 应用类型选择web应用
+	4. 点击添加已获授权的重定向url
+	5. 复制n8n节点中的重定向url
+	6. 粘贴并完成创建
+                7.下载并把保存好id与secret 
+5. 创建N8N的YouTube Account
+	1. 点击进入详细页面
+	2. 复制id与密钥
+	3. 粘贴至n8n中
+	4. 点击目标对象界面
+	5. 点击添加测试用户
+	6. 填写自己的gmail邮箱并保存
+6. 谷歌登录测试
+	1. 回到n8n点击
+	2. 选择自己的谷歌账号进行登录
+	3. 点击继续
+	4. 继续
+	5. 完成
+6. limit处将set节点中的“max”拖入
+7. filters处，点击add option，依次添加Published After、Query、Region Code
+	- Published After：将set节点中的对应参数拖入
+	- Query：将loop节点中的参数拖入
+	- Region Code：将set节点中的对应参数拖入
+8. options处，点击add option，添加safe search，设定为strict（严格）
+### （七）Aggregate节点设置
+1. 节点作用：因为上一步获取到的信息有限，准备用http请求再次获取视频信息，这一步的目的是将上一步得到的videoid聚合成一个数组，从而用videoid继续获取信息
+2. 创建Aggregate节点，在Fields To Aggregate内容中，填写”id.videoId“
+### （八）Set节点设置
+1. 节点作用：将Aggregate节点得到的数据转换成字符串
+2. 创建Set节点，新建字段，命名为videoID，后将上一步得到的videoid拖拽至后方
+### （九）HTTP请求节点设置
+1. 节点作用：继续获取其余的视频信息，包括观看、点赞、评论及视频url等
+2. 创建HTTP请求节点
+3. 询问大语言模型，YouTube的http请求该如何填写，会得到url与请求参数的详细信息
+	- url：https://www.googleapis.com/youtube/v3/videos
+	- Query Parameters：name为part，value为contentDetails,snippet,statistics
+	- headers与body为空
+4. 配置HTTP请求节点
+	- 将url复制到相对应的位置
+	- Authentication选择”Predefined Credential Type“
+	- Credential Type选择"YouTube OAuth2 API"
+	- 打开Send Query Parameters
+	- 将Query Parameters复制到相对应的位置
+	- 完成
+### （十）整理过滤节点
+1. 节点作用
+	- 将上一步得到的item拆分
+	- 筛选时长大于30s，且观看量大于1k的视频
+	- 按照播放量从高到底进行排序
+2. 创建code节点，并将上述需求投入大语言模型，后将内容复制到节点中
+### （十一）总结节点
+1. 节点作用
+	- 排序TOP10 热门视频
+	- 排序TOP10 高互动率视频
+	- 总结TOP 标签
+	- 总结TOP 频道
+	- 计算播放量/点赞/评论总览
+	- 对全部视频按播放量排序
+	- 根据视频videoid生成视频 URL
+2. 创建code节点，并将上述需求投入大语言模型，后将内容复制到节点中
+### （十二）AI agent节点
+1. 节点作用：总结周报的输出内容
+2. 用户提示词：
+```
+用户提示词：
+
+基于以下YouTube趋势数据，请输出中文分析报告（条理清晰、含建议、并保留每条内容后方的url）：
+
+## 以下内容放在报告开头，不修改：
+总体统计：
+- 总视频数：{{$json.summary.totalVideos}}
+- 总观看量：{{$json.summary.totalViews}}
+- 平均观看量：{{$json.summary.averageViews}}
+- 中位数观看量：{{$json.summary.medianViews}}
+- 平均时长（秒）：{{$json.summary.avgDuration}}
+- 总点赞：{{$json.summary.totalLikes}}；总评论：{{$json.summary.totalComments}}
+
+热门标签（出现频次TOP10）：
+{{$json.topTags.map(x=>`${x.tag}(${x.count})`).join(', ')}}
+
+热门标签（按观看量加权TOP10）：
+{{$json.topTagsWeighted.map(x=>`${x.tag}(${x.views})`).join(', ')}}
+
+热门频道（按总观看量TOP5）：
+{{ $json.topVideos.slice(0,5).map((v, i) => `${i + 1}：${v.channelTitle} - ${v.viewCount} - ${v.channelUrl}`).join('\n') }}
+
+
+
+热门视频（按观看量TOP5）：
+{{$json.topVideos.slice(0,5).map((v, i) => `${i + 1}、${v.snippet.title} - ${v.viewCount} - ${v.url}`).join('\n')}}
+
+互动率最高（TOP5）：
+{{$json.topByEngagement.slice(0,5).map((v, i) => `${i + 1}、${v.snippet.title} - 互动率${(v.engagementRate*100).toFixed(2)}%- ${v.url}`).join('\n')}}
+```
+3. 系统提示词：
+```
+## 请根据以下内容进行整合分析
+
+1) 当前趋势主题与叙事角度（结合“加权标签”）
+2) 内容类型偏好（视频时长、封面/标题风格）
+3) 观众参与度（互动率）与驱动因素
+4) 创作者建议（标题/封面/结构/时长/关键词）
+5) 细分机会（长尾标签/冷门但高互动）
+
+如果涉及到标题外语，不修改原来的语言，但需要备注好（中文标题），如：Generate Viral Marketing Ads with 1 Click!（一键生成病毒式营销广告！）
+请直接输出报告，其他无关内容无需输出。
+要求所有讲解，清晰，简介，要求瞬间看到需要的内容，避免生成不必要的信息。
+
+
+## 报告格式（请严格遵守）
+24小时内youtube视频总体统计：
+- 总视频数：XX
+- 总观看量：XX
+- 平均观看量：XX
+- 中位数观看量：X
+- 平均时长（秒）：XX
+- 总点赞：XX；总评论：XX
+
+热门标签（出现频次TOP10）：
+XX
+
+热门标签（按观看量加权TOP10）：
+XX
+
+热门频道（按总观看量TOP5）：
+XX
+
+热门视频（按观看量TOP5）：
+XX
+
+互动率最高（TOP5）：
+XX
+
+详细分析：
+XXXX
+
+```
+### （十三）格式优化节点
+1. 节点作用：上一步AI节点输出的是JSON数组，而飞书机器人接受并发送消息仅支持{"text": "content"}的json字符串发送，所以要转换成json字符串格式。
+2. 添加code节点
+3. 将需求正确表达给大语言模型，将内容复制到code节点中
+### （十四）飞书群聊消息节点
+1. 节点作用：飞书群聊机器人，自动发送上一步得到的周报总结
+2. 创建群聊
+3. 填写发送消息节点
+4. 创建飞书应用
+	1. 添加机器人应用能力
+	2. 添加”消息与群组“的应用权限
+	3. 发布应用
+	4. 复制粘贴应用凭证
+	5. 在群聊设置中添加该应用
+5. 调试receive_id
+	1. 回到飞书开放平台→开发文档→API调试台
+	2. Authorization处，点击获取token
+	3. 查询参数：类型选择chat_id
+	4. 点击快速复制chat_id，选择刚刚创建的群聊
+	5. 得到的receive_id可在请求体处复制到相同名称的位置，验证是否正确
+	6. 点击开始调试
+	7. 出现群聊弹窗消息，则证明完成
+6. 编辑飞书消息节点
+	1. 创建新的飞书account并复制应用凭证
+	2. 用户ID类型选择chat id
+	3. 将receive_id复制到消息接收者的id
+	4. 消息类型选择文本
+	5. 消息内容将上一步的输出内容拖拽至此
+### （十五）分支节点：添加code节点
+### （十六）分支节点：到处至飞书多维表格
+### （十七）链接循环
+1. 将结尾飞书与loop输入相连，点击运行工作流，结束
+# 板块三、课后作业
+## 一、还原本章自动化工作流，并添加（十五）、（十六）两个分支节点

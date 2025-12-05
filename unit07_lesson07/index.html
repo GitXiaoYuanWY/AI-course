@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实战课：自动搜索信息工作流 | N8N自动化教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景特效 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程内容</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>7.帮你自动查资料！信息搜索工作流</h1>
+                    <p class="subtitle">实战案例 | 案例分析 | 案例实现步骤</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 板块一-课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程回顾</h2>
+
+                            <h3>一、课程回顾</h3>
+                            <ol>
+                                <li>理解表单与switch的节点应用</li>
+                                <li>code节点的数据处理</li>
+                                <li>简单的自动化工作流</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>二、学习目标</h3>
+                            <ol>
+                                <li>飞书的导出节点应用</li>
+                                <li>谷歌账号的配置</li>
+                                <li>循环节点的具体应用</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程内容 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>三、课程内容</h3>
+                            <ol>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    实战案例
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    案例分析
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    案例实现步骤
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程内容页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程内容</h1>
+                    <p class="subtitle">实战案例 | 案例分析 | 案例实现步骤</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 一、案例实战 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、案例实战</h2>
+                            <h3>（一）案例主题</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.8;">
+                                构建一个完整的自动化工作流：<br>
+                                每周日，都可以根据<strong class="neon-text-cyan">特定主题</strong>在<strong class="neon-text-pink">YouTube上搜索过去一周的相关视频</strong>并<strong class="neon-text-purple">自动整理周报的形式发送到飞书群聊</strong>，并且相关<strong class="neon-text-cyan">视频信息与链接</strong>也会同步记录在<strong class="neon-text-pink">飞书多维表格</strong>中。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 二、案例分析(一) -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 二、案例分析</h2>
+                            <h3>（一）工作流逻辑分析</h3>
+                            <ol>
+                                <li>每周日会按时触发</li>
+                                <li>需要根据特定的主题
+                                    <ul style="margin-top: 10px;">
+                                        <li>可自定义主题，也可以放置多个主题</li>
+                                    </ul>
+                                </li>
+                                <li>YouTube搜索视频并获取视频信息
+                                    <ul style="margin-top: 10px;">
+                                        <li>根据什么信息去搜索视频
+                                            <ul style="margin-top: 5px;">
+                                                <li>自定义的主题</li>
+                                                <li>发布的时间</li>
+                                                <li>地区</li>
+                                                <li>语言</li>
+                                            </ul>
+                                        </li>
+                                        <li>获取视频信息
+                                            <ul style="margin-top: 5px;">
+                                                <li>获取哪些视频信息</li>
+                                                <li>用什么方式获取</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>自动整理成周报的形式
+                                    <ul style="margin-top: 10px;">
+                                        <li>周报的格式</li>
+                                        <li>周报所含有的信息</li>
+                                        <li>发送到飞书</li>
+                                    </ul>
+                                </li>
+                                <li>相关信息整理到飞书的多维表格中
+                                    <ul style="margin-top: 10px;">
+                                        <li>相关信息指的是哪些信息？
+                                            <ul style="margin-top: 5px;">
+                                                <li>视频标题</li>
+                                                <li>发布时间</li>
+                                                <li>观看量</li>
+                                                <li>链接</li>
+                                            </ul>
+                                        </li>
+                                        <li>多维表格的字段名称确定</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 二、案例分析(二) -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）工作流技术选型</h3>
+                            <ol>
+                                <li>按时触发——定时触发器</li>
+                                <li>根据特定主题——
+                                    <ul style="margin-top: 10px;">
+                                        <li>set节点（自定义数据）</li>
+                                        <li>多个主题：code节点转化成数组→拆分数组项目→进入循环节点→依次搜索信息</li>
+                                    </ul>
+                                </li>
+                                <li>获取视频信息——
+                                    <ul style="margin-top: 10px;">
+                                        <li>YouTube_get many videos，n8n中自带油管获取视频信息的节点（获取的信息有限）</li>
+                                        <li>使用http请求继续获取</li>
+                                    </ul>
+                                </li>
+                                <li>整理周报——
+                                    <ul style="margin-top: 10px;">
+                                        <li>使用code节点将获取到的信息进行整理（筛选）</li>
+                                        <li>使用AI agent 节点统一格式将周报内容进行整理归纳</li>
+                                    </ul>
+                                </li>
+                                <li>飞书信息发送/多维表格整理
+                                    <ul style="margin-top: 10px;">
+                                        <li>飞书节点</li>
+                                    </ul>
+                                </li>
+                            </ol>
+
+                            <!-- YouTube自动化工作流程图 -->
+                            <div class="svg-diagram-container" style="margin-top: 50px;">
+                                <div class="diagram-header">
+                                    <h4 class="diagram-title">
+                                        <i class="fas fa-project-diagram neon-text-cyan"></i>
+                                        YouTube自动化工作流程图
+                                    </h4>
+                                </div>
+                                <div class="diagram-content">
+                                    <svg width="1100" height="600" viewBox="0 0 1100 600" xmlns="http://www.w3.org/2000/svg">
+                                        <!-- Definitions for gradients and effects -->
+                                        <defs>
+                                            <!-- Gradient for nodes -->
+                                            <linearGradient id="gradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.8" />
+                                                <stop offset="100%" style="stop-color:#3b82f6;stop-opacity:0.6" />
+                                            </linearGradient>
+
+                                            <linearGradient id="gradPink" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:0.8" />
+                                                <stop offset="100%" style="stop-color:#a855f7;stop-opacity:0.6" />
+                                            </linearGradient>
+
+                                            <linearGradient id="gradPurple" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.8" />
+                                                <stop offset="100%" style="stop-color:#6366f1;stop-opacity:0.6" />
+                                            </linearGradient>
+
+                                            <!-- Arrow marker -->
+                                            <marker id="arrowCyan" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                                <path d="M0,0 L0,6 L9,3 z" fill="#06b6d4" class="arrow-head" />
+                                            </marker>
+
+                                            <marker id="arrowPink" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                                <path d="M0,0 L0,6 L9,3 z" fill="#f43f5e" class="arrow-head" />
+                                            </marker>
+
+                                            <marker id="arrowPurple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+                                                <path d="M0,0 L0,6 L9,3 z" fill="#a855f7" class="arrow-head" />
+                                            </marker>
+                                        </defs>
+
+                                        <!-- Background grid -->
+                                        <g opacity="0.1">
+                                            <line x1="0" y1="150" x2="1100" y2="150" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="5,5" />
+                                            <line x1="0" y1="300" x2="1100" y2="300" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="5,5" />
+                                            <line x1="0" y1="450" x2="1100" y2="450" stroke="#06b6d4" stroke-width="0.5" stroke-dasharray="5,5" />
+                                        </g>
+
+                                        <!-- Node 1: Schedule Trigger -->
+                                        <g class="svg-node node-glow-cyan" transform="translate(50, 50)">
+                                            <rect class="node-rect" x="0" y="0" width="140" height="80" rx="10"
+                                                  fill="url(#gradCyan)" stroke="#06b6d4" stroke-width="2"/>
+                                            <text class="node-text" x="70" y="35" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                Schedule
+                                            </text>
+                                            <text class="node-text" x="70" y="55" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                Trigger
+                                            </text>
+                                            <circle cx="15" cy="15" r="5" fill="#06b6d4" opacity="0.8">
+                                                <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
+                                            </circle>
+                                        </g>
+
+                                        <!-- Arrow 1 to 2 -->
+                                        <line x1="190" y1="90" x2="250" y2="90" stroke="#06b6d4" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowCyan)"/>
+
+                                        <!-- Node 2: Set -->
+                                        <g class="svg-node node-glow-cyan" transform="translate(260, 50)">
+                                            <rect class="node-rect" x="0" y="0" width="120" height="80" rx="10"
+                                                  fill="url(#gradCyan)" stroke="#06b6d4" stroke-width="2"/>
+                                            <text class="node-text" x="60" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">
+                                                Set Node
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 2 to 3 -->
+                                        <line x1="380" y1="90" x2="440" y2="90" stroke="#06b6d4" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowCyan)"/>
+
+                                        <!-- Node 3: Code -->
+                                        <g class="svg-node node-glow-purple" transform="translate(450, 50)">
+                                            <rect class="node-rect" x="0" y="0" width="120" height="80" rx="10"
+                                                  fill="url(#gradPurple)" stroke="#a855f7" stroke-width="2"/>
+                                            <text class="node-text" x="60" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">
+                                                Code
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 3 to 4 -->
+                                        <line x1="570" y1="90" x2="630" y2="90" stroke="#a855f7" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPurple)"/>
+
+                                        <!-- Node 4: Split Out -->
+                                        <g class="svg-node node-glow-purple" transform="translate(640, 50)">
+                                            <rect class="node-rect" x="0" y="0" width="120" height="80" rx="10"
+                                                  fill="url(#gradPurple)" stroke="#a855f7" stroke-width="2"/>
+                                            <text class="node-text" x="60" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">
+                                                Split Out
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 4 to 5 (down) -->
+                                        <line x1="700" y1="130" x2="700" y2="200" stroke="#a855f7" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPurple)"/>
+
+                                        <!-- Node 5: Loop -->
+                                        <g class="svg-node node-glow-pink" transform="translate(640, 210)">
+                                            <rect class="node-rect" x="0" y="0" width="120" height="80" rx="10"
+                                                  fill="url(#gradPink)" stroke="#f43f5e" stroke-width="2"/>
+                                            <text class="node-text" x="60" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">
+                                                Loop
+                                            </text>
+                                            <path d="M 50,55 A 15,15 0 1,1 70,55" stroke="#fff" fill="none" stroke-width="1.5" opacity="0.8">
+                                                <animateTransform attributeName="transform" type="rotate" from="0 60 50" to="360 60 50" dur="3s" repeatCount="indefinite"/>
+                                            </path>
+                                        </g>
+
+                                        <!-- Arrow 5 to 6 (left) -->
+                                        <line x1="640" y1="250" x2="580" y2="250" stroke="#f43f5e" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPink)"/>
+
+                                        <!-- Node 6: YouTube -->
+                                        <g class="svg-node node-glow-pink" transform="translate(420, 210)">
+                                            <rect class="node-rect" x="0" y="0" width="150" height="80" rx="10"
+                                                  fill="url(#gradPink)" stroke="#f43f5e" stroke-width="2"/>
+                                            <text class="node-text" x="75" y="40" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                YouTube
+                                            </text>
+                                            <text class="node-text" x="75" y="58" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                Get Videos
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 6 to 7 -->
+                                        <line x1="420" y1="250" x2="360" y2="250" stroke="#f43f5e" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPink)"/>
+
+                                        <!-- Node 7: Aggregate -->
+                                        <g class="svg-node node-glow-cyan" transform="translate(210, 210)">
+                                            <rect class="node-rect" x="0" y="0" width="140" height="80" rx="10"
+                                                  fill="url(#gradCyan)" stroke="#06b6d4" stroke-width="2"/>
+                                            <text class="node-text" x="70" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">
+                                                Aggregate
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 7 to 8 (down) -->
+                                        <line x1="280" y1="290" x2="280" y2="360" stroke="#06b6d4" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowCyan)"/>
+
+                                        <!-- Node 8: HTTP Request -->
+                                        <g class="svg-node node-glow-purple" transform="translate(210, 370)">
+                                            <rect class="node-rect" x="0" y="0" width="140" height="80" rx="10"
+                                                  fill="url(#gradPurple)" stroke="#a855f7" stroke-width="2"/>
+                                            <text class="node-text" x="70" y="40" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                HTTP
+                                            </text>
+                                            <text class="node-text" x="70" y="58" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                Request
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 8 to 9 -->
+                                        <line x1="350" y1="410" x2="420" y2="410" stroke="#a855f7" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPurple)"/>
+
+                                        <!-- Node 9: Code (Filter) -->
+                                        <g class="svg-node node-glow-purple" transform="translate(430, 370)">
+                                            <rect class="node-rect" x="0" y="0" width="140" height="80" rx="10"
+                                                  fill="url(#gradPurple)" stroke="#a855f7" stroke-width="2"/>
+                                            <text class="node-text" x="70" y="40" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                Code
+                                            </text>
+                                            <text class="node-text" x="70" y="58" text-anchor="middle" fill="#fff" font-size="11" fill="#ccc">
+                                                (Filter)
+                                            </text>
+                                        </g>
+
+                                        <!-- Arrow 9 to 10 -->
+                                        <line x1="570" y1="410" x2="640" y2="410" stroke="#a855f7" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPurple)"/>
+
+                                        <!-- Node 10: AI Agent -->
+                                        <g class="svg-node node-glow-pink" transform="translate(650, 370)">
+                                            <rect class="node-rect" x="0" y="0" width="140" height="80" rx="10"
+                                                  fill="url(#gradPink)" stroke="#f43f5e" stroke-width="2"/>
+                                            <text class="node-text" x="70" y="45" text-anchor="middle" fill="#fff" font-size="14" font-weight="600">
+                                                AI Agent
+                                            </text>
+                                            <circle cx="70" cy="25" r="3" fill="#fff">
+                                                <animate attributeName="r" values="3;5;3" dur="1.5s" repeatCount="indefinite"/>
+                                            </circle>
+                                        </g>
+
+                                        <!-- Arrow 10 to 11 -->
+                                        <line x1="790" y1="410" x2="860" y2="410" stroke="#f43f5e" stroke-width="2"
+                                              class="flow-arrow" marker-end="url(#arrowPink)"/>
+
+                                        <!-- Node 11: Feishu -->
+                                        <g class="svg-node node-glow-cyan" transform="translate(870, 370)">
+                                            <rect class="node-rect" x="0" y="0" width="140" height="80" rx="10"
+                                                  fill="url(#gradCyan)" stroke="#06b6d4" stroke-width="2"/>
+                                            <text class="node-text" x="70" y="40" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                飞书
+                                            </text>
+                                            <text class="node-text" x="70" y="58" text-anchor="middle" fill="#fff" font-size="13" font-weight="600">
+                                                Send Message
+                                            </text>
+                                        </g>
+
+                                        <!-- Data flow particles -->
+                                        <circle r="4" fill="#06b6d4" opacity="0.8">
+                                            <animateMotion dur="4s" repeatCount="indefinite" path="M 190 90 L 250 90 L 380 90 L 440 90 L 570 90 L 630 90 L 700 90 L 700 200"/>
+                                            <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/>
+                                        </circle>
+
+                                        <circle r="4" fill="#f43f5e" opacity="0.8">
+                                            <animateMotion dur="5s" repeatCount="indefinite" begin="1s" path="M 640 250 L 580 250 L 420 250 L 360 250 L 280 250 L 280 360"/>
+                                            <animate attributeName="opacity" values="0;1;1;0" dur="5s" repeatCount="indefinite" begin="1s"/>
+                                        </circle>
+
+                                        <circle r="4" fill="#a855f7" opacity="0.8">
+                                            <animateMotion dur="6s" repeatCount="indefinite" begin="2s" path="M 350 410 L 420 410 L 570 410 L 640 410 L 790 410 L 860 410"/>
+                                            <animate attributeName="opacity" values="0;1;1;0" dur="6s" repeatCount="indefinite" begin="2s"/>
+                                        </circle>
+
+                                        <!-- Stage labels -->
+                                        <text x="100" y="25" fill="#06b6d4" font-size="12" font-weight="600" opacity="0.7">第一阶段：定时触发</text>
+                                        <text x="480" y="25" fill="#a855f7" font-size="12" font-weight="600" opacity="0.7">第二阶段：数据处理</text>
+                                        <text x="280" y="520" fill="#f43f5e" font-size="12" font-weight="600" opacity="0.7">第三阶段：格式转换</text>
+                                        <text x="870" y="520" fill="#06b6d4" font-size="12" font-weight="600" opacity="0.7">第四阶段：发送消息</text>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 三、案例实现步骤 (一)定时触发器与时区设置 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、案例实现步骤</h2>
+                            <h3>（一）定时触发器与时区设置</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section4', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">第一阶段节点配置示意图</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">定时触发器与时区设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">Set节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">Code节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">Split Out节点设置</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 第一阶段节点配置示意图 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">第一阶段节点配置示意图</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>展示第一阶段（定时触发器与时区设置）的完整节点配置流程<br><br>
+                                            <strong class="neon-text-pink">包含节点：</strong>Schedule Trigger、Set、Code、Split Out<br><br>
+                                            <strong class="neon-text-purple">流程说明：</strong>从定时触发开始，通过数据设置、转换和拆分，为后续循环处理做准备
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step1/第一部分节点配置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2: 定时触发器与时区设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（二）定时触发器与时区设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>用于开始触发工作流<br><br>
+                                            <strong class="neon-text-pink">2. 设置Schedule Trigger节点：</strong><br>
+                                            &nbsp;&nbsp;&nbsp;按照每周周日、早上九点开始执行工作流<br><br>
+                                            <strong class="neon-text-purple">3. 时区设置：</strong><br>
+                                            &nbsp;&nbsp;&nbsp;右上角"..."→setting→timezone→Asia/shanghai→保存
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step2/1.定时触发器.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2: Set节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（三）Set节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>设置用于搜索视频的一些主题信息<br><br>
+                                            <strong class="neon-text-pink">2. mode选择手动映射</strong><br><br>
+                                            <strong class="neon-text-purple">3. 添加字段：</strong><br>
+                                            &nbsp;&nbsp;&nbsp;- 字段名称"searchterms"、字段类型"string"、字段内容"你想要搜索的主题"<br>
+                                            &nbsp;&nbsp;&nbsp;- 字段名称"publishedAfter"、字段类型"string"、字段内容"表示一周前发布内容的表达式"<br>
+                                            &nbsp;&nbsp;&nbsp;- 字段名称"relevanceLanguage"、字段类型"string"、字段内容"zh-Hans"<br>
+                                            &nbsp;&nbsp;&nbsp;- 字段名称"max"、字段类型"string"、字段内容"100"
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step3/1.set节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: Code节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（四）Code节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>将"set"节点中的类型为字符串的"searchterms"转换成数组，输出多个item<br><br>
+                                            <strong class="neon-text-pink">2. 添加code节点</strong><br><br>
+                                            <strong class="neon-text-purple">3. 将需求正确表达给大语言模型，将内容复制到code节点中</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step4/1.code节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: Split Out节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（五）Split Out节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>将"Code节点"的多个item依次送入后方的Loop循环节点中<br><br>
+                                            <strong class="neon-text-pink">2. 添加split out节点，将code节点的输出拖入节点中的"fields to split out"中</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step5/1.拆分节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 三、案例实现步骤 (二)获取视频数据 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）获取视频数据</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section5', 0)">
+                                        <div class="step-button-number">6</div>
+                                        <div class="step-button-title">Loop节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 1)">
+                                        <div class="step-button-number">7</div>
+                                        <div class="step-button-title">n8n节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 2)">
+                                        <div class="step-button-number">8</div>
+                                        <div class="step-button-title">YouTube account设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 3)">
+                                        <div class="step-button-number">9</div>
+                                        <div class="step-button-title">创建OAuth客户端</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 4)">
+                                        <div class="step-button-number">10</div>
+                                        <div class="step-button-title">创建N8N的YouTube Account</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 5)">
+                                        <div class="step-button-number">11</div>
+                                        <div class="step-button-title">谷歌登录测试</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 6)">
+                                        <div class="step-button-number">12</div>
+                                        <div class="step-button-title">Aggregate节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 7)">
+                                        <div class="step-button-number">13</div>
+                                        <div class="step-button-title">Set节点（第二个）</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 8)">
+                                        <div class="step-button-number">14</div>
+                                        <div class="step-button-title">HTTP请求节点设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 9)">
+                                        <div class="step-button-number">15</div>
+                                        <div class="step-button-title">第二阶段完成状态</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤6: Loop节点设置 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">（六）Loop节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>若set节点中，"searchterms"有多个内容，可以循环执行任务<br><br>
+                                            <strong class="neon-text-pink">2. 添加loop节点，无需做任何修改，删除后续的节点</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step6/1.loop.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤7: n8n节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（七）n8n节点设置</h4>
+                                        <p class="step-content-description">
+                                            <!-- 初始显示第一个描述，后续通过JavaScript自动切换 -->
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step7/1.搜索youtube.jpeg", "images/step7/2.添加.jpeg", "images/step7/3.配置.jpeg", "images/step7/4.安全搜索.jpeg", "images/step7/5.创建Google account.jpeg"]'
+                                             data-descriptions='["<strong class=\"neon-text-cyan\">1. 搜索youtube节点：</strong>在节点面板中搜索并找到YouTube节点", "<strong class=\"neon-text-pink\">2. 选择功能：</strong>选择\"get many videos\"功能，用于批量获取视频信息", "<strong class=\"neon-text-purple\">3. 参数配置：</strong>按照set节点中的参数进行配置，包括搜索关键词、发布时间、语言等", "<strong class=\"neon-text-cyan\">4. 安全搜索：</strong>在options处，点击add option，添加safe search，设定为strict（严格）", "<strong class=\"neon-text-pink\">5. 创建账号：</strong>点击\"创建YouTube account\"按钮，准备配置Google API凭证"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">5</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤8: YouTube account设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（八）YouTube account设置</h4>
+                                        <p class="step-content-description">
+                                            <!-- 初始显示第一个描述，后续通过JavaScript自动切换 -->
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step8/1.进入谷歌api库并新建项目.jpeg", "images/step8/2创建项目后的初始界面.jpeg", "images/step8/3.点击开始配置Google auth.jpeg", "images/step8/4.填写应用信息.jpeg", "images/step8/5.选择外部受众群体.jpeg", "images/step8/6.配置个人的通知邮箱.jpeg", "images/step8/7.完成Google auth platform的创建.jpeg", "images/step8/8.完成界面.jpeg"]'
+                                             data-descriptions='["<strong class=\"neon-text-cyan\">1. 进入Google API控制台：</strong>访问Google Cloud Console，准备创建新项目", "<strong class=\"neon-text-pink\">2. 新建项目：</strong>左上角新建项目文件夹→命名为\"N8N project\"", "<strong class=\"neon-text-purple\">3. 配置认证平台：</strong>点击页面中的配置\"Google Auth Platform\"", "<strong class=\"neon-text-cyan\">4. 填写应用信息：</strong>应用名称填写\"n8nweb\"、邮箱设置自己的gmail邮箱", "<strong class=\"neon-text-pink\">5. 选择受众群体：</strong>受众群体选择外部", "<strong class=\"neon-text-purple\">6. 填写联系信息：</strong>联系信息填写自己的gmail邮箱", "<strong class=\"neon-text-cyan\">7. 完成创建：</strong>点击同意完成创建", "<strong class=\"neon-text-pink\">8. 创建完成：</strong>查看创建完成后的页面"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">8</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤9: 创建OAuth客户端 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（九）创建OAuth客户端</h4>
+                                        <p class="step-content-description">
+                                            <!-- 初始显示第一个描述，后续通过JavaScript自动切换 -->
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step9/1.初始界面.jpeg", "images/step9/2.点击创建oauth客户端.jpeg", "images/step9/3.应用类型选择web应用.jpeg", "images/step9/4.点击添加已获授权的重定向url.jpeg", "images/step9/5.复制n8n节点中的重定向url.jpeg", "images/step9/6.粘贴并创建.jpeg", "images/step9/7.下载并保存好id与secret.jpeg"]'
+                                             data-descriptions='["<strong class=\"neon-text-cyan\">1. OAuth客户端界面：</strong>进入OAuth客户端管理界面", "<strong class=\"neon-text-pink\">2. 创建客户端：</strong>点击创建oauth客户端", "<strong class=\"neon-text-purple\">3. 选择应用类型：</strong>应用类型选择web应用", "<strong class=\"neon-text-cyan\">4. 添加重定向URL：</strong>点击添加已获授权的重定向url", "<strong class=\"neon-text-pink\">5. 复制重定向URL：</strong>复制n8n节点中的重定向url", "<strong class=\"neon-text-purple\">6. 粘贴并创建：</strong>粘贴URL并完成创建", "<strong class=\"neon-text-cyan\">7. 保存凭证：</strong>下载并保存好id与secret"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">7</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤10: 创建N8N的YouTube Account -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十）创建N8N的YouTube Account</h4>
+                                        <p class="step-content-description">
+                                            <!-- 初始显示第一个描述，后续通过JavaScript自动切换 -->
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step10/1.点击进入详细页面.jpeg", "images/step10/2.复制id与密钥.jpeg", "images/step10/3.粘贴至n8n中.jpeg", "images/step10/4.点击目标对象界面.jpeg", "images/step10/5.点击添加测试用户.jpeg", "images/step10/6.填写自己的gmail邮箱并保存.jpeg", "images/step10/7.完成界面.jpeg", "images/step10/8.进入API开启界面.jpeg", "images/step10/9.搜索yotuube并进入youtubedataapi服务.jpeg", "images/step10/10.点击启用.jpeg"]'
+                                             data-descriptions='["1.点击进入详细页面", "2.复制id与密钥", "3.粘贴至n8n中", "4.点击目标对象界面", "5.点击添加测试用户", "6.填写自己的gmail邮箱并保存", "7.完成界面", "8.进入API开启界面", "9.搜索yotuube并进入youtubedataapi服务", "10.点击启用"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤11: 谷歌登录测试 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十一）谷歌登录测试</h4>
+                                        <p class="step-content-description">
+                                            <!-- 初始显示第一个描述，后续通过JavaScript自动切换 -->
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step11/1.回到n8n点击.jpeg", "images/step11/2.选择自己的谷歌账号进行登录.jpeg", "images/step11/3.点击继续.jpeg", "images/step11/4.继续.jpeg", "images/step11/5.完成界面.jpeg"]'
+                                             data-descriptions='["<strong class=\"neon-text-cyan\">1. 回到n8n：</strong>回到n8n点击连接按钮", "<strong class=\"neon-text-pink\">2. 选择账号：</strong>选择自己的谷歌账号进行登录", "<strong class=\"neon-text-purple\">3. 第一次确认：</strong>点击继续", "<strong class=\"neon-text-cyan\">4. 第二次确认：</strong>继续授权", "<strong class=\"neon-text-pink\">5. 完成：</strong>完成客户端配置"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">5</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤12: Aggregate节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十二）Aggregate节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>因为上一步获取到的信息有限，准备用http请求再次获取视频信息，这一步的目的是将上一步得到的videoid聚合成一个数组，从而用videoid继续获取信息<br><br>
+                                            <strong class="neon-text-pink">2. 创建Aggregate节点，在Fields To Aggregate内容中，填写"id.videoId"</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step12/1.节点设置及输出结果.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤13: Set节点(第二个) -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十三）Set节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>将Aggregate节点得到的数据转换成字符串<br><br>
+                                            <strong class="neon-text-pink">2. 创建Set节点，新建字段，命名为videoID，后将上一步得到的videoid拖拽至后方</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step13/1.set节点设置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤14: HTTP请求节点设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十四）HTTP请求节点设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>继续获取其余的视频信息，包括观看、点赞、评论及视频url等<br><br>
+                                            <strong class="neon-text-pink">2. 创建HTTP请求节点</strong><br><br>
+                                            <strong class="neon-text-purple">3. 询问大语言模型，YouTube的http请求该如何填写</strong><br>
+                                            &nbsp;&nbsp;&nbsp;- url：https://www.googleapis.com/youtube/v3/videos<br>
+                                            &nbsp;&nbsp;&nbsp;- Query Parameters：name为part，value为contentDetails，snippet，statistics<br>
+                                            &nbsp;&nbsp;&nbsp;- headers与body为空<br><br>
+                                            <strong class="neon-text-cyan">4. 配置HTTP请求节点并填写相应参数</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step14/1.http节点设置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤15: 第二阶段完成状态 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十五）第二阶段完成状态</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">完成标志：</strong>第二阶段（获取视频数据）已完成，所有节点配置完毕<br><br>
+                                            <strong class="neon-text-pink">预期结果：</strong>成功获取YouTube视频信息，包括视频标题、发布时间、观看量、点赞数、评论数等详细数据<br><br>
+                                            <strong class="neon-text-purple">下一步：</strong>进入第三阶段（格式转换），对获取的数据进行整理和分析
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step15/1.第二阶段完成后状态.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 三、案例实现步骤 (三)格式转换 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）格式转换</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section6', 0)">
+                                        <div class="step-button-number">16</div>
+                                        <div class="step-button-title">整理过滤节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 1)">
+                                        <div class="step-button-number">17</div>
+                                        <div class="step-button-title">总结节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 2)">
+                                        <div class="step-button-number">18</div>
+                                        <div class="step-button-title">AI agent节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 3)">
+                                        <div class="step-button-number">19</div>
+                                        <div class="step-button-title">第三阶段完成状态</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤16: 整理过滤节点 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">（十六）整理过滤节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong><br>
+                                            &nbsp;&nbsp;&nbsp;- 将上一步得到的item拆分<br>
+                                            &nbsp;&nbsp;&nbsp;- 筛选时长大于30s，且观看量大于1k的视频<br>
+                                            &nbsp;&nbsp;&nbsp;- 按照播放量从高到低进行排序<br><br>
+                                            <strong class="neon-text-pink">2. 创建code节点，并将上述需求投入大语言模型，后将内容复制到节点中</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step16/1.code节点.jpeg"]'
+                                             data-descriptions='["code节点配置"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤17: 总结节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十七）总结节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong><br>
+                                            &nbsp;&nbsp;&nbsp;- 排序TOP10 热门视频<br>
+                                            &nbsp;&nbsp;&nbsp;- 排序TOP10 高互动率视频<br>
+                                            &nbsp;&nbsp;&nbsp;- 总结TOP 标签<br>
+                                            &nbsp;&nbsp;&nbsp;- 总结TOP 频道<br>
+                                            &nbsp;&nbsp;&nbsp;- 计算播放量/点赞/评论总览<br>
+                                            &nbsp;&nbsp;&nbsp;- 对全部视频按播放量排序<br>
+                                            &nbsp;&nbsp;&nbsp;- 根据视频videoid生成视频 URL<br><br>
+                                            <strong class="neon-text-pink">2. 创建code节点，并将上述需求投入大语言模型，后将内容复制到节点中</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step17/2.视频整理排序.jpeg"]'
+                                             data-descriptions='["视频整理排序节点"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤18: AI agent节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十八）AI agent节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>总结周报的输出内容<br><br>
+                                            <strong class="neon-text-pink">2. 用户提示词：</strong><br>
+                                            基于以下YouTube趋势数据，请输出中文分析报告（条理清晰、含建议、并保留每条内容后方的url）<br><br>
+                                            <strong class="neon-text-purple">3. 系统提示词：</strong><br>
+                                            包含当前趋势主题与叙事角度、内容类型偏好、观众参与度、创作者建议、细分机会等内容<br><br>
+                                            详细提示词请参考课程文档
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step18/1.生成视频总结.jpeg"]'
+                                             data-descriptions='["AI agent节点配置"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤19: 第三阶段完成状态 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（十九）第三阶段完成状态</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">完成标志：</strong>第三阶段（格式转换）已完成，所有节点配置完毕<br><br>
+                                            <strong class="neon-text-pink">预期结果：</strong>成功对视频数据进行整理、排序和AI分析，生成结构化的YouTube趋势分析报告<br><br>
+                                            <strong class="neon-text-purple">下一步：</strong>进入第四阶段（发送消息），将分析结果发送到飞书群聊
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step19/1.完成后状态.jpeg"]'
+                                             data-descriptions='["第三阶段完成后状态"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 三、案例实现步骤 (四)发送消息 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）发送消息</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section7', 0)">
+                                        <div class="step-button-number">20</div>
+                                        <div class="step-button-title">格式优化节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 1)">
+                                        <div class="step-button-number">21</div>
+                                        <div class="step-button-title">飞书群聊消息节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 2)">
+                                        <div class="step-button-number">22</div>
+                                        <div class="step-button-title">执行与验证</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤20: 格式优化节点 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">（二十）格式优化节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>上一步AI节点输出的是JSON数组，而飞书机器人接受并发送消息仅支持{"text": "content"}的json字符串发送，所以要转换成json字符串格式<br><br>
+                                            <strong class="neon-text-pink">2. 添加code节点</strong><br><br>
+                                            <strong class="neon-text-purple">3. 将需求正确表达给大语言模型，将内容复制到code节点中</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step20/1.清除格式.jpeg"]'
+                                             data-descriptions='["清除格式节点配置"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤21: 飞书群聊消息节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（二十一）飞书群聊消息节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">1. 节点作用：</strong>飞书群聊机器人，自动发送上一步得到的周报总结<br><br>
+                                            <strong class="neon-text-pink">2. 创建群聊</strong><br><br>
+                                            <strong class="neon-text-purple">3. 填写发送消息节点</strong><br><br>
+                                            <strong class="neon-text-cyan">4. 创建飞书应用</strong><br>
+                                            &nbsp;&nbsp;&nbsp;- 添加机器人应用能力<br>
+                                            &nbsp;&nbsp;&nbsp;- 添加"消息与群组"的应用权限<br>
+                                            &nbsp;&nbsp;&nbsp;- 发布应用<br>
+                                            &nbsp;&nbsp;&nbsp;- 复制粘贴应用凭证<br>
+                                            &nbsp;&nbsp;&nbsp;- 在群聊设置中添加该应用<br><br>
+                                            <strong class="neon-text-pink">5. 调试receive_id</strong><br>
+                                            <strong class="neon-text-purple">6. 编辑飞书消息节点</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step21/1.创建飞书群组.jpeg", "images/step21/2.在飞书开放平台的应用中心，添加机器人应用并发布应用.jpeg", "images/step21/3.开通群组与消息中的所有权限.jpeg", "images/step21/4.在群聊中添加机器人.jpeg", "images/step21/5. 回到飞书开放平台→开发文档→API调试台.jpeg", "images/step21/6. Authorization处，点击获取token.jpeg", "images/step21/6. 点击开始调试.jpg", "images/step21/7. 查询参数：类型选择chat_id.jpg", "images/step21/7. 出现群聊弹窗消息，则证明完成.jpg", "images/step21/8. 点击快速复制chat_id，选择刚刚创建的群聊.jpeg", "images/step21/9. 得到的receive_id可在请求体处复制到相同名称的位置，验证是否正确.jpg"]'
+                                             data-descriptions='["1.创建飞书群组", "2.在飞书开放平台的应用中心，添加机器人应用并发布应用", "3.开通群组与消息中的所有权限", "4.在群聊中添加机器人", "5. 回到飞书开放平台→开发文档→API调试台", "6. Authorization处，点击获取token", "6. 点击开始调试", "7. 查询参数：类型选择chat_id", "7. 出现群聊弹窗消息，则证明完成", "8. 点击快速复制chat_id，选择刚刚创建的群聊", "9. 得到的receive_id可在请求体处复制到相同名称的位置，验证是否正确"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">11</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤22: 执行与验证 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（二十二）执行与验证</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">完成标志：</strong>整个工作流已完成配置并成功执行<br><br>
+                                            <strong class="neon-text-pink">执行步骤：</strong><br>
+                                            &nbsp;&nbsp;&nbsp;- 点击"Test workflow"测试整个工作流<br>
+                                            &nbsp;&nbsp;&nbsp;- 检查每个节点的执行状态<br>
+                                            &nbsp;&nbsp;&nbsp;- 验证飞书群聊是否收到消息<br><br>
+                                            <strong class="neon-text-purple">验证结果：</strong>成功在飞书群聊中接收到自动生成的YouTube趋势分析报告
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step22/1.配置飞书发送消息节点.jpeg", "images/step22/2.执行成功.jpeg", "images/step22/3.返回飞书可以看到消息正常发送，配置完毕.jpeg", "images/step22/4.完整工作流图片.jpeg"]'
+                                             data-descriptions='["1.配置飞书发送消息节点", "2.执行成功", "3.返回飞书可以看到消息正常发送，配置完毕", "4.完整工作流图片"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">4</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 右侧章节导航 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、案例实战
+                    </button>
+
+                    <!-- Section 2-3: 主标题 + 子项 -->
+                    <button class="nav-item" onclick="courseScrollToSection(2)">
+                        二、案例分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （一）工作流逻辑分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （二）工作流技术选型
+                    </button>
+
+                    <!-- Section 4-7: 主标题 + 子项 -->
+                    <button class="nav-item" onclick="courseScrollToSection(4)">
+                        三、案例实现步骤
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （一）定时触发器与时区设置
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （二）获取视频数据
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        （三）格式转换
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        （四）发送消息
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课后作业</h1>
+                    <p class="subtitle">动手实践，巩固知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">📝 课后作业</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px;">
+                                    请按照课程所学内容,完成以下作业：
+                                </p>
+                                <ol style="margin-top: 20px;">
+                                    <li>还原本节课工作流，并尝试添加将视频链接以及标题导出到飞书多维表格的节点</li>
+                                    <li>提交工作流截图</li>
+                                    <li>提交成功运行的结果截图</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- 课程源文件下载 -->
+                        <div class="cyber-card" style="margin-top: 40px;">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-cyan);">📦 本节课课程源文件</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px;">
+                                    下载课程配套的工作流案例文件，可直接导入N8N使用
+                                </p>
+
+                                <!-- 文件卡片 -->
+                                <div style="margin-top: 30px; padding: 25px; background: rgba(0, 255, 255, 0.05); border: 1px solid var(--neon-cyan); border-radius: 10px;">
+                                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                                        <!-- 左侧文件信息 -->
+                                        <div style="flex: 1; min-width: 250px;">
+                                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                                <i class="fas fa-file-code" style="font-size: 2.5rem; color: var(--neon-cyan);"></i>
+                                                <div>
+                                                    <h3 style="color: var(--neon-cyan); margin: 0; font-size: 1.4rem;">案例二：YouTube自动摘取视频.json</h3>
+                                                    <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.95rem;">N8N工作流配置文件</p>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                                                <p style="margin: 5px 0;"><i class="fas fa-info-circle" style="color: var(--neon-pink); margin-right: 8px;"></i>文件类型：JSON</p>
+                                                <p style="margin: 5px 0;"><i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 8px;"></i>可直接导入N8N平台</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- 右侧下载按钮 -->
+                                        <div>
+                                            <button onclick="
+                                                const link = document.createElement('a');
+                                                link.href = '案例二：YouTube自动摘取视频.json';
+                                                link.download = '案例二：YouTube自动摘取视频.json';
+                                                document.body.appendChild(link);
+                                                link.click();
+                                                document.body.removeChild(link);
+                                            " style="
+                                                background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+                                                color: white;
+                                                border: none;
+                                                padding: 15px 40px;
+                                                border-radius: 8px;
+                                                font-size: 1.1rem;
+                                                font-weight: bold;
+                                                cursor: pointer;
+                                                display: flex;
+                                                align-items: center;
+                                                gap: 10px;
+                                                transition: all 0.3s ease;
+                                                box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+                                            " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 0 30px rgba(0, 255, 255, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 20px rgba(0, 255, 255, 0.3)';">
+                                                <i class="fas fa-download"></i>
+                                                <span>下载文件</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 N8N自动化工作流教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
