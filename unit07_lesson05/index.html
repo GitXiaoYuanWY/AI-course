@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5.超实用！每天自动推荐吃什么的 AI 工作流 | N8N自动化教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景特效 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程内容</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>5.超实用！每天自动推荐吃什么的 AI 工作流</h1>
+                    <p class="subtitle">实战案例 | 工作流分析 | 逐步实现</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 板块一-课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程回顾</h2>
+
+                            <h3>（一）课程回顾</h3>
+                            <ol>
+                                <li>json数据的结构与语法</li>
+                                <li>数据处理节点的不同类型与使用方法</li>
+                                <li>N8N中数据的读取方式</li>
+                                <li>不同类型的数据进行转换和格式化处理</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）学习目标</h3>
+                            <ol>
+                                <li>飞书应用的创建</li>
+                                <li>创建个人的常用数据库以及了解如何给数据打标签</li>
+                                <li>简单工作流逻辑的分析与判断</li>
+                                <li>实现给自己推荐吃什么的自动化工作流</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程内容 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）课程内容</h3>
+                            <ol>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    动手搭建一个每天给自己推荐吃什么的自动化工作流
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程内容页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程内容</h1>
+                    <p class="subtitle">实战案例 | 工作流分析 | 逐步实现</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 一、案例实战 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、案例实战</h2>
+                            <h3>（一）案例主题</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.8;">
+                                构建一个完整的自动化工作流：<br>
+                                每天 11 点，从<strong class="neon-text-cyan">个人数据库</strong>中按<strong class="neon-text-pink">「午饭」标签</strong>随机选取一道菜品作为主题，自动给朋友发送一封<strong class="neon-text-purple">主题为「每日壹食」的邮件</strong>。邮件正文为一封<strong class="neon-text-cyan">带有 HTML 样式的美食推荐页面</strong>，并附上<strong class="neon-text-pink">一张菜品图片</strong>，同时该工作流<strong class="neon-text-purple">可自动触发开始运行</strong>。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 二、案例分析（一） -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 二、案例分析</h2>
+                            <h3>（一）工作流逻辑分析</h3>
+                            <ol>
+                                <li>每天都会按时触发</li>
+                                <li>自己去读取数据库中的数据
+                                    <ul style="margin-top: 10px;">
+                                        <li>需要根据什么样的标签与字段去寻找</li>
+                                    </ul>
+                                </li>
+                                <li>自己根据主题生成提示词
+                                    <ul style="margin-top: 10px;">
+                                        <li>需要规定好格式</li>
+                                        <li>包含图片提示词与生成文案的提示词</li>
+                                    </ul>
+                                </li>
+                                <li>发送给好友的邮箱</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 二、案例分析（二） -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）工作流技术选型</h3>
+                            <ol>
+                                <li>触发器模块-定时触发器</li>
+                                <li>调取数据模块-飞书节点</li>
+                                <li>提示词生成模块-AI agent节点、模型配置、格式化生成器</li>
+                                <li>内容生成模块-HTTP请求节点、Gemini节点</li>
+                                <li>发送邮箱模块- Send Email</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 三、案例实现步骤 (核心section - 左右分栏) -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、案例实现步骤</h2>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStep(0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">定时触发节点配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">飞书的应用创建及权限设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">多维表格配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">飞书节点配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">AI agent节点_生成提示词</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(5)">
+                                        <div class="step-button-number">6</div>
+                                        <div class="step-button-title">配置HTTP请求节点_生成文案</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(6)">
+                                        <div class="step-button-number">7</div>
+                                        <div class="step-button-title">配置HTTP请求节点_生成图像</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(7)">
+                                        <div class="step-button-number">8</div>
+                                        <div class="step-button-title">配置Send Email节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStep(8)">
+                                        <div class="step-button-number">9</div>
+                                        <div class="step-button-title">更新飞书记录节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 定时触发节点配置 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">（一）定时触发节点配置</h4>
+                                        <p class="step-content-description">
+                                            1. 选择触发器节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step1/1. 选择触发器节点.jpeg",
+                                                 "images/step1/2.时间设置为11.00AM.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 选择触发器节点",
+                                                 "2. 时间设置为11.00AM"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤2: 飞书的应用创建及权限设置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（二）飞书的应用创建及权限设置</h4>
+                                        <p class="step-content-description">
+                                            1. 打开飞书，进入飞书开发者平台 [https://open.feishu.cn/?lang=zh-CN]
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step2/1.开发者后台.jpeg",
+                                                 "images/step2/2.创建企业应用.jpeg",
+                                                 "images/step2/3.填写相对应的名称.jpeg",
+                                                 "images/step2/4.发布应用.jpeg",
+                                                 "images/step2/5.APPidappsecret.jpeg",
+                                                 "images/step2/6.填入n8n.jpeg",
+                                                 "images/step2/7.开通权限.jpeg",
+                                                 "images/step2/8.开通后的状态.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 打开飞书开发者后台",
+                                                 "2. 创建企业应用",
+                                                 "3. 填写相对应的名称和描述",
+                                                 "4. 发布应用",
+                                                 "5. 复制APPid与appsecret",
+                                                 "6. 填入n8n凭证配置",
+                                                 "7. 开通多维表格权限",
+                                                 "8. 开通后的状态确认"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: 多维表格配置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（三）多维表格配置</h4>
+                                        <p class="step-content-description">
+                                            1. 回到飞书主页，点击右侧的云文档，点击新建多维表格
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step3/1.创建多维表格.jpeg",
+                                                 "images/step3/2.新增列、行.jpeg",
+                                                 "images/step3/3. re_id.jpeg",
+                                                 "images/step3/4.添加文档应用.jpeg",
+                                                 "images/step3/5.搜索刚刚创建的应用.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 回到飞书主页，点击右侧的云文档，点击新建多维表格",
+                                                 "2. 创建一个名称为<strong class=\"neon-text-pink\">菜单</strong>的多维表格",
+                                                 "3. 按示例图创建并填写数据",
+                                                 "4. 点击右上角<strong class=\"neon-text-cyan\">符号...>更多>添加文档应用</strong>",
+                                                 "5. 搜索上面创建的名为<strong class=\"neon-text-pink\">n8n</strong>的飞书应用，并选择将多维表格添加至飞书应用"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: 飞书节点配置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（四）飞书节点配置</h4>
+                                        <p class="step-content-description">
+                                            1. 创建<strong class="neon-text-cyan">多维表格>查询记录</strong>的飞书节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step4/1.创建多维表格查询记录的飞书节点.jpeg",
+                                                 "images/step4/2.填入多维表格的token与id.jpeg",
+                                                 "images/step4/3.书写请求体.jpeg",
+                                                 "images/step4/4.配置完后执行步骤.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 创建<strong class=\"neon-text-cyan\">多维表格>查询记录</strong>的飞书节点",
+                                                 "2. 来到节点内部，通过查看飞书多维表格的url；填入多维表格的token与id",
+                                                 "3. 书写请求体「查询饭点内容为午餐、标签为未生成的记录」",
+                                                 "4. 配置完后执行步骤，可看到右侧查询到了表格内的符合要求的记录"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5: AI agent节点_生成提示词 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（五）AI agent节点_生成提示词</h4>
+                                        <p class="step-content-description">
+                                            1. 创建AI agent节点并配置大语言模型（deepseek）
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step5/1.创建AI agent节点并.jpeg",
+                                                 "images/step5/2.书写用来生成文案与生成图片的提示词.jpeg",
+                                                 "images/step5/3.配置结构化输出解析器.jpeg",
+                                                 "images/step5/4.有无结构化输出解析器的输出内容对比.png",
+                                                 "images/step5/5.编写简单的JSON格式.jpeg",
+                                                 "images/step5/6.执行节点.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 创建AI agent节点并配置大语言模型（deepseek）",
+                                                 "2. 这个节点的功能是根据主题书写用来生成文案与生成图片的提示词（输出两份提示词），并打开结构化输出解析器",
+                                                 "3. 配置结构化输出解析器，因为大模型输出都是以string 的格式，而n8n读取的都是标准json格式，所以要用json格式将输出内容分隔开",
+                                                 "4. 有无结构化输出解析器的输出内容对比",
+                                                 "5. 编写简单的JSON格式： {\"文章生成提示词\":\"\",\"图片生成提示词\":\"\"}",
+                                                 "6. 返回节点，写入提示词，执行节点"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤6: 配置HTTP请求节点_生成文案 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（六）配置HTTP请求节点_生成文案</h4>
+                                        <p class="step-content-description">
+                                            1. 创建HTTP请求节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step6/1.创建http请求节点.jpeg",
+                                                 "images/step6/2.deepseekcurl.jpeg",
+                                                 "images/step6/3.配置json body中的内容.jpeg",
+                                                 "images/step6/4.点击执行节点.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 创建HTTP请求节点",
+                                                 "2. 配置deepseek的curl并填写自己的api",
+                                                 "3. 配置json body中的内容，切记要把上一步生成的文章提示词拖拽至系统提示词处，并修改用户提示词",
+                                                 "4. 点击执行节点，得到图片的url"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤7: 配置HTTP请求节点_生成图像 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（七）配置HTTP请求节点_生成图像</h4>
+                                        <p class="step-content-description">
+                                            1. 再次添加http请求节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step7/1.火山引擎.jpeg",
+                                                 "images/step7/2.推理.jpeg",
+                                                 "images/step7/3.创建API.jpeg",
+                                                 "images/step7/4.url.jpeg",
+                                                 "images/step7/5.配置http请求.jpeg",
+                                                 "images/step7/6.填写body.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 进入火山引擎官网",
+                                                 "2. 找到推理服务",
+                                                 "3. 创建API密钥",
+                                                 "4. 获取API的URL地址",
+                                                 "5. 配置HTTP请求节点",
+                                                 "6. 填写请求body内容"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤8: 配置Send Email节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（八）配置Send Email节点</h4>
+                                        <p class="step-content-description">
+                                            1. 搜索并创建send email节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step8/1..jpeg",
+                                                 "images/step8/2.邮箱设置.jpeg",
+                                                 "images/step8/3.html配置.jpeg",
+                                                 "images/step8/4.代码复制并执行.jpeg",
+                                                 "images/step8/5.得到邮件.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 搜索并创建send email节点",
+                                                 "2. 填写email邮箱位置，在subject填入每日壹食，Emailformat选择html",
+                                                 "3. 然后进入z.ai，输入这段指令",
+                                                 "4. 复制到框中",
+                                                 "5. 点击执行，查收邮件"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤9: 更新飞书记录节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">（九）更新飞书记录节点</h4>
+                                        <p class="step-content-description">
+                                            1. 创建第二个飞书节点，这个节点的功能为更新记录
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='[
+                                                 "images/step9/1.新建飞书更新记录节点.jpeg",
+                                                 "images/step9/2.拖拽re_id.jpeg",
+                                                 "images/step9/3.书写请求体.jpeg"
+                                             ]'
+                                             data-descriptions='[
+                                                 "1. 创建第二个飞书节点，这个节点的功能为更新记录",
+                                                 "2. 来到节点设置页面，token和id还是和上一个一致的；记录id将re-id拖拽至选框",
+                                                 "3. 后书写请求体：「标签字段填入已生成」"
+                                             ]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">10</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 （1141×720）</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 右侧章节导航 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、案例实战
+                    </button>
+
+                    <!-- Section 2: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(2)">
+                        二、案例分析
+                    </button>
+
+                    <!-- Section 2 的子按钮 -->
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （一）工作流逻辑分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （二）工作流技术选型
+                    </button>
+
+                    <!-- Section 4: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(4)">
+                        三、案例实现步骤
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课后作业</h1>
+                    <p class="subtitle">动手实践，巩固知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">📝 课后作业</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px;">
+                                    请按照课程所学内容，搭建一个完整的「每天给自己推荐吃什么」的自动化工作流，并提交以下内容：
+                                </p>
+                                <ol style="margin-top: 20px;">
+                                    <li>工作流的截图（完整流程图）</li>
+                                    <li>飞书多维表格的截图</li>
+                                    <li>成功接收到推荐邮件的截图</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- 课程源文件下载板块 -->
+                        <div class="cyber-card" style="margin-top: 30px;">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-cyan);">📦 课程源文件下载</h2>
+                                <p style="font-size: 1.3rem; margin-top: 20px;">
+                                    下载课程配套的工作流案例文件，可直接导入N8N使用
+                                </p>
+
+                                <!-- 文件卡片 -->
+                                <div style="margin-top: 30px; padding: 25px; background: rgba(0, 255, 255, 0.05); border: 1px solid var(--neon-cyan); border-radius: 10px;">
+                                    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px;">
+                                        <!-- 左侧文件信息 -->
+                                        <div style="flex: 1; min-width: 250px;">
+                                            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                                                <i class="fas fa-file-code" style="font-size: 2.5rem; color: var(--neon-cyan);"></i>
+                                                <div>
+                                                    <h3 style="color: var(--neon-cyan); margin: 0; font-size: 1.4rem;">案例0：每日一食案例.json</h3>
+                                                    <p style="color: var(--text-secondary); margin: 5px 0 0 0; font-size: 0.95rem;">N8N工作流配置文件</p>
+                                                </div>
+                                            </div>
+                                            <div style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+                                                <p style="margin: 5px 0;"><i class="fas fa-info-circle" style="color: var(--neon-pink); margin-right: 8px;"></i>文件类型：JSON</p>
+                                                <p style="margin: 5px 0;"><i class="fas fa-check-circle" style="color: var(--neon-green); margin-right: 8px;"></i>可直接导入N8N平台</p>
+                                            </div>
+                                        </div>
+
+                                        <!-- 右侧下载按钮 -->
+                                        <div>
+                                            <a href="案例0：每日一食案例.json" download="案例0：每日一食案例.json" style="text-decoration: none;">
+                                                <button style="
+                                                    background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue));
+                                                    color: white;
+                                                    border: none;
+                                                    padding: 15px 40px;
+                                                    border-radius: 8px;
+                                                    font-size: 1.1rem;
+                                                    font-weight: bold;
+                                                    cursor: pointer;
+                                                    display: flex;
+                                                    align-items: center;
+                                                    gap: 10px;
+                                                    transition: all 0.3s ease;
+                                                    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+                                                " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 0 30px rgba(0, 255, 255, 0.5)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 0 20px rgba(0, 255, 255, 0.3)';">
+                                                    <i class="fas fa-download"></i>
+                                                    <span>下载文件</span>
+                                                </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div style="margin-top: 20px; padding: 15px; background: rgba(255, 165, 0, 0.1); border-left: 3px solid var(--neon-yellow); border-radius: 5px;">
+                                    <p style="margin: 0; color: var(--text-secondary); font-size: 0.95rem;">
+                                        <i class="fas fa-lightbulb" style="color: var(--neon-yellow); margin-right: 8px;"></i>
+                                        <strong>使用提示：</strong>下载后在N8N中选择「Import from File」导入此工作流文件即可开始使用
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 N8N自动化工作流教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

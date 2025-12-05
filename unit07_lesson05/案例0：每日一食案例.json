@@ -1,0 +1,606 @@
+{
+  "name": "案例0：每日一食案例",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 11
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -5008,
+        -264
+      ],
+      "id": "c20e0dd4-6a2b-4545-8ec2-af33d3503d6e",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "resource": "bitable",
+        "operation": "bitable:table:record:search",
+        "app_toke": "KZPVbAeF8arpZ2sqaITctkSMnQh",
+        "table_id": "tblzkIHOv3p5Y8kE",
+        "body": "{\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"饭点\",\n        \"operator\": \"is\",\n        \"value\": [\"午餐\"]\n      },\n      {\n        \"field_name\": \"标签\",\n        \"operator\": \"is\",\n        \"value\": [\"未生成\"]\n      }\n    ]\n  }\n}"
+      },
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        -4784,
+        -264
+      ],
+      "id": "38f96cc6-87c1-4d26-a090-886beadda05f",
+      "name": "读取饭菜主题",
+      "credentials": {
+        "feishuCredentialsApi": {
+          "id": "wE9pl9ELrGXdyxJ3",
+          "name": "多多畅职"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "1693092082@qq.com",
+        "toEmail": "2928258825@qq.com",
+        "subject": "每日一食",
+        "html": "=<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>每日一食 - 中式美食推荐</title>\n    <style>\n        * {\n            margin: 0;\n            padding: 0;\n            box-sizing: border-box;\n        }\n        body {\n            font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;\n            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n            padding: 20px;\n        }\n        .email-container {\n            max-width: 600px;\n            margin: 0 auto;\n            background: white;\n            border-radius: 15px;\n            overflow: hidden;\n            box-shadow: 0 10px 30px rgba(0,0,0,0.2);\n        }\n        .header {\n            background: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);\n            padding: 30px;\n            text-align: center;\n            color: white;\n        }\n        .header h1 {\n            font-size: 32px;\n            margin-bottom: 10px;\n            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);\n        }\n        .header p {\n            font-size: 16px;\n            opacity: 0.95;\n        }\n        .content {\n            padding: 30px;\n            line-height: 1.8;\n            color: #333;\n        }\n        .food-card {\n            background: #f8f9fa;\n            border-radius: 10px;\n            padding: 20px;\n            margin-bottom: 20px;\n            border-left: 4px solid #ff6b6b;\n        }\n        .food-title {\n            font-size: 24px;\n            color: #ff6b6b;\n            margin-bottom: 15px;\n            font-weight: bold;\n        }\n        .food-image {\n            width: 100%;\n            height: 200px;\n            background: url('https://picsum.photos/seed/chinesefood/600/200.jpg') center/cover;\n            border-radius: 8px;\n            margin-bottom: 15px;\n        }\n        .section-title {\n            font-size: 18px;\n            color: #764ba2;\n            margin: 20px 0 10px 0;\n            font-weight: bold;\n        }\n        .ingredients-list {\n            background: #fff3cd;\n            padding: 15px;\n            border-radius: 8px;\n            margin: 10px 0;\n        }\n        .ingredients-list ul {\n            margin-left: 20px;\n        }\n        .steps-list {\n            counter-reset: step-counter;\n        }\n        .steps-list li {\n            margin-bottom: 10px;\n            padding-left: 30px;\n            position: relative;\n        }\n        .steps-list li::before {\n            counter-increment: step-counter;\n            content: counter(step-counter);\n            position: absolute;\n            left: 0;\n            top: 0;\n            background: #ff6b6b;\n            color: white;\n            width: 20px;\n            height: 20px;\n            border-radius: 50%;\n            text-align: center;\n            line-height: 20px;\n            font-size: 12px;\n        }\n        .tips-box {\n            background: #d1ecf1;\n            border: 1px solid #bee5eb;\n            padding: 15px;\n            border-radius: 8px;\n            margin-top: 20px;\n        }\n        .footer {\n            background: #343a40;\n            color: white;\n            padding: 20px;\n            text-align: center;\n        }\n        .footer p {\n            margin: 5px 0;\n            opacity: 0.8;\n        }\n        .social-links {\n            margin-top: 15px;\n        }\n        .social-links a {\n            color: white;\n            text-decoration: none;\n            margin: 0 10px;\n            font-size: 20px;\n        }\n    </style>\n</head>\n<body>\n    <div class=\"email-container\">\n        <div class=\"header\">\n            <h1>🥢 每日一食</h1>\n            <p>探索中华美食文化，品味地道中式佳肴</p>\n        </div>\n        \n        <div class=\"content\">\n            {{ $('文案生成').item.json.choices[0].message.content }}\n        </div>\n        \n        <div class=\"footer\">\n            <p>© 2024 每日一食 - 传承中华美食文化</p>\n            <p>如需退订，请回复\"退订\"至本邮箱</p>\n            <div class=\"social-links\">\n                <a href=\"#\">📧</a>\n                <a href=\"#\">📱</a>\n                <a href=\"#\">🌐</a>\n            </div>\n        </div>\n    </div>\n</body>\n</html>",
+        "options": {
+          "appendAttribution": false,
+          "attachments": "data"
+        }
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -3760,
+        -264
+      ],
+      "id": "8026cb2d-831d-493f-93db-d3aaf22a4345",
+      "name": "发送到邮箱",
+      "webhookId": "2ddec802-81ba-4b3b-ad51-84698a5a03b4",
+      "credentials": {
+        "smtp": {
+          "id": "eDzpyAzf1fDLdHNn",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        -4552,
+        -144
+      ],
+      "id": "0a864f85-bbe4-4034-ad26-446999f89b38",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "eolMXEAvpyITESem",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=你是以为提示词生成助手，你要根据用户的主题生成两份提示词\n\n1.文章内容提示词\n - 生成大语言模型的系统提示词\n - 仿照现代疯狂星期四、麦当劳等网络热更文案生成一段200字的文章，内容生动有趣，符合现代年轻人潮流的提示词\n\n2.生成图片提示词\n - 图片的风格要为实拍摄影风格，比例为1：1；1024*1024\n - 不能出现人物，只出现主题中的内容\n内容里面不能出现干扰json格式的符号，如\",等\n\n\n这是用户提供的主题：{{ $json.data.items[0].fields['名称'][0].text }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -4560,
+        -368
+      ],
+      "id": "9f331a49-5d22-4d64-897e-dab4acc071c0",
+      "name": "提示词生成器"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"文章生成提示词\": \"\",\n\t\"图片生成提示词\": \"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -4424,
+        -144
+      ],
+      "id": "c0bfdbec-545c-4f15-942f-2d7af896c93c",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "resource": "bitable",
+        "operation": "bitable:table:record:update",
+        "app_toke": "KZPVbAeF8arpZ2sqaITctkSMnQh",
+        "table_id": "tblzkIHOv3p5Y8kE",
+        "record_id": "={{ $json.data.items[0].fields.re_id.value[0].text }}",
+        "body": "{\n  \"fields\": {\n    \"标签\": \"已生成\"\n  }\n}\n"
+      },
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        -3536,
+        -264
+      ],
+      "id": "a0468035-b494-4db6-b158-8fc9865f8b6d",
+      "name": "打标签",
+      "credentials": {
+        "feishuCredentialsApi": {
+          "id": "wE9pl9ELrGXdyxJ3",
+          "name": "多多畅职"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "image",
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.0-flash-preview-image-generation",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.0-flash-preview-image-generation"
+        },
+        "prompt": "={{ $('提示词生成器').item.json.output['图片生成提示词'] }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1,
+      "position": [
+        -3984,
+        -264
+      ],
+      "id": "f2b6894f-523d-4311-976f-6da1ab0c1d0e",
+      "name": "图片生成",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "WCLvPMRKaI6qqVVF",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.deepseek.com/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer sk-14f130ad4c1441d78680335e1e2a9c01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"deepseek-chat\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"{{ $json.output['文章生成提示词'] }}\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"生成一段文案\"\n    }\n  ],\n  \"stream\": false\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -4208,
+        -264
+      ],
+      "id": "f7e6536e-d34e-4947-adee-098c6192e9a3",
+      "name": "文案生成"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=你是以为提示词生成助手，你要根据用户的主题生成两份提示词\n\n1.文章内容提示词\n - 生成大语言模型的系统提示词\n - 仿照现代疯狂星期四、麦当劳等网络热更文案生成一段200字的文章，内容生动有趣，符合现代年轻人潮流的提示词\n\n2.生成图片提示词\n - 图片的风格要为实拍摄影风格，比例为1：1；1024*1024\n - 不能出现人物，只出现主题中的内容\n内容里面不能出现干扰json格式的符号，如\",等\n\n\n这是用户提供的主题：{{ $json.data.items[0].fields['名称'][0].text }}",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -4560,
+        168
+      ],
+      "id": "c5284f83-c909-4f4d-ad25-4505f845b961",
+      "name": "提示词生成器1"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 11
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -5008,
+        168
+      ],
+      "id": "99579514-6173-4191-82dc-5aefc5f7f6c4",
+      "name": "Schedule Trigger1"
+    },
+    {
+      "parameters": {
+        "resource": "bitable",
+        "operation": "bitable:table:record:search",
+        "app_toke": "KZPVbAeF8arpZ2sqaITctkSMnQh",
+        "table_id": "tblzkIHOv3p5Y8kE",
+        "body": "{\n  \"filter\": {\n    \"conjunction\": \"and\",\n    \"conditions\": [\n      {\n        \"field_name\": \"饭点\",\n        \"operator\": \"is\",\n        \"value\": [\"午餐\"]\n      },\n      {\n        \"field_name\": \"标签\",\n        \"operator\": \"is\",\n        \"value\": [\"未生成\"]\n      }\n    ]\n  }\n}"
+      },
+      "type": "n8n-nodes-feishu-lite.feishuNode",
+      "typeVersion": 1,
+      "position": [
+        -4784,
+        168
+      ],
+      "id": "42f78407-f904-460d-b895-fcab94601efc",
+      "name": "读取饭菜主题1",
+      "credentials": {
+        "feishuCredentialsApi": {
+          "id": "wE9pl9ELrGXdyxJ3",
+          "name": "多多畅职"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        -4552,
+        392
+      ],
+      "id": "62e7d92e-6444-4d00-ac5b-2e6389b805cb",
+      "name": "DeepSeek Chat Model1",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "eolMXEAvpyITESem",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n\t\"文章生成提示词\": \"\",\n\t\"图片生成提示词\": \"\"\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -4424,
+        392
+      ],
+      "id": "d36f3fe0-bd59-44e8-b818-0ddf65f59842",
+      "name": "Structured Output Parser1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.deepseek.com/chat/completions",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer sk-14f130ad4c1441d78680335e1e2a9c01"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"deepseek-chat\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": \"{{ $json.output['文章生成提示词'] }}\"\n    },\n    {\n      \"role\": \"user\",\n      \"content\": \"为宫保鸡丁盖饭创作一个文案\"\n    }\n  ],\n  \"stream\": false\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -4208,
+        168
+      ],
+      "id": "68818352-07e7-4119-b755-afaa2a5fe476",
+      "name": "文案生成1"
+    },
+    {
+      "parameters": {
+        "fromEmail": "1693092082@qq.com",
+        "toEmail": "2928258825@qq.com",
+        "subject": "每日壹食",
+        "html": "=<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>图文展示</title>\n    <style>\n        /* 基础样式重置 */\n        body, html {\n            margin: 0;\n            padding: 0;\n            font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif;\n            background-color: #f4f4f9; /* 页面背景色 */\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            min-height: 100vh;\n        }\n\n        /* 卡片容器样式 */\n        .content-card {\n            max-width: 500px; /* 卡片最大宽度 */\n            width: 90%; /* 在小屏幕上自适应宽度 */\n            margin: 20px;\n            background-color: #ffffff;\n            border-radius: 12px; /* 圆角 */\n            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* 阴影效果 */\n            overflow: hidden; /* 确保图片圆角生效 */\n            transition: transform 0.3s ease, box-shadow 0.3s ease;\n        }\n\n        /* 鼠标悬停效果 */\n        .content-card:hover {\n            transform: translateY(-5px);\n            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);\n        }\n\n        /* 图片样式 */\n        .card-image {\n            width: 100%;\n            height: auto;\n            display: block; /* 消除图片下方的空隙 */\n        }\n\n        /* 文案容器样式 */\n        .card-text {\n            padding: 20px 25px;\n        }\n\n        /* 文案段落样式 */\n        .card-text p {\n            margin: 0;\n            font-size: 16px;\n            line-height: 1.7; /* 行高，增加可读性 */\n            color: #333333; /* 文字颜色 */\n            text-align: justify; /* 两端对齐 */\n        }\n    </style>\n</head>\n<body>\n\n    <div class=\"content-card\">\n        <!-- \n            第一个变量：图片URL \n            请勿修改变量名 {{ $json.data[0].url }}\n        -->\n        <img src=\"{{ $json.data[0].url }}\" alt=\"生成的图片\" class=\"card-image\">\n\n        <div class=\"card-text\">\n            <!-- \n                第二个变量：文案内容 \n                请勿修改变量名 {{ $('文案生成1').item.json.choices[0].message.content }}\n            -->\n            <p>{{ $('文案生成1').item.json.choices[0].message.content }}</p>\n        </div>\n    </div>\n\n</body>\n</html>\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -3760,
+        168
+      ],
+      "id": "60d96cdd-1fdd-4193-87f4-9bbe21039278",
+      "name": "Send email",
+      "webhookId": "51dd1d8d-f958-4f58-ae62-bfa69cdb0c29",
+      "credentials": {
+        "smtp": {
+          "id": "eDzpyAzf1fDLdHNn",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://ark.cn-beijing.volces.com/api/v3/images/generations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer a984e67e-0c01-4e7a-bb38-25bacb25598c"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"doubao-seedream-4-0-250828\",\n  \"prompt\": \"{{ $('提示词生成器1').item.json.output['图片生成提示词'] }}\",\n  \"sequential_image_generation\": \"disabled\",\n  \"response_format\": \"url\",\n  \"size\": \"2K\",\n  \"stream\": false,\n  \"watermark\": false\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        -3984,
+        168
+      ],
+      "id": "59bded5b-bf80-4c88-8a03-579d90869b6e",
+      "name": "HTTP Request"
+    }
+  ],
+  "pinData": {
+    "提示词生成器": [
+      {
+        "json": {
+          "output": {
+            "文章生成提示词": "你是一个充满活力和创意的美食博主，擅长用年轻人喜欢的网络热梗和幽默风格写美食文案。请以红烧牛肉面为主题，仿照现代疯狂星期四、麦当劳等网络热更文案风格，写一段200字左右的生动有趣的文章。要求内容符合现代年轻人潮流，语言活泼幽默，可以适当使用网络热梗和表情符号，让读者感受到美食的诱惑和快乐氛围。",
+            "图片生成提示词": "实拍摄影风格 1:1比例 1024x1024分辨率 一碗热气腾腾的红烧牛肉面 浓郁的汤底 大块的牛肉 筋道的面条 翠绿的葱花 红色的辣椒油 木质餐桌背景 自然光线 美食摄影 不能出现人物"
+          }
+        }
+      }
+    ],
+    "文案生成": [
+      {
+        "json": {
+          "id": "59e6459d-6280-43f8-82ea-54bd3c4f14af",
+          "object": "chat.completion",
+          "created": 1762843776,
+          "model": "deepseek-chat",
+          "choices": [
+            {
+              "index": 0,
+              "message": {
+                "role": "assistant",
+                "content": "谁懂啊！今天路过面馆被香到走不动道！这碗红烧牛肉面也太顶了吧！大块牛肉炖得软烂入味，面条吸饱了汤汁，嗦一口直接香迷糊了！连汤都喝得一滴不剩🤤\n\n建议所有打工人中午都来一碗，吃完直接满血复活，下午开会都有劲了！老板说这是祖传秘方，难怪这么绝！不说了，我先干为敬！"
+              },
+              "logprobs": null,
+              "finish_reason": "stop"
+            }
+          ],
+          "usage": {
+            "prompt_tokens": 93,
+            "completion_tokens": 98,
+            "total_tokens": 191,
+            "prompt_tokens_details": {
+              "cached_tokens": 64
+            },
+            "prompt_cache_hit_tokens": 64,
+            "prompt_cache_miss_tokens": 29
+          },
+          "system_fingerprint": "fp_ffc7281d48_prod0820_fp8_kvcache"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "读取饭菜主题",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "读取饭菜主题": {
+      "main": [
+        [
+          {
+            "node": "提示词生成器",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "提示词生成器",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "提示词生成器": {
+      "main": [
+        [
+          {
+            "node": "文案生成",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "提示词生成器",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "打标签": {
+      "main": [
+        []
+      ]
+    },
+    "图片生成": {
+      "main": [
+        [
+          {
+            "node": "发送到邮箱",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "文案生成": {
+      "main": [
+        [
+          {
+            "node": "图片生成",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "读取饭菜主题1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "读取饭菜主题1": {
+      "main": [
+        [
+          {
+            "node": "提示词生成器1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "发送到邮箱": {
+      "main": [
+        [
+          {
+            "node": "打标签",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "提示词生成器1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "提示词生成器1",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "提示词生成器1": {
+      "main": [
+        [
+          {
+            "node": "文案生成1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "文案生成1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "4826fdc8-5191-482e-ba4a-84224b629d3f",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2bffef4c1039f25669b24228a07cf4a2c2a97cc0fa0a49ab5160919210852fa8"
+  },
+  "id": "waZQZYJNqycy3l21",
+  "tags": [
+    {
+      "updatedAt": "2025-11-11T07:23:46.281Z",
+      "createdAt": "2025-11-11T07:23:46.281Z",
+      "id": "t6KAAjU5BTNB7gcq",
+      "name": "案例"
+    }
+  ]
+}

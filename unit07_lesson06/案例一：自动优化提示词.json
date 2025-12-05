@@ -1,0 +1,797 @@
+{
+  "name": "案例一：自动优化提示词",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "提示词优化",
+        "formDescription": "日常使用的提示词优化器",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "写一个新的提示词/迭代旧的提示词",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "写一个新的提示词"
+                  },
+                  {
+                    "option": "迭代旧的提示词"
+                  }
+                ]
+              },
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "生成文本/生成图像",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "生成文本"
+                  },
+                  {
+                    "option": "生成图像"
+                  }
+                ]
+              },
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "customCss": "/* 完整的二次元风格表单样式 */\n.form-container {\n    width: var(--container-width);\n    margin: 0 auto;\n    padding: var(--padding-container-top) 20px;\n    background: var(--color-background);\n    min-height: 100vh;\n    font-family: var(--font-family);\n}\n\n/* 表单卡片样式 */\n.form-card {\n    background: var(--color-card-bg);\n    border-radius: var(--border-radius-card);\n    padding: var(--padding-card);\n    box-shadow: var(--box-shadow-card);\n    backdrop-filter: blur(10px);\n    border: 1px solid var(--color-card-border);\n    position: relative;\n    overflow: hidden;\n}\n\n/* 装饰性背景元素 */\n.form-card::before {\n    content: '';\n    position: absolute;\n    top: -50%;\n    right: -50%;\n    width: 200%;\n    height: 200%;\n    background: radial-gradient(circle, rgba(100, 181, 246, 0.1) 0%, transparent 70%);\n    animation: float 20s infinite linear;\n}\n\n@keyframes float {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/* 表单标题 */\n.form-header {\n    font-size: var(--font-size-header);\n    color: var(--color-header);\n    margin-bottom: 24px;\n    text-align: center;\n    font-weight: var(--font-weight-bold);\n    position: relative;\n}\n\n.form-header::after {\n    content: '✨';\n    position: absolute;\n    right: -30px;\n    top: 50%;\n    transform: translateY(-50%);\n    animation: sparkle 2s infinite;\n}\n\n@keyframes sparkle {\n    0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }\n    50% { opacity: 0.5; transform: translateY(-50%) scale(1.2); }\n}\n\n/* 表单组样式 */\n.form-group {\n    margin-bottom: 24px;\n    position: relative;\n}\n\n/* 标签样式 */\n.form-label {\n    display: block;\n    font-size: var(--font-size-label);\n    color: var(--color-label);\n    margin-bottom: 8px;\n    font-weight: var(--font-weight-normal);\n    position: relative;\n}\n\n.required-mark {\n    color: var(--color-required);\n    margin-left: 4px;\n}\n\n/* 输入框样式 */\n.form-input {\n    width: 100%;\n    padding: var(--padding-form-input);\n    font-size: var(--font-size-input);\n    border: 2px solid var(--color-input-border);\n    border-radius: var(--border-radius-input);\n    background: rgba(255, 255, 255, 0.8);\n    color: var(--color-input-text);\n    transition: var(--transition-smooth);\n    box-sizing: border-box;\n}\n\n.form-input:focus {\n    outline: none;\n    border-color: var(--color-focus-border);\n    box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);\n    transform: translateY(-2px);\n}\n\n.form-input::placeholder {\n    color: var(--color-input-text);\n    opacity: var(--opacity-placeholder);\n}\n\n/* 下拉菜单容器 */\n.custom-select {\n    position: relative;\n    width: 100%;\n}\n\n/* 下拉菜单触发器 */\n.select-trigger {\n    width: 100%;\n    padding: var(--padding-form-input);\n    font-size: var(--font-size-input);\n    border: 2px solid var(--color-input-border);\n    border-radius: var(--border-radius-input);\n    background: rgba(255, 255, 255, 0.8);\n    color: var(--color-input-text);\n    cursor: pointer;\n    transition: var(--transition-smooth);\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    box-sizing: border-box;\n    position: relative;\n}\n\n.select-trigger:hover {\n    border-color: var(--color-focus-border);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(100, 181, 246, 0.2);\n}\n\n.select-trigger.active {\n    border-color: var(--color-focus-border);\n    box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);\n}\n\n/* 下拉箭头 */\n.select-arrow {\n    width: 0;\n    height: 0;\n    border-left: 5px solid transparent;\n    border-right: 5px solid transparent;\n    border-top: 6px solid var(--color-input-text);\n    transition: var(--transition-smooth);\n    margin-left: 10px;\n}\n\n.select-trigger.active .select-arrow {\n    transform: rotate(180deg);\n    border-top-color: var(--color-focus-border);\n}\n\n/* 下拉选项容器 */\n.select-options {\n    position: absolute;\n    top: calc(100% + 8px);\n    left: 0;\n    right: 0;\n    background: rgba(255, 255, 255, 0.95);\n    border: 2px solid var(--color-focus-border);\n    border-radius: var(--border-radius-input);\n    box-shadow: 0 8px 24px rgba(100, 181, 246, 0.3);\n    z-index: 1000;\n    opacity: 0;\n    visibility: hidden;\n    transform: translateY(-10px);\n    transition: var(--transition-smooth);\n    backdrop-filter: blur(10px);\n    max-height: 200px;\n    overflow-y: auto;\n}\n\n.select-options.show {\n    opacity: 1;\n    visibility: visible;\n    transform: translateY(0);\n}\n\n/* 下拉选项 */\n.select-option {\n    padding: 12px 16px;\n    font-size: var(--font-size-input);\n    color: var(--color-input-text);\n    cursor: pointer;\n    transition: var(--transition-smooth);\n    position: relative;\n    overflow: hidden;\n}\n\n.select-option::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 0;\n    height: 100%;\n    background: linear-gradient(90deg, rgba(100, 181, 246, 0.2) 0%, rgba(124, 77, 255, 0.2) 100%);\n    transition: var(--transition-smooth);\n}\n\n.select-option:hover {\n    background: rgba(100, 181, 246, 0.1);\n    padding-left: 20px;\n}\n\n.select-option:hover::before {\n    width: 100%;\n}\n\n.select-option.selected {\n    background: linear-gradient(90deg, rgba(100, 181, 246, 0.2) 0%, rgba(124, 77, 255, 0.2) 100%);\n    color: var(--color-focus-border);\n    font-weight: var(--font-weight-bold);\n}\n\n/* 错误提示 */\n.error-message {\n    color: var(--color-error);\n    font-size: var(--font-size-error);\n    margin-top: 8px;\n    display: flex;\n    align-items: center;\n    opacity: 0;\n    transform: translateY(-10px);\n    transition: var(--transition-smooth);\n}\n\n.error-message.show {\n    opacity: 1;\n    transform: translateY(0);\n}\n\n.error-message::before {\n    content: '⚠️';\n    margin-right: 6px;\n    font-size: 14px;\n}\n\n/* 提交按钮 */\n.submit-button {\n    width: 100%;\n    height: var(--submit-btn-height);\n    background: var(--color-submit-btn-bg);\n    color: var(--color-submit-btn-text);\n    border: none;\n    border-radius: var(--border-radius-input);\n    font-size: var(--font-size-input);\n    font-weight: var(--font-weight-bold);\n    cursor: pointer;\n    transition: var(--transition-bounce);\n    position: relative;\n    overflow: hidden;\n    margin-top: 32px;\n}\n\n.submit-button::before {\n    content: '';\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 0;\n    height: 0;\n    background: rgba(255, 255, 255, 0.3);\n    border-radius: 50%;\n    transform: translate(-50%, -50%);\n    transition: width 0.6s, height 0.6s;\n}\n\n.submit-button:hover {\n    transform: translateY(-3px);\n    box-shadow: 0 8px 24px rgba(100, 181, 246, 0.4);\n}\n\n.submit-button:hover::before {\n    width: 300px;\n    height: 300px;\n}\n\n.submit-button:active {\n    transform: translateY(-1px);\n}\n\n/* 底部装饰文字 */\n.form-footer {\n    text-align: center;\n    margin-top: 24px;\n    font-size: var(--font-size-link);\n    color: var(--color-header-subtext);\n    opacity: 0.7;\n}\n\n.form-footer::before {\n    content: '🌸';\n    margin-right: 8px;\n}\n\n.form-footer::after {\n    content: '🌸';\n    margin-left: 8px;\n}\n\n/* 测试提示样式 */\n.test-notice {\n    background: var(--color-test-notice-bg);\n    border: 1px solid var(--color-test-notice-border);\n    border-radius: var(--border-radius-input);\n    padding: var(--padding-test-notice-vertical) var(--padding-test-notice-horizontal);\n    margin-bottom: var(--margin-bottom-card);\n    color: var(--color-test-notice-text);\n    font-size: var(--font-size-test-notice);\n    display: flex;\n    align-items: center;\n    position: relative;\n    overflow: hidden;\n}\n\n.test-notice::before {\n    content: '🔔';\n    margin-right: 8px;\n    font-size: 16px;\n    animation: ring 2s infinite;\n}\n\n@keyframes ring {\n    0%, 100% { transform: rotate(0deg); }\n    25% { transform: rotate(-10deg); }\n    75% { transform: rotate(10deg); }\n}\n\n/* 滚动条样式 */\n.select-options::-webkit-scrollbar {\n    width: 6px;\n}\n\n.select-options::-webkit-scrollbar-track {\n    background: rgba(100, 181, 246, 0.1);\n    border-radius: 3px;\n}\n\n.select-options::-webkit-scrollbar-thumb {\n    background: var(--color-focus-border);\n    border-radius: 3px;\n}\n\n.select-options::-webkit-scrollbar-thumb:hover {\n    background: var(--color-input-border);\n}"
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.3,
+      "position": [
+        -1152,
+        -356
+      ],
+      "id": "48e64aca-9416-4a02-91c4-e04db91c350e",
+      "name": "On form submission",
+      "webhookId": "3b0f02fd-2135-49e6-8df5-5ff36486babd"
+    },
+    {
+      "parameters": {
+        "mode": "expression",
+        "output": "={{\n(() => {\n  // 兼容你表单里用中文做字段名的情况；如果你之后改成 action/modality 之类的英文 key，也一起兼容\n  const a = $json[\"写一个新的提示词/迭代旧的提示词\"] ?? $json.action ?? \"\";\n  const b = $json[\"生成文本/生成图像\"] ?? $json.modality ?? \"\";\n\n  // 归一化成英文标签，方便做组合判断\n  const A = /新/.test(a) || /new/i.test(a) ? \"new\" :\n            /迭代/.test(a) || /iter/i.test(a) ? \"iterate\" : \"\";\n  const B = /文|text/i.test(b) ? \"text\" :\n            /图|像|image|img/i.test(b) ? \"image\" : \"\";\n\n  // 组合 -> 输出索引映射（0-based）\n  const map = {\n    \"new|text\": 0,      // 新的提示词 + 生成文本\n    \"new|image\": 1,     // 新的提示词 + 生成图像\n    \"iterate|text\": 2,  // 迭代旧的提示词 + 生成文本\n    \"iterate|image\": 3  // 迭代旧的提示词 + 生成图像\n  };\n\n  const key = `${A}|${B}`;\n  return map[key] ?? 0; // 不匹配时默认走第 0 个分支\n})()\n}}\n"
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.3,
+      "position": [
+        -928,
+        -388
+      ],
+      "id": "952cea94-7e8c-4604-9269-5661c203cba9",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=请根据用户的初始需求与用户的补充需求生成提示词\n\n用户的初始需求：{{ $json['提示词的主题'] }}\n用户的补充需求：{{ $json['其他要求'] }}\n\n并且告诉用户需要输入的内容",
+        "options": {
+          "systemMessage": "=你是一个**世界顶尖的*AI提示词优化专家(Prompt Engineering Master)。\n您的**唯一使命*+是*解构、重构并极大增强**用户提供的原始提示词('Original Prompt'）,将其转化为一个**结构化、高性能、可立即执行**的AI代理(Agent)定义。\n\n\n你**必须严格**按照以下格式返回,**不得**有任何副减或添加格式下的解释:\n\n## **Role:[角色名称(必须简洁、专业且准确反映核心职责)]**\n### **Profile**\n1. Language:[主要交互语言,(辅助语言,如英文术语)]\n2. description:[对角色的高层次总结,清晰说明其核心价值和独特功能\n3. background:[支撑该角色专业性的背景,例如:基于xx数据调练、模拟xx专家]\n4. personality:[角色的沟通风格与性格,例如:严谨、富有创意、共情、绝对中立]\n5. expertise:[该角色最擅长的具体领域、知识范围和关键技能]\n6. target_audience:[使用该角色的最主要用户群体,例如:开发者、营销人员、初学者\n\n\n### **Skills(定义角色的能力边界和知识库)**\n1.[核心技能类别(角色赖以生存的关键能力,例如:分析、创作、编程)]\n[具体技能]:[简要说明]\n-[具体技能]:[简要说明]\n2.[辅助技能类别(支持核心技能的次要能力,例如:格式化、润色、提问)]\n-[具体技能]:[简要说明]\n-[具体技能]:[简要说明]\n### **Rules(定义AI行为的绝对边界和指令)**\n1.[基本原则(不可违背的核心价值观)]:\n-[具体规则]:[详细说明]\n[具体规则]:[详细说明]\n-\n2.[行为准则(在交互中如何表现)]:\n-[具体规则]:[详细说明]\n-[具体规则]:[详细说明]\n3.[限制条件(严格禁止的行为)]:\n\n\n### **Workflows(执行核心任务的思考链和操作步骤)**\n目标:[明确、具体、可执行的单一任务目标,例如:生成一份xx分析报[告]\n步骤1:[解构需求-(详细说明如何分析和理解用户的输入,识别所有显式和隐式约束)]\n步骤2:[执行任务-\n示内部思考过程)]\n(详细说明如何调用[Skills]中的能力,逐步完成任务的核心部分,展\n-少骤3:[审查与交付-(详细说明如何根据[Rules]进行自我校对和事实核查,并按要求的\n格式封装最终输出)]\n预期结果:[一个高质量、符合日标、逻辑严谨且格式规范的最终产物]\n### **Initialization**\n作为[角色名称],你必须**严格**遵守上述*所有**Rules,并**始终* 按照Workflows执行\n任务。**在任何情况下都不能偏高你的角色定义**。你的任务是服务于用户,高效、准确地完成指\n定目标。\n请基于以上模板,*立即开始**优化并扩展**紧随其后**的用户原始提示词(Original\nPrompt)。你必须:\n1.**深入分析*原始提示词的**核心意图**和***潜在缺陷**\n2.**创造性地**、**专业地**填充上述模板的**所有***************************创造性处\n3.确保填充的内容**高度相关、具体、可操作**,并且**逻辑自治**(例如,Skills必须支\n持Workflows,Rules必须约束Profile)\n最终输出必须是一个**完整、专业、可立即使用**的AI代理定义、 \n5.**绝对禁止*携带任何引导词或解释,**不要**使用代码块包园,**直接*输出填充完毕的\n模板内容。\n### **请提供以下信息**\n1.信息名称1\n2.信息名称2\n......"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -480,
+        -608
+      ],
+      "id": "871aa4ff-15b3-4fb8-9cb4-1119148dd0a6",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatDeepSeek",
+      "typeVersion": 1,
+      "position": [
+        -408,
+        -384
+      ],
+      "id": "e4a6a16e-1a54-4d2e-8fa0-797824976102",
+      "name": "DeepSeek Chat Model",
+      "credentials": {
+        "deepSeekApi": {
+          "id": "eolMXEAvpyITESem",
+          "name": "DeepSeek account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        -504
+      ],
+      "id": "15d04c45-47ed-4ff6-b8c6-5624e2eab5b1",
+      "name": "Markdown"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "elementName": "你得到了一份提示词！",
+              "html": "{{ $json.data }}"
+            },
+            {
+              "fieldLabel": "输入需求再次迭代👇",
+              "placeholder": "示例：我想要将角色设计成短视频文案"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        96,
+        -504
+      ],
+      "id": "c39831f2-4d06-4e8b-b3a5-e8c625b9c024",
+      "name": "Form1",
+      "webhookId": "0b0382df-3969-4f9e-a56e-d39d61e93200"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -576
+      ],
+      "id": "28ccb478-6887-4b5c-b2c0-c1512bf7f2ca",
+      "name": "Markdown1"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "elementName": "迭代后的提示词",
+              "html": "{{ $json.data }}\n\n\n"
+            },
+            {
+              "fieldLabel": "其他的优化需求",
+              "placeholder": "示例：再次简洁一些"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        1120,
+        -576
+      ],
+      "id": "4266e654-319b-4030-bb6f-e8e894201990",
+      "name": "Form2",
+      "webhookId": "ee4bf953-24c8-4ec9-8d41-d7990eee0496"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c258cb35-9ea3-474d-b153-b2d8d4be2591",
+              "leftValue": "={{ $json[\"其他的优化需求\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        -504
+      ],
+      "id": "d166cf19-8c8b-443e-91e6-fd274454c208",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "a1921ad3-5090-4d43-a289-b1ea4b29f713",
+              "leftValue": "={{ $json[\"输入需求再次迭代👇\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        -504
+      ],
+      "id": "b40d1020-1f8a-4d5b-b913-6e6762ee2a7e",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "需要迭代提示词",
+              "fieldType": "textarea",
+              "placeholder": "将提示词复制进来",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "优化需求",
+              "placeholder": "示例：更加简单一些",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "customCss": "/* 完整的二次元风格表单样式 */\n.form-container {\n    width: var(--container-width);\n    margin: 0 auto;\n    padding: var(--padding-container-top) 20px;\n    background: var(--color-background);\n    min-height: 100vh;\n    font-family: var(--font-family);\n}\n\n/* 表单卡片样式 */\n.form-card {\n    background: var(--color-card-bg);\n    border-radius: var(--border-radius-card);\n    padding: var(--padding-card);\n    box-shadow: var(--box-shadow-card);\n    backdrop-filter: blur(10px);\n    border: 1px solid var(--color-card-border);\n    position: relative;\n    overflow: hidden;\n}\n\n/* 装饰性背景元素 */\n.form-card::before {\n    content: '';\n    position: absolute;\n    top: -50%;\n    right: -50%;\n    width: 200%;\n    height: 200%;\n    background: radial-gradient(circle, rgba(100, 181, 246, 0.1) 0%, transparent 70%);\n    animation: float 20s infinite linear;\n}\n\n@keyframes float {\n    0% { transform: rotate(0deg); }\n    100% { transform: rotate(360deg); }\n}\n\n/* 表单标题 */\n.form-header {\n    font-size: var(--font-size-header);\n    color: var(--color-header);\n    margin-bottom: 24px;\n    text-align: center;\n    font-weight: var(--font-weight-bold);\n    position: relative;\n}\n\n.form-header::after {\n    content: '✨';\n    position: absolute;\n    right: -30px;\n    top: 50%;\n    transform: translateY(-50%);\n    animation: sparkle 2s infinite;\n}\n\n@keyframes sparkle {\n    0%, 100% { opacity: 1; transform: translateY(-50%) scale(1); }\n    50% { opacity: 0.5; transform: translateY(-50%) scale(1.2); }\n}\n\n/* 表单组样式 */\n.form-group {\n    margin-bottom: 24px;\n    position: relative;\n}\n\n/* 标签样式 */\n.form-label {\n    display: block;\n    font-size: var(--font-size-label);\n    color: var(--color-label);\n    margin-bottom: 8px;\n    font-weight: var(--font-weight-normal);\n    position: relative;\n}\n\n.required-mark {\n    color: var(--color-required);\n    margin-left: 4px;\n}\n\n/* 输入框样式 */\n.form-input {\n    width: 100%;\n    padding: var(--padding-form-input);\n    font-size: var(--font-size-input);\n    border: 2px solid var(--color-input-border);\n    border-radius: var(--border-radius-input);\n    background: rgba(255, 255, 255, 0.8);\n    color: var(--color-input-text);\n    transition: var(--transition-smooth);\n    box-sizing: border-box;\n}\n\n.form-input:focus {\n    outline: none;\n    border-color: var(--color-focus-border);\n    box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);\n    transform: translateY(-2px);\n}\n\n.form-input::placeholder {\n    color: var(--color-input-text);\n    opacity: var(--opacity-placeholder);\n}\n\n/* 下拉菜单容器 */\n.custom-select {\n    position: relative;\n    width: 100%;\n}\n\n/* 下拉菜单触发器 */\n.select-trigger {\n    width: 100%;\n    padding: var(--padding-form-input);\n    font-size: var(--font-size-input);\n    border: 2px solid var(--color-input-border);\n    border-radius: var(--border-radius-input);\n    background: rgba(255, 255, 255, 0.8);\n    color: var(--color-input-text);\n    cursor: pointer;\n    transition: var(--transition-smooth);\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    box-sizing: border-box;\n    position: relative;\n}\n\n.select-trigger:hover {\n    border-color: var(--color-focus-border);\n    transform: translateY(-2px);\n    box-shadow: 0 4px 12px rgba(100, 181, 246, 0.2);\n}\n\n.select-trigger.active {\n    border-color: var(--color-focus-border);\n    box-shadow: 0 0 0 3px rgba(124, 77, 255, 0.1);\n}\n\n/* 下拉箭头 */\n.select-arrow {\n    width: 0;\n    height: 0;\n    border-left: 5px solid transparent;\n    border-right: 5px solid transparent;\n    border-top: 6px solid var(--color-input-text);\n    transition: var(--transition-smooth);\n    margin-left: 10px;\n}\n\n.select-trigger.active .select-arrow {\n    transform: rotate(180deg);\n    border-top-color: var(--color-focus-border);\n}\n\n/* 下拉选项容器 */\n.select-options {\n    position: absolute;\n    top: calc(100% + 8px);\n    left: 0;\n    right: 0;\n    background: rgba(255, 255, 255, 0.95);\n    border: 2px solid var(--color-focus-border);\n    border-radius: var(--border-radius-input);\n    box-shadow: 0 8px 24px rgba(100, 181, 246, 0.3);\n    z-index: 1000;\n    opacity: 0;\n    visibility: hidden;\n    transform: translateY(-10px);\n    transition: var(--transition-smooth);\n    backdrop-filter: blur(10px);\n    max-height: 200px;\n    overflow-y: auto;\n}\n\n.select-options.show {\n    opacity: 1;\n    visibility: visible;\n    transform: translateY(0);\n}\n\n/* 下拉选项 */\n.select-option {\n    padding: 12px 16px;\n    font-size: var(--font-size-input);\n    color: var(--color-input-text);\n    cursor: pointer;\n    transition: var(--transition-smooth);\n    position: relative;\n    overflow: hidden;\n}\n\n.select-option::before {\n    content: '';\n    position: absolute;\n    left: 0;\n    top: 0;\n    width: 0;\n    height: 100%;\n    background: linear-gradient(90deg, rgba(100, 181, 246, 0.2) 0%, rgba(124, 77, 255, 0.2) 100%);\n    transition: var(--transition-smooth);\n}\n\n.select-option:hover {\n    background: rgba(100, 181, 246, 0.1);\n    padding-left: 20px;\n}\n\n.select-option:hover::before {\n    width: 100%;\n}\n\n.select-option.selected {\n    background: linear-gradient(90deg, rgba(100, 181, 246, 0.2) 0%, rgba(124, 77, 255, 0.2) 100%);\n    color: var(--color-focus-border);\n    font-weight: var(--font-weight-bold);\n}\n\n/* 错误提示 */\n.error-message {\n    color: var(--color-error);\n    font-size: var(--font-size-error);\n    margin-top: 8px;\n    display: flex;\n    align-items: center;\n    opacity: 0;\n    transform: translateY(-10px);\n    transition: var(--transition-smooth);\n}\n\n.error-message.show {\n    opacity: 1;\n    transform: translateY(0);\n}\n\n.error-message::before {\n    content: '⚠️';\n    margin-right: 6px;\n    font-size: 14px;\n}\n\n/* 提交按钮 */\n.submit-button {\n    width: 100%;\n    height: var(--submit-btn-height);\n    background: var(--color-submit-btn-bg);\n    color: var(--color-submit-btn-text);\n    border: none;\n    border-radius: var(--border-radius-input);\n    font-size: var(--font-size-input);\n    font-weight: var(--font-weight-bold);\n    cursor: pointer;\n    transition: var(--transition-bounce);\n    position: relative;\n    overflow: hidden;\n    margin-top: 32px;\n}\n\n.submit-button::before {\n    content: '';\n    position: absolute;\n    top: 50%;\n    left: 50%;\n    width: 0;\n    height: 0;\n    background: rgba(255, 255, 255, 0.3);\n    border-radius: 50%;\n    transform: translate(-50%, -50%);\n    transition: width 0.6s, height 0.6s;\n}\n\n.submit-button:hover {\n    transform: translateY(-3px);\n    box-shadow: 0 8px 24px rgba(100, 181, 246, 0.4);\n}\n\n.submit-button:hover::before {\n    width: 300px;\n    height: 300px;\n}\n\n.submit-button:active {\n    transform: translateY(-1px);\n}\n\n/* 底部装饰文字 */\n.form-footer {\n    text-align: center;\n    margin-top: 24px;\n    font-size: var(--font-size-link);\n    color: var(--color-header-subtext);\n    opacity: 0.7;\n}\n\n.form-footer::before {\n    content: '🌸';\n    margin-right: 8px;\n}\n\n.form-footer::after {\n    content: '🌸';\n    margin-left: 8px;\n}\n\n/* 测试提示样式 */\n.test-notice {\n    background: var(--color-test-notice-bg);\n    border: 1px solid var(--color-test-notice-border);\n    border-radius: var(--border-radius-input);\n    padding: var(--padding-test-notice-vertical) var(--padding-test-notice-horizontal);\n    margin-bottom: var(--margin-bottom-card);\n    color: var(--color-test-notice-text);\n    font-size: var(--font-size-test-notice);\n    display: flex;\n    align-items: center;\n    position: relative;\n    overflow: hidden;\n}\n\n.test-notice::before {\n    content: '🔔';\n    margin-right: 8px;\n    font-size: 16px;\n    animation: ring 2s infinite;\n}\n\n@keyframes ring {\n    0%, 100% { transform: rotate(0deg); }\n    25% { transform: rotate(-10deg); }\n    75% { transform: rotate(10deg); }\n}\n\n/* 滚动条样式 */\n.select-options::-webkit-scrollbar {\n    width: 6px;\n}\n\n.select-options::-webkit-scrollbar-track {\n    background: rgba(100, 181, 246, 0.1);\n    border-radius: 3px;\n}\n\n.select-options::-webkit-scrollbar-thumb {\n    background: var(--color-focus-border);\n    border-radius: 3px;\n}\n\n.select-options::-webkit-scrollbar-thumb:hover {\n    background: var(--color-input-border);\n}"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        -704,
+        -208
+      ],
+      "id": "41a139f2-a841-45b5-8422-5334e438f3d2",
+      "name": "优化提示词表单",
+      "webhookId": "893e22df-5fea-4a22-889f-d91bbc485f59"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "提示词的主题",
+              "placeholder": "示例：生成一份讨论AI对于设计行业利弊的短视频文案",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "其他要求",
+              "placeholder": "示例：语言生动有趣，字数大概在2000左右等"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        -704,
+        -504
+      ],
+      "id": "08a150c8-17aa-4abb-9f23-0e9545a58232",
+      "name": "撰写提示词表单",
+      "webhookId": "95a8e2a9-8b96-48dd-a7e1-e2eea00111f7"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=原始提示词：{{ $json[\"需要迭代提示词\"] }}\n\n优化需求：{{ $json[\"优化需求\"] }}\n\n请基于优化需求修改原始提示词（参考上述示例理解，将需求融入提示词中）：",
+        "options": {
+          "systemMessage": "# Role：提示词迭代优化专家\n\n## Background：\n- 用户已经有一个优化过的提示词\n- 用户希望在此基础上进行特定方向的改进\n- 需要保持原有提示词的核心意图\n- 同时融入用户新的优化需求\n\n## 任务理解\n你的工作是修改原始提示词，根据用户的优化需求对其进行改进，而不是执行这些需求。\n\n## 核心原则\n- 保持原始提示词的核心意图和功能\n- 将优化需求作为新的要求或约束融入原始提示词\n- 保持原有的语言风格和结构格式\n- 进行精准修改，避免过度调整\n\n## 理解示例\n**示例1：**\n- 原始提示词：\"你是客服助手，帮用户解决问题\"\n- 优化需求：\"不要交互\"\n- ✅正确结果：\"你是客服助手，帮用户解决问题。请直接提供完整解决方案，不要与用户进行多轮交互确认。\"\n- ❌错误理解：直接回复\"好的，我不会与您交互\"\n\n**示例2：**\n- 原始提示词：\"分析数据并给出建议\"\n- 优化需求：\"输出JSON格式\"\n- ✅正确结果：\"分析数据并给出建议，请以JSON格式输出分析结果\"\n- ❌错误理解：直接输出JSON格式的回答\n\n**示例3：**\n- 原始提示词：\"你是写作助手\"\n- 优化需求：\"更专业一些\"\n- ✅正确结果：\"你是专业的写作顾问，具备丰富的写作经验，能够...\"\n- ❌错误理解：用更专业的语气回复\n\n## 工作流程\n1. 分析原始提示词的核心功能和结构\n2. 理解优化需求的本质（添加功能、修改方式、还是增加约束）\n3. 将优化需求恰当地融入原始提示词中\n4. 输出完整的修改后提示词\n\n## 输出要求\n直接输出优化后的提示词，保持原有格式，不添加解释。"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        -480,
+        -208
+      ],
+      "id": "1ffcd749-439e-44f1-bbd0-fa1ea3b90916",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=原始提示词：\n{{ $('AI Agent').item.json.output }}、{{ $('Markdown1').item.json.output }}\n\n优化需求：\n{{ $json['输入需求再次迭代👇'] }}、{{ $json[\"其他的优化需求\"] }}\n\n请基于优化需求修改原始提示词（参考上述示例理解，将需求融入提示词中）：",
+        "options": {
+          "systemMessage": "# Role：提示词迭代优化专家\n\n## Background：\n- 用户已经有一个优化过的提示词\n- 用户希望在此基础上进行特定方向的改进\n- 需要保持原有提示词的核心意图\n- 同时融入用户新的优化需求\n\n## 任务理解\n你的工作是修改原始提示词，根据用户的优化需求对其进行改进，而不是执行这些需求。\n\n## 核心原则\n- 保持原始提示词的核心意图和功能\n- 将优化需求作为新的要求或约束融入原始提示词\n- 保持原有的语言风格和结构格式\n- 进行精准修改，避免过度调整\n\n## 理解示例\n**示例1：**\n- 原始提示词：\"你是客服助手，帮用户解决问题\"\n- 优化需求：\"不要交互\"\n- ✅正确结果：\"你是客服助手，帮用户解决问题。请直接提供完整解决方案，不要与用户进行多轮交互确认。\"\n- ❌错误理解：直接回复\"好的，我不会与您交互\"\n\n**示例2：**\n- 原始提示词：\"分析数据并给出建议\"\n- 优化需求：\"输出JSON格式\"\n- ✅正确结果：\"分析数据并给出建议，请以JSON格式输出分析结果\"\n- ❌错误理解：直接输出JSON格式的回答\n\n**示例3：**\n- 原始提示词：\"你是写作助手\"\n- 优化需求：\"更专业一些\"\n- ✅正确结果：\"你是专业的写作顾问，具备丰富的写作经验，能够...\"\n- ❌错误理解：用更专业的语气回复\n\n## 工作流程\n1. 分析原始提示词的核心功能和结构\n2. 理解优化需求的本质（添加功能、修改方式、还是增加约束）\n3. 将优化需求恰当地融入原始提示词中\n4. 输出完整的修改后提示词\n\n## 输出要求\n直接输出优化后的提示词，保持原有格式，不添加解释。"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        544,
+        -504
+      ],
+      "id": "32164be7-f6e4-4cf8-aa78-0dcc7f6c9cc8",
+      "name": "迭代优化"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        -128,
+        -208
+      ],
+      "id": "dfba1d04-5153-4e68-af21-f4520022d7f7",
+      "name": "Markdown2"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "elementName": "优化提示词如下",
+              "html": "{{ $json.data }}"
+            },
+            {
+              "fieldLabel": "是否还有其他优化需求",
+              "placeholder": "示例：更加复杂"
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "提交"
+        }
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        96,
+        -208
+      ],
+      "id": "f47e72c6-0e20-47a8-a260-19d5b24a5695",
+      "name": "Form",
+      "webhookId": "dd372114-1796-4967-8ea4-081c7fb65723"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "b70e82f8-a03b-4953-808c-3d5b6afa1633",
+              "leftValue": "={{ $json[\"是否还有其他优化需求\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        320,
+        -208
+      ],
+      "id": "4fe370a3-b58f-46c6-a144-24489da6c6c0",
+      "name": "If2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=原始提示词：\n{{ $('AI Agent3').item.json.output }}、{{ $('Markdown3').item.json.output }}\n优化需求：\n{{ $json[\"是否还有其他优化需求\"] }}、{{ $json[\"其他的优化需求\"] }}\n\n请基于优化需求修改原始提示词（参考上述示例理解，将需求融入提示词中）：",
+        "options": {
+          "systemMessage": "# Role：提示词迭代优化专家\n\n## Background：\n- 用户已经有一个优化过的提示词\n- 用户希望在此基础上进行特定方向的改进\n- 需要保持原有提示词的核心意图\n- 同时融入用户新的优化需求\n\n## 任务理解\n你的工作是修改原始提示词，根据用户的优化需求对其进行改进，而不是执行这些需求。\n\n## 核心原则\n- 保持原始提示词的核心意图和功能\n- 将优化需求作为新的要求或约束融入原始提示词\n- 保持原有的语言风格和结构格式\n- 进行精准修改，避免过度调整\n\n## 理解示例\n**示例1：**\n- 原始提示词：\"你是客服助手，帮用户解决问题\"\n- 优化需求：\"不要交互\"\n- ✅正确结果：\"你是客服助手，帮用户解决问题。请直接提供完整解决方案，不要与用户进行多轮交互确认。\"\n- ❌错误理解：直接回复\"好的，我不会与您交互\"\n\n**示例2：**\n- 原始提示词：\"分析数据并给出建议\"\n- 优化需求：\"输出JSON格式\"\n- ✅正确结果：\"分析数据并给出建议，请以JSON格式输出分析结果\"\n- ❌错误理解：直接输出JSON格式的回答\n\n**示例3：**\n- 原始提示词：\"你是写作助手\"\n- 优化需求：\"更专业一些\"\n- ✅正确结果：\"你是专业的写作顾问，具备丰富的写作经验，能够...\"\n- ❌错误理解：用更专业的语气回复\n\n## 工作流程\n1. 分析原始提示词的核心功能和结构\n2. 理解优化需求的本质（添加功能、修改方式、还是增加约束）\n3. 将优化需求恰当地融入原始提示词中\n4. 输出完整的修改后提示词\n\n## 输出要求\n直接输出优化后的提示词，保持原有格式，不添加解释。"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        544,
+        -208
+      ],
+      "id": "6d0f8125-133f-4bdb-aa24-4fbdb8bb402c",
+      "name": "迭代优化1"
+    },
+    {
+      "parameters": {
+        "mode": "markdownToHtml",
+        "markdown": "={{ $json.output }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.markdown",
+      "typeVersion": 1,
+      "position": [
+        896,
+        -284
+      ],
+      "id": "300003b0-d609-4f45-b3e9-bdaf60329bea",
+      "name": "Markdown3"
+    },
+    {
+      "parameters": {
+        "formFields": {
+          "values": [
+            {
+              "fieldType": "html",
+              "elementName": "迭代后的提示词",
+              "html": "{{ $json.data }}\n\n\n"
+            },
+            {
+              "fieldLabel": "其他的优化需求",
+              "placeholder": "示例：再次简洁一些"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 2.3,
+      "position": [
+        1120,
+        -284
+      ],
+      "id": "b64c951b-7a1e-4a5c-b8c8-22900f9f6fef",
+      "name": "Form3",
+      "webhookId": "ee4bf953-24c8-4ec9-8d41-d7990eee0496"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c258cb35-9ea3-474d-b153-b2d8d4be2591",
+              "leftValue": "={{ $json[\"其他的优化需求\"] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1344,
+        -208
+      ],
+      "id": "e042f1b5-68d7-4f29-b036-83049fb6c1a0",
+      "name": "If3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "撰写提示词表单",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [
+          {
+            "node": "优化提示词表单",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeepSeek Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "迭代优化",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent3",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "迭代优化1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown": {
+      "main": [
+        [
+          {
+            "node": "Form1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown1": {
+      "main": [
+        [
+          {
+            "node": "Form2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form2": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "迭代优化",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "迭代优化",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "优化提示词表单": {
+      "main": [
+        [
+          {
+            "node": "AI Agent3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "撰写提示词表单": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "迭代优化": {
+      "main": [
+        [
+          {
+            "node": "Markdown1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        [
+          {
+            "node": "Markdown2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown2": {
+      "main": [
+        [
+          {
+            "node": "Form",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "迭代优化1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "迭代优化1": {
+      "main": [
+        [
+          {
+            "node": "Markdown3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Markdown3": {
+      "main": [
+        [
+          {
+            "node": "Form3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Form3": {
+      "main": [
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "迭代优化1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "85ce48ea-91e1-4421-8193-9dedc71a94e0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2bffef4c1039f25669b24228a07cf4a2c2a97cc0fa0a49ab5160919210852fa8"
+  },
+  "id": "giTIlTQKjGyYMiat",
+  "tags": [
+    {
+      "updatedAt": "2025-11-11T07:23:46.281Z",
+      "createdAt": "2025-11-11T07:23:46.281Z",
+      "id": "t6KAAjU5BTNB7gcq",
+      "name": "案例"
+    }
+  ]
+}

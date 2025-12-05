@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>6。自动书写、优化提示词的工作流 | N8N自动化教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景特效 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第七单元：N8N 自动化教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程内容</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>6。自动书写、优化提示词的工作流</h1>
+                    <p class="subtitle">实战案例 | 案例分析 | 案例实现步骤</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 板块一-课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程回顾</h2>
+
+                            <h3>一、课程回顾</h3>
+                            <ol>
+                                <li><strong class="neon-text-cyan">工作流逻辑</strong>的判断方法</li>
+                                <li><strong class="neon-text-purple">飞书</strong>的应用创建与凭证设立</li>
+                                <li>简单的<strong class="neon-text-pink">自动化工作流</strong></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>二、学习目标</h3>
+                            <ol>
+                                <li>理解<strong class="neon-text-cyan">表单</strong>与<strong class="neon-text-purple">switch</strong>的节点应用</li>
+                                <li><strong class="neon-text-pink">code节点</strong>的数据处理</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 课程内容 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>三、课程内容</h3>
+                            <ol>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    实战案例
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    案例分析
+                                </li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">
+                                    案例实现步骤
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程内容页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程内容</h1>
+                    <p class="subtitle">实战案例 | 案例分析 | 案例实现步骤</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 一、案例实战 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、案例实战</h2>
+                            <h3>（一）案例主题</h3>
+                            <p style="font-size: 1.3rem; line-height: 1.8;">
+                                构建一个完整的自动化工作流：<br>
+                                利用<strong class="neon-text-cyan">填写表单的形式</strong>制作一个用于<strong class="neon-text-pink">文本图片进行提示词生成优化</strong>的工作流，通过<strong class="neon-text-purple">表单返回生成的提示词内容</strong>，且可以<strong class="neon-text-cyan">重复修改</strong>。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 二、案例分析(一) -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 二、案例分析</h2>
+                            <h3>（一）工作流逻辑分析</h3>
+                            <ol>
+                                <li>需要<strong class="neon-text-cyan">填写表单</strong>：
+                                    <ul style="margin-top: 10px;">
+                                        <li><strong class="neon-text-pink">文本</strong>/<strong class="neon-text-purple">图片</strong></li>
+                                        <li><strong class="neon-text-cyan">提示词生成</strong>/<strong class="neon-text-purple">提示词优化</strong></li>
+                                        <li><strong class="neon-text-pink">2^2=4</strong>，共有<strong class="neon-text-cyan">4种情况</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-purple">再次填写表单</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>提示词的<strong class="neon-text-cyan">主题</strong>与<strong class="neon-text-pink">相关内容</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-cyan">生成提示词</strong></li>
+                                <li>生成的内容要<strong class="neon-text-purple">返回表单</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li>生成的<strong class="neon-text-cyan">提示词内容</strong></li>
+                                        <li>可以选择<strong class="neon-text-pink">继续优化</strong>或者<strong class="neon-text-purple">停止</strong></li>
+                                    </ul>
+                                </li>
+                            </ol>
+
+                            <!-- 整体工作流程示意图 -->
+                            <h4 style="color: var(--neon-cyan); margin-top: 50px; font-size: 1.5rem;">📊 整体工作流程示意图</h4>
+                            <div class="flow-diagram">
+                                <div class="flow-node" style="border-color: var(--cyber-pink); background: rgba(244, 63, 94, 0.15);">
+                                    <i class="fas fa-edit"></i> 1。用户填写表单
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="flow-node" style="border-color: var(--neon-purple); background: rgba(168, 85, 247, 0.15);">
+                                    <i class="fas fa-code-branch"></i> 2。Switch判断（4种情况）
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="flow-node" style="border-color: var(--neon-cyan); background: rgba(6, 182, 212, 0.15);">
+                                    <i class="fas fa-clipboard-list"></i> 3。填写详细需求
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="flow-node" style="border-color: var(--cyber-pink); background: rgba(244, 63, 94, 0.15);">
+                                    <i class="fas fa-robot"></i> 4。AI生成提示词
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="flow-node" style="border-color: var(--neon-purple); background: rgba(168, 85, 247, 0.15);">
+                                    <i class="fas fa-file-code"></i> 5。返回结果表单
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="flow-node" style="border-color: var(--neon-cyan); background: rgba(6, 182, 212, 0.15);">
+                                    <i class="fas fa-question-circle"></i> 6。IF判断：是否继续优化？
+                                </div>
+                                <div class="flow-branch" style="margin-top: 25px;">
+                                    <div class="flow-node" style="background: rgba(234, 179, 8, 0.2); border-color: var(--neon-yellow); box-shadow: 0 0 15px rgba(234, 179, 8, 0.5);">
+                                        <i class="fas fa-check-circle"></i> 结束流程
+                                    </div>
+                                    <div class="flow-node" style="background: rgba(6, 182, 212, 0.2); border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);">
+                                        <i class="fas fa-sync-alt"></i> 循环优化
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 四种情况分支示意图 -->
+                            <h4 style="color: var(--neon-cyan); margin-top: 50px; font-size: 1.5rem;">🌳 四种情况分支示意图（2²=4）</h4>
+                            <div class="branch-diagram">
+                                <div class="branch-item" style="border-color: var(--cyber-pink); background: linear-gradient(135deg, rgba(244, 63, 94, 0.15), rgba(168, 85, 247, 0.1));">
+                                    <div class="branch-number">①</div>
+                                    <div class="branch-label">新提示词</div>
+                                    <div class="branch-divider">+</div>
+                                    <div class="branch-label">生成文本</div>
+                                    <i class="fas fa-file-alt" style="font-size: 2rem; margin-top: 15px; color: var(--cyber-pink); filter: drop-shadow(0 0 10px var(--cyber-pink));"></i>
+                                </div>
+                                <div class="branch-item" style="border-color: var(--neon-purple); background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.1));">
+                                    <div class="branch-number">②</div>
+                                    <div class="branch-label">新提示词</div>
+                                    <div class="branch-divider">+</div>
+                                    <div class="branch-label">生成图像</div>
+                                    <i class="fas fa-image" style="font-size: 2rem; margin-top: 15px; color: var(--neon-purple); filter: drop-shadow(0 0 10px var(--neon-purple));"></i>
+                                </div>
+                                <div class="branch-item" style="border-color: var(--neon-cyan); background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(244, 63, 94, 0.1));">
+                                    <div class="branch-number">③</div>
+                                    <div class="branch-label">迭代提示词</div>
+                                    <div class="branch-divider">+</div>
+                                    <div class="branch-label">生成文本</div>
+                                    <i class="fas fa-redo-alt" style="font-size: 2rem; margin-top: 15px; color: var(--neon-cyan); filter: drop-shadow(0 0 10px var(--neon-cyan));"></i>
+                                </div>
+                                <div class="branch-item" style="border-color: var(--neon-yellow); background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(168, 85, 247, 0.1));">
+                                    <div class="branch-number">④</div>
+                                    <div class="branch-label">迭代提示词</div>
+                                    <div class="branch-divider">+</div>
+                                    <div class="branch-label">生成图像</div>
+                                    <i class="fas fa-images" style="font-size: 2rem; margin-top: 15px; color: var(--neon-yellow); filter: drop-shadow(0 0 10px var(--neon-yellow));"></i>
+                                </div>
+                            </div>
+
+                            <!-- 循环迭代示意图 -->
+                            <h4 style="color: var(--neon-cyan); margin-top: 50px; font-size: 1.5rem;">🔄 循环迭代优化示意图</h4>
+                            <div class="cycle-diagram">
+                                <div class="cycle-center">
+                                    <i class="fas fa-sync-alt"></i>
+                                    <span>持续优化</span>
+                                </div>
+                                <div class="cycle-item cycle-item-1">
+                                    <div class="cycle-step">Step 1</div>
+                                    <div class="cycle-content">生成初始提示词</div>
+                                </div>
+                                <div class="cycle-item cycle-item-2">
+                                    <div class="cycle-step">Step 2</div>
+                                    <div class="cycle-content">用户反馈需求</div>
+                                </div>
+                                <div class="cycle-item cycle-item-3">
+                                    <div class="cycle-step">Step 3</div>
+                                    <div class="cycle-content">AI迭代优化</div>
+                                </div>
+                                <div class="cycle-item cycle-item-4">
+                                    <div class="cycle-step">Step 4</div>
+                                    <div class="cycle-content">输出改进版本</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 二、案例分析(二) -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）工作流技术选型</h3>
+                            <ol>
+                                <li>填写表单且分<strong class="neon-text-pink">四种情况</strong>进入不同的工作流
+                                    <ul style="margin-top: 10px;">
+                                        <li><strong class="neon-text-cyan">提交表单触发器</strong></li>
+                                        <li><strong class="neon-text-purple">if/switch节点</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-cyan">再次填写表单</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li><strong class="neon-text-purple">提交表单节点</strong></li>
+                                    </ul>
+                                </li>
+                                <li><strong class="neon-text-pink">生成提示词</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li><strong class="neon-text-cyan">AI agent节点</strong></li>
+                                        <li>提示词内容</li>
+                                    </ul>
+                                </li>
+                                <li>生成的内容要<strong class="neon-text-purple">返回表单</strong>
+                                    <ul style="margin-top: 10px;">
+                                        <li><strong class="neon-text-cyan">提交表单节点</strong></li>
+                                        <li><strong class="neon-text-pink">if节点</strong></li>
+                                        <li><strong class="neon-text-purple">AI agent节点</strong></li>
+                                        <li><strong class="neon-text-cyan">提交表单节点</strong></li>
+                                        <li><strong class="neon-text-pink">if节点</strong></li>
+                                        <li><strong class="neon-text-purple">......循环节点</strong></li>
+                                    </ul>
+                                </li>
+                            </ol>
+
+                            <!-- 节点架构流程图 -->
+                            <h4 style="color: var(--neon-cyan); margin-top: 50px; font-size: 1.5rem;">🏗️ 节点架构流程图</h4>
+                            <div class="architecture-diagram">
+                                <div class="arch-node" style="border-color: var(--cyber-pink); background: rgba(244, 63, 94, 0.15);">
+                                    <i class="fas fa-play-circle"></i>
+                                    <span>Form Trigger</span>
+                                    <small>表单触发器</small>
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="arch-node" style="border-color: var(--neon-purple); background: rgba(168, 85, 247, 0.15);">
+                                    <i class="fas fa-code-branch"></i>
+                                    <span>Switch Node</span>
+                                    <small>分支判断</small>
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="arch-node" style="border-color: var(--neon-cyan); background: rgba(6, 182, 212, 0.15);">
+                                    <i class="fas fa-wpforms"></i>
+                                    <span>Next Form</span>
+                                    <small>详细信息表单</small>
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="arch-node" style="border-color: var(--cyber-pink); background: rgba(244, 63, 94, 0.15);">
+                                    <i class="fas fa-brain"></i>
+                                    <span>AI Agent</span>
+                                    <small>提示词生成</small>
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="arch-node" style="border-color: var(--neon-purple); background: rgba(168, 85, 247, 0.15);">
+                                    <i class="fab fa-markdown"></i>
+                                    <span>Markdown</span>
+                                    <small>格式转换</small>
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="arch-node" style="border-color: var(--neon-cyan); background: rgba(6, 182, 212, 0.15);">
+                                    <i class="fas fa-clipboard-check"></i>
+                                    <span>Next Form</span>
+                                    <small>结果展示</small>
+                                </div>
+                                <div class="flow-arrow"></div>
+                                <div class="arch-node" style="border-color: var(--neon-yellow); background: rgba(234, 179, 8, 0.15);">
+                                    <i class="fas fa-question"></i>
+                                    <span>IF Node</span>
+                                    <small>判断是否继续</small>
+                                </div>
+                                <div class="flow-branch" style="margin-top: 25px;">
+                                    <div class="arch-node" style="background: rgba(234, 179, 8, 0.2); border-color: var(--neon-yellow); box-shadow: 0 0 15px rgba(234, 179, 8, 0.5);">
+                                        <i class="fas fa-stop-circle"></i>
+                                        <span>结束</span>
+                                    </div>
+                                    <div class="arch-node" style="background: rgba(6, 182, 212, 0.2); border-color: var(--neon-cyan); box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);">
+                                        <i class="fas fa-redo"></i>
+                                        <span>迭代优化</span>
+                                        <small>返回AI Agent</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 技术栈图标展示 -->
+                            <h4 style="color: var(--neon-cyan); margin-top: 50px; font-size: 1.5rem;">🔧 使用的节点类型</h4>
+                            <div class="tech-stack">
+                                <div class="tech-icon">
+                                    <i class="fas fa-wpforms"></i>
+                                    <span class="tech-icon-label">Form节点</span>
+                                    <small style="color: var(--cyber-dark-200); font-size: 0.85rem;">表单处理</small>
+                                </div>
+                                <div class="tech-icon">
+                                    <i class="fas fa-code-branch"></i>
+                                    <span class="tech-icon-label">Switch节点</span>
+                                    <small style="color: var(--cyber-dark-200); font-size: 0.85rem;">条件分支</small>
+                                </div>
+                                <div class="tech-icon">
+                                    <i class="fas fa-robot"></i>
+                                    <span class="tech-icon-label">AI Agent</span>
+                                    <small style="color: var(--cyber-dark-200); font-size: 0.85rem;">智能生成</small>
+                                </div>
+                                <div class="tech-icon">
+                                    <i class="fab fa-markdown"></i>
+                                    <span class="tech-icon-label">Markdown</span>
+                                    <small style="color: var(--cyber-dark-200); font-size: 0.85rem;">格式转换</small>
+                                </div>
+                                <div class="tech-icon">
+                                    <i class="fas fa-question-circle"></i>
+                                    <span class="tech-icon-label">IF节点</span>
+                                    <small style="color: var(--cyber-dark-200); font-size: 0.85rem;">条件判断</small>
+                                </div>
+                            </div>
+
+                            <!-- 数据处理流程图 -->
+                            <h4 style="color: var(--neon-cyan); margin-top: 50px; font-size: 1.5rem;">💾 数据处理流程</h4>
+                            <div class="data-flow-diagram">
+                                <div class="data-step">
+                                    <div class="data-icon" style="background: rgba(244, 63, 94, 0.2); border-color: var(--cyber-pink);">
+                                        <i class="fas fa-keyboard"></i>
+                                    </div>
+                                    <div class="data-label">原始输入</div>
+                                    <div class="data-desc">用户表单数据</div>
+                                </div>
+                                <div class="data-arrow">→</div>
+                                <div class="data-step">
+                                    <div class="data-icon" style="background: rgba(168, 85, 247, 0.2); border-color: var(--neon-purple);">
+                                        <i class="fas fa-sitemap"></i>
+                                    </div>
+                                    <div class="data-label">结构化数据</div>
+                                    <div class="data-desc">JSON格式</div>
+                                </div>
+                                <div class="data-arrow">→</div>
+                                <div class="data-step">
+                                    <div class="data-icon" style="background: rgba(6, 182, 212, 0.2); border-color: var(--neon-cyan);">
+                                        <i class="fas fa-brain"></i>
+                                    </div>
+                                    <div class="data-label">AI处理</div>
+                                    <div class="data-desc">生成提示词</div>
+                                </div>
+                                <div class="data-arrow">→</div>
+                                <div class="data-step">
+                                    <div class="data-icon" style="background: rgba(244, 63, 94, 0.2); border-color: var(--cyber-pink);">
+                                        <i class="fab fa-markdown"></i>
+                                    </div>
+                                    <div class="data-label">Markdown格式</div>
+                                    <div class="data-desc">文本格式化</div>
+                                </div>
+                                <div class="data-arrow">→</div>
+                                <div class="data-step">
+                                    <div class="data-icon" style="background: rgba(168, 85, 247, 0.2); border-color: var(--neon-purple);">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div class="data-label">HTML展示</div>
+                                    <div class="data-desc">页面渲染</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 三、案例实现步骤 (一)提交表单接单 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、案例实现</h2>
+                            <p style="font-size: 1.2rem; color: var(--neon-pink); margin-bottom: 20px;">
+                                <strong>此流程仅演示新提示词文本生成的工作流。</strong>
+                            </p>
+                            <h3>（一）提交表单节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section4', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">设置On form submission节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">编辑标题与表单元素</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section4', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 节点作用 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>触发工作流
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2: 设置节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。设置On form submission节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">设置：</strong>添加并配置On form submission节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step1/2.设置On form submission节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: 编辑表单元素 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。编辑标题与表单元素</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">编辑内容：</strong><br>
+                                            1。<strong class="neon-text-cyan">写一个新的提示词</strong>/<strong class="neon-text-pink">迭代旧的提示词</strong><br>
+                                            2。<strong class="neon-text-purple">生成文本</strong>/<strong class="neon-text-cyan">生成图像</strong><br>
+                                            3。元素类型选择<strong class="neon-text-pink">下拉菜单</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step1/3. 编辑标题与表单元素.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: 执行节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">执行：</strong>执行节点，选项选择<strong class="neon-text-pink">写一个新的提示词</strong>+<strong class="neon-text-purple">生成文本</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step1/4. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 三、案例实现步骤 (二)switch节点 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）switch节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section5', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">设置switch节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">JSON代码配置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section5', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 节点作用 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>将<strong class="neon-text-pink">四种内容</strong>的排列组合进入<strong class="neon-text-purple">不同的工作流</strong>
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2: 设置switch节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。设置switch节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">设置：</strong>设置<strong class="neon-text-cyan">switch节点</strong>，mode选择<strong class="neon-text-purple">表达式模式</strong>，输出数量选择<strong class="neon-text-pink">4</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step2/2. 设置switch节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: JSON代码配置 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。JSON代码配置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">操作：</strong>将逻辑阐述给<strong class="neon-text-cyan">大语言模型</strong>，并将<strong class="neon-text-pink">json内容</strong>粘贴到<strong class="neon-text-purple">output index</strong>中
+                                        </p>
+                                        <div class="code-block-wrapper" style="max-height: 400px; overflow-y: auto; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 20px; margin: 20px 0;">
+                                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: var(--cyber-dark-100); font-family: 'Courier New', monospace; line-height: 1.6;"><code>{{
+(() => {
+  // 兼容你表单里用中文做字段名的情况；如果你之后改成 action/modality 之类的英文 key，也一起兼容
+  const a = $json["写一个新的提示词迭代旧的提示词"] || $json.action  ;
+  const b = $json["生成文本生成图像"] || $json.modality  ;
+
+  // 归一化成英文标签，方便做组合判断
+  const A = /新/.test(a) || /new/i.test(a) ? "new" :
+            /迭代/.test(a) || /iter/i.test(a) ? "iterate" : "";
+  const B = /文|text/i.test(b) ? "text" :
+            /图像|image|img/i.test(b) ? "image" : "";
+
+  // 组合 -> 输出索引映射（0-based）
+  const map = {
+    "new:text": 0,       // 新的提示词 + 生成文本
+    "new:image": 1,      // 新的提示词 + 生成图像
+    "iterate:text": 2,   // 迭代旧的提示词 + 生成文本
+    "iterate:image": 3   // 迭代旧的提示词 + 生成图像
+  };
+
+  const key = `${A}:${B}`;
+  return map[key] || 0;  // 不匹配时默认走第 0 个分支
+})()
+}}</code></pre>
+                                        </div>
+                                        <div class="step-image-container"
+                                             data-images='["images/step2/3. JSON代码配置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: 执行节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">执行：</strong>执行节点，在<strong class="neon-text-pink">output1</strong>后方添加节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step2/4. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 三、案例实现步骤 (三)再次提交表单节点 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）再次提交表单节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section6', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">设置Next Form Page节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">编辑表单元素</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section6', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 节点作用 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>承接第一页的表单，即填写完需求后，下一页填写的内容
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2: 设置节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。设置Next Form Page节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">设置：</strong>添加并配置Next Form Page节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step3/2. 设置Next Form Page节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: 编辑表单元素 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。编辑表单元素</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">编辑内容：</strong><br>
+                                            1。<strong class="neon-text-cyan">元素1</strong>提示词的<strong class="neon-text-pink">主题</strong>，类型选择<strong class="neon-text-purple">text</strong>，占位符可以写"<em style="color: var(--neon-cyan);">示例：生成一份讨论AI对于设计行业利弊的短视频文案</em>"，打开<strong class="neon-text-pink">必填字段</strong>选项<br>
+                                            2。<strong class="neon-text-cyan">元素2</strong>其他要求，类型选择<strong class="neon-text-purple">text</strong>，占位符可以写"<em style="color: var(--neon-cyan);">示例：语言生动有趣，字数大概在2000左右等</em>"。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step3/3. 编辑表单元素.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: 执行节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">执行：</strong>执行节点，在选框中根据自己的想法填写内容
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step3/4. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 三、案例实现步骤 (四)AI agent节点 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）AI agent节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section7', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">设置AI agent节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">输入system prompt</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">输入user prompt</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section7', 5)">
+                                        <div class="step-button-number">6</div>
+                                        <div class="step-button-title">锁定结果</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1: 节点作用 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>用于<strong class="neon-text-pink">优化提示词</strong>
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2: 设置节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。设置AI agent节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">设置：</strong>设置<strong class="neon-text-cyan">AI agent节点</strong>与<strong class="neon-text-purple">大语言模型</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step4/2. 设置AI agent节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: System Message -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。输入system prompt</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">System Message：</strong>
+                                        </p>
+                                        <div class="code-block-wrapper" style="max-height: 500px; overflow-y: auto; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 20px; margin: 20px 0;">
+                                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: var(--cyber-dark-100); font-family: 'Courier New', monospace; line-height: 1.6;"><code>你是一个世界顶尖的AI提示词优化专家(Prompt Engineering Master)。
+您的唯一使命+是解构、重构并极大增强用户提供的原始提示词('Original Prompt')，将其转化为一个结构化、高性能、可立即执行的AI代理(Agent)定义。
+
+你必须严格按照以下格式返回,不得有任何副减或添加格式下的解释
+
+## Role[角色名称(必须简洁、专业且准确反映核心职责)]
+### Profile
+1. Language[主要交互语言,(辅助语言,如英文术语)]
+2. description[对角色的高层次总结,清晰说明其核心价值和独特功能
+3. background[支撑该角色专业性的背景,例如基于xx数据调练、模拟xx专家]
+4. personality[角色的沟通风格与性格,例如严谨、富有创意、共情、绝对中立]
+5. expertise[该角色最擅长的具体领域、知识范围和关键技能]
+6. target_audience[使用该角色的最主要用户群体,例如开发者、营销人员、初学者
+
+### Skills(定义角色的能力边界和知识库)
+1.[核心技能类别(角色赖以生存的关键能力,例如分析、创作、编程)]
+-[具体技能][简要说明]
+-[具体技能][简要说明]
+2.[辅助技能类别(支持核心技能的次要能力,例如格式化、润色、提问)]
+-[具体技能][简要说明]
+-[具体技能][简要说明]
+
+### Rules(定义AI行为的绝对边界和指令)
+1.[基本原则(不可违背的核心价值观)]
+-[具体规则][详细说明]
+-[具体规则][详细说明]
+2.[行为准则(在交互中如何表现)]
+-[具体规则][详细说明]
+-[具体规则][详细说明]
+3.[限制条件(严格禁止的行为)]
+
+### Workflows(执行核心任务的思考链和操作步骤)
+目标[明确、具体、可执行的单一任务目标,例如生成一份xx分析报告]
+步骤1[解构需求-(详细说明如何分析和理解用户的输入,识别所有显式和隐式约束)]
+步骤2[执行任务-(详细说明如何调用[Skills]中的能力,逐步完成任务的核心部分,展示内部思考过程)]
+步骤3[审查与交付-(详细说明如何根据[Rules]进行自我校对和事实核查,并按要求的格式封装最终输出)]
+预期结果[一个高质量、符合目标、逻辑严谨且格式规范的最终产物]
+
+### Initialization
+作为[角色名称],你必须严格遵守上述所有Rules,并始终按照Workflows执行任务。在任何情况下都不能偏离你的角色定义。你的任务是服务于用户,高效、准确地完成指定目标。
+
+请基于以上模板,立即开始优化并扩展紧随其后的用户原始提示词(Original Prompt)。你必须
+
+1.深入分析原始提示词的核心意图和潜在缺陷
+2.创造性地、专业地填充上述模板的所有部分
+3.确保填充的内容高度相关、具体、可操作,并且逻辑自治(例如,Skills必须支持Workflows,Rules必须约束Profile)
+
+最终输出必须是一个完整、专业、可立即使用的AI代理定义
+
+5.绝对禁止携带任何引导词或解释,不要使用代码块包园,直接输出填充完毕的模板内容。
+
+### 请提供以下信息
+1.信息名称1
+2.信息名称2
+......</code></pre>
+                                        </div>
+                                        <div class="step-image-container"
+                                             data-images='["images/step4/3. 输入system prompt.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: User prompt -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。输入user prompt</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">User Message：</strong>
+                                        </p>
+                                        <div class="code-block-wrapper" style="max-height: 300px; overflow-y: auto; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 20px; margin: 20px 0;">
+                                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: var(--cyber-dark-100); font-family: 'Courier New', monospace; line-height: 1.6;"><code>请根据用户的初始需求与用户的补充需求生成提示词
+
+用户的初始需求：上一个节点的输出
+用户的补充需求：上一个节点的输出
+
+并且告诉用户需要输入的内容</code></pre>
+                                        </div>
+                                        <div class="step-image-container"
+                                             data-images='["images/step4/4. 输入user prompt.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5: 执行节点 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">5。执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">执行：</strong>执行节点，得到第一轮优化过后的提示词
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step4/5. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤6: 锁定结果 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">6。锁定结果</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">操作：</strong>点击右上角的锁定将结果锁定
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step4/6. 锁定结果.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 三、案例实现步骤 (五)markdown节点 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（五）markdown节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section8', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">搜索并设置节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">选择模式</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">配置内容</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section8', 4)">
+                                        <div class="step-button-number">5</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>因为输出的是<strong class="neon-text-pink">markdown格式</strong>，要呈现在网页上，需要转换成符合<strong class="neon-text-purple">HTML的格式</strong>，不然直接返回表格会没有任何格式
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。搜索并设置节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">操作：</strong>搜索并设置<strong class="neon-text-cyan">markdown节点</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step5/2. 搜索并设置节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。选择模式</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">设置：</strong>mode选择<strong class="neon-text-cyan">Markdown to HTML</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step5/3. 选择模式.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。配置内容</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">配置：</strong>将<strong class="neon-text-pink">上一步的输出内容</strong>放置在<strong class="neon-text-purple">Markdown</strong>处，其余不变
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step5/4. 配置内容.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤5 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">5. 执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">执行：</strong>点击执行节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step5/5. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 三、案例实现步骤 (六)再次提交表单节点 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（六）再次提交表单节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section9', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">设置节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">节点详细信息设置</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section9', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>将整理好的数据内容返回表单呈现
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。设置节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">设置：</strong>再次设置Next Form Page节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step6/2. 设置节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。节点详细信息设置</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">设置内容：</strong><br>
+                                            1。表单元素选择<strong class="neon-text-cyan">custom HTML</strong>，名称命名成为"<strong class="neon-text-pink">优化结果</strong>"，HTML处将上一步输出的<strong class="neon-text-purple">data</strong>拖拽进来<br>
+                                            2。第二个字段名称变成"<strong class="neon-text-cyan">输入需求再次优化</strong>"，类型选择<strong class="neon-text-pink">text</strong>，这一步的目的是如果对提示词有其他需求可<strong class="neon-text-purple">再次优化</strong>。
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step6/3. 节点详细信息设置.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">执行：</strong>执行节点，在"输入需求再次优化"处再次输入内容
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step6/4. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: 三、案例实现步骤 (七)IF节点 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（七）IF节点</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section10', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">节点作用</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section10', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">添加if节点</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section10', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">执行节点</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。节点作用</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">节点作用：</strong>区分<strong class="neon-text-pink">有迭代需求</strong>与<strong class="neon-text-purple">无迭代需求</strong>的不同工作流<br>
+                                            <span style="margin-left: 20px; display: block; margin-top: 10px;">
+                                                - <strong class="neon-text-cyan">有迭代需求：</strong>进入<strong class="neon-text-pink">优化的工作流</strong><br>
+                                                - <strong class="neon-text-purple">无迭代需求：</strong><strong class="neon-text-cyan">结束工作流</strong>
+                                            </span>
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。添加if节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">设置：</strong>添加<strong class="neon-text-cyan">if节点</strong>，将上一步输出的内容拖拽到<strong class="neon-text-purple">conditions</strong>处，选项选择<strong class="neon-text-pink">is not empty</strong>
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step7/2. 添加if节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。执行节点</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">执行：</strong>点击执行节点
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step7/3. 执行节点.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: 三、案例实现步骤 (八)迭代优化循环节点组 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（八）迭代优化循环节点组</h3>
+
+                            <!-- 左右分栏布局 -->
+                            <div class="steps-layout">
+                                <!-- 左侧步骤列表 -->
+                                <div class="steps-sidebar">
+                                    <button class="step-button active" onclick="showStepInSection('section11', 0)">
+                                        <div class="step-button-number">1</div>
+                                        <div class="step-button-title">整体逻辑</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section11', 1)">
+                                        <div class="step-button-number">2</div>
+                                        <div class="step-button-title">节点组流程</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section11', 2)">
+                                        <div class="step-button-number">3</div>
+                                        <div class="step-button-title">System Message</div>
+                                    </button>
+                                    <button class="step-button" onclick="showStepInSection('section11', 3)">
+                                        <div class="step-button-number">4</div>
+                                        <div class="step-button-title">User Message示例</div>
+                                    </button>
+                                </div>
+
+                                <!-- 右侧内容区域 -->
+                                <div class="steps-content">
+                                    <!-- 步骤1 -->
+                                    <div class="step-content-item active">
+                                        <h4 class="step-content-title">1。整体逻辑</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-cyan">说明：</strong>整体逻辑与（四）至（七）一致
+                                        </p>
+                                    </div>
+
+                                    <!-- 步骤2 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">2。节点组流程</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-pink">流程：</strong>AI agent2→markdown2→form2→if2→AIagent2
+                                        </p>
+                                        <div class="step-image-container"
+                                             data-images='["images/step8/2. 节点组流程.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤3: System Message -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">3。System Message</h4>
+                                        <div class="code-block-wrapper" style="max-height: 500px; overflow-y: auto; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 20px; margin: 20px 0;">
+                                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: var(--cyber-dark-100); font-family: 'Courier New', monospace; line-height: 1.6;"><code># Role：提示词迭代优化专家
+
+## Background：
+- 用户已经有一个优化过的提示词
+- 用户希望在此基础上进行特定方向的改进
+- 需要保持原有提示词的核心意图
+- 同时融入用户新的优化需求
+
+## 任务理解
+你的工作是修改原始提示词，根据用户的优化需求对其进行改进，而不是执行这些需求。
+
+## 核心原则
+- 保持原始提示词的核心意图和功能
+- 将优化需求作为新的要求或约束融入原始提示词
+- 保持原有的语言风格和结构格式
+- 进行精准修改，避免过度调整
+
+## 理解示例
+示例1：
+- 原始提示词：你是客服助手，帮用户解决问题
+- 优化需求：不要交互
+- ✅正确结果：你是客服助手，帮用户解决问题。请直接提供完整解决方案，不要与用户进行多轮交互确认。
+- ❌错误理解：直接回复好的，我不会与您交互
+
+示例2：
+- 原始提示词：分析数据并给出建议
+- 优化需求：输出JSON格式
+- ✅正确结果：分析数据并给出建议，请以JSON格式输出分析结果
+- ❌错误理解：直接输出JSON格式的回答
+
+示例3：
+- 原始提示词：你是写作助手
+- 优化需求：更专业一些
+- ✅正确结果：你是专业的写作顾问，具备丰富的写作经验，能够...
+- ❌错误理解：用更专业的语气回复
+
+## 工作流程
+1. 分析原始提示词的核心功能和结构
+2. 理解优化需求的本质（添加功能、修改方式、还是增加约束）
+3. 将优化需求恰当地融入原始提示词中
+4. 输出完整的修改后提示词
+
+## 输出要求
+直接输出优化后的提示词，保持原有格式，不添加解释。</code></pre>
+                                        </div>
+                                        <div class="step-image-container"
+                                             data-images='["images/step8/4.system message.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 步骤4: User Message示例 -->
+                                    <div class="step-content-item">
+                                        <h4 class="step-content-title">4。User Message示例</h4>
+                                        <p class="step-content-description">
+                                            <strong class="neon-text-purple">要点：</strong>agent节点提示词<br>
+                                            在use message中，除了放置agent1的输出内容，要在markdown2的输出内容
+                                        </p>
+                                        <div class="code-block-wrapper" style="max-height: 300px; overflow-y: auto; background: rgba(10, 10, 10, 0.8); border: 1px solid var(--neon-cyan); border-radius: 10px; padding: 20px; margin: 20px 0;">
+                                            <pre style="margin: 0; white-space: pre-wrap; word-wrap: break-word; color: var(--cyber-dark-100); font-family: 'Courier New', monospace; line-height: 1.6;"><code>原始提示词：
+{{ $('AI Agent').item.json.output }}、{{ $('Markdown1').item.json.output }}
+
+优化需求：
+{{ $json['输入需求再次迭代👇'] }}、{{ $json["其他的优化需求"] }}
+
+请基于优化需求修改原始提示词（参考上述示例理解，将需求融入提示词中）：</code></pre>
+                                        </div>
+                                        <div class="step-image-container"
+                                             data-images='["images/step8/5. User Message示例.jpeg"]'>
+                                            <button class="image-nav-btn image-nav-prev">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </button>
+                                            <button class="image-nav-btn image-nav-next">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </button>
+                                            <div class="image-counter">
+                                                <span class="current-image">1</span> / <span class="total-images">1</span>
+                                            </div>
+                                            <div class="step-image-placeholder">
+                                                <i class="fas fa-image"></i>
+                                                <span>图片占位符 (1141×720)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 右侧章节导航 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 主标题 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、案例实战
+                    </button>
+
+                    <!-- Section 2-3: 主标题 + 子项 -->
+                    <button class="nav-item" onclick="courseScrollToSection(2)">
+                        二、案例分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        （一）工作流逻辑分析
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （二）工作流技术选型
+                    </button>
+
+                    <!-- Section 4-11: 主标题 + 子项 -->
+                    <button class="nav-item" onclick="courseScrollToSection(4)">
+                        三、案例实现
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （一）提交表单接单
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （二）switch节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        （三）再次提交表单节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        （四）AI agent节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">
+                        （五）markdown节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">
+                        （六）再次提交表单节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">
+                        （七）IF节点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">
+                        （八）迭代优化循环节点组
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课后作业</h1>
+                    <p class="subtitle">动手实践，巩固知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">📝 板块三：课后作业</h2>
+                                <h3 style="color: var(--neon-cyan); margin-top: 30px;">一、用相同思路实现图片提示词的制作与优化</h3>
+                                <p style="font-size: 1.2rem; margin-top: 20px; line-height: 1.8;">
+                                    根据本节课学到的工作流构建方法，尝试实现一个图片提示词生成和优化的工作流。参考本节课的案例，思考如何处理图片输入、如何优化图片相关的提示词。
+                                </p>
+
+                                <h3 style="color: var(--neon-cyan); margin-top: 40px;">二、实现将提示词导出到飞书的流程</h3>
+                                <p style="font-size: 1.2rem; margin-top: 20px; line-height: 1.8;">
+                                    在现有工作流的基础上，添加飞书导出功能，将生成的提示词自动发送到飞书群聊或飞书文档中。需要配置飞书节点和相关凭证。
+                                </p>
+
+                                <!-- 课程源文件下载区域 -->
+                                <h3 style="color: var(--neon-cyan); margin-top: 60px;">📦 本课程源文件</h3>
+                                <div class="cyber-card" style="margin-top: 30px; background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(168, 85, 247, 0.15)); border-color: var(--neon-cyan); box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);">
+                                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;">
+                                        <div style="flex: 1; min-width: 300px;">
+                                            <h4 style="color: var(--neon-cyan); margin-bottom: 15px; font-size: 1.5rem;">
+                                                <i class="fas fa-file-code" style="margin-right: 10px;"></i>
+                                                案例一：自动优化提示词.json
+                                            </h4>
+                                            <p style="font-size: 1.1rem; color: var(--cyber-dark-200); line-height: 1.6;">
+                                                <strong class="neon-text-pink">N8N工作流源文件</strong> - 包含完整的自动书写、优化提示词工作流配置
+                                            </p>
+                                            <ul style="margin-top: 15px; color: var(--cyber-dark-200); font-size: 1rem;">
+                                                <li style="margin: 8px 0;"><i class="fas fa-check-circle" style="color: var(--neon-cyan); margin-right: 8px;"></i>完整的表单配置</li>
+                                                <li style="margin: 8px 0;"><i class="fas fa-check-circle" style="color: var(--neon-cyan); margin-right: 8px;"></i>Switch分支逻辑</li>
+                                                <li style="margin: 8px 0;"><i class="fas fa-check-circle" style="color: var(--neon-cyan); margin-right: 8px;"></i>AI Agent提示词配置</li>
+                                                <li style="margin: 8px 0;"><i class="fas fa-check-circle" style="color: var(--neon-cyan); margin-right: 8px;"></i>循环迭代优化流程</li>
+                                            </ul>
+                                        </div>
+                                        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                                            <button onclick="downloadWorkflowFile()" class="download-btn" style="padding: 15px 40px; font-size: 1.2rem; font-weight: 700; color: white; background: linear-gradient(135deg, var(--cyber-pink), var(--neon-purple)); border: 2px solid var(--cyber-pink); border-radius: 10px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(244, 63, 94, 0.5); display: flex; align-items: center; gap: 10px;">
+                                                <i class="fas fa-download"></i>
+                                                下载源文件
+                                            </button>
+                                            <p style="font-size: 0.9rem; color: var(--neon-purple); text-align: center;">
+                                                <i class="fas fa-info-circle"></i> 可直接导入到N8N中使用
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
