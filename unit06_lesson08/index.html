@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第八课：个人作品集网页内容完善 | AI课程教学</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPageAndScroll('course', 0)">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>8.个人作品集网页内容完善</h1>
+                    <p class="subtitle">图片处理 | 响应式布局 | 样式定制 | 视觉优化</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 一、课程回顾</h2>
+                            <div class="review-grid">
+                                <div class="review-item">
+                                    <div class="review-number">01</div>
+                                    <h4>作品集网页结构解析</h4>
+                                </div>
+                                <div class="review-item">
+                                    <div class="review-number">02</div>
+                                    <h4>项目资料结构化整理</h4>
+                                </div>
+                                <div class="review-item">
+                                    <div class="review-number">03</div>
+                                    <h4>模块替换机制与内容整合</h4>
+                                </div>
+                                <div class="review-item">
+                                    <div class="review-number">04</div>
+                                    <h4>内容整合实战操作</h4>
+                                </div>
+                                <div class="review-item">
+                                    <div class="review-number">05</div>
+                                    <h4>常见问题与解决方案</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 二、学习目标</h2>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-image neon-text-cyan"></i>
+                                    <h4>图片资源处理</h4>
+                                    <p>掌握图片规范、获取与替换方法</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-mobile-alt neon-text-purple"></i>
+                                    <h4>响应式排版</h4>
+                                    <p>学会文字排版和布局一致性调整</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-palette neon-text-pink"></i>
+                                    <h4>CSS变量定制</h4>
+                                    <p>理解CSS变量系统与样式定制</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-magic neon-text-yellow"></i>
+                                    <h4>视觉优化</h4>
+                                    <p>完成作品集网页视觉层次优化</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 三、课程目录</h2>
+                            <ol class="course-catalog">
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(1);">图片资源处理与替换</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(5);">响应式排版调整</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(7);">CSS变量系统与样式定制</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(10);">视觉层次优化与用户体验提升</li>
+                                <li class="clickable-item" onclick="showPage('course'); courseScrollToSection(12);">综合实战与最终检查</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习作品集网页优化技术</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 图片资源处理 - 标题 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🖼️ 一、图片资源处理与替换</h2>
+                            <h3>（一）图片规范与要求</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 图片规范详解 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="image-spec-container">
+                                <!-- 头像图片规范 -->
+                                <div class="spec-item">
+                                    <div class="spec-visual">
+                                        <svg viewBox="0 0 400 400" class="spec-svg">
+                                            <rect width="400" height="400" fill="rgba(168, 85, 247, 0.1)" stroke="var(--neon-purple)" stroke-width="2" rx="200"/>
+                                            <circle cx="200" cy="150" r="60" fill="var(--neon-purple)" opacity="0.3"/>
+                                            <ellipse cx="200" cy="280" rx="100" ry="120" fill="var(--neon-purple)" opacity="0.3"/>
+                                            <text x="200" y="390" text-anchor="middle" fill="var(--neon-cyan)" font-size="16">400×400 px</text>
+                                        </svg>
+                                    </div>
+                                    <div class="spec-details">
+                                        <h4><i class="fas fa-user-circle neon-text-purple"></i> 头像图片</h4>
+                                        <ul>
+                                            <li><strong>尺寸：</strong>400×400 px（正方形）</li>
+                                            <li><strong>背景：</strong>纯色或干净背景</li>
+                                            <li><strong>格式：</strong>.png 或 .jpg</li>
+                                            <li><strong>命名：</strong>avatar.png</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 项目封面图规范 -->
+                                <div class="spec-item">
+                                    <div class="spec-visual">
+                                        <svg viewBox="0 0 640 360" class="spec-svg">
+                                            <rect width="640" height="360" fill="rgba(6, 182, 212, 0.1)" stroke="var(--neon-cyan)" stroke-width="2" rx="8"/>
+                                            <rect x="40" y="80" width="200" height="200" fill="var(--neon-cyan)" opacity="0.3" rx="4"/>
+                                            <line x1="280" y1="120" x2="580" y2="120" stroke="var(--neon-cyan)" stroke-width="8" opacity="0.3"/>
+                                            <line x1="280" y1="180" x2="540" y2="180" stroke="var(--neon-cyan)" stroke-width="6" opacity="0.2"/>
+                                            <line x1="280" y1="240" x2="520" y2="240" stroke="var(--neon-cyan)" stroke-width="6" opacity="0.2"/>
+                                            <text x="320" y="350" text-anchor="middle" fill="var(--neon-cyan)" font-size="16">1280×720 px (16:9)</text>
+                                        </svg>
+                                    </div>
+                                    <div class="spec-details">
+                                        <h4><i class="fas fa-image neon-text-cyan"></i> 项目封面图</h4>
+                                        <ul>
+                                            <li><strong>比例：</strong>16:9 或 4:3</li>
+                                            <li><strong>尺寸：</strong>1280×720 px</li>
+                                            <li><strong>格式：</strong>.png / .jpg</li>
+                                            <li><strong>命名：</strong>project-name-1.png</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 背景图片规范 -->
+                                <div class="spec-item">
+                                    <div class="spec-visual">
+                                        <svg viewBox="0 0 960 540" class="spec-svg">
+                                            <defs>
+                                                <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                                    <stop offset="0%" style="stop-color:var(--cyber-pink);stop-opacity:0.3" />
+                                                    <stop offset="100%" style="stop-color:var(--neon-purple);stop-opacity:0.1" />
+                                                </linearGradient>
+                                            </defs>
+                                            <rect width="960" height="540" fill="url(#bgGrad)" stroke="var(--cyber-pink)" stroke-width="2" rx="8"/>
+                                            <circle cx="200" cy="200" r="80" fill="var(--neon-purple)" opacity="0.2" filter="blur(20px)"/>
+                                            <circle cx="760" cy="340" r="100" fill="var(--cyber-pink)" opacity="0.2" filter="blur(25px)"/>
+                                            <text x="480" y="530" text-anchor="middle" fill="var(--cyber-pink)" font-size="16">1920×1080 px</text>
+                                        </svg>
+                                    </div>
+                                    <div class="spec-details">
+                                        <h4><i class="fas fa-panorama neon-text-pink"></i> 背景图片（可选）</h4>
+                                        <ul>
+                                            <li><strong>尺寸：</strong>1920×1080 px</li>
+                                            <li><strong>风格：</strong>模糊、渐变、光效</li>
+                                            <li><strong>色彩：</strong>同色系</li>
+                                            <li><strong>格式：</strong>.jpg / .png</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 图片资源获取 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）图片资源获取</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-download neon-text-cyan"></i> 免费图库推荐</h4>
+                                    <div class="image-source-list">
+                                        <div class="source-item">
+                                            <i class="fas fa-camera"></i>
+                                            <strong>Pexels</strong>
+                                            <span>高质量免费图片</span>
+                                        </div>
+                                        <div class="source-item">
+                                            <i class="fas fa-camera-retro"></i>
+                                            <strong>Unsplash</strong>
+                                            <span>专业摄影作品</span>
+                                        </div>
+                                        <div class="source-item">
+                                            <i class="fas fa-photo-video"></i>
+                                            <strong>Pixabay</strong>
+                                            <span>多种类型素材</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-check-circle neon-text-purple"></i> 图片选择原则</h4>
+                                    <ul>
+                                        <li><i class="fas fa-link"></i> 与内容相关性高</li>
+                                        <li><i class="fas fa-eye"></i> 视觉质量清晰</li>
+                                        <li><i class="fas fa-shield-alt"></i> 版权合规</li>
+                                        <li><i class="fas fa-balance-scale"></i> 风格统一</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 图片替换操作 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）图片替换操作</h3>
+                            <div class="code-examples">
+                                <div class="code-card">
+                                    <h4><i class="fas fa-user neon-text-cyan"></i> 1. 头像替换</h4>
+                                    <pre><code>&lt;img class="avatar" src="assets/img/avatar.png" alt="avatar"&gt;</code></pre>
+                                    <p class="code-tip">💡 将 <span class="highlight">avatar.png</span> 替换为你的头像文件名</p>
+                                </div>
+
+                                <div class="code-card">
+                                    <h4><i class="fas fa-project-diagram neon-text-purple"></i> 2. 项目封面图替换</h4>
+                                    <pre><code>&lt;img src="assets/img/project-01.png" class="project-cover"&gt;</code></pre>
+                                    <p class="code-tip">💡 将 <span class="highlight">project-01.png</span> 替换为你的项目图片文件名</p>
+                                </div>
+
+                                <div class="code-card">
+                                    <h4><i class="fas fa-paint-brush neon-text-pink"></i> 3. 背景图替换（CSS）</h4>
+                                    <pre><code>.hero-section {
+  background-image: url('assets/img/bg-student-theme.jpg');
+}</code></pre>
+                                    <p class="code-tip">💡 将 <span class="highlight">bg-student-theme.jpg</span> 替换为你的背景图片文件名</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 响应式排版 - 标题 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📱 二、响应式排版调整</h2>
+                            <h3>（一）文字排版优化</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 文字排版详解 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="typography-demo">
+                                <div class="demo-section">
+                                    <h4><i class="fas fa-align-left neon-text-cyan"></i> 1. 控制文字行数</h4>
+                                    <div class="demo-comparison">
+                                        <div class="demo-box demo-bad">
+                                            <div class="demo-label bad">❌ 过长</div>
+                                            <p>我是一名充满热情的大学生，在交通运输领域有着深入的学习和研究，擅长数据分析、项目管理和创新解决方案...</p>
+                                        </div>
+                                        <div class="demo-box demo-good">
+                                            <div class="demo-label good">✅ 简洁</div>
+                                            <p>交通运输专业学生，擅长数据分析与项目管理。</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="demo-section">
+                                    <h4><i class="fas fa-tags neon-text-purple"></i> 2. 统一标签数量</h4>
+                                    <div class="demo-comparison">
+                                        <div class="demo-box demo-bad">
+                                            <div class="demo-label bad">❌ 不统一</div>
+                                            <div class="tag-demo">
+                                                <span class="tag">HTML</span>
+                                                <span class="tag">CSS</span>
+                                            </div>
+                                        </div>
+                                        <div class="demo-box demo-good">
+                                            <div class="demo-label good">✅ 统一</div>
+                                            <div class="tag-demo">
+                                                <span class="tag">HTML</span>
+                                                <span class="tag">CSS</span>
+                                                <span class="tag">JavaScript</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="demo-tip">💡 每个项目保持 3-4 个标签，风格统一</p>
+                                </div>
+
+                                <div class="demo-section">
+                                    <h4><i class="fas fa-heading neon-text-pink"></i> 3. 标题长度一致</h4>
+                                    <div class="demo-comparison">
+                                        <div class="demo-box demo-bad">
+                                            <div class="demo-label bad">❌ 参差不齐</div>
+                                            <h5>物流优化平台</h5>
+                                            <h5>基于大数据的城市交通流量分析与预测系统</h5>
+                                        </div>
+                                        <div class="demo-box demo-good">
+                                            <div class="demo-label good">✅ 长度相近</div>
+                                            <h5>物流优化平台</h5>
+                                            <h5>交通流量预测</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: CSS变量系统 - 标题 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎨 三、CSS变量系统与样式定制</h2>
+                            <h3>（一）主色调调整</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: CSS变量示意图 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="css-var-demo">
+                                <!-- CSS变量概念图 -->
+                                <div class="var-concept">
+                                    <svg viewBox="0 0 800 400" class="concept-svg">
+                                        <defs>
+                                            <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                                <polygon points="0 0, 10 3, 0 6" fill="var(--neon-cyan)" />
+                                            </marker>
+                                        </defs>
+                                        <!-- 中央变量 -->
+                                        <rect x="300" y="150" width="200" height="100" fill="var(--cyber-pink)" opacity="0.3" stroke="var(--cyber-pink)" stroke-width="2" rx="8"/>
+                                        <text x="400" y="190" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">:root {</text>
+                                        <text x="400" y="215" text-anchor="middle" fill="var(--neon-cyan)" font-size="14">--theme-primary: #5DA8FF;</text>
+                                        <text x="400" y="235" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">}</text>
+
+                                        <!-- 箭头和应用点 -->
+                                        <line x1="400" y1="250" x2="400" y2="300" stroke="var(--neon-cyan)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                                        <circle cx="200" cy="350" r="30" fill="var(--neon-purple)" opacity="0.3" stroke="var(--neon-purple)" stroke-width="2"/>
+                                        <text x="200" y="355" text-anchor="middle" fill="#fff" font-size="12">按钮</text>
+
+                                        <circle cx="400" cy="350" r="30" fill="var(--neon-purple)" opacity="0.3" stroke="var(--neon-purple)" stroke-width="2"/>
+                                        <text x="400" y="355" text-anchor="middle" fill="#fff" font-size="12">标题</text>
+
+                                        <circle cx="600" cy="350" r="30" fill="var(--neon-purple)" opacity="0.3" stroke="var(--neon-purple)" stroke-width="2"/>
+                                        <text x="600" y="355" text-anchor="middle" fill="#fff" font-size="12">链接</text>
+
+                                        <line x1="370" y1="270" x2="210" y2="330" stroke="var(--neon-cyan)" stroke-width="1.5" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+                                        <line x1="430" y1="270" x2="590" y2="330" stroke="var(--neon-cyan)" stroke-width="1.5" stroke-dasharray="5,5" marker-end="url(#arrowhead)"/>
+
+                                        <text x="400" y="50" text-anchor="middle" fill="var(--cyber-pink)" font-size="18" font-weight="bold">修改一处，全局生效</text>
+                                    </svg>
+                                </div>
+
+                                <!-- 颜色选择示例 -->
+                                <div class="color-options">
+                                    <div class="color-card">
+                                        <div class="color-preview" style="background: #5DA8FF;"></div>
+                                        <code>--theme-primary: #5DA8FF;</code>
+                                        <p>原始蓝色</p>
+                                    </div>
+                                    <div class="color-card">
+                                        <div class="color-preview" style="background: #FF7B7B;"></div>
+                                        <code>--theme-primary: #FF7B7B;</code>
+                                        <p>粉色主题</p>
+                                    </div>
+                                    <div class="color-card">
+                                        <div class="color-preview" style="background: #7C4DFF;"></div>
+                                        <code>--theme-primary: #7C4DFF;</code>
+                                        <p>紫色主题</p>
+                                    </div>
+                                </div>
+
+                                <div class="highlight-box">
+                                    <h4><i class="fas fa-lightbulb neon-text-yellow"></i> 色彩搭配原则</h4>
+                                    <ul>
+                                        <li>保持主色调与辅助色协调</li>
+                                        <li>确保文字与背景对比度足够</li>
+                                        <li>避免使用过多颜色（不超过3种主色）</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 视觉元素调整 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）视觉元素调整</h3>
+                            <div class="visual-adjust-demo">
+                                <!-- 圆角对比 -->
+                                <div class="adjust-section">
+                                    <h4><i class="fas fa-square neon-text-cyan"></i> 1. 卡片圆角调整</h4>
+                                    <div class="radius-demo">
+                                        <div class="radius-box" style="border-radius: 8px;">
+                                            <code>--radius: 8px;</code>
+                                            <p>小圆角</p>
+                                        </div>
+                                        <div class="radius-box" style="border-radius: 16px;">
+                                            <code>--radius: 16px;</code>
+                                            <p>中圆角</p>
+                                        </div>
+                                        <div class="radius-box" style="border-radius: 24px;">
+                                            <code>--radius: 24px;</code>
+                                            <p>大圆角</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 阴影对比 -->
+                                <div class="adjust-section">
+                                    <h4><i class="fas fa-clone neon-text-purple"></i> 2. 卡片阴影调整</h4>
+                                    <div class="shadow-demo">
+                                        <div class="shadow-box" style="box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                                            <code>0 2px 10px rgba(0,0,0,0.1)</code>
+                                            <p>轻阴影</p>
+                                        </div>
+                                        <div class="shadow-box" style="box-shadow: 0 4px 20px rgba(0,0,0,0.2);">
+                                            <code>0 4px 20px rgba(0,0,0,0.2)</code>
+                                            <p>中阴影</p>
+                                        </div>
+                                        <div class="shadow-box" style="box-shadow: 0 8px 40px rgba(0,0,0,0.3);">
+                                            <code>0 8px 40px rgba(0,0,0,0.3)</code>
+                                            <p>重阴影</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 字体大小调整 -->
+                                <div class="adjust-section">
+                                    <h4><i class="fas fa-text-height neon-text-pink"></i> 3. 字体大小调整</h4>
+                                    <div class="font-demo">
+                                        <div class="font-box">
+                                            <p style="font-size: 1.5rem;">大标题 (1.5rem)</p>
+                                            <code>--font-size-large: 1.5rem;</code>
+                                        </div>
+                                        <div class="font-box">
+                                            <p style="font-size: 1.2rem;">小标题 (1.2rem)</p>
+                                            <code>--font-size-medium: 1.2rem;</code>
+                                        </div>
+                                        <div class="font-box">
+                                            <p style="font-size: 1rem;">正文 (1rem)</p>
+                                            <code>--font-size-base: 1rem;</code>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: 视觉层次优化 - 标题 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✨ 四、视觉层次优化与用户体验提升</h2>
+                            <h3>（一）视觉层次优化</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: 视觉层次示意图 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <!-- 层次结构图 -->
+                            <div class="hierarchy-demo">
+                                <svg viewBox="0 0 800 500" class="hierarchy-svg">
+                                    <!-- 第一层 - 主标题 -->
+                                    <g class="layer layer-1">
+                                        <rect x="250" y="50" width="300" height="60" fill="var(--cyber-pink)" opacity="0.3" stroke="var(--cyber-pink)" stroke-width="2" rx="8"/>
+                                        <text x="400" y="85" text-anchor="middle" fill="#fff" font-size="24" font-weight="bold">主标题（最大）</text>
+                                        <text x="700" y="85" text-anchor="middle" fill="var(--cyber-pink)" font-size="14">第一层</text>
+                                    </g>
+
+                                    <!-- 第二层 - 副标题 -->
+                                    <g class="layer layer-2">
+                                        <rect x="200" y="150" width="180" height="50" fill="var(--neon-purple)" opacity="0.3" stroke="var(--neon-purple)" stroke-width="2" rx="6"/>
+                                        <text x="290" y="180" text-anchor="middle" fill="#fff" font-size="18">副标题（中等）</text>
+
+                                        <rect x="420" y="150" width="180" height="50" fill="var(--neon-purple)" opacity="0.3" stroke="var(--neon-purple)" stroke-width="2" rx="6"/>
+                                        <text x="510" y="180" text-anchor="middle" fill="#fff" font-size="18">副标题（中等）</text>
+
+                                        <text x="700" y="180" text-anchor="middle" fill="var(--neon-purple)" font-size="14">第二层</text>
+                                    </g>
+
+                                    <!-- 第三层 - 内容 -->
+                                    <g class="layer layer-3">
+                                        <rect x="150" y="240" width="140" height="40" fill="var(--neon-cyan)" opacity="0.2" stroke="var(--neon-cyan)" stroke-width="1.5" rx="4"/>
+                                        <text x="220" y="265" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="14">正文内容</text>
+
+                                        <rect x="330" y="240" width="140" height="40" fill="var(--neon-cyan)" opacity="0.2" stroke="var(--neon-cyan)" stroke-width="1.5" rx="4"/>
+                                        <text x="400" y="265" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="14">正文内容</text>
+
+                                        <rect x="510" y="240" width="140" height="40" fill="var(--neon-cyan)" opacity="0.2" stroke="var(--neon-cyan)" stroke-width="1.5" rx="4"/>
+                                        <text x="580" y="265" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="14">正文内容</text>
+
+                                        <text x="700" y="265" text-anchor="middle" fill="var(--neon-cyan)" font-size="14">第三层</text>
+                                    </g>
+
+                                    <!-- 连接线 -->
+                                    <line x1="400" y1="110" x2="290" y2="150" stroke="var(--neon-purple)" stroke-width="1.5" stroke-dasharray="5,5"/>
+                                    <line x1="400" y1="110" x2="510" y2="150" stroke="var(--neon-purple)" stroke-width="1.5" stroke-dasharray="5,5"/>
+                                    <line x1="290" y1="200" x2="220" y2="240" stroke="var(--neon-cyan)" stroke-width="1" stroke-dasharray="3,3"/>
+                                    <line x1="290" y1="200" x2="400" y2="240" stroke="var(--neon-cyan)" stroke-width="1" stroke-dasharray="3,3"/>
+                                    <line x1="510" y1="200" x2="580" y2="240" stroke="var(--neon-cyan)" stroke-width="1" stroke-dasharray="3,3"/>
+
+                                    <!-- 说明文字 -->
+                                    <text x="400" y="350" text-anchor="middle" fill="var(--cyber-pink)" font-size="16" font-weight="bold">信息层级划分</text>
+                                    <text x="400" y="380" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="14">主要信息突出 → 次要信息弱化 → 相关信息分组</text>
+                                </svg>
+                            </div>
+
+                            <!-- 交互效果演示 -->
+                            <div class="interaction-demo">
+                                <h4><i class="fas fa-mouse-pointer neon-text-cyan"></i> （二）交互体验优化</h4>
+                                <div class="demo-grid">
+                                    <div class="interactive-card" id="hoverCard1">
+                                        <h5>按钮悬停效果</h5>
+                                        <button class="demo-button">鼠标悬停试试</button>
+                                        <pre><code>.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}</code></pre>
+                                    </div>
+
+                                    <div class="interactive-card" id="hoverCard2">
+                                        <h5>卡片缩放效果</h5>
+                                        <div class="demo-scale-card">鼠标悬停在此卡片</div>
+                                        <pre><code>.card:hover {
+  transform: scale(1.02);
+}</code></pre>
+                                    </div>
+
+                                    <div class="interactive-card">
+                                        <h5>平滑过渡</h5>
+                                        <p>所有动画都有过渡效果</p>
+                                        <pre><code>* {
+  transition: all 0.3s ease;
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: 综合实战 - 标题 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔧 五、综合实战与最终检查</h2>
+                            <h3>（一）浏览器兼容性检查</h3>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: 检查清单 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <!-- 浏览器图标 -->
+                            <div class="browser-grid">
+                                <div class="browser-card">
+                                    <i class="fab fa-chrome"></i>
+                                    <h5>Chrome</h5>
+                                </div>
+                                <div class="browser-card">
+                                    <i class="fab fa-firefox"></i>
+                                    <h5>Firefox</h5>
+                                </div>
+                                <div class="browser-card">
+                                    <i class="fab fa-safari"></i>
+                                    <h5>Safari</h5>
+                                </div>
+                                <div class="browser-card">
+                                    <i class="fab fa-edge"></i>
+                                    <h5>Edge</h5>
+                                </div>
+                            </div>
+
+                            <!-- 检查清单 -->
+                            <div class="checklist-container">
+                                <h4><i class="fas fa-tasks neon-text-cyan"></i> 检查要点</h4>
+                                <div class="checklist-grid">
+                                    <label class="checklist-item">
+                                        <input type="checkbox">
+                                        <span>头像形状正常</span>
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox">
+                                        <span>项目图比例一致</span>
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox">
+                                        <span>文字没有溢出</span>
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox">
+                                        <span>标签没有挤在一起</span>
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox">
+                                        <span>所有按钮能正常点击</span>
+                                    </label>
+                                    <label class="checklist-item">
+                                        <input type="checkbox">
+                                        <span>对齐没有跑飞</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- 响应式设备图 -->
+                            <h3 style="margin-top: 40px;">（二）响应式设计检查</h3>
+                            <div class="responsive-demo">
+                                <svg viewBox="0 0 900 400" class="responsive-svg">
+                                    <!-- 手机 -->
+                                    <g class="device-phone">
+                                        <rect x="50" y="100" width="120" height="200" fill="rgba(168, 85, 247, 0.1)" stroke="var(--neon-purple)" stroke-width="3" rx="12"/>
+                                        <rect x="60" y="115" width="100" height="170" fill="var(--cyber-dark-900)" stroke="var(--neon-purple)" stroke-width="1"/>
+                                        <circle cx="110" cy="295" r="5" fill="var(--neon-purple)"/>
+                                        <text x="110" y="330" text-anchor="middle" fill="var(--neon-purple)" font-size="14">手机</text>
+                                        <text x="110" y="350" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="12">iPhone 14</text>
+                                    </g>
+
+                                    <!-- 平板 -->
+                                    <g class="device-tablet">
+                                        <rect x="250" y="80" width="200" height="240" fill="rgba(6, 182, 212, 0.1)" stroke="var(--neon-cyan)" stroke-width="3" rx="12"/>
+                                        <rect x="265" y="95" width="170" height="210" fill="var(--cyber-dark-900)" stroke="var(--neon-cyan)" stroke-width="1"/>
+                                        <circle cx="350" cy="315" r="4" fill="var(--neon-cyan)"/>
+                                        <text x="350" y="350" text-anchor="middle" fill="var(--neon-cyan)" font-size="14">平板</text>
+                                        <text x="350" y="370" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="12">iPad</text>
+                                    </g>
+
+                                    <!-- 笔记本 -->
+                                    <g class="device-laptop">
+                                        <rect x="530" y="100" width="300" height="180" fill="rgba(244, 63, 94, 0.1)" stroke="var(--cyber-pink)" stroke-width="3" rx="8"/>
+                                        <rect x="545" y="115" width="270" height="150" fill="var(--cyber-dark-900)" stroke="var(--cyber-pink)" stroke-width="1"/>
+                                        <rect x="500" y="280" width="360" height="10" fill="var(--cyber-dark-800)" stroke="var(--cyber-pink)" stroke-width="2" rx="2"/>
+                                        <text x="680" y="330" text-anchor="middle" fill="var(--cyber-pink)" font-size="14">笔记本</text>
+                                        <text x="680" y="350" text-anchor="middle" fill="var(--cyber-dark-200)" font-size="12">Laptop</text>
+                                    </g>
+
+                                    <text x="450" y="40" text-anchor="middle" fill="#fff" font-size="18" font-weight="bold">不同设备尺寸测试</text>
+                                </svg>
+                            </div>
+
+                            <!-- 路径检查 -->
+                            <h3 style="margin-top: 40px;">（三）路径与链接检查</h3>
+                            <div class="path-check">
+                                <div class="code-card">
+                                    <h5><i class="fas fa-folder neon-text-cyan"></i> 图片路径规范</h5>
+                                    <pre><code>✅ 正确：src="assets/img/avatar.png"
+❌ 错误：src="C:/Users/Desktop/avatar.png"</code></pre>
+                                    <p class="code-tip">💡 使用相对路径，确保 assets/img/ 前缀正确</p>
+                                </div>
+
+                                <div class="code-card">
+                                    <h5><i class="fas fa-link neon-text-purple"></i> 链接有效性</h5>
+                                    <ul>
+                                        <li>✓ 导航锚点链接（#about、#projects）</li>
+                                        <li>✓ 外部链接（https://...）</li>
+                                        <li>✓ 邮箱链接（mailto:example@email.com）</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 性能优化 -->
+                            <h3 style="margin-top: 40px;">（四）性能优化建议</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-image neon-text-cyan"></i> 图片优化</h4>
+                                    <ul>
+                                        <li>压缩图片大小（推荐工具：TinyPNG）</li>
+                                        <li>使用合适的格式（照片用.jpg，图标用.png）</li>
+                                        <li>考虑使用WebP格式</li>
+                                    </ul>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-code neon-text-purple"></i> 代码优化</h4>
+                                    <ul>
+                                        <li>精简CSS代码</li>
+                                        <li>移除未使用的样式</li>
+                                        <li>优化HTML结构</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、图片资源处理</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">图片规范与要求</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">图片资源获取</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">图片替换操作</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">二、响应式排版</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">文字排版优化</button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">三、CSS变量</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">主色调调整</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">视觉元素调整</button>
+                    <button class="nav-item" onclick="courseScrollToSection(10)">四、视觉优化</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">视觉层次优化</button>
+                    <button class="nav-item" onclick="courseScrollToSection(12)">五、综合实战</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(12)">浏览器兼容性</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">检查清单详解</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">完成作品集网页的优化与检查</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+                                <div class="homework-list">
+                                    <div class="homework-item">
+                                        <div class="hw-number">1</div>
+                                        <div class="hw-content">
+                                            <h4>图片资源替换</h4>
+                                            <p>完成所有图片资源的替换，确保尺寸和比例符合要求</p>
+                                        </div>
+                                    </div>
+                                    <div class="homework-item">
+                                        <div class="hw-number">2</div>
+                                        <div class="hw-content">
+                                            <h4>文字排版优化</h4>
+                                            <p>调整文字排版，统一标签数量和标题长度，保持视觉一致性</p>
+                                        </div>
+                                    </div>
+                                    <div class="homework-item">
+                                        <div class="hw-number">3</div>
+                                        <div class="hw-content">
+                                            <h4>样式定制</h4>
+                                            <p>修改CSS变量，定制个人风格的主题色、圆角和阴影效果</p>
+                                        </div>
+                                    </div>
+                                    <div class="homework-item">
+                                        <div class="hw-number">4</div>
+                                        <div class="hw-content">
+                                            <h4>响应式测试</h4>
+                                            <p>测试网页在不同浏览器和设备上的显示效果，确保响应式设计正常</p>
+                                        </div>
+                                    </div>
+                                    <div class="homework-item">
+                                        <div class="hw-number">5</div>
+                                        <div class="hw-content">
+                                            <h4>路径与链接检查</h4>
+                                            <p>检查所有路径和链接，为下一节课的网页部署做好准备</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI课程教学 | 第八课：个人作品集网页内容完善</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
