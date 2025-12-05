@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>写对几句话,AI就能写出神曲 | AI音乐提示词教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第五单元：AI音乐创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>3. 写对几句话,AI就能写出神曲</h1>
+                    <p class="subtitle">掌握AI音乐提示词,开启音乐创作新纪元</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一:课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.8rem;">一、课程回顾</h3>
+                            <ul style="margin: 30px 0;">
+                                <li style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">通过明确音乐的用途与功能,确立创作的整体方向</li>
+                                <li style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">围绕主题构建作品的核心故事与表达内容</li>
+                                <li style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">设定情感基调,确定音乐的情绪氛围与表达方式</li>
+                                <li style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">结合听众特征完成创作方向的综合判断,使音乐更贴合目标受众</li>
+                            </ul>
+
+                            <h3 class="neon-text-purple" style="margin-top: 40px; font-size: 1.8rem;">二、课程目标</h3>
+                            <ol style="margin: 30px 0;">
+                                <li style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">掌握提示词的语义结构与组成逻辑</li>
+                                <li style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">能够将创意概念转换为AI音乐系统可识别的文字描述</li>
+                            </ol>
+
+                            <h3 class="neon-text-pink" style="margin-top: 40px; font-size: 1.8rem;">三、课程目录</h3>
+                            <ul style="margin: 30px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 20px 0;" onclick="showPage('course'); scrollTo(0,0);">Suno 提示词的整体结构框架</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 20px 0;" onclick="showPage('course'); scrollTo(0,0);">曲风提示词写法(Description 部分)</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 20px 0;" onclick="showPage('course'); scrollTo(0,0);">歌曲结构标签(Structure Tags)</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 20px 0;" onclick="showPage('course'); scrollTo(0,0);">歌词提示词写法(Lyrics 部分)</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 20px 0;" onclick="showPage('course'); scrollTo(0,0);">提示词一键生成模板</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二:课程章节</h1>
+                    <p class="subtitle">深入学习Suno AI音乐提示词的核心知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 第一章:Suno提示词整体结构 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎵 一、Suno 提示词的整体结构框架</h2>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 30px 0;">
+                                AI 音乐生成系统的提示词机制依赖文字输入来构建声音、结构与音乐行为。不同的输入区域承担不同的功能,因此正确理解提示词在系统内部的分工,是后续提示词写作的基础框架。
+                            </p>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 30px 0;">
+                                Suno 的提示词可分为 <strong class="neon-text-cyan">三个主要输入区块</strong>:<strong class="neon-text-pink">Description、Lyrics、Title</strong>。这三者协同工作,将抽象的音乐意图转化为具体的声音结果。
+                            </p>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-music neon-text-cyan"></i>
+                                    <h4>Description</h4>
+                                    <p>声音与风格骨架</p>
+                                    <p style="font-size: 0.9rem; margin-top: 10px;">决定是什么类型的音乐</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-file-alt neon-text-purple"></i>
+                                    <h4>Lyrics</h4>
+                                    <p>结构、段落、演唱方式</p>
+                                    <p style="font-size: 0.9rem; margin-top: 10px;">决定音乐内容如何展开</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-heading neon-text-pink"></i>
+                                    <h4>Title</h4>
+                                    <p>信息补充、主题微调</p>
+                                    <p style="font-size: 0.9rem; margin-top: 10px;">决定作品的命名与主题氛围</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px;">
+                                <p style="font-size: 1.3rem; text-align: center;">
+                                    <strong class="neon-text-cyan">💡 重要提示:</strong>
+                                    Suno 的底层模型是基于英语训练数据为主的,所以它天生更擅长理解英文。因此用英文提示词,AI 才能更精准地理解你要的风格、情绪和音乐结构。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第二章:曲风提示词写法 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎸 二、曲风提示词写法(Description 部分)</h2>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 30px 0;">
+                                Description 区域是 Suno 生成音乐时最重要的风格定义入口。系统依赖该区域的语言描述,构建音乐的整体风格、声场结构、节奏强度与情绪走向。
+                            </p>
+
+                            <h3 class="neon-text-cyan">标准写法顺序:固定结构让风格更稳定</h3>
+
+                            <div class="content-card" style="margin: 30px 0;">
+                                <h4 style="margin-top: 0;">完整的 Description 写法推荐遵循如下顺序:</h4>
+                                <div class="highlight-box" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.15), rgba(168, 85, 247, 0.15));">
+                                    <p style="font-size: 1.2rem; text-align: center; font-family: 'Orbitron', sans-serif;">
+                                        流派(Genre) + 情绪(Mood) + 场景(Scene) + 节奏/BPM + 主乐器音色(Timbre) + 主题关键词(Theme)
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h4 class="neon-text-purple">顺序原因:</h4>
+                            <ul style="margin: 20px 0;">
+                                <li>系统优先识别 Genre 和 Mood,因此应放在最前</li>
+                                <li>场景通常用于补充氛围</li>
+                                <li>BPM 与乐器信息为结构性描述,应置于中段</li>
+                                <li>Theme 用于强化音乐语义,可放结尾</li>
+                            </ul>
+
+                            <div class="content-card" style="background: rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.4);">
+                                <h4 class="neon-text-cyan">示例结构:</h4>
+                                <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; overflow-x: auto; margin: 20px 0;">
+<code style="color: #06b6d4; font-size: 1.1rem; line-height: 1.8;">Warm nostalgic pop ballad, 95 BPM, soft piano and strings, gentle groove, Memories of Youth and Campus Life</code></pre>
+                                <p style="color: var(--cyber-dark-200); margin-top: 15px;">
+                                    // 温暖怀旧的流行抒情曲风,95BPM,中慢速节奏,柔和钢琴与弦乐,律动轻柔,适合青春校园回忆主题
+                                </p>
+                            </div>
+
+                            <h4 class="neon-text-pink" style="margin-top: 30px;">写法优势:</h4>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <i class="fas fa-check-circle neon-text-cyan" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                    <p>结构化语言输入让风格更容易准确呈现</p>
+                                </div>
+                                <div class="content-card">
+                                    <i class="fas fa-shield-alt neon-text-purple" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                    <p>减少系统误判或偏离意图</p>
+                                </div>
+                                <div class="content-card">
+                                    <i class="fas fa-sync-alt neon-text-pink" style="font-size: 2rem; margin-bottom: 10px;"></i>
+                                    <p>便于大量重复创作时保持写作一致性</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第三章:歌曲结构标签 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎹 三、歌曲结构标签(Structure Tags)</h2>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 30px 0;">
+                                在 AI 音乐提示词体系中,结构标签(Structure Tags)承担"<strong class="neon-text-cyan">结构指挥官</strong>"的角色。Description 控制音乐的"风格外形",而结构标签控制音乐的"段落顺序与内容组织方式"。
+                            </p>
+
+                            <h3 class="neon-text-purple">(一)结构标签的本质作用</h3>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-list-ol neon-text-cyan"></i> 决定段落排列顺序</h4>
+                                    <p>系统会严格按照标签顺序构建音乐结构</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin-top: 10px; font-size: 0.95rem;">
+<code>[intro]  // 前奏
+[verse]  // 主歌
+[chorus] // 副歌</code></pre>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-sliders-h neon-text-purple"></i> 决定段落类别与音乐行为</h4>
+                                    <p>例如 chorus 通常旋律更高、力度更强;intro 多为空气氛围或简短动机</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-volume-mute neon-text-pink"></i> 指定段落不被唱出</h4>
+                                    <p>标签被视为结构指令,不会转化为声音文本</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 常用结构标签表格 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">(二)常用结构标签及其音乐功能</h3>
+
+                            <div class="table-container" style="margin: 30px 0;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>结构标签</th>
+                                            <th>英文写法</th>
+                                            <th>功能简介</th>
+                                            <th>音乐行为特征</th>
+                                            <th>常见使用位置</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>序曲</strong></td>
+                                            <td><code>[intro]</code></td>
+                                            <td>开场氛围、铺垫风格</td>
+                                            <td>无主唱或弱人声,氛围铺陈、简短动机</td>
+                                            <td>歌曲开头</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>主歌</strong></td>
+                                            <td><code>[verse]</code></td>
+                                            <td>叙述内容展开</td>
+                                            <td>旋律较低、节奏平稳,用于讲述故事</td>
+                                            <td>副歌前的铺垫</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>副歌</strong></td>
+                                            <td><code>[chorus]</code></td>
+                                            <td>歌曲高潮、记忆点</td>
+                                            <td>旋律提升、节奏加强、情绪最强</td>
+                                            <td>每轮循环高潮位置</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>桥段</strong></td>
+                                            <td><code>[bridge]</code></td>
+                                            <td>打破主歌副歌循环、提供转折</td>
+                                            <td>和声或旋律出现明显变化</td>
+                                            <td>副歌后、尾声前</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>尾声</strong></td>
+                                            <td><code>[outro]</code></td>
+                                            <td>稳定收尾、情绪落点</td>
+                                            <td>可淡出、弱化、保留部分主题动机</td>
+                                            <td>歌曲结尾</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>间奏</strong></td>
+                                            <td><code>[instrumental]</code></td>
+                                            <td>无歌词段落、纯乐器表现</td>
+                                            <td>无主唱,用乐器推动情绪或过渡</td>
+                                            <td>段落之间、桥段后</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>独奏</strong></td>
+                                            <td><code>[solo]</code></td>
+                                            <td>展示乐器旋律线、强化亮点</td>
+                                            <td>根据乐器不同产生旋律或技巧性段落</td>
+                                            <td>副歌之后、桥段前后</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>落点(爆发段)</strong></td>
+                                            <td><code>[drop]</code></td>
+                                            <td>强烈冲击段落、舞曲核心结构</td>
+                                            <td>强低频、强鼓点、主音合成器进入</td>
+                                            <td>build-up 之后</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>构建段</strong></td>
+                                            <td><code>[build-up]</code></td>
+                                            <td>为 drop 做铺垫、增加张力</td>
+                                            <td>节奏密度逐渐提升、鼓点加快</td>
+                                            <td>drop 前</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>结束符</strong></td>
+                                            <td><code>[end]</code></td>
+                                            <td>明确终止、避免模型延伸</td>
+                                            <td>立即结束,无尾音拖长</td>
+                                            <td>最后一行</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结构标签使用原则 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">(三)结构标签的使用原则(核心)</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>使用中括号,标签不会被唱出</h4>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0;">
+<code>[verse] // 主歌</code></pre>
+                                    <p>只作为结构提示,不会影响歌词内容本身被唱出</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>标签顺序 = 实际音乐结构顺序</h4>
+                                    <p>顺序错误可能导致结构混乱</p>
+                                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 15px 0;">
+                                        <div style="background: rgba(244, 63, 94, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(244, 63, 94, 0.3);">
+                                            <p style="color: var(--cyber-pink); margin-bottom: 10px;"><strong>❌ 错误示例:</strong></p>
+                                            <pre style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;">
+<code>[chorus] // 副歌
+[intro]  // 前奏</code></pre>
+                                        </div>
+                                        <div style="background: rgba(6, 182, 212, 0.1); padding: 15px; border-radius: 8px; border: 1px solid rgba(6, 182, 212, 0.3);">
+                                            <p style="color: var(--neon-cyan); margin-bottom: 10px;"><strong>✅ 正确示例:</strong></p>
+                                            <pre style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 5px;">
+<code>[intro]  // 前奏
+[chorus] // 副歌</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>可在标签后添加限定词增强控制力</h4>
+                                    <p>限定词用于延长、缩短或调整段落属性</p>
+                                    <ul>
+                                        <li><code>brief instrumental</code>(短)</li>
+                                        <li><code>long instrumental</code>(长)</li>
+                                        <li><code>long guitar solo</code>(较长吉他独奏)</li>
+                                    </ul>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0;">
+<code>[instrumental]
+brief ambient intro // 简短的氛围感前奏</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>标签可与歌词混写,互不冲突</h4>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0;">
+<code>[verse 1]
+风经过走廊的方向
+落叶牵起久违的回忆</code></pre>
+                                    <p>标签定义结构,歌词提供可唱内容</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>可重复使用标签,用于多段循环</h4>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0;">
+<code>[verse 1] // 主歌1
+[verse 2] // 主歌2
+[chorus]  // 副歌
+[chorus]  // 副歌(重复一次)</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 典型流行音乐结构示例 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple">(四)典型流行音乐结构示例(可直接使用)</h3>
+
+                            <p style="font-size: 1.1rem; margin: 20px 0;">
+                                以下结构非常稳定,适合绝大多数流行、民谣、轻摇滚类创作:
+                            </p>
+
+                            <div class="content-card" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(6, 182, 212, 0.15));">
+                                <h4 class="neon-text-cyan">标准流行结构:</h4>
+                                <pre style="background: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px; font-size: 1.1rem; line-height: 2;">
+<code>[intro]   // 前奏 / 开场段
+[verse 1] // 主歌第1段(叙述内容开始)
+[verse 2] // 主歌第2段(继续叙述)
+[chorus]  // 副歌(第一轮高潮)
+[bridge]  // 桥段(情绪或旋律转折)
+[chorus]  // 副歌(第二轮高潮 / 重复加强)
+[outro]   // 尾声 / 收尾段
+[end]     // 结束符(明确终止歌曲)</code></pre>
+                                <p style="margin-top: 15px; color: var(--cyber-dark-200);">
+                                    该结构包含所有必要的铺垫、高潮、转折与尾声,适合讲故事、抒情或校园回忆主题。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 不同风格的结构示例 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-pink">(五)不同风格的结构示例(进阶)</h3>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-headphones neon-text-cyan"></i> EDM / Electronic</h4>
+                                    <p style="margin: 10px 0;">特点:多次 build-up 与 drop</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.8;">
+<code>[intro]
+[build-up]
+[drop]
+[verse]
+[chorus]
+[drop]
+[outro]
+[end]</code></pre>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-microphone-alt neon-text-purple"></i> 说唱 Rap</h4>
+                                    <p style="margin: 10px 0;">特点:大量 verse,副歌可短或无</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.8;">
+<code>[intro]
+[verse 1]
+[verse 2]
+[hook]
+[verse 3]
+[outro]
+[end]</code></pre>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-film neon-text-pink"></i> 电影配乐 Cinematic</h4>
+                                    <p style="margin: 10px 0;">特点:段落叙事感强,但无歌词</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; font-size: 0.9rem; line-height: 1.8;">
+<code>[intro]
+[instrumental]
+[build]
+[climax]
+[fade out]
+[end]</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 结构标签协同工作示例 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">(六)结构标签如何与 Description 协同工作</h3>
+
+                            <div class="content-card" style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.1), rgba(168, 85, 247, 0.1));">
+                                <h4 class="neon-text-purple">示例说明:</h4>
+
+                                <div style="margin: 20px 0;">
+                                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong class="neon-text-cyan">Description:</strong></p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px;">
+<code>Warm nostalgic pop ballad, 95 BPM, soft piano and strings, gentle groove, for 青春回忆</code></pre>
+                                </div>
+
+                                <div style="margin: 20px 0;">
+                                    <p style="font-size: 1.1rem; margin-bottom: 10px;"><strong class="neon-text-purple">Lyrics:</strong></p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; line-height: 1.8;">
+<code>[intro] brief instrumental
+[verse 1]
+回忆缓缓落在旧课桌上
+
+[chorus]
+我们一起的时间慢慢走
+
+[outro]
+instrumental fade out
+
+[end]</code></pre>
+                                </div>
+
+                                <div class="highlight-box" style="margin-top: 20px;">
+                                    <h4 class="neon-text-pink">配合效果:</h4>
+                                    <ul>
+                                        <li>Description 定义声音:柔和、校园、怀旧、钢琴弦乐</li>
+                                        <li>结构标签决定铺垫、主歌、高潮、尾声的顺序</li>
+                                        <li>歌词提供可唱文本</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第四章:歌词提示词写法 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✍️ 四、歌词提示词写法(Lyrics 部分)</h2>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 30px 0;">
+                                Lyrics 区域承担<strong class="neon-text-cyan">双重任务</strong>:
+                            </p>
+
+                            <div class="grid-2">
+                                <div class="icon-card">
+                                    <i class="fas fa-microphone neon-text-cyan"></i>
+                                    <h4>提供可被演唱的歌词内容</h4>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-sitemap neon-text-purple"></i>
+                                    <h4>提供结构标签控制音乐段落行为</h4>
+                                </div>
+                            </div>
+
+                            <p style="font-size: 1.1rem; margin: 30px 0; text-align: center;">
+                                这使得 Lyrics 成为 Suno 中<strong class="neon-text-pink">复杂度最高</strong>的提示词区域。写法是否清晰直接影响旋律线、人声表现、音乐结构的稳定性。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 歌词区的两种作用 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">(一)歌词区的两种作用:结构控制 + 可唱内容</h3>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-tags neon-text-purple"></i> 结构标签(Structure Tags)</h4>
+                                    <p>用于控制段落顺序</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.95rem;">
+<code>[intro]
+[verse 1]
+[chorus]
+[outro]</code></pre>
+                                    <p style="color: var(--cyber-dark-200);">标签不会被唱出,但会影响音乐生成逻辑</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-music neon-text-pink"></i> 可唱内容(Lyric Lines)</h4>
+                                    <p>系统会将标签下方的文本识别为"歌词"并配合旋律演唱</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0; font-size: 0.95rem;">
+<code>[verse 1]
+风吹过旧操场的方向
+回忆沉在温暖的阳光里</code></pre>
+                                    <p style="color: var(--cyber-dark-200);">这类文本会被完整唱出</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 歌词来源的两种方式 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple">(二)歌词来源的两种方式</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>方式一:直接写歌词(AI照着唱)</h4>
+                                    <p>你提供完整的歌词内容,AI按照你写的文字演唱</p>
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0;">
+<code>[verse]
+在城市的风里听见回忆慢慢亮起
+在路灯的光下写下未完成的自己</code></pre>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>方式二:写"控制标签"(AI不唱字,只执行动作)</h4>
+                                    <p>你不提供具体歌词,而是用特殊符号来控制音乐结构、节奏、和声等行为</p>
+
+                                    <div class="highlight-box" style="margin: 20px 0;">
+                                        <h4 style="margin-top: 0;">常见控制标签:</h4>
+                                        <ul>
+                                            <li><code>~~~~</code> 节奏占位符,不唱</li>
+                                            <li><code>(和声内容)</code> 括号内会被当成和声</li>
+                                            <li><code>{不可唱内容}</code> 描述段落,用于补充行为</li>
+                                        </ul>
+                                    </div>
+
+                                    <pre style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 8px; margin: 15px 0; line-height: 1.8;">
+<code>[verse]
+~~~~
+~~~~
+(ah—ah)
+{进入情绪更沉稳的编曲}
+
+[chorus]
+(ooo—ooo)
+~~~~
+{增强鼓点与背景铺垫}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第五章:提示词一键生成模板 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🚀 五、提示词一键生成模板(快速生成版)</h2>
+
+                            <div class="highlight-box" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(249, 115, 22, 0.2)); border-color: var(--neon-yellow);">
+                                <p style="font-size: 1.2rem; text-align: center; color: var(--neon-yellow);">
+                                    <i class="fas fa-magic"></i> <strong>你是一位享誉全球的音乐制作人与作曲家</strong>
+                                </p>
+                                <p style="margin-top: 15px; font-size: 1.1rem;">
+                                    你深谙如何将抽象的情感与故事转化为动人的旋律。你的任务是基于给定的主题,创作一份专为Suno等文生音乐模型设计的、结构化、富有艺术指导性的"音乐蓝图"(Prompt)。
+                                </p>
+                            </div>
+
+                            <h3 class="neon-text-cyan" style="margin-top: 40px;">创作流程与规则:</h3>
+                            <p style="font-size: 1.1rem; margin: 20px 0;">
+                                这份音乐蓝图由两部分构成:<strong class="neon-text-pink">歌曲风格 (Style of Music)</strong> 和 <strong class="neon-text-purple">歌词 (Lyrics)</strong>
+                            </p>
+
+                            <div class="content-card" style="background: rgba(0,0,0,0.6); margin-top: 30px; padding: 30px;">
+                                <h4 class="neon-text-purple" style="margin-bottom: 20px;">完整提示词模板:</h4>
+                                <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; overflow-x: auto; line-height: 1.8; font-size: 0.95rem; white-space: pre-wrap;"><code>你是一位享誉全球的音乐制作人与作曲家，你深谙如何将抽象的情感与故事转化为动人的旋律。你的任务是基于给定的主题，创作一份专为Suno等文生音乐模型设计的、结构化、富有艺术指导性的"音乐蓝图"（Prompt）。这份蓝图将指引AI生成一首具有强烈故事感、画面感和场景感的原创音乐。
+
+**创作流程与规则：**
+
+这份音乐蓝图由两部分构成：**`歌曲风格 (Style of Music)`** 和 **`歌词 (Lyrics)`**。
+
+#### **第二部分：`歌词 (Lyrics)` - 谱写歌曲的叙事剧本**
+
+这是歌曲的"剧本"，严格遵循Suno可识别的格式，规定故事的起承转合。
+
+**结构标签 (Structural Tags):**
+
+*   `[Intro]` (前奏)
+*   `[Verse]` (主歌): 叙事。
+*   `[Chorus]` (副歌): 升华主题，情感爆发。
+*   `[Bridge]` (桥段): 转折与过渡。
+*   `[Outro]` (尾奏)
+*   `[Instrumental]` / `[Guitar Solo]` 等: 纯器乐段落。
+
+**格式规则 (至关重要):**
+
+*   **结构清晰:** 每个结构标签（如 `[Verse]`）和其歌词为一个独立单元。
+*   **换行分隔:** **使用换行来分隔不同的结构单元和歌词中的不同句子。** 这是Suno识别结构和节奏的唯一方式。**请勿使用分号或句号作为结构分隔符。**
+
+**创作指导:**
+*   **叙事弧光：** 歌词应构建一个完整的情感或故事弧线。
+*   **诗意简练：** 用精炼的语言勾勒清晰的画面，让每一句歌词都服务于整体的故事和情绪，避免陈词滥调。
+
+---
+
+**最终输出要求：**
+
+你的最终产出必须是一个**纯净、可直接复制的普通文本**，严格包含 `歌曲风格 (Style of Music)` 和 `歌词 (Lyrics)` 两个部分，并使用Markdown标题清晰分隔。请勿添加任何额外的解释或注释。
+
+**标准输出格式示例：**
+
+**歌曲风格 (Style of Music):**
+Epic China-Chic, Cinematic Pop, Orchestral, Solemn, Powerful Female Vocals, Choir, Guzheng, Cinematic Drums
+
+**歌词 (Lyrics):**
+[Intro]
+一道悠远的古筝旋律
+渐渐融入现代合成器的节拍
+
+[Verse 1]
+黄河的水浪 卷起了篇章
+甲骨的刻痕 写满了洪荒
+青铜器之上 纹路在流淌
+百家争鸣时 思想闪着光
+
+[Chorus]
+啊 千年星河 奔流入我
+山川与脉搏 是同一首歌
+啊 文明的火 从未曾熄落
+在时光尽头 回响着承诺
+
+[Outro]
+女声悠长的吟唱
+在管弦乐和古筝声中
+慢慢消散
+
+---
+
+# 现在开始：
+- 现在，请你运用你的音乐才华，根据我提供的以下主题，为我创作一份能触动灵魂的音乐蓝图。
+- 如果未接收到用户提供的主题，仅回复："请输入你的音乐主题："</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 示例输入输出 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-pink">完整示例:从输入到输出</h3>
+
+                            <div class="grid-2">
+                                <div>
+                                    <h4 class="neon-text-cyan">示例输入:</h4>
+                                    <div class="content-card">
+                                        <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px;">
+<code>Pop, Uplifting, Female Vocals, Piano, Rhythmic, Modern, Warm Atmosphere</code></pre>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <h4 class="neon-text-purple">示例输出:</h4>
+                                    <div class="content-card" style="max-height: 500px; overflow-y: auto;">
+                                        <pre style="background: rgba(0,0,0,0.5); padding: 20px; border-radius: 8px; font-size: 0.9rem; line-height: 1.6;">
+<code>[Intro]
+雨点轻敲在窗边
+钢琴缓缓亮起一束光
+
+[Verse 1]
+街灯划过湿漉的夜
+倒影像走散的从前
+我在风里紧握着心愿
+一步一步找回曾经的胆怯
+
+[Verse 2]
+雨声陪我把沉默熬过
+湿冷的夜也会有温度
+在城市的尽头再深呼吸
+让心里的火重新被点起
+
+[Chorus]
+就算黑夜把方向遮住
+我仍要向着明天奔赴
+雨再大 也冲不走脚步
+我会在风里重新站起
+让我用微光照亮自己
+
+[Verse 3]
+街角的咖啡飘着暖意
+连孤单都变得很透明
+世界听见我悄悄的坚定
+把湿答答的梦重新梳理
+
+[Chorus]
+就算黑夜把方向遮住
+我仍要向着明天奔赴
+雨再大 也冲不走脚步
+我会在风里重新站起
+让我用微光照亮自己
+
+[Bridge]
+雨滴落下的节奏
+像心跳在诉说
+跌倒也能换来新的自由
+
+[Outro]
+当最后一滴雨落下
+一束晨光落在肩上
+我已准备好
+继续向前走</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、提示词结构框架</button>
+                    <button class="nav-item" onclick="courseScrollToSection(2)">二、曲风提示词写法</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">三、歌曲结构标签</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">(一) 常用结构标签</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">(二) 使用原则</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">(三) 流行音乐结构</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">(四) 不同风格示例</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">(五) 协同工作示例</button>
+                    <button class="nav-item" onclick="courseScrollToSection(9)">四、歌词提示词写法</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">(一) 歌词区两种作用</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">(二) 歌词来源方式</button>
+                    <button class="nav-item" onclick="courseScrollToSection(12)">五、一键生成模板</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">(一) 完整示例</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 板块三:课后作业</h1>
+                    <p class="subtitle">自己动手写一个AI音乐提示词</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">实操任务</h2>
+
+                                <div class="highlight-box" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.2), rgba(249, 115, 22, 0.2)); border-color: var(--neon-yellow); margin: 30px 0;">
+                                    <h3 class="neon-text-yellow" style="color: var(--neon-yellow);">作业目标:</h3>
+                                    <p style="font-size: 1.2rem;">
+                                        通过亲自编写提示词,掌握如何将创作意图转化为AI音乐系统可理解的文字描述,完成一次从"创意构思"到"语言表达"的完整训练。
+                                    </p>
+                                </div>
+
+                                <h3 class="neon-text-cyan" style="font-size: 1.8rem; margin-top: 40px;">作业要求:</h3>
+
+                                <div class="step-container">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>确定创作主题</h4>
+                                        <p>自选一个创作方向(例如:友情、成长、告别、旅行、未来、思念等),并写一句话说明这首歌想表达的核心情感。</p>
+                                        <div class="content-card" style="margin-top: 15px; background: rgba(6, 182, 212, 0.1);">
+                                            <p><strong class="neon-text-cyan">示例:</strong> 我想创作一首关于"青春告别"的温暖歌曲。</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>设定创作需求</h4>
+                                        <p>请分别确定以下四项信息:</p>
+                                        <ul>
+                                            <li><strong>用途:</strong> 毕业短片配乐 / 游戏BGM / vlog背景音乐</li>
+                                            <li><strong>听众:</strong> 青少年 / 年轻人 / 家庭观众等</li>
+                                            <li><strong>情绪:</strong> 温柔 / 激昂 / 悲伤 / 梦幻</li>
+                                            <li><strong>场景:</strong> 校园 / 城市夜景 / 海边 / 雨天 / 舞台等</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h4>选择音乐要素(DNA五要素)</h4>
+                                        <p>根据创作方向,填写下列表格(可写中文或英文):</p>
+
+                                        <div class="table-container" style="margin-top: 20px;">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>要素</th>
+                                                        <th>示例参考</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td><strong>流派(Genre)</strong></td>
+                                                        <td>流行 Pop / 摇滚 Rock / 民谣 Folk / 电子 Electronic</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>情绪(Mood)</strong></td>
+                                                        <td>温柔 Soft / 激昂 Energetic / 梦幻 Dreamy</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>乐器(Instruments)</strong></td>
+                                                        <td>钢琴、弦乐、鼓、吉他、合成器等</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>人声(Vocal Style)</strong></td>
+                                                        <td>男声 / 女声 / 合唱 / 童声 / Rap等</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><strong>节奏速度(Tempo)</strong></td>
+                                                        <td>慢速80BPM / 中速100BPM / 快速130BPM</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h4>歌词编写</h4>
+                                        <p>拥有完整的结构和歌词</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">5</div>
+                                    <div class="step-content">
+                                        <h4>编写完整提示词</h4>
+                                        <p>结合以上信息,写出两部分提示词(Description、Lyrics),要求表达清晰、逻辑完整,可直接输入AI音乐工具Suno生成歌曲。</p>
+                                    </div>
+                                </div>
+
+                                <div class="highlight-box" style="margin-top: 40px; text-align: center; background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(168, 85, 247, 0.2));">
+                                    <p style="font-size: 1.3rem;">
+                                        <i class="fas fa-rocket neon-text-pink"></i>
+                                        <strong>完成作业后,请将你的提示词提交,开启你的AI音乐创作之旅!</strong>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <p>© 2024 AI音乐提示词教学 | 赛博朋克风格界面</p>
+                                <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

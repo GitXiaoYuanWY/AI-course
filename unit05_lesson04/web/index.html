@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suno新手必看！7区快速搞懂 | AI音乐创作教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第五单元：AI音乐创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>4. Suno新手必看！7区快速搞懂</h1>
+                    <p class="subtitle">AI音乐创作完整教学 | 从入门到精通</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">一、课程回顾</h3>
+                            <ul style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">Suno 提示词的整体结构框架</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">曲风提示词写法（Description 部分）</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">歌曲结构标签（Structure Tags）——控制 AI 的音乐段落布局</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">歌词提示词写法（Lyrics 部分）</li>
+                            </ul>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">二、课程目标</h3>
+                            <ul style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">完成Suno登陆，理解账号、积分、版权的基本规则</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">说出主页各区域的作用，会通过主页找歌、找灵感、看提示词</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">熟悉创作页面的结构，能区分「简单模式」与「自定义模式」</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">完成至少一首 AI 歌曲的生成</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">初步理解并能跟着老师试操作各项功能</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">对后续软件课程有清晰的期待与认知</li>
+                            </ul>
+
+                            <h3 class="neon-text-pink" style="margin-top: 35px; font-size: 1.5rem;">三、课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">如何登录以及账号问题</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">主页介绍</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">创作页面介绍</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">自定义模式</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">续写功能</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">局部编辑</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">角色功能介绍</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 Suno AI 音乐创作的核心知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: Suno 登录与账号基础 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔑 一、Suno 登录与账号基础</h2>
+                            <h3>1. 访问与登录方式</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                Suno 是基于 Web 的 AI 音乐生成平台，服务器部署与运营环境位于海外。其服务面向全球用户，因此在部分地区访问时可能需要符合当地的网络环境条件。
+                            </p>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                登录方式主要包含以下几类：
+                            </p>
+                            <ul>
+                                <li>使用 Apple 账号登录</li>
+                                <li>使用 Discord 账号登录</li>
+                                <li>使用 Google 账号登录</li>
+                                <li>使用 Microsoft 账号登录</li>
+                                <li><strong class="neon-text-pink">中国大陆手机号不可用</strong> → 建议用邮箱账号登录</li>
+                            </ul>
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image.png" alt="登录界面" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 常见登录问题 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 常见登录问题与解决策略</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                在实际使用中，登录环节经常出现的一类问题是"能打开首页但无法成功登录"。这种现象一般说明基础网络连接尚可，但登录请求在跨境传输或认证过程中被拦截或中断。
+                            </p>
+
+                            <h4 class="neon-text-cyan">常见问题类型：</h4>
+                            <ul>
+                                <li>点击登录按钮后页面长期无响应或返回错误码</li>
+                                <li>第三方授权页面无法跳转或无法正确回调</li>
+                                <li>登录后立即被登出，无法保持会话状态</li>
+                            </ul>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">解决策略：</h4>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-globe neon-text-cyan"></i>
+                                    <h4>网络调整</h4>
+                                    <p>调整网络工具为全局模式，使浏览器与系统层面所有请求都走同一条出口</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-browser neon-text-purple"></i>
+                                    <h4>浏览器优化</h4>
+                                    <p>尝试更换浏览器或清理缓存，排除本地 Cookie、缓存数据导致的异常状态</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-user-check neon-text-pink"></i>
+                                    <h4>账号切换</h4>
+                                    <p>使用不同的第三方账号尝试登录，有时具体授权渠道的稳定性存在差异</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 积分与付费机制 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>3. 积分与付费机制（概念扫盲）</h3>
+
+                            <div class="content-card" style="margin: 30px 0;">
+                                <h4><i class="fas fa-gift neon-text-cyan"></i> 免费账号</h4>
+                                <ul>
+                                    <li>每天 50 积分 ≈ 可以生成 10 次（每次 10 积分，出两首歌）</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card" style="margin: 30px 0;">
+                                <h4><i class="fas fa-crown neon-text-purple"></i> Pro / 学生 Pro</h4>
+                                <ul>
+                                    <li>积分更多 + 版权归属用户本人</li>
+                                </ul>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4 class="neon-text-pink">⚠️ 重要规则说明</h4>
+                                <ul>
+                                    <li>购买额外积分后，到期日统一清零</li>
+                                    <li>余额不足自动扣款失败 → 账号可能暂时冻结，需要取消订阅解锁</li>
+                                </ul>
+                            </div>
+
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image1.png" alt="积分机制" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 版权概念 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>4. 版权概念提醒</h3>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-times-circle" style="color: #ef4444;"></i> 免费版</h4>
+                                    <p style="font-size: 1.2rem;">生成的歌<strong class="neon-text-pink">不带版权</strong></p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-check-circle neon-text-cyan"></i> Pro 及以上</h4>
+                                    <p style="font-size: 1.2rem;">上传/生成的歌<strong class="neon-text-cyan">版权归用户所有，可商用</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: Suno 主页认识 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🏠 二、Suno 主页认识</h2>
+                            <h3>1. 主页的主要区域</h3>
+
+                            <ul style="margin: 20px 0;">
+                                <li style="font-size: 1.15rem;">顶部歌单/封面区：热门歌单 + 播放量、点赞、作者信息</li>
+                                <li style="font-size: 1.15rem;">中部三块：
+                                    <ul style="margin-left: 40px;">
+                                        <li>为你推荐的歌曲</li>
+                                        <li>推荐的创作者</li>
+                                        <li>排行榜（可切语言/周榜/月榜）</li>
+                                    </ul>
+                                </li>
+                                <li style="font-size: 1.15rem;">"历史最热"区：几十万/几百万播放量作品</li>
+                                <li style="font-size: 1.15rem;">热门人物、为你推荐创作者</li>
+                                <li style="font-size: 1.15rem;">New Song：刚刚公开的新歌</li>
+                                <li style="font-size: 1.15rem;">按风格分类的歌单入口：流行、乡村、金属、民谣、摇滚等</li>
+                                <li style="font-size: 1.15rem;">继续收听：相当于播放历史列表</li>
+                                <li style="font-size: 1.15rem;">官方 Snowball 展示区：历史顶级播放作品</li>
+                            </ul>
+
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image2.png" alt="主页界面" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: 主页的教学用途 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 主页的教学用途</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                Suno 主页不仅是一个被动接收推荐内容的空间，更是一个主动学习的平台工具。
+                            </p>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>提示词观察与对照</h4>
+                                    <p>大部分公开作品会在详情区域展示创作者使用的提示词，包括风格描述、结构标签、情绪词汇等。通过对比提示词与实际听感，可以逐渐建立"文本描述与声音效果之间的对应关系"。</p>
+                                    <div class="highlight-box" style="margin-top: 20px;">
+                                        <p><strong>例如：</strong>某首作品的提示词中包含"warm nostalgic pop ballad, 95 BPM, soft piano and strings, male vocals"</p>
+                                        <p style="margin-top: 10px;">在聆听时可以留意：</p>
+                                        <ul>
+                                            <li>温暖与怀旧感是如何通过和声与音色呈现的</li>
+                                            <li>95 BPM 的节奏与常见流行歌曲相比处于何种速度区间</li>
+                                            <li>软音色钢琴与弦乐如何在伴奏中分配角色</li>
+                                            <li>男声演唱的音色位置与混响处理方式是否符合提示词描述</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>结构模仿与混合风格尝试</h4>
+                                    <p>在观察多个作品的基础上，可以发现提示词在结构与风格组合上的共性模式，例如：</p>
+                                    <ul>
+                                        <li>"[情绪] + [风格] + [年代] + [人声类型] + [编配要素]"</li>
+                                        <li>"[场景描述] + [氛围词] + [节奏强度]"</li>
+                                    </ul>
+                                    <p style="margin-top: 15px;">这些模式可以在后续创作中被改写、组合或扩展，用于新的音乐任务。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>构建个人学习型播放列表</h4>
+                                    <p>通过对主页推荐、排行榜、热门人物与历史最热的综合浏览，可以将具有代表性的作品加入收藏或记录清单，形成面向学习目的的播放列表。</p>
+                                    <p style="margin-top: 15px;">在持续聆听与对比中，创作者可以逐渐形成对不同风格标签、提示词组合的"听觉印象"，这对于后续独立编写提示词与控制作品走向具有长期价值。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: 创作页面功能总览 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✨ 三、Suno 创作页面功能总览</h2>
+                            <h3>1. 进入创作页面</h3>
+                            <ul style="margin: 20px 0;">
+                                <li>左侧侧边栏点击 <strong class="neon-text-cyan">Create</strong> → 进入创作页</li>
+                                <li>新旧版本 UI 差异简单说明：
+                                    <ul style="margin-left: 40px;">
+                                        <li>老版：标题在左侧中部</li>
+                                        <li>新版：标题在页面最上方</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <div class="workflow-grid" style="margin: 30px 0;">
+                                <div class="workflow-item">
+                                    <div class="image-container-wide">
+                                        <div class="image-container-wide-content">
+                                            <img src="images/image3.png" alt="老版界面" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="workflow-description">老版界面</p>
+                                </div>
+                                <div class="workflow-item">
+                                    <div class="image-container-wide">
+                                        <div class="image-container-wide-content">
+                                            <img src="images/image4.png" alt="新版界面" style="width: 100%; height: 100%; object-fit: contain;">
+                                        </div>
+                                    </div>
+                                    <p class="workflow-description">新版界面</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: 两种模式总览 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 两种模式总览</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>模式</th>
+                                            <th>特点</th>
+                                            <th>输入内容</th>
+                                            <th>适合使用者类型</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>简单模式</strong></td>
+                                            <td>以一句或数句描述为主，自动推断风格与结构</td>
+                                            <td>英文描述 + 可选纯音乐开关</td>
+                                            <td>初学者、快速试验想法、灵感记录</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>自定义模式</strong></td>
+                                            <td>可填写标题、完整歌词、风格标签与排除元素，控制精度高</td>
+                                            <td>标题、歌词、Style、排除标签等</td>
+                                            <td>有明确创作目标或项目需求的创作者</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 简单模式核心点 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>3. 简单模式核心点</h3>
+
+                            <div class="content-card" style="margin: 30px 0;">
+                                <h4><i class="fas fa-language neon-text-cyan"></i> 提示词语言选择</h4>
+                                <p>Suno 在解释描述性提示词和风格标签时主要依赖英文，因此推荐以英文输入 Description 与 Style 类信息。中文可以作为歌词内容被演唱，但作为风格描述时识别度较低。</p>
+                                <div class="highlight-box" style="margin-top: 20px;">
+                                    <p><strong class="neon-text-purple">💡 便利技巧：</strong>使用"沉浸式翻译"浏览器插件或其他翻译工具，在输入框内直接将中文转换为英文描述。连续敲击三次空格可以自动把对话框中的中文描述翻译成英文。</p>
+                                </div>
+                                <div class="image-container-16-9" style="margin-top: 20px;">
+                                    <div class="image-container-16-9-content">
+                                        <img src="images/image5.png" alt="翻译功能" style="width: 100%; height: 100%; object-fit: contain;">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="grid-2" style="margin-top: 30px;">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-music neon-text-purple"></i> 积分消耗规则</h4>
+                                    <ul>
+                                        <li>每次点击 <strong>Create</strong>：扣 10 积分</li>
+                                        <li>生成 2 首版本（结果可对比选择）</li>
+                                    </ul>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-guitar neon-text-pink"></i> Instrumental 按钮</h4>
+                                    <ul>
+                                        <li>开启 → 只生成纯音乐</li>
+                                        <li>关闭 → 带歌词 & 演唱</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: 自定义模式入门 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎛️ 四、自定义模式（Custom）入门</h2>
+                            <h3>1. 自定义模式入口与结构</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                在创作页面中，切换到 "Custom" 即可进入自定义模式。该模式通常包含几个关键区域：
+                            </p>
+
+                            <ul style="margin: 20px 0;">
+                                <li><strong class="neon-text-cyan">歌曲标题（Title）</strong>：用于标记作品名称，方便在多版本中进行识别与管理</li>
+                                <li><strong class="neon-text-purple">歌词输入区</strong>：可以输入完整的歌词文本，也可以使用平台的自动写词功能生成初稿</li>
+                                <li><strong class="neon-text-pink">音乐风格（Style）输入区域</strong>：通过标签组合描述总体风格，比如流派、情绪、节奏感、人声类型等</li>
+                                <li><strong style="color: var(--neon-yellow);">Instrumental 开关</strong>：控制是否保留人声部分，与简单模式作用一致</li>
+                                <li><strong class="neon-text-cyan">更多选项（More Options）</strong>：通常包含排除风格元素、角色选择、语言偏好等高级设置</li>
+                            </ul>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                自定义模式将"文本提示"与"音乐结果"之间的映射关系显式化，创作者可以在一次次生成与修改中建立对各参数的直觉。
+                            </p>
+
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image6.png" alt="自定义模式界面" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: 写歌词的两种方式 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 写歌词的两种方式</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>手动编写歌词</h4>
+                                    <p>手写歌词适用于已经明确主题、故事线和用词风格的创作情境。创作者可以生成多段 Verse、Chorus 与 Bridge，结合前期学习的结构标签来组织文本。</p>
+                                    <p style="margin-top: 15px;"><strong class="neon-text-cyan">优势：</strong>叙事与表达的可控性较强，可以精确传达某一故事、人物关系、情绪变化或价值主张。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>使用内置大模型自动写词</h4>
+                                    <p>在歌词框中输入一段自然语言描述，例如"写一首关于雨夜重新振作的中文歌词"，系统会调用内置语言模型，生成与描述相匹配的歌词文本。</p>
+                                    <p style="margin-top: 15px;"><strong class="neon-text-purple">特点：</strong>自动写词通常包含多个段落、押韵结构与情绪递进，能够快速提供一份可用的歌词草稿。</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <h4 class="neon-text-pink">💡 推荐工作流</h4>
+                                <p>先利用自动写词功能生成初稿，然后通过手动修改强化关键句、调整意象与节奏，使歌词既拥有模型的快速构思能力，又保留创作者的个人审美与经验判断。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: By line 改词功能 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>3. 局部改词：By line 功能</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>选中需要修改的段落</h4>
+                                    <p>选中大括号中的某一小段 → 点击 <strong class="neon-text-cyan">By line</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>输入修改方向</h4>
+                                    <p>比如"更痛一点""更温柔一点"等描述</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>保存修改</h4>
+                                    <p>模型重写该段 → <strong class="neon-text-purple">Save change</strong> 生效</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: 音乐风格标签 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>4. 音乐风格标签与排除标签</h3>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-plus-circle neon-text-cyan"></i> 在 Style 中指定风格</h4>
+                                    <ul>
+                                        <li>流派：pop, R&B, acoustic, cinematic</li>
+                                        <li>人声：male vocal / female vocal / duet</li>
+                                        <li>年代：90s, 80s retro</li>
+                                        <li>情绪：melancholic, uplifting, dark</li>
+                                    </ul>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-minus-circle neon-text-pink"></i> 在「排除」框中</h4>
+                                    <ul>
+                                        <li>写入不想要的元素：</li>
+                                        <li>drums（鼓）</li>
+                                        <li>distorted guitar（失真吉他）</li>
+                                        <li>EDM 等</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-purple">⚠️ 重要提示</h4>
+                                <p>这些标签<strong class="neon-text-pink">提高"生成概率"，不是 100% 强制约束</strong>，会有 10% 左右"抽到意外"的情况（类似抽卡）。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 14: 复用提示词 -->
+            <section class="section-scroll-item" data-section="14">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>5. 复用提示词：Reuse Prompt</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>找到喜欢的歌曲</h4>
+                                    <p>在喜欢的一首歌上点击 <strong class="neon-text-cyan">三个点 → Create → Reuse Prompt</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>自动填充</h4>
+                                    <p>自动把这首歌的 <strong class="neon-text-purple">歌词 + 风格</strong> 填回创作页</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>微调创作</h4>
+                                    <p>用途：在原来基础上微调 / 重新生成不同版本</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 15: 续写功能 -->
+            <section class="section-scroll-item" data-section="15">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">➕ 五、续写功能</h2>
+                            <h3>1. 续写功能的用途</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                对已有歌曲<strong class="neon-text-cyan">在某个时间点之后继续往后写</strong>：
+                            </p>
+                            <ul>
+                                <li>让歌曲变长</li>
+                                <li>改掉后半段的人声/歌词/风格（比如把后半段女声改成男声）</li>
+                            </ul>
+
+                            <div class="image-container-16-9">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image7.png" alt="续写功能" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 16: 续写操作思路 -->
+            <section class="section-scroll-item" data-section="16">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 操作思路（讲解 + 演示）</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>进入续写模式</h4>
+                                    <p>找到要续写的歌 → 点击三个点 → Create → Extend</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>选择保留时间点</h4>
+                                    <p>选择保留到哪一秒（例如 00:27）</p>
+                                    <ul>
+                                        <li>可手动输入时间</li>
+                                        <li>注意是英文分号</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>删除已唱歌词</h4>
+                                    <p>把已经唱完的歌词段落从歌词框中删除，避免"又唱一遍第一段"</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>填写新歌词</h4>
+                                    <p>填写想要的新歌词/描写 → 生成新的 Part 2</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>合并完整歌曲</h4>
+                                    <p>满意后 → 在 Part 2 上点击三个点 → Create → Get Both Song</p>
+                                    <ul>
+                                        <li>合并为完整一首歌</li>
+                                        <li><strong class="neon-text-cyan">这步不消耗积分</strong></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-purple">📝 补充规则说明</h4>
+                                <ul>
+                                    <li>单次续写最长约2分钟</li>
+                                    <li>可对 Part 2 再续写，理论上可生成十几分钟长歌</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 17: 局部编辑 -->
+            <section class="section-scroll-item" data-section="17">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">✂️ 六、局部编辑</h2>
+                            <h3>1. 功能定位与适用情况</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                局部编辑功能用于只修改歌曲中的某一小段，而保持其余部分不变。与续写功能相比，局部编辑更像是对现有作品的一种"局部重绘"：
+                            </p>
+
+                            <ul>
+                                <li>当整首歌整体风格满意，仅对某一段的旋律、人声性别或歌词不满意时，可以使用局部编辑</li>
+                                <li>当希望在某一部分尝试多种不同版本，如不同情绪强度、不同语言或不同和声结构时，也可通过局部编辑进行快速试验</li>
+                            </ul>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                这种细粒度修改方式在项目制作中非常实用，能够避免从头生成整首歌的重复工作。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 18: 局部编辑进入方式 -->
+            <section class="section-scroll-item" data-section="18">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 局部编辑的进入方式</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                通常可以通过两种方式进入局部编辑界面：
+                            </p>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-edit neon-text-cyan"></i> 方式一</h4>
+                                    <p>在歌曲详情或播放区域直接点击"<strong>Edit</strong>"按钮</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-ellipsis-v neon-text-purple"></i> 方式二</h4>
+                                    <p>通过歌曲卡片上的"<strong>三个点</strong>"菜单，依次选择"Song Edit → Repeat Session"等选项进入</p>
+                                </div>
+                            </div>
+
+                            <div class="image-container-16-9" style="margin-top: 30px;">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image8.png" alt="局部编辑界面" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                进入局部编辑后，界面通常呈现为带有分段标记的波形或区块列表，每一段对应歌曲中的一个结构单元，如 Verse 1、Verse 2、Chorus 等。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 19: 局部编辑核心操作 -->
+            <section class="section-scroll-item" data-section="19">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>3. 局部编辑的核心操作逻辑</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>选择需要修改的区段</h4>
+                                    <p>在分段视图中，选择目标区段（例如 Verse 1）。有些系统会自动标注区段名称，提示对应的是主歌、副歌或桥段。</p>
+                                    <p style="margin-top: 10px;">也有部分界面允许手动设置时间区间，通过拖动起始与结束节点来划定需要编辑的范围。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>调整风格与人声设置</h4>
+                                    <p>在选定区段后，可以在风格栏中输入新的标签，例如添加 female vocal，将原本的男声主唱段改为女声。</p>
+                                    <p style="margin-top: 10px;">也可以改变情绪标签或配器密度，如从清淡编制改为更加厚重的摇滚伴奏。生成结果将仅在该区段生效，其他段落保持原样。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>修改局部歌词内容</h4>
+                                    <p>若某一段歌词内容需要修改，可以在歌词文本中找到对应句子，将其替换为新文本。在某些版本中，可以取消"持续时间"限制，使系统更自由地在时值上适配新歌词。</p>
+                                    <p style="margin-top: 10px;">修改完成后，点击生成，系统将在该区段内重新演唱新歌词，同时尝试保持与前后段落在音色与混音上的连续性。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4>应用与对比</h4>
+                                    <p>当新版本生成完成后，一般会提供试听功能。若结果满意，可以点击"Apply"或类似按钮，将该版本应用到整首歌曲中，替换原有区段。</p>
+                                    <p style="margin-top: 10px;">在应用前，保留原版本与新版本的对比是一个重要步骤，有助于检验局部修改是否提升了整体表现力。</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">5</div>
+                                <div class="step-content">
+                                    <h4>与创作页面联动</h4>
+                                    <p>局部编辑完成并应用后，返回创建页面或作品详情，可以看到整体歌曲已更新为新的组合版本。此时可进一步通过续写或角色功能进行后续加工。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 20: 角色功能介绍 -->
+            <section class="section-scroll-item" data-section="20">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">👤 七、角色功能介绍</h2>
+                            <h3>1. 角色（Person）是什么？</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                角色功能可以理解为在 Suno 中为某一类"声音形象"建立一个可复用的模版。该模版往往包含下列特征的组合：
+                            </p>
+
+                            <ul>
+                                <li>固定或相对稳定的演唱音色与发声习惯</li>
+                                <li>相似的旋律构造与节奏偏好</li>
+                                <li>一致或相近的混响与空间感设置</li>
+                                <li>某种统一的风格倾向，如"温柔女声抒情风""低沉男声城市流行"等</li>
+                            </ul>
+
+                            <div class="highlight-box">
+                                <h4 class="neon-text-cyan">💡 角色功能的作用</h4>
+                                <ul>
+                                    <li>对同一虚拟歌手进行多首歌曲的系列创作</li>
+                                    <li>在保持音色与旋律特点的前提下，通过更换歌词与风格标签实现内容多样化</li>
+                                    <li>为项目建立统一的声音 IP，例如游戏角色主题、虚拟主播专辑等</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 21: 创建角色的流程 -->
+            <section class="section-scroll-item" data-section="21">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>2. 创建角色的流程</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>选择基础歌曲</h4>
+                                    <p>选中一首满意的歌 → 三个点 → Create → Make Personal</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>填写角色信息</h4>
+                                    <ul>
+                                        <li>角色名字（如"爱的拼图·女生"）</li>
+                                        <li>封面图（可选）</li>
+                                        <li>描述文案（可选）</li>
+                                        <li>是否公开给其他人使用</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>保存角色</h4>
+                                    <p>保存后：系统会自动给这首歌勾选该角色</p>
+                                </div>
+                            </div>
+
+                            <div class="image-container-16-9" style="margin-top: 30px;">
+                                <div class="image-container-16-9-content">
+                                    <img src="images/image9.png" alt="创建角色" style="width: 100%; height: 100%; object-fit: contain;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 22: 使用角色创作 -->
+            <section class="section-scroll-item" data-section="22">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>3. 使用角色创作</h3>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>选择角色</h4>
+                                    <p>在新歌的"更多选项"里选择 <strong class="neon-text-cyan">Add Personal</strong> → 选中刚创建的角色</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>编辑歌词并生成</h4>
+                                    <p>再编辑歌词 → 生成</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <h4 class="neon-text-purple">✨ 效果说明</h4>
+                                <ul>
+                                    <li>保留原有音色、旋律骨架</li>
+                                    <li>只做细微内容变体（如歌词变化）</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、登录与账号</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">(一) 访问与登录</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">(二) 登录问题</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">(三) 积分机制</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">(四) 版权概念</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">二、主页认识</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">(一) 主页区域</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">(二) 教学用途</button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">三、创作页面</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">(一) 进入创作页</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">(二) 两种模式</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">(三) 简单模式</button>
+                    <button class="nav-item" onclick="courseScrollToSection(10)">四、自定义模式</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">(一) 模式结构</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">(二) 写歌词方式</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(12)">(三) By line改词</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">(四) 风格标签</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(14)">(五) 复用提示词</button>
+                    <button class="nav-item" onclick="courseScrollToSection(15)">五、续写功能</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(15)">(一) 功能用途</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(16)">(二) 操作思路</button>
+                    <button class="nav-item" onclick="courseScrollToSection(17)">六、局部编辑</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(17)">(一) 功能定位</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(18)">(二) 进入方式</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(19)">(三) 核心操作</button>
+                    <button class="nav-item" onclick="courseScrollToSection(20)">七、角色功能</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(20)">(一) 角色介绍</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(21)">(二) 创建流程</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(22)">(三) 使用创作</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 0: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">完成 Suno AI 音乐创作实践</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 基础操作 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">一、基础操作</h2>
+
+                                <div class="step-container" style="margin-top: 30px;">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>生成一首歌</h4>
+                                        <p>用简单模式或自定义模式完成一次"提示词 → 生成 → 保存"的完整流程。</p>
+                                        <p style="margin-top: 15px; color: var(--neon-yellow);"><strong>提交要求：</strong>截图：创作页 + 生成结果。</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>浏览主页</h4>
+                                        <p>找 2～3 首你喜欢的作品，查看它们的提示词。</p>
+                                        <p style="margin-top: 15px;">写一句话：提示词与听感是否一致。</p>
+                                        <p style="margin-top: 15px; color: var(--neon-yellow);"><strong>提交要求：</strong>截图：作品详情。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: 自定义模式练习 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">二、自定义模式练习</h2>
+
+                                <div class="step-container" style="margin-top: 30px;">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h4>自动写词</h4>
+                                        <p>在歌词框输入一句描述，生成歌词。</p>
+                                        <p style="margin-top: 15px; color: var(--neon-yellow);"><strong>提交要求：</strong>截图：自动生成的歌词。</p>
+                                    </div>
+                                </div>
+
+                                <div class="step-container">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h4>By Line 改词</h4>
+                                        <p>修改一小段歌词（如"更温柔一点"）。</p>
+                                        <p style="margin-top: 15px; color: var(--neon-yellow);"><strong>提交要求：</strong>截图：改前和改后。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 Suno AI 音乐创作教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 图片灯箱 -->
+    <div class="lightbox" id="lightbox">
+        <div class="lightbox-close" id="lightboxClose">
+            <i class="fas fa-times"></i>
+        </div>
+        <div class="lightbox-controls">
+            <button class="lightbox-zoom-in" id="zoomIn">
+                <i class="fas fa-search-plus"></i>
+            </button>
+            <button class="lightbox-zoom-out" id="zoomOut">
+                <i class="fas fa-search-minus"></i>
+            </button>
+            <button class="lightbox-reset" id="zoomReset">
+                <i class="fas fa-compress"></i>
+            </button>
+        </div>
+        <div class="lightbox-content" id="lightboxContent">
+            <img src="" alt="" id="lightboxImage">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
