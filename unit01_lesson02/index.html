@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>如何通过提示词让你的AI听话 | AI协作教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">AI提示词教学</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程内容</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero 区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>如何通过提示词让你的AI听话</h1>
+                    <p class="subtitle">掌握AI协作的核心技巧 | 从零开始学习提示词工程</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程简介 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 课程简介</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200);">
+                                人工智能的发展正在改变人类的工作、学习与思考方式，而<strong class="neon-text-cyan">提示词（Prompt）</strong>则是这一变革的核心工具。
+                                提示词并非简单的"指令输入"，而是一种人机之间的沟通语言。
+                            </p>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200); margin-top: 20px;">
+                                它决定了AI能否理解任务、能否输出高质量内容、能否实现"听话"的行为表现。
+                                本课程旨在系统阐释提示词的本质、结构与使用方法，帮助学习者掌握让AI稳定、高效执行复杂任务的核心技巧。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 学习目标</h2>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-lightbulb neon-text-cyan"></i>
+                                    <h4>理解提示词的本质</h4>
+                                    <p>掌握提示词作为人机沟通桥梁的核心价值</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-puzzle-piece neon-text-purple"></i>
+                                    <h4>掌握四大构成要素</h4>
+                                    <p>学会使用R-T-C-F框架构建高质量提示词</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-code neon-text-pink"></i>
+                                    <h4>提升实践能力</h4>
+                                    <p>通过案例学习优化提示词的实用技巧</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程内容页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero 区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程内容</h1>
+                    <p class="subtitle">深入学习提示词的核心知识与实践技巧</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 板块二：提示词的概念与作用 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">💡 提示词的概念与作用</h2>
+                            <h3>（一）导入活动：让AI"读懂情绪"</h3>
+                            <div class="content-card">
+                                <p><strong class="neon-text-cyan">课堂互动：</strong>请学员输入一句话（如"今天的课程让我有点期待"），让AI判断这句话的情感倾向，模型会输出"是"或"不是"（积极/消极）。</p>
+                                <div class="highlight-box" style="margin-top: 20px;">
+                                    <p><strong>结果：</strong>通过这个小练习，让学员直观感受到：<strong class="neon-text-pink">AI能"理解"人类语言并作出反应，是因为它在识别提示中的线索。</strong></p>
+                                </div>
+                            </div>
+
+                            <!-- 情感识别示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 300">
+                                    <!-- 用户输入 -->
+                                    <rect x="50" y="100" width="200" height="80" rx="10" class="diagram-box" />
+                                    <text x="150" y="135" class="diagram-text-title">用户输入</text>
+                                    <text x="150" y="160" class="diagram-text-content">"今天的课程让我有点期待"</text>
+
+                                    <!-- 箭头 -->
+                                    <path d="M 250 140 L 320 140" class="diagram-arrow" marker-end="url(#arrowhead)" />
+
+                                    <!-- AI处理 -->
+                                    <rect x="320" y="100" width="180" height="80" rx="10" class="diagram-box-ai" />
+                                    <text x="410" y="135" class="diagram-text-title">AI识别情感线索</text>
+                                    <text x="410" y="160" class="diagram-text-small">"期待" → 积极情绪</text>
+
+                                    <!-- 箭头 -->
+                                    <path d="M 500 140 L 570 140" class="diagram-arrow" marker-end="url(#arrowhead)" />
+
+                                    <!-- 输出结果 -->
+                                    <rect x="570" y="100" width="180" height="80" rx="10" class="diagram-box-result" />
+                                    <text x="660" y="135" class="diagram-text-title">输出结果</text>
+                                    <text x="660" y="160" class="diagram-text-content">积极情绪 ✓</text>
+
+                                    <!-- 箭头标记定义 -->
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" />
+                                        </marker>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 提示词的定义 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）提示词的定义</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8;">
+                                提示词（Prompt）是输入给人工智能模型的一段文本或多模态信息，用于明确任务、传达意图、约束输出。它是AI生成内容的直接驱动力。
+                                提示词包含<strong class="neon-text-cyan">目标描述</strong>、<strong class="neon-text-purple">操作指令</strong>、
+                                <strong class="neon-text-pink">情境信息</strong>与<strong style="color: var(--neon-yellow);">结果要求</strong>等要素。
+                            </p>
+
+                            <h4 style="margin-top: 30px;">在语言模型中，提示词起到双重作用：</h4>
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-signal neon-text-cyan"></i> 输入信号作用</h4>
+                                    <p>帮助模型理解任务边界和语义意图</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-sliders-h neon-text-purple"></i> 输出控制作用</h4>
+                                    <p>引导模型生成符合特定格式、语气与逻辑的结果</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p><strong>从技术角度看：</strong>提示词是语言模型与人类沟通的"协议"</p>
+                                <p style="margin-top: 10px;"><strong>从应用角度看：</strong>它是将人类的模糊需求转化为机器可执行逻辑的桥梁</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 提示词的核心价值 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）提示词的核心价值</h3>
+
+                            <!-- 价值示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 560">
+                                    <!-- 中心圆 -->
+                                    <circle cx="400" cy="200" r="80" class="diagram-circle-center" />
+                                    <text x="400" y="195" class="diagram-text-title">提示词</text>
+                                    <text x="400" y="215" class="diagram-text-small">Prompt</text>
+
+                                    <!-- 价值1：沟通桥梁 -->
+                                    <circle cx="200" cy="100" r="70" class="diagram-circle-value" />
+                                    <text x="200" y="95" class="diagram-text-title">沟通桥梁</text>
+                                    <text x="200" y="115" class="diagram-text-small">消除人机鸿沟</text>
+                                    <path d="M 330 160 L 260 130" class="diagram-line" />
+
+                                    <!-- 价值2：控制工具 -->
+                                    <circle cx="600" cy="100" r="70" class="diagram-circle-value" />
+                                    <text x="600" y="95" class="diagram-text-title">控制工具</text>
+                                    <text x="600" y="115" class="diagram-text-small">实现可预测性</text>
+                                    <path d="M 470 160 L 540 130" class="diagram-line" />
+
+                                    <!-- 价值3：思维模板 -->
+                                    <circle cx="400" cy="440" r="70" class="diagram-circle-value" />
+                                    <text x="400" y="435" class="diagram-text-title">思维模板</text>
+                                    <text x="400" y="455" class="diagram-text-small">清晰组织信息</text>
+                                    <path d="M 400 280 L 400 370" class="diagram-line" />
+                                </svg>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 30px;">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 class="neon-text-cyan">沟通桥梁</h4>
+                                    <p>消除人类自然语言与机器逻辑语言之间的鸿沟</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 class="neon-text-purple">控制工具</h4>
+                                    <p>通过结构化表达实现AI输出的可预测性</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 class="neon-text-pink">思维模板</h4>
+                                    <p>在任务拆解与问题分析过程中，帮助人类以更清晰的逻辑组织信息</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块三：提示词的本质 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎲 提示词的本质——人与AI的"满意对赌"</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8;">
+                                提示词的运作机制并非基于精确计算，而是一种<strong class="neon-text-cyan">"对赌式"</strong>的概率协作。
+                                人类提供指令，AI根据训练数据与模型参数<strong class="neon-text-purple">"猜测"</strong>人类的真实意图。
+                                双方都在尝试接近一个"满意"的结果，而非绝对最优解。
+                            </p>
+
+                            <!-- 对赌机制示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 350">
+                                    <!-- 人类侧 -->
+                                    <rect x="50" y="50" width="300" height="250" rx="15" class="diagram-box-human" />
+                                    <text x="200" y="90" class="diagram-text-title-large">人类的"赌注"</text>
+
+                                    <text x="80" y="130" class="diagram-text-item">• 赌AI能否理解任务本质</text>
+                                    <text x="80" y="165" class="diagram-text-item">• 赌AI输出的质量</text>
+                                    <text x="80" y="200" class="diagram-text-item">• 赌AI的理解深度</text>
+
+                                    <text x="200" y="250" class="diagram-text-emoji">🤔</text>
+                                    <text x="200" y="280" class="diagram-text-small">提供清晰指令</text>
+
+                                    <!-- AI侧 -->
+                                    <rect x="450" y="50" width="300" height="250" rx="15" class="diagram-box-ai" />
+                                    <text x="600" y="90" class="diagram-text-title-large">AI的"猜测"</text>
+
+                                    <text x="480" y="130" class="diagram-text-item">• 猜测任务意图</text>
+                                    <text x="480" y="165" class="diagram-text-item">• 平衡创造与风险</text>
+                                    <text x="480" y="200" class="diagram-text-item">• 调整风格与结构</text>
+
+                                    <text x="600" y="250" class="diagram-text-emoji">🤖</text>
+                                    <text x="600" y="280" class="diagram-text-small">概率匹配输出</text>
+
+                                    <!-- 中间箭头 -->
+                                    <path d="M 350 175 L 450 175" class="diagram-arrow-bidirect" marker-end="url(#arrowhead2)" marker-start="url(#arrowstart)" />
+                                    <text x="400" y="165" class="diagram-text-center">协作博弈</text>
+
+                                    <!-- 满意原则 -->
+                                    <rect x="250" y="310" width="300" height="30" rx="15" class="diagram-box-result" />
+                                    <text x="400" y="332" class="diagram-text-center">满意原则：追求"足够好"的答案</text>
+
+                                    <defs>
+                                        <marker id="arrowhead2" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#a855f7" />
+                                        </marker>
+                                        <marker id="arrowstart" markerWidth="10" markerHeight="10" refX="1" refY="3" orient="auto">
+                                            <polygon points="10 0, 0 3, 10 6" fill="#a855f7" />
+                                        </marker>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块四：R-T-C-F 框架 - 总览 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔧 提示词的四大构成要素（R-T-C-F）</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
+                                高质量提示词通常包含<strong class="neon-text-cyan">角色（Role）</strong>、
+                                <strong class="neon-text-purple">任务（Task）</strong>、
+                                <strong class="neon-text-pink">上下文（Context）</strong>、
+                                <strong style="color: var(--neon-yellow);">输出格式（Format）</strong>四个核心部分。
+                                四要素共同构成提示词的逻辑框架，使AI具备理解、推理与表达的完整路径。
+                            </p>
+
+                            <!-- RTCF 框架示意图 -->
+                            <div class="diagram-container">
+                                <svg class="diagram-svg" viewBox="0 0 800 450">
+                                    <!-- 中心框 -->
+                                    <rect x="300" y="180" width="200" height="90" rx="10" class="diagram-box-center" />
+                                    <text x="400" y="215" class="diagram-text-title-large">高质量</text>
+                                    <text x="400" y="240" class="diagram-text-title-large">提示词</text>
+
+                                    <!-- Role -->
+                                    <rect x="80" y="50" width="150" height="100" rx="10" class="diagram-box-role" />
+                                    <text x="155" y="85" class="diagram-text-title">Role</text>
+                                    <text x="155" y="105" class="diagram-text-content">角色设定</text>
+                                    <text x="155" y="125" class="diagram-text-small">确定AI身份</text>
+                                    <path d="M 230 100 L 295 195" class="diagram-line" />
+
+                                    <!-- Task -->
+                                    <rect x="570" y="50" width="150" height="100" rx="10" class="diagram-box-task" />
+                                    <text x="645" y="85" class="diagram-text-title">Task</text>
+                                    <text x="645" y="105" class="diagram-text-content">任务指令</text>
+                                    <text x="645" y="125" class="diagram-text-small">明确操作要求</text>
+                                    <path d="M 570 100 L 505 195" class="diagram-line" />
+
+                                    <!-- Context -->
+                                    <rect x="80" y="300" width="150" height="100" rx="10" class="diagram-box-context" />
+                                    <text x="155" y="335" class="diagram-text-title">Context</text>
+                                    <text x="155" y="355" class="diagram-text-content">上下文</text>
+                                    <text x="155" y="375" class="diagram-text-small">提供背景信息</text>
+                                    <path d="M 230 350 L 295 275" class="diagram-line" />
+
+                                    <!-- Format -->
+                                    <rect x="570" y="300" width="150" height="100" rx="10" class="diagram-box-format" />
+                                    <text x="645" y="335" class="diagram-text-title">Format</text>
+                                    <text x="645" y="355" class="diagram-text-content">输出格式</text>
+                                    <text x="645" y="375" class="diagram-text-small">约束结果形态</text>
+                                    <path d="M 570 350 L 505 275" class="diagram-line" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Role：角色设定 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-user-tie neon-text-cyan"></i> Role：角色设定——确定AI的身份与视角</h3>
+
+                            <h4>1. 概念与意义</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.8;">
+                                角色设定是为AI定义一个明确身份，使其从特定立场与专业背景生成内容。角色赋予AI"思维方式"和"语言风格"，让输出更符合人类预期。
+                            </p>
+
+                            <h4>2. 典型应用场景</h4>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-graduation-cap neon-text-cyan"></i> 教育</h4>
+                                    <p>让AI以"历史教师"的角色讲解历史事件</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-briefcase neon-text-purple"></i> 职场</h4>
+                                    <p>让AI以"品牌策划师"的角色撰写市场报告</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-code neon-text-pink"></i> 技术研发</h4>
+                                    <p>让AI以"软件测试工程师"的角色分析代码缺陷</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Role案例分析 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4>3. 案例分析：健身计划对比</h4>
+
+                            <div class="comparison-container">
+                                <!-- 无角色设定 -->
+                                <div class="comparison-box comparison-bad">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-times-circle"></i>
+                                        <h4>无角色设定</h4>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p><strong>提示词：</strong></p>
+                                        <p class="prompt-text">我想开始健身，目标是增肌和提升力量。我现在是新手，每周能锻炼3天。请给我一个健身计划。</p>
+
+                                        <p><strong>输出结果：</strong></p>
+                                        <p>模型会生成一份标准化的训练表格，如"周一练胸、周三练背、周五练腿"，包含常规的动作与组数。</p>
+
+                                        <p><strong>问题：</strong></p>
+                                        <ul>
+                                            <li>缺乏个性化建议与安全说明</li>
+                                            <li>没有根据"新手"特征调整动作难度</li>
+                                            <li>没有提及热身、营养和恢复</li>
+                                            <li>整体看起来像健身APP的模板内容</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!-- 有角色设定 -->
+                                <div class="comparison-box comparison-good">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-check-circle"></i>
+                                        <h4>有角色设定</h4>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p><strong>提示词：</strong></p>
+                                        <p class="prompt-text">你是一位资深的私人健身教练，擅长为新手制定安全、有效且易于坚持的训练方案。我想开始健身，目标是增肌和提升力量。我现在是新手，之前没有系统健身经验，每周能锻炼3天。请为我量身打造一个初阶的全身性健身计划。</p>
+
+                                        <p><strong>输出结果：</strong></p>
+                                        <p>模型的语气立刻转变为更具亲和力的"教练口吻"，并在计划中加入动态热身、核心动作替代方案、渐进超负荷原则，以及训练后拉伸与营养建议等内容。</p>
+
+                                        <p><strong>优势：</strong></p>
+                                        <ul>
+                                            <li>强调"重量宁轻勿重"</li>
+                                            <li>"每次训练后静态拉伸5分钟"</li>
+                                            <li>"保证充足睡眠以促进肌肉恢复"</li>
+                                            <li>输出既专业又有人情味</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p><strong>💡 总结：</strong>明确的角色设定能将AI从一个"信息检索工具"转变为一个"专业的合作伙伴"，极大地提升了生成内容的质量、适用性和用户体验。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Task：任务指令 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-tasks neon-text-purple"></i> Task：任务指令——明确目标与操作要求</h3>
+
+                            <h4>1. 概念与功能</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.8;">
+                                指令是提示词的核心，直接决定了 LLM 的行为。越清晰具体的指令，LLM 越能生成符合预期的输出。
+                            </p>
+
+                            <h4>2. 任务表达原则</h4>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-bullseye neon-text-cyan"></i> 具体化</h4>
+                                    <p>避免笼统词语，如"写一篇文章"，应指明主题、风格、长度</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-cogs neon-text-purple"></i> 可操作化</h4>
+                                    <p>指令要能转化为可执行的步骤</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-flag-checkered neon-text-pink"></i> 结果导向</h4>
+                                    <p>关注输出形态，如"以表格形式展示"、"生成三种方案比较"</p>
+                                </div>
+                            </div>
+
+                            <h4>3. 案例分析：俄罗斯方块游戏</h4>
+
+                            <div class="comparison-container">
+                                <div class="comparison-box comparison-bad">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-times-circle"></i>
+                                        <h4>提示词模糊</h4>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p class="prompt-text">写一个俄罗斯方块的小游戏。</p>
+                                        <p><strong>结果：</strong>生成了一个俄罗斯方块的游戏，可运行，但界面简陋，仅包含基本的方块下落、移动和消除行功能，缺乏计分、下一块预览等元素，整体体验"勉强能玩"。</p>
+                                    </div>
+                                </div>
+
+                                <div class="comparison-box comparison-good">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-check-circle"></i>
+                                        <h4>提示词清晰具体</h4>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p class="prompt-text">编写一个俄罗斯方块游戏，包含以下功能：生成随机方块、方块移动（左右和快速下落）、方块旋转、消除完整行并计分、游戏结束判定、下一块预览、开始/暂停/重置按钮。界面设计要美观，使用现代美术风格进行设计，确保响应式布局和动画效果。</p>
+                                        <p><strong>结果：</strong>模型生成了一个网页版的俄罗斯方块游戏。该游戏具备完整的游戏逻辑和交互功能，包括实时计分、下一块预览、平滑动画和现代风格的界面，用户可以通过按钮或键盘控制游戏，整体体验流畅且视觉美观。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Context：上下文 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-project-diagram neon-text-pink"></i> Context：上下文——让模型知道"在什么情境下写"</h3>
+
+                            <h4>1. 概念说明</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.8;">
+                                上下文指任务所处的背景信息，包括<strong class="neon-text-cyan">目的、受众、场景、使用载体、已发生的对话内容</strong>等。
+                                模型并不会自动理解你的意图，它依赖上下文来判断应该"如何写"。
+                            </p>
+
+                            <h4>2. 为什么需要上下文</h4>
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>减少猜测</h4>
+                                    <p>明确告诉模型写给谁、用在什么场景，它才能避免生成"通用模板式内容"</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>保证一致性</h4>
+                                    <p>同一主题在多次输出中保持语气、角色一致</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>提升准确度</h4>
+                                    <p>提供细节信息，使内容更贴近真实需求，而不是泛泛表达</p>
+                                </div>
+                            </div>
+
+                            <h4>3. 示例对比</h4>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>提示方式</th>
+                                            <th>说明</th>
+                                            <th>模型输出质量</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>无上下文</strong></td>
+                                            <td>"给我 9 个活动名称。"<br>模型只能凭经验猜测场景</td>
+                                            <td>名称普通、缺乏针对性</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>有上下文</strong></td>
+                                            <td>"我们在为本地农产品做推广，主题是'乡村振兴'，受众是城市青年，希望名称更有地域感与温暖感，请提供 9 个方案。"</td>
+                                            <td>输出更贴合需求、可直接使用</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 20px;">
+                                <p><strong>结论：</strong>上下文越清楚，生成的内容就越接近你的需求。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Format：输出格式 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-file-code" style="color: var(--neon-yellow);"></i> Format：输出格式——约束结果形态与风格</h3>
+
+                            <h4>1. 概念与分类</h4>
+                            <p style="font-size: 1.1rem; line-height: 1.8;">
+                                输出格式决定AI呈现结果的结构、样式与语言规范。明确的格式要求可避免随机输出，提高可复现性。
+                            </p>
+
+                            <h4>2. 常见类型</h4>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>格式类型</th>
+                                            <th>应用场景</th>
+                                            <th>示例说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>结构化输出</strong></td>
+                                            <td>数据处理、程序开发</td>
+                                            <td>JSON、YAML、SQL、表格等</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>半结构化输出</strong></td>
+                                            <td>教学讲解、报告撰写</td>
+                                            <td>Markdown格式、分标题文本</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>非结构化输出</strong></td>
+                                            <td>创意写作、广告文案</td>
+                                            <td>自由文本、诗歌、故事</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4>3. 格式约束举例</h4>
+                            <ul>
+                                <li>"请用表格展示三种营销方案的比较。"</li>
+                                <li>"输出内容需包含标题、副标题与结论部分。"</li>
+                                <li>"生成的回答应以Markdown结构输出。"</li>
+                            </ul>
+
+                            <div class="highlight-box" style="margin-top: 20px;">
+                                <p><strong>💡 格式控制的意义：</strong>在跨场景任务中，格式控制不仅保证信息完整，还便于后续处理。例如，结构化输出能直接被读取为数据库输入；Markdown格式可直接用于网页展示。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块五：提示词优化原则 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚡ 提示词优化与规范书写原则</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px;">
+                                高质量提示词不仅要包含核心要素，还需在语言、结构与逻辑上体现出规范性与稳定性。
+                            </p>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-crosshairs neon-text-cyan"></i> 明确具体</h4>
+                                    <p>任务描述应清晰且无歧义，避免模糊词汇。通过限定对象、范围、标准等信息，让AI输出更聚焦。</p>
+                                    <div class="example-box">
+                                        <p><strong>不良示例：</strong>写一篇关于环境保护的文章。</p>
+                                        <p><strong>改进示例：</strong>写一篇800字的议论文，主题为"城市生活中的绿色消费"，要求包含三个现实案例与总结建议。</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-sitemap neon-text-purple"></i> 结构清晰</h4>
+                                    <p>良好的结构有助于AI理解任务层次。提示词应采用编号、分点或标题方式组织信息。</p>
+                                    <div class="example-box">
+                                        <p><strong>示例：</strong></p>
+                                        <p>任务目标：<br>
+                                        1. 生成三种产品命名方案；<br>
+                                        2. 每种方案包含命名逻辑与应用场景；<br>
+                                        3. 以Markdown格式输出。</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-ruler neon-text-pink"></i> 可量化的标准</h4>
+                                    <p>提示词应具备可量化标准，使结果在不同时间与模型中具有一致性。例如，指定输出字数、格式、语言风格等。</p>
+                                    <div class="example-box">
+                                        <p><strong>示例：</strong>"生成5个品牌口号，每个不超过12个汉字，语气需积极正向。"</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-palette" style="color: var(--neon-yellow);"></i> 格式可控</h4>
+                                    <p>控制输出格式可确保内容适应展示平台与使用场景。</p>
+                                    <div class="example-box">
+                                        <p>• 对于课件或报告生成任务，建议使用Markdown或表格；</p>
+                                        <p>• 对于开发类任务，建议使用JSON或YAML格式。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 完整案例：小红书文案 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📝 完整案例：小红书风格新品饮品文案</h2>
+
+                            <h4>1. 初始需求（常见原始表达）</h4>
+                            <div class="content-card">
+                                <p class="prompt-text">帮我写一篇新品饮料的小红书文案。</p>
+                                <p><strong>问题分析：</strong>该提示词缺少：</p>
+                                <ul>
+                                    <li>受众是谁？</li>
+                                    <li>饮品有什么特点？</li>
+                                    <li>要采用什么具体表达风格？</li>
+                                    <li>文案结构应如何展开？</li>
+                                </ul>
+                                <p>模型只能默认生成<strong class="neon-text-pink">通用、空泛、堆形容词</strong>的内容。</p>
+                            </div>
+
+                            <h4>2. 补充信息：把抽象需求变清晰</h4>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>要素</th>
+                                            <th>说明</th>
+                                            <th>示例填写</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>产品信息</td>
+                                            <td>写什么</td>
+                                            <td>柠香乌龙气泡茶，新品</td>
+                                        </tr>
+                                        <tr>
+                                            <td>受众</td>
+                                            <td>写给谁</td>
+                                            <td>小红书平台、年轻女性用户</td>
+                                        </tr>
+                                        <tr>
+                                            <td>场景</td>
+                                            <td>会在哪看到/用来干什么</td>
+                                            <td>社媒种草文，激发尝试欲</td>
+                                        </tr>
+                                        <tr>
+                                            <td>风格</td>
+                                            <td>语言气质</td>
+                                            <td>轻松自然、有生活画面感</td>
+                                        </tr>
+                                        <tr>
+                                            <td>结构</td>
+                                            <td>文案组织方式</td>
+                                            <td>第一口感觉 → 场景联想 → 推荐理由 → 标签</td>
+                                        </tr>
+                                        <tr>
+                                            <td>避免</td>
+                                            <td>禁止出现的表达</td>
+                                            <td>营销口号、夸张承诺、硬广腔</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4>3. 形成可直接复用的提示词</h4>
+                            <div class="code-box">
+                                <pre>你现在是生活方式类新媒体创作者，表达真诚自然，偏分享口吻。
+
+请为新品饮品"柠香乌龙气泡茶"撰写一篇小红书风格文案，字数250–350字。
+
+写作要点：
+- 受众：年轻女性
+- 风格：轻快、具画面感，适度使用拟声与感官描写
+- 结构：
+  1）第一口感受
+  2）场景联想（如午后、阳光、朋友聊天）
+  3）3条推荐理由（如清爽不腻、回甘明显、层次感）
+  4）结尾加话题标签
+- 禁止出现：营销口吻（如"限时优惠"）、生硬夸赞、堆叠形容词。</pre>
+                            </div>
+
+                            <h4>4. 提示词生成文案示例</h4>
+                            <div class="result-box">
+                                <h5>这杯"柠香乌龙气泡茶"，是夏天的呼吸感。</h5>
+                                <p>第一口下去是被轻轻点醒的感觉。气泡在舌尖跳开，像把情绪从昏沉里拖出来，乌龙的回甘不是一下子冲上来，而是慢慢从喉咙回暖，带着一点像阳光晒过的柠檬皮香，清爽得刚刚好。</p>
+                                <p>我喜欢把它倒进透明玻璃杯里，看细密气泡沿着杯壁一直往上跑，冰块轻撞出一声脆响，像下午三点的风刚好吹到额前。那一刻会莫名觉得，生活可以被温柔地暂停一下。</p>
+                                <p>推荐它的理由很简单：</p>
+                                <p>（1）不甜腻，喝完不会口干；</p>
+                                <p>（2）乌龙的层次够细，后味很耐听；</p>
+                                <p>（3）情绪疲惫的时候，喝一口真的会"醒"。</p>
+                                <p>如果你也需要一点小小的续航感，可以尝试一下。</p>
+                                <p class="hashtags">#气泡茶 #乌龙控 #夏日小确幸 #清爽不打扰</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块六：总结 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎓 总结——让AI真正"听话"的核心逻辑</h2>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4 class="neon-text-cyan">提示词是AI行为的指令源</h4>
+                                    <p>它定义任务、限定范围、规范输出</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4 class="neon-text-purple">R-T-C-F四要素是构建高质量提示的关键结构</h4>
+                                    <p>角色、任务、上下文、格式缺一不可</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4 class="neon-text-pink">规范书写与上下文优化是实现"听话AI"的技术基础</h4>
+                                    <p>明确、结构、量化、可控是关键原则</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <h4 style="color: var(--neon-yellow);">提示词能力=表达能力+逻辑思维+结构意识</h4>
+                                    <p>这是新时代的核心技能</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px; font-size: 1.2rem;">
+                                <p style="text-align: center;">
+                                    <strong>在人工智能时代，提示词的掌握程度直接决定AI的可控性与生产力。</strong>
+                                </p>
+                                <p style="text-align: center; margin-top: 20px;">
+                                    提示词设计不仅是一项技术技能，更是一种新的"思维语言"，它标志着人机协作进入以语义为核心的智能时代。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item" onclick="courseScrollToSection(1)">提示词的概念</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">导入活动</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">提示词的定义</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">核心价值</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">提示词的本质</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">R-T-C-F框架</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">Role 角色设定</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">Task 任务指令</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">Context 上下文</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">Format 输出格式</button>
+                    <button class="nav-item" onclick="courseScrollToSection(11)">优化原则</button>
+                    <button class="nav-item" onclick="courseScrollToSection(12)">完整案例</button>
+                    <button class="nav-item" onclick="courseScrollToSection(13)">总结</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

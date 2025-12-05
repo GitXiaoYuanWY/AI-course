@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精准控制AI输出的提示词用法 | AI协作课程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">AI提示词课程</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('practice')">实战案例</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>精准控制AI输出的提示词用法</h1>
+                    <p class="subtitle">掌握提示词技巧，让AI真正听话</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 学习目标 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 学习目标</h2>
+
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解提示词的本质与核心价值</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">掌握R-T-C-F四要素结构</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">学会编写高质量提示词</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">提升AI输出的精准度与可控性</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 课程章节 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 课程章节</h2>
+
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">提示词与AI协作的起点</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">提示词的本质——满意对赌</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">R-T-C-F四大构成要素</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">提示词优化与规范书写</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习提示词的核心技巧</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 第一章：提示词与AI协作的起点 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、提示词与AI协作的起点</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200);">
+                                人工智能的发展正在改变人类的工作、学习与思考方式，而<strong class="neon-text-cyan">提示词（Prompt）</strong>则是这一变革的核心工具。
+                            </p>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200); margin-top: 20px;">
+                                提示词并非简单的"指令输入"，而是一种<strong class="neon-text-pink">人机之间的沟通语言</strong>。它决定了AI能否理解任务、能否输出高质量内容、能否实现"听话"的行为表现。
+                            </p>
+
+                            <!-- AI沟通示意图 -->
+                            <div class="diagram-container">
+                                <svg viewBox="0 0 800 300" class="diagram-svg">
+                                    <defs>
+                                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+                                        </linearGradient>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+
+                                    <!-- 人类 -->
+                                    <circle cx="150" cy="150" r="60" fill="none" stroke="url(#grad1)" stroke-width="3" filter="url(#glow)"/>
+                                    <text x="150" y="145" text-anchor="middle" fill="#06b6d4" font-size="24" font-weight="bold">人类</text>
+                                    <text x="150" y="170" text-anchor="middle" fill="#f5f5f5" font-size="16">需求意图</text>
+
+                                    <!-- 提示词 -->
+                                    <rect x="300" y="100" width="200" height="100" rx="10" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2" filter="url(#glow)"/>
+                                    <text x="400" y="140" text-anchor="middle" fill="#eab308" font-size="20" font-weight="bold">提示词</text>
+                                    <text x="400" y="165" text-anchor="middle" fill="#f5f5f5" font-size="14">沟通桥梁</text>
+
+                                    <!-- AI -->
+                                    <circle cx="650" cy="150" r="60" fill="none" stroke="url(#grad1)" stroke-width="3" filter="url(#glow)"/>
+                                    <text x="650" y="145" text-anchor="middle" fill="#a855f7" font-size="24" font-weight="bold">AI</text>
+                                    <text x="650" y="170" text-anchor="middle" fill="#f5f5f5" font-size="16">智能输出</text>
+
+                                    <!-- 箭头 -->
+                                    <path d="M 210 150 L 295 150" stroke="#06b6d4" stroke-width="3" fill="none" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+                                    <path d="M 505 150 L 585 150" stroke="#06b6d4" stroke-width="3" fill="none" marker-end="url(#arrowhead)" filter="url(#glow)"/>
+
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" />
+                                        </marker>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第二章：提示词的概念与作用 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 二、提示词的概念与作用</h2>
+
+                            <h3>（一）提示词的定义</h3>
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; line-height: 1.8;">
+                                    提示词（Prompt）是输入给人工智能模型的一段文本或多模态信息，用于<strong class="neon-text-cyan">明确任务、传达意图、约束输出</strong>。它是AI生成内容的直接驱动力。
+                                </p>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">双重作用</h4>
+                            <div class="grid-2">
+                                <div class="icon-card">
+                                    <i class="fas fa-sign-in-alt neon-text-cyan"></i>
+                                    <h4>输入信号作用</h4>
+                                    <p>帮助模型理解任务边界和语义意图</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-sliders-h neon-text-pink"></i>
+                                    <h4>输出控制作用</h4>
+                                    <p>引导模型生成符合特定格式、语气与逻辑的结果</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第三章：提示词的核心价值 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）提示词的核心价值</h3>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-link neon-text-cyan"></i> 沟通桥梁</h4>
+                                    <p>消除人类自然语言与机器逻辑语言之间的鸿沟</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-cog neon-text-purple"></i> 控制工具</h4>
+                                    <p>通过结构化表达实现AI输出的可预测性</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-brain neon-text-pink"></i> 思维模板</h4>
+                                    <p>帮助人类以更清晰的逻辑组织信息</p>
+                                </div>
+                            </div>
+
+                            <!-- 价值流程图 -->
+                            <div class="diagram-container" style="margin-top: 40px;">
+                                <svg viewBox="0 0 800 200" class="diagram-svg">
+                                    <!-- 三个圆形步骤 -->
+                                    <g>
+                                        <circle cx="150" cy="100" r="50" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="2"/>
+                                        <text x="150" y="105" text-anchor="middle" fill="#06b6d4" font-size="14" font-weight="bold">清晰表达</text>
+                                    </g>
+
+                                    <g>
+                                        <circle cx="400" cy="100" r="50" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2"/>
+                                        <text x="400" y="105" text-anchor="middle" fill="#a855f7" font-size="14" font-weight="bold">精准控制</text>
+                                    </g>
+
+                                    <g>
+                                        <circle cx="650" cy="100" r="50" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2"/>
+                                        <text x="650" y="105" text-anchor="middle" fill="#f43f5e" font-size="14" font-weight="bold">高质输出</text>
+                                    </g>
+
+                                    <!-- 连接箭头 -->
+                                    <path d="M 205 100 L 345 100" stroke="#eab308" stroke-width="2" marker-end="url(#arrow)" fill="none"/>
+                                    <path d="M 455 100 L 595 100" stroke="#eab308" stroke-width="2" marker-end="url(#arrow)" fill="none"/>
+
+                                    <defs>
+                                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#eab308" />
+                                        </marker>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第四章：满意对赌 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎲 三、提示词的本质——满意对赌</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200);">
+                                提示词的运作机制并非基于精确计算，而是一种<strong class="neon-text-pink">"对赌式"的概率协作</strong>。人类提供指令，AI根据训练数据与模型参数"猜测"人类的真实意图。
+                            </p>
+
+                            <!-- 对赌示意图 -->
+                            <div class="diagram-container">
+                                <svg viewBox="0 0 800 400" class="diagram-svg">
+                                    <!-- 人类侧 -->
+                                    <rect x="50" y="50" width="300" height="300" rx="15" fill="rgba(6, 182, 212, 0.1)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="200" y="90" text-anchor="middle" fill="#06b6d4" font-size="24" font-weight="bold">人类的"赌注"</text>
+
+                                    <text x="70" y="140" fill="#f5f5f5" font-size="16">• 赌AI能理解任务本质</text>
+                                    <text x="70" y="180" fill="#f5f5f5" font-size="16">• 赌输出质量符合预期</text>
+                                    <text x="70" y="220" fill="#f5f5f5" font-size="16">• 赌AI的理解深度</text>
+                                    <text x="70" y="260" fill="#f5f5f5" font-size="16">• 赌结果具有创造性</text>
+
+                                    <!-- AI侧 -->
+                                    <rect x="450" y="50" width="300" height="300" rx="15" fill="rgba(168, 85, 247, 0.1)" stroke="#a855f7" stroke-width="2"/>
+                                    <text x="600" y="90" text-anchor="middle" fill="#a855f7" font-size="24" font-weight="bold">AI的"猜测"</text>
+
+                                    <text x="470" y="140" fill="#f5f5f5" font-size="16">• 猜测任务意图</text>
+                                    <text x="470" y="180" fill="#f5f5f5" font-size="16">• 平衡创造与风险</text>
+                                    <text x="470" y="220" fill="#f5f5f5" font-size="16">• 调整风格与结构</text>
+                                    <text x="470" y="260" fill="#f5f5f5" font-size="16">• 匹配最优答案</text>
+
+                                    <!-- 中间箭头和文字 -->
+                                    <path d="M 355 200 L 445 200" stroke="#eab308" stroke-width="3" stroke-dasharray="5,5" fill="none"/>
+                                    <text x="400" y="188" text-anchor="middle" fill="#eab308" font-size="18" font-weight="bold">概率</text>
+                                    <text x="400" y="223" text-anchor="middle" fill="#eab308" font-size="18" font-weight="bold">协作</text>
+                                </svg>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; text-align: center;">
+                                    <strong class="neon-text-yellow">💡 满意原则：</strong>追求"足够好"的答案，而非理论最优。提示词的质量决定了AI输出的上限。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第五章：R-T-C-F四要素介绍 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 四、R-T-C-F四大构成要素</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200); text-align: center;">
+                                高质量提示词通常包含四个核心部分，它们共同构成提示词的逻辑框架
+                            </p>
+
+                            <!-- RTCF结构图 -->
+                            <div class="diagram-container">
+                                <svg viewBox="0 0 800 500" class="diagram-svg">
+                                    <defs>
+                                        <filter id="glow2">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+
+                                    <!-- 中心圆 -->
+                                    <circle cx="400" cy="250" r="80" fill="rgba(234, 179, 8, 0.2)" stroke="#eab308" stroke-width="3" filter="url(#glow2)"/>
+                                    <text x="400" y="245" text-anchor="middle" fill="#eab308" font-size="20" font-weight="bold">高质量</text>
+                                    <text x="400" y="270" text-anchor="middle" fill="#eab308" font-size="20" font-weight="bold">提示词</text>
+
+                                    <!-- Role -->
+                                    <circle cx="200" cy="100" r="60" fill="rgba(6, 182, 212, 0.2)" stroke="#06b6d4" stroke-width="2" filter="url(#glow2)"/>
+                                    <text x="200" y="95" text-anchor="middle" fill="#06b6d4" font-size="24" font-weight="bold">R</text>
+                                    <text x="200" y="115" text-anchor="middle" fill="#f5f5f5" font-size="14">Role</text>
+                                    <text x="200" y="135" text-anchor="middle" fill="#f5f5f5" font-size="14">角色</text>
+                                    <path d="M 248 136 L 336 202" stroke="#06b6d4" stroke-width="2" fill="none"/>
+
+                                    <!-- Task -->
+                                    <circle cx="600" cy="100" r="60" fill="rgba(168, 85, 247, 0.2)" stroke="#a855f7" stroke-width="2" filter="url(#glow2)"/>
+                                    <text x="600" y="95" text-anchor="middle" fill="#a855f7" font-size="24" font-weight="bold">T</text>
+                                    <text x="600" y="115" text-anchor="middle" fill="#f5f5f5" font-size="14">Task</text>
+                                    <text x="600" y="135" text-anchor="middle" fill="#f5f5f5" font-size="14">任务</text>
+                                    <path d="M 552 136 L 464 202" stroke="#a855f7" stroke-width="2" fill="none"/>
+
+                                    <!-- Context -->
+                                    <circle cx="200" cy="400" r="60" fill="rgba(244, 63, 94, 0.2)" stroke="#f43f5e" stroke-width="2" filter="url(#glow2)"/>
+                                    <text x="200" y="395" text-anchor="middle" fill="#f43f5e" font-size="24" font-weight="bold">C</text>
+                                    <text x="200" y="415" text-anchor="middle" fill="#f5f5f5" font-size="14">Context</text>
+                                    <text x="200" y="435" text-anchor="middle" fill="#f5f5f5" font-size="14">上下文</text>
+                                    <path d="M 248 364 L 336 298" stroke="#f43f5e" stroke-width="2" fill="none"/>
+
+                                    <!-- Format -->
+                                    <circle cx="600" cy="400" r="60" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="2" filter="url(#glow2)"/>
+                                    <text x="600" y="395" text-anchor="middle" fill="#22c55e" font-size="24" font-weight="bold">F</text>
+                                    <text x="600" y="415" text-anchor="middle" fill="#f5f5f5" font-size="14">Format</text>
+                                    <text x="600" y="435" text-anchor="middle" fill="#f5f5f5" font-size="14">格式</text>
+                                    <path d="M 552 364 L 464 298" stroke="#22c55e" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Role详解 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-user-circle neon-text-cyan"></i> （一）Role：角色设定</h3>
+                            <h4>确定AI的身份与视角</h4>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;">
+                                    <strong>核心价值：</strong>角色设定为AI定义明确身份，使其从特定立场与专业背景生成内容。角色赋予AI"思维方式"和"语言风格"。
+                                </p>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">典型应用场景</h4>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-graduation-cap"></i> 教育领域</h4>
+                                    <p>让AI以"历史教师"的角色讲解历史事件</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-briefcase"></i> 职场应用</h4>
+                                    <p>让AI以"品牌策划师"的角色撰写市场报告</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-code"></i> 技术研发</h4>
+                                    <p>让AI以"软件测试工程师"的角色分析代码缺陷</p>
+                                </div>
+                            </div>
+
+                            <h4 class="neon-text-cyan" style="margin-top: 30px;">案例对比</h4>
+                            <div class="comparison-container">
+                                <div class="comparison-item bad">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-times-circle"></i>
+                                        <span>无角色设定</span>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p class="prompt-text">我想开始健身，目标是增肌和提升力量。我现在是新手，每周能锻炼3天。请给我一个健身计划。</p>
+                                        <div class="result-tag bad-tag">❌ 标准化模板、缺乏个性化、无安全说明</div>
+                                    </div>
+                                </div>
+
+                                <div class="comparison-item good">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>有角色设定</span>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p class="prompt-text"><strong class="neon-text-cyan">你是一位资深的私人健身教练</strong>，擅长为新手制定安全、有效且易于坚持的训练方案。我想开始健身，目标是增肌和提升力量。我现在是新手，之前没有系统健身经验，每周能锻炼3天。请为我量身打造一个初阶的全身性健身计划。</p>
+                                        <div class="result-tag good-tag">✅ 专业建议、安全提示、个性化方案</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Task详解 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-tasks neon-text-purple"></i> （二）Task：任务指令</h3>
+                            <h4>明确目标与操作要求</h4>
+
+                            <h4 class="neon-text-cyan">任务表达三原则</h4>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-bullseye neon-text-cyan"></i>
+                                    <h4>具体化</h4>
+                                    <p>避免笼统词语，指明主题、风格、长度</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-cogs neon-text-purple"></i>
+                                    <h4>可操作化</h4>
+                                    <p>指令要能转化为可执行的步骤</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-flag-checkered neon-text-pink"></i>
+                                    <h4>结果导向</h4>
+                                    <p>关注输出形态，如表格、方案比较等</p>
+                                </div>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">俄罗斯方块游戏案例</h4>
+                            <div class="comparison-container">
+                                <div class="comparison-item bad">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-times-circle"></i>
+                                        <span>模糊指令</span>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p class="prompt-text">写一个俄罗斯方块的小游戏。</p>
+                                        <div class="result-tag bad-tag">❌ 界面简陋、功能基础、体验一般</div>
+                                    </div>
+                                </div>
+
+                                <div class="comparison-item good">
+                                    <div class="comparison-header">
+                                        <i class="fas fa-check-circle"></i>
+                                        <span>清晰具体指令</span>
+                                    </div>
+                                    <div class="comparison-content">
+                                        <p class="prompt-text">编写一个俄罗斯方块游戏，包含以下功能：<strong>生成随机方块、方块移动（左右和快速下落）、方块旋转、消除完整行并计分、游戏结束判定、下一块预览、开始/暂停/重置按钮</strong>。界面设计要美观，使用现代美术风格进行设计，确保响应式布局和动画效果。</p>
+                                        <div class="result-tag good-tag">✅ 功能完善、界面美观、体验流畅</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Context详解 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-sitemap neon-text-pink"></i> （三）Context：上下文</h3>
+                            <h4>让模型知道"在什么情境下写"</h4>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;">
+                                    上下文指任务所处的<strong class="neon-text-cyan">背景信息</strong>，包括目的、受众、场景、使用载体、已发生的对话内容等。模型并不会自动理解你的意图，它依赖上下文来判断应该"如何写"。
+                                </p>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">为什么需要上下文？</h4>
+                            <div class="grid">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-search neon-text-cyan"></i> 减少猜测</h4>
+                                    <p>明确告诉模型写给谁、用在什么场景，避免生成通用模板式内容</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-balance-scale neon-text-purple"></i> 保证一致性</h4>
+                                    <p>同一主题在多次输出中保持语气、角色一致</p>
+                                </div>
+                                <div class="content-card">
+                                    <h4><i class="fas fa-chart-line neon-text-pink"></i> 提升准确度</h4>
+                                    <p>提供细节信息，使内容更贴近真实需求</p>
+                                </div>
+                            </div>
+
+                            <h4 class="neon-text-cyan" style="margin-top: 30px;">示例对比</h4>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>提示方式</th>
+                                            <th>说明</th>
+                                            <th>输出质量</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>无上下文</strong></td>
+                                            <td>"给我9个活动名称。"</td>
+                                            <td>❌ 名称普通、缺乏针对性</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>有上下文</strong></td>
+                                            <td>"我们在为<strong>本地农产品做推广</strong>，主题是'乡村振兴'，受众是<strong>城市青年</strong>，希望名称更有<strong>地域感与温暖感</strong>，请提供9个方案。"</td>
+                                            <td>✅ 贴合需求、可直接使用</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px; background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(249, 115, 22, 0.15));">
+                                <h4 class="neon-text-yellow">如何提供有效上下文？</h4>
+                                <ul>
+                                    <li>✅ 要做什么（任务）</li>
+                                    <li>✅ 写给谁（受众）</li>
+                                    <li>✅ 用在哪里（场景/载体）</li>
+                                    <li>✅ 希望呈现的语气风格</li>
+                                    <li>✅ 是否有样例可参考</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Format详解 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3><i class="fas fa-file-code" style="color: #22c55e;"></i> （四）Format：输出格式</h3>
+                            <h4>约束结果形态与风格</h4>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;">
+                                    输出格式决定AI呈现结果的<strong class="neon-text-cyan">结构、样式与语言规范</strong>。明确的格式要求可避免随机输出，提高可复现性。
+                                </p>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">常见格式类型</h4>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>格式类型</th>
+                                            <th>应用场景</th>
+                                            <th>示例说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>结构化输出</strong></td>
+                                            <td>数据处理、程序开发</td>
+                                            <td>JSON、YAML、SQL、表格等</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>半结构化输出</strong></td>
+                                            <td>教学讲解、报告撰写</td>
+                                            <td>Markdown格式、分标题文本</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>非结构化输出</strong></td>
+                                            <td>创意写作、广告文案</td>
+                                            <td>自由文本、诗歌、故事</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <!-- 格式示意图 -->
+                            <div class="diagram-container" style="margin-top: 30px;">
+                                <svg viewBox="0 0 800 300" class="diagram-svg">
+                                    <!-- JSON格式 -->
+                                    <rect x="50" y="50" width="200" height="200" rx="10" fill="rgba(6, 182, 212, 0.1)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="150" y="85" text-anchor="middle" fill="#06b6d4" font-size="18" font-weight="bold">JSON格式</text>
+                                    <text x="80" y="120" fill="#f5f5f5" font-size="12" font-family="monospace">{</text>
+                                    <text x="90" y="145" fill="#f5f5f5" font-size="12" font-family="monospace">"name": "value",</text>
+                                    <text x="90" y="170" fill="#f5f5f5" font-size="12" font-family="monospace">"data": [...],</text>
+                                    <text x="90" y="195" fill="#f5f5f5" font-size="12" font-family="monospace">"result": "..."</text>
+                                    <text x="80" y="220" fill="#f5f5f5" font-size="12" font-family="monospace">}</text>
+
+                                    <!-- Markdown格式 -->
+                                    <rect x="300" y="50" width="200" height="200" rx="10" fill="rgba(168, 85, 247, 0.1)" stroke="#a855f7" stroke-width="2"/>
+                                    <text x="400" y="85" text-anchor="middle" fill="#a855f7" font-size="18" font-weight="bold">Markdown</text>
+                                    <text x="330" y="120" fill="#f5f5f5" font-size="12" font-family="monospace"># 标题</text>
+                                    <text x="330" y="145" fill="#f5f5f5" font-size="12" font-family="monospace">## 副标题</text>
+                                    <text x="330" y="170" fill="#f5f5f5" font-size="12" font-family="monospace">- 列表项</text>
+                                    <text x="330" y="195" fill="#f5f5f5" font-size="12" font-family="monospace">**粗体**</text>
+
+                                    <!-- 表格格式 -->
+                                    <rect x="550" y="50" width="200" height="200" rx="10" fill="rgba(244, 63, 94, 0.1)" stroke="#f43f5e" stroke-width="2"/>
+                                    <text x="650" y="85" text-anchor="middle" fill="#f43f5e" font-size="18" font-weight="bold">表格格式</text>
+                                    <line x1="570" y1="110" x2="730" y2="110" stroke="#f5f5f5" stroke-width="1"/>
+                                    <line x1="570" y1="145" x2="730" y2="145" stroke="#f5f5f5" stroke-width="1"/>
+                                    <line x1="570" y1="180" x2="730" y2="180" stroke="#f5f5f5" stroke-width="1"/>
+                                    <line x1="650" y1="95" x2="650" y2="215" stroke="#f5f5f5" stroke-width="1"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第六章：提示词优化 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚡ 五、提示词优化与规范书写</h2>
+                            <p style="font-size: 1.2rem; line-height: 1.8; color: var(--cyber-dark-200); text-align: center;">
+                                高质量提示词不仅要包含核心要素，还需在语言、结构与逻辑上体现出规范性与稳定性
+                            </p>
+
+                            <div class="grid-2" style="margin-top: 30px;">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-crosshairs neon-text-cyan"></i> 明确具体</h4>
+                                    <p>任务描述应清晰且无歧义，避免模糊词汇</p>
+                                    <div class="example-box bad">
+                                        <strong>❌ 不良：</strong>写一篇关于环境保护的文章。
+                                    </div>
+                                    <div class="example-box good">
+                                        <strong>✅ 改进：</strong>写一篇<strong>800字的议论文</strong>，主题为"城市生活中的绿色消费"，要求包含<strong>三个现实案例与总结建议</strong>。
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-sitemap neon-text-purple"></i> 结构清晰</h4>
+                                    <p>采用编号、分点或标题方式组织信息</p>
+                                    <div class="example-box good">
+                                        <pre style="margin: 10px 0; font-size: 0.95rem;">任务目标：
+1. 生成三种产品命名方案
+2. 每种方案包含命名逻辑
+3. 以Markdown格式输出</pre>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-ruler neon-text-pink"></i> 可量化标准</h4>
+                                    <p>指定输出字数、格式、语言风格等</p>
+                                    <div class="example-box good">
+                                        <strong>示例：</strong>生成<strong>5个品牌口号</strong>，每个<strong>不超过12个汉字</strong>，语气需<strong>积极正向</strong>。
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-file-code" style="color: #22c55e;"></i> 格式可控</h4>
+                                    <p>确保内容适应展示平台与使用场景</p>
+                                    <div class="example-box good">
+                                        <strong>建议：</strong>课件/报告用Markdown或表格；开发类用JSON或YAML格式。
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 第七章：总结 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎓 课程总结</h2>
+
+                            <div class="highlight-box" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(168, 85, 247, 0.2), rgba(6, 182, 212, 0.2));">
+                                <h3 class="neon-text-cyan" style="text-align: center; margin-bottom: 30px;">让AI真正"听话"的核心逻辑</h3>
+
+                                <div class="grid-2">
+                                    <div class="summary-item">
+                                        <div class="summary-number">1</div>
+                                        <p><strong class="neon-text-cyan">提示词是AI行为的指令源</strong><br/>它定义任务、限定范围、规范输出</p>
+                                    </div>
+
+                                    <div class="summary-item">
+                                        <div class="summary-number">2</div>
+                                        <p><strong class="neon-text-purple">R-T-C-F四要素是关键结构</strong><br/>角色、任务、上下文、格式缺一不可</p>
+                                    </div>
+
+                                    <div class="summary-item">
+                                        <div class="summary-number">3</div>
+                                        <p><strong class="neon-text-pink">规范书写是技术基础</strong><br/>明确具体、结构清晰、标准可量化</p>
+                                    </div>
+
+                                    <div class="summary-item">
+                                        <div class="summary-number">4</div>
+                                        <p><strong class="neon-text-yellow">提示词能力=核心素养</strong><br/>表达能力+逻辑思维+结构意识</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(1)">一、协作起点</button>
+                    <button class="nav-item" onclick="courseScrollToSection(2)">二、概念与作用</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">三、核心价值</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">四、满意对赌</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">五、RTCF要素</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">Role 角色</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">Task 任务</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">Context 上下文</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">Format 格式</button>
+                    <button class="nav-item" onclick="courseScrollToSection(10)">六、优化规范</button>
+                    <button class="nav-item" onclick="courseScrollToSection(11)">七、课程总结</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 实战案例页面 -->
+    <div class="page" id="page-practice">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 实战案例</h1>
+                    <p class="subtitle">小红书风格新品饮品文案示例</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorPractice">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 案例详解 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">完整提示词实战案例</h2>
+
+                            <h3>1. 初始需求（常见原始表达）</h3>
+                            <div class="comparison-item bad">
+                                <div class="comparison-content">
+                                    <p class="prompt-text">帮我写一篇新品饮料的小红书文案。</p>
+                                    <div class="result-tag bad-tag">❌ 问题：缺少受众、特点、风格、结构信息</div>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">2. 补充信息：把抽象需求变清晰</h3>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>要素</th>
+                                            <th>说明</th>
+                                            <th>示例填写</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>产品信息</strong></td>
+                                            <td>写什么</td>
+                                            <td>柠香乌龙气泡茶，新品</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>受众</strong></td>
+                                            <td>写给谁</td>
+                                            <td>小红书平台、年轻女性用户</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>场景</strong></td>
+                                            <td>会在哪看到/用来干什么</td>
+                                            <td>社媒种草文，激发尝试欲</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>风格</strong></td>
+                                            <td>语言气质</td>
+                                            <td>轻松自然、有生活画面感</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>结构</strong></td>
+                                            <td>文案组织方式</td>
+                                            <td>第一口感觉 → 场景联想 → 推荐理由 → 标签</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>避免</strong></td>
+                                            <td>禁止出现的表达</td>
+                                            <td>营销口号、夸张承诺、硬广腔</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">3. 形成可直接复用的提示词</h3>
+                            <div class="comparison-item good">
+                                <div class="comparison-content">
+                                    <pre class="prompt-code">你现在是生活方式类新媒体创作者，表达真诚自然，偏分享口吻。
+
+请为新品饮品"柠香乌龙气泡茶"撰写一篇小红书风格文案，字数250–350字。
+
+写作要点：
+- 受众：年轻女性
+- 风格：轻快、具画面感，适度使用拟声与感官描写
+- 结构：
+  1）第一口感受
+  2）场景联想（如午后、阳光、朋友聊天）
+  3）3条推荐理由（如清爽不腻、回甘明显、层次感）
+  4）结尾加话题标签
+- 禁止出现：营销口吻（如"限时优惠"）、生硬夸赞、堆叠形容词。</pre>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">4. AI生成的文案示例</h3>
+                            <div class="result-card">
+                                <h4 class="neon-text-cyan">这杯"柠香乌龙气泡茶"，是夏天的呼吸感。</h4>
+                                <p>第一口下去是被轻轻点醒的感觉。气泡在舌尖跳开，像把情绪从昏沉里拖出来，乌龙的回甘不是一下子冲上来，而是慢慢从喉咙回暖，带着一点像阳光晒过的柠檬皮香，清爽得刚刚好。</p>
+                                <p>我喜欢把它倒进透明玻璃杯里，看细密气泡沿着杯壁一直往上跑，冰块轻撞出一声脆响，像下午三点的风刚好吹到额前。那一刻会莫名觉得，生活可以被温柔地暂停一下。</p>
+                                <p><strong>推荐它的理由很简单：</strong></p>
+                                <ul>
+                                    <li>（1）不甜腻，喝完不会口干；</li>
+                                    <li>（2）乌龙的层次够细，后味很耐听；</li>
+                                    <li>（3）情绪疲惫的时候，喝一口真的会"醒"。</li>
+                                </ul>
+                                <p>如果你也需要一点小小的续航感，可以尝试一下。</p>
+                                <div class="tags-container">
+                                    <span class="tag">#气泡茶</span>
+                                    <span class="tag">#乌龙控</span>
+                                    <span class="tag">#夏日小确幸</span>
+                                    <span class="tag">#清爽不打扰</span>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 40px;">
+                                <p style="font-size: 1.3rem; text-align: center;">
+                                    <strong class="neon-text-cyan">💡 关键启示：</strong>清晰的R-T-C-F结构 + 具体的约束条件 = 高质量输出
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
