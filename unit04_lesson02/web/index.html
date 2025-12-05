@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI视频创作提示词攻略 | 掌握AI视频创作的核心技能</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第四单元:AI视频创作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 - 固定视窗滚动 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>2. AI视频创作提示词攻略</h1>
+                    <p class="subtitle">掌握AI视频创作的核心技能</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 板块一：课程概述</h2>
+
+                            <h3 class="neon-text-cyan">一、课程回顾</h3>
+
+                            <div class="content-card">
+                                <h4>1. 核心认识</h4>
+                                <ul>
+                                    <li><strong>AI视频生成是什么</strong>：用文字/图片等描述，让模型自动"想象并合成"连续画面与声音。</li>
+                                    <li><strong>价值</strong>：门槛低、成本低、效率高；适用短视频、电商宣传、教学动画、剧情短片等。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>2. 使用前准备</h4>
+                                <ul>
+                                    <li>基础环境：可访问外网的网络、Chrome 浏览器、ChatGPT 账号、Sora 2 邀请码。</li>
+                                    <li>登陆路径：Sora 官网 → "Log in with ChatGPT" → 验证码 → 进入主页。</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4>3. 界面与基础操作</h4>
+                                <ul>
+                                    <li><strong>核心区块</strong>：For You/搜索/通知/个人主页/设置。</li>
+                                    <li><strong>文本生视频</strong>：输入提示词→生成→草稿区查看→成片；可选横竖屏、时长（10s/15s）。</li>
+                                    <li><strong>图生视频</strong>：上传图片+描述动作/氛围→生成；适合产品展示、角色动画、Logo 动效。</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple">二、学习目标</h3>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">通过本节课学习，学生将能够：</p>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-lightbulb neon-text-cyan"></i>
+                                    <h4>理解提示词作用</h4>
+                                    <p>掌握提示词在AI视频生成中的核心作用</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-code neon-text-purple"></i>
+                                    <h4>掌握基础结构</h4>
+                                    <p>学会AI视频提示词的基础结构公式</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-pen-fancy neon-text-pink"></i>
+                                    <h4>写出完整提示词</h4>
+                                    <p>能写出结构完整、画面感清晰的提示词</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-camera neon-text-cyan"></i>
+                                    <h4>运用镜头语言</h4>
+                                    <p>理解并运用镜头语言提升画面表现力</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-file-alt neon-text-purple"></i>
+                                    <h4>掌握脚本写作</h4>
+                                    <p>掌握AI视频脚本的写作方式</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-video neon-text-pink"></i>
+                                    <h4>完成实际操作</h4>
+                                    <p>在Sora 2中完成提示词生成视频</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-pink">三、课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">提示词的作用</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">AI生成视频提示词的基本结构</li>
+                                <li class="clickable-item" onclick="showPage('course'); scrollTo(0,0);">AI视频脚本编写</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav overview-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 1 -->
+                    <button class="nav-item" onclick="overviewScrollToSection(1)">
+                        一、课程回顾
+                    </button>
+
+                    <!-- Section 2 -->
+                    <button class="nav-item" onclick="overviewScrollToSection(2)">
+                        二、学习目标
+                    </button>
+
+                    <!-- Section 3 -->
+                    <button class="nav-item" onclick="overviewScrollToSection(3)">
+                        三、课程目录
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>板块二：课程章节</h1>
+                    <p class="subtitle">深入学习 AI 视频创作提示词的核心知识</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: 提示词的作用 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">💡 一、提示词的作用</h2>
+                            <p style="font-size: 1.3rem; line-height: 1.8; margin: 20px 0;">
+                                在AI视频创作中，<span class="neon-text-cyan">「提示词」（Prompt）</span>就是告诉AI你想拍什么的"语言"。如果说AI是导演，那提示词就是导演的"口令"。
+                            </p>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem; margin-bottom: 15px;">
+                                    <strong>✨ 核心理念</strong>
+                                </p>
+                                <ul>
+                                    <li>写得清楚，AI就能理解你想要什么</li>
+                                    <li>写得模糊，生成的视频就可能偏题</li>
+                                </ul>
+                            </div>
+
+                            <p style="font-size: 1.3rem; line-height: 1.8; margin: 30px 0;">
+                                一个好的提示词能让画面更有<span class="neon-text-purple">故事感</span>、<span class="neon-text-pink">情绪感</span>和<span class="neon-text-cyan">视觉冲击力</span>。它不仅告诉AI画面中有什么，还要让AI知道：<strong>是谁、在干什么、在哪里、气氛是什么样</strong>。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: AI生成视频提示词的基本结构 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎬 二、AI生成视频提示词的基本结构</h2>
+
+                            <div class="highlight-box">
+                                <h3 style="text-align: center; font-size: 2rem; margin-bottom: 20px;">📝 提示词公式</h3>
+                                <p style="text-align: center; font-size: 1.5rem; color: var(--neon-cyan);">
+                                    主体 + 主体动作 + 场景 + 镜头语言 + 光影 + 氛围
+                                </p>
+                            </div>
+
+                            <p style="font-size: 1.2rem; margin-top: 30px; text-align: center;">
+                                理解这个结构后，哪怕是第一次用AI视频工具，也能轻松生成画面感强的视频。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: （一）主体 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（一）主体（谁在画面里）</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                主体是视频中最重要的部分，可以是人、动物或物体。写的时候要<span class="neon-text-cyan">具体</span>，让AI清楚地知道是什么。
+                            </p>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4 style="color: #ef4444;">❌ 不好的写法</h4>
+                                    <ul>
+                                        <li>一个人</li>
+                                        <li>花</li>
+                                        <li>动物</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4 style="color: #22c55e;">✅ 好的写法</h4>
+                                    <ul>
+                                        <li>一个穿红裙的女孩</li>
+                                        <li>在微风中摇曳的粉色樱花</li>
+                                        <li>一只金色的拉布拉多犬</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong>💡 示例：</strong>
+                                <p style="font-size: 1.2rem; margin-top: 10px;">
+                                    一位穿白衬衫、戴眼镜的年轻男子站在街头。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: （二）主体动作 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）主体动作（在做什么）</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                动作让画面<span class="neon-text-purple">"动"</span>起来，是AI视频最关键的元素之一。动得好，画面就会有生命力。
+                            </p>
+
+                            <h4>常见动作类型：</h4>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/动作-人物类.png" alt="人物动作示例">
+                                    </div>
+                                    <h4><i class="fas fa-walking neon-text-cyan"></i> 人物类</h4>
+                                    <ul>
+                                        <li>行走、回头微笑</li>
+                                        <li>奔跑、跳舞</li>
+                                        <li>转身、挥手</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/动作-动物类.png" alt="动物动作示例">
+                                    </div>
+                                    <h4><i class="fas fa-paw neon-text-purple"></i> 动物类</h4>
+                                    <ul>
+                                        <li>奔跑、摇尾巴</li>
+                                        <li>飞翔、抬头</li>
+                                        <li>跳跃、游动</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/动作-物体类.png" alt="物体动作示例">
+                                    </div>
+                                    <h4><i class="fas fa-cube neon-text-pink"></i> 物体类</h4>
+                                    <ul>
+                                        <li>旋转、漂浮</li>
+                                        <li>闪烁、升起</li>
+                                        <li>飘动、坠落</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong>💡 示例：</strong>
+                                <p style="font-size: 1.2rem; margin-top: 10px;">
+                                    一只猫在阳光下轻轻伸懒腰。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: （三）场景 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）场景（在哪里发生）</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                场景是故事的<span class="neon-text-cyan">背景</span>。一个细节丰富的场景能让视频更真实。
+                            </p>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/场景-室外.png" alt="室外场景示例">
+                                    </div>
+                                    <h4><i class="fas fa-tree neon-text-cyan"></i> 室外场景</h4>
+                                    <ul>
+                                        <li>森林、海边</li>
+                                        <li>街道、雪地</li>
+                                        <li>公园、山顶</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/场景-室内.png" alt="室内场景示例">
+                                    </div>
+                                    <h4><i class="fas fa-home neon-text-purple"></i> 室内场景</h4>
+                                    <ul>
+                                        <li>教室、咖啡馆</li>
+                                        <li>工作室、卧室</li>
+                                        <li>图书馆、餐厅</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/场景-特殊.png" alt="特殊环境示例">
+                                    </div>
+                                    <h4><i class="fas fa-magic neon-text-pink"></i> 特殊环境</h4>
+                                    <ul>
+                                        <li>雨天、夜晚</li>
+                                        <li>梦境、未来城市</li>
+                                        <li>太空、水下</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong>💡 示例：</strong>
+                                <p style="font-size: 1.2rem; margin-top: 10px;">
+                                    在雨后的东京街头,霓虹灯倒映在湿润的路面上。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: （四）镜头语言 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）镜头语言（从哪个角度看）</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                镜头语言让画面更像<span class="neon-text-purple">电影</span>。不同角度，会改变画面的感觉。
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>名称</th>
+                                            <th>含义</th>
+                                            <th>画面效果</th>
+                                            <th>适合场景</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>远景</strong></td>
+                                            <td>拍得比较远，能看到整个环境和人物全身</td>
+                                            <td>让观众了解"故事发生在哪里"</td>
+                                            <td>展示背景、环境氛围</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>中景</strong></td>
+                                            <td>拍到人物从腰部以上</td>
+                                            <td>画面平衡，既有情节又有空间感</td>
+                                            <td>人物对话、走路、日常活动</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>特写</strong></td>
+                                            <td>很近地拍摄，只看到人物脸或物体局部</td>
+                                            <td>强调情绪、细节、质感</td>
+                                            <td>表达人物情感、突出物品特征</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>仰拍</strong></td>
+                                            <td>摄像机在下面往上拍</td>
+                                            <td>让人物显得高大、有气势</td>
+                                            <td>英雄登场、建筑宏伟</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>俯拍</strong></td>
+                                            <td>摄像机在上面往下拍</td>
+                                            <td>让画面更有空间感</td>
+                                            <td>拍整体布局、梦境</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>航拍</strong></td>
+                                            <td>用无人机等高空设备从上往下拍</td>
+                                            <td>视野开阔、壮观大气</td>
+                                            <td>风景、城市全景、电影开场</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="large-image-container" style="margin-top: 30px;">
+                                <img src="images/镜头语言.png" alt="镜头语言示意图" style="width: 100%; border-radius: 15px; box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);">
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong>💡 示例：</strong>
+                                <p style="font-size: 1.2rem; margin-top: 10px;">
+                                    镜头从低角度拍摄，女孩的裙摆在风中飘扬。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: （五）光影 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（五）光影（画面的光线感觉）</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                光影是营造<span class="neon-text-pink">氛围</span>的关键。不同的光线，会带来不同的情绪。
+                            </p>
+
+                            <div class="grid-2" style="margin-top: 30px;">
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/光影-柔和阳光.png" alt="柔和阳光效果">
+                                    </div>
+                                    <h4><i class="fas fa-sun neon-text-cyan"></i> 柔和阳光</h4>
+                                    <div style="margin: 15px 0;">
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">视觉效果：</strong>温暖、浪漫</p>
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">常见用途：</strong>午后画面</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/光影-金色余晖.png" alt="金色余晖效果">
+                                    </div>
+                                    <h4><i class="fas fa-cloud-sun neon-text-pink"></i> 金色余晖</h4>
+                                    <div style="margin: 15px 0;">
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">视觉效果：</strong>怀旧、温馨</p>
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">常见用途：</strong>傍晚情景</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/光影-蓝色冷光.png" alt="蓝色冷光效果">
+                                    </div>
+                                    <h4><i class="fas fa-moon neon-text-cyan"></i> 蓝色冷光</h4>
+                                    <div style="margin: 15px 0;">
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">视觉效果：</strong>科幻、夜景</p>
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">常见用途：</strong>都市未来感</p>
+                                    </div>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/光影-明暗对比.png" alt="明暗对比效果">
+                                    </div>
+                                    <h4><i class="fas fa-adjust neon-text-pink"></i> 明暗对比</h4>
+                                    <div style="margin: 15px 0;">
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">视觉效果：</strong>紧张、悬疑</p>
+                                        <p style="margin: 8px 0;"><strong style="color: var(--neon-purple);">常见用途：</strong>剧情片效果</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong>💡 示例：</strong>
+                                <p style="font-size: 1.2rem; margin-top: 10px;">
+                                    夕阳从窗外照进来，金色的光洒在女孩的侧脸上。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: （六）氛围 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（六）氛围（整体情绪）</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                氛围让视频<span class="neon-text-cyan">"有情感"</span>。它决定了观众"看完的感觉"——是梦幻？温馨？孤独？还是紧张？
+                            </p>
+
+                            <h4>常用的氛围词：</h4>
+
+                            <div class="grid">
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/氛围-温馨类.png" alt="温馨类氛围示例">
+                                    </div>
+                                    <h4><i class="fas fa-heart neon-text-cyan"></i> 温馨类</h4>
+                                    <ul>
+                                        <li>柔和、宁静</li>
+                                        <li>浪漫、温暖</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/氛围-紧张类.png" alt="紧张类氛围示例">
+                                    </div>
+                                    <h4><i class="fas fa-exclamation-triangle neon-text-purple"></i> 紧张类</h4>
+                                    <ul>
+                                        <li>阴暗、神秘</li>
+                                        <li>压抑、悬疑</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/氛围-活力类.png" alt="活力类氛围示例">
+                                    </div>
+                                    <h4><i class="fas fa-bolt neon-text-pink"></i> 活力类</h4>
+                                    <ul>
+                                        <li>明亮、热闹</li>
+                                        <li>轻快、欢乐</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/氛围-梦幻类.png" alt="梦幻类氛围示例">
+                                    </div>
+                                    <h4><i class="fas fa-star" style="color: var(--neon-yellow);"></i> 梦幻类</h4>
+                                    <ul>
+                                        <li>朦胧、光影流动</li>
+                                        <li>浪漫、奇幻</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card">
+                                    <div class="card-image">
+                                        <img src="images/氛围-史诗感.png" alt="史诗感氛围示例">
+                                    </div>
+                                    <h4><i class="fas fa-crown neon-text-cyan"></i> 史诗感</h4>
+                                    <ul>
+                                        <li>壮丽、恢宏</li>
+                                        <li>强烈对比、震撼</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <strong>💡 示例：</strong>
+                                <p style="font-size: 1.2rem; margin-top: 10px;">
+                                    阳光透过树叶洒在花海上，氛围温暖而梦幻。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 三、AI视频脚本编写 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📋 三、AI视频脚本编写</h2>
+
+                            <h3>（一）什么是AI视频脚本</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                AI视频脚本是<span class="neon-text-cyan">将创意变成可执行视频指令的文字结构</span>。在AI创作中，脚本不再只是影视分镜的文字说明，它更像是"AI理解创意的蓝图"。
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>模块</th>
+                                            <th>说明</th>
+                                            <th>示例</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>场景描述</strong></td>
+                                            <td>画面背景与氛围</td>
+                                            <td>"夜晚的城市街头，灯光闪烁。"</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>动作描述</strong></td>
+                                            <td>主体在做什么</td>
+                                            <td>"女孩走在街上，撑伞抬头看天。"</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>语气与节奏</strong></td>
+                                            <td>画面速度、音乐感</td>
+                                            <td>"节奏舒缓，情绪温柔。"</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: AI脚本的写作结构 -->
+            <section class="section-scroll-item" data-section="10">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）AI脚本的写作结构</h3>
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                AI脚本常采用<span class="neon-text-purple">"分段式"</span>写法，每段描述一个镜头或场景，帮助AI分清叙事节奏。
+                            </p>
+
+                            <div class="highlight-box">
+                                <h4>📝 格式示例</h4>
+                                <pre style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--neon-cyan); font-size: 1.1rem; line-height: 1.8;">
+【镜头1】（场景）在傍晚的海边，天空泛着橘红色。
+【动作】一个男孩坐在岩石上吹海螺。
+【氛围】温柔、梦幻、安静。</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: AI脚本的故事结构 -->
+            <section class="section-scroll-item" data-section="11">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）AI脚本的故事结构</h3>
+
+                            <h4>1. 三段式结构</h4>
+                            <p style="font-size: 1.1rem; margin: 15px 0;">
+                                <strong>结构公式：</strong> <span class="neon-text-cyan">开场引入</span> → <span class="neon-text-purple">矛盾/目标推进</span> → <span class="neon-text-pink">高潮与收束</span>
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>阶段</th>
+                                            <th>说明</th>
+                                            <th>举例：《阳光下的纸飞机》</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>1. 开场引入</strong></td>
+                                            <td>交代人物是谁、在哪里、环境是什么</td>
+                                            <td>蓝天下的操场，一个少年站在跑道上</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>2. 矛盾/目标推进</strong></td>
+                                            <td>主人公开始做一件事，或遇到挑战</td>
+                                            <td>少年认真折纸飞机，抬头看风向</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>3. 高潮与收束</strong></td>
+                                            <td>故事达到顶点并结束</td>
+                                            <td>少年放出纸飞机，看着它飞过树梢</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 style="margin-top: 40px;">2. 五段式结构</h4>
+                            <p style="font-size: 1.1rem; margin: 15px 0;">
+                                <strong>结构公式：</strong> 起 → 承 → 转 → 合 → 收束/余韵
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>阶段</th>
+                                            <th>说明</th>
+                                            <th>示例（纸飞机）</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>1. 起</strong></td>
+                                            <td>介绍人物、时间、地点</td>
+                                            <td>少年在操场上，阳光明亮</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>2. 承</strong></td>
+                                            <td>展示人物准备或铺垫动作</td>
+                                            <td>他低头折纸飞机，表情专注</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>3. 转</strong></td>
+                                            <td>出现变化或转折</td>
+                                            <td>少年抛出纸飞机，它被风带上天空</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>4. 合</strong></td>
+                                            <td>动作完成，画面稳定</td>
+                                            <td>纸飞机飞远，镜头跟随</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>5. 收束/余韵</strong></td>
+                                            <td>情绪延续或主题升华</td>
+                                            <td>少年微笑抬头看天，画面慢慢淡出</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 style="margin-top: 40px;">3. 短视频实操版结构</h4>
+                            <p style="font-size: 1.1rem; margin: 15px 0;">
+                                <strong>结构公式：</strong> 钩子(0-3s) → 信息/动作推进(4-20s) → 亮点/转折/高潮(21-40s) → 收束/记忆点(41-60s)
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>阶段</th>
+                                            <th>说明</th>
+                                            <th>示例（纸飞机）</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>钩子（0-3秒）</strong></td>
+                                            <td>一开始就吸引注意</td>
+                                            <td>特写：纸飞机在手中轻轻展开</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>推进（4-20秒）</strong></td>
+                                            <td>交代人物和情境</td>
+                                            <td>少年折好纸飞机，跑道延伸</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>亮点/高潮（21-40秒）</strong></td>
+                                            <td>最具情绪和动感的部分</td>
+                                            <td>少年跑起来，把纸飞机抛向蓝天</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>收束（41-60秒）</strong></td>
+                                            <td>给出情感收尾或引发共鸣</td>
+                                            <td>少年停下脚步，看着纸飞机飞远</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: AI脚本编写的关键技巧 -->
+            <section class="section-scroll-item" data-section="12">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（四）AI脚本编写的关键技巧</h3>
+
+                            <div class="grid-2">
+                                <div class="content-card">
+                                    <h4><i class="fas fa-check-circle neon-text-cyan"></i> 技巧 1</h4>
+                                    <p><strong>一句话只表达一个画面</strong></p>
+                                    <p>避免复杂叙事，一段描述一个镜头即可。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-clock neon-text-purple"></i> 技巧 2</h4>
+                                    <p><strong>时间顺序清晰</strong></p>
+                                    <p>按"起→承→转→合"的顺序写，让AI更容易理解。</p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-pencil-alt neon-text-pink"></i> 技巧 3</h4>
+                                    <p><strong>用简单句表达复杂意象</strong></p>
+                                    <p>少用修辞，多用具象：<br>
+                                    <span style="color: #ef4444;">❌ "她笑得像花"</span><br>
+                                    <span style="color: #22c55e;">✅ "她微笑着，阳光照在脸上"</span></p>
+                                </div>
+
+                                <div class="content-card">
+                                    <h4><i class="fas fa-music" style="color: var(--neon-yellow);"></i> 技巧 4</h4>
+                                    <p><strong>加入节奏词或音乐感</strong></p>
+                                    <p>如"慢慢走""轻轻转身""节奏舒缓"，AI会自动匹配镜头时长与节奏。</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 13: 示例 -->
+            <section class="section-scroll-item" data-section="13">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（五）示例：AI短片脚本（简单版）</h3>
+
+                            <div class="highlight-box">
+                                <h4 style="font-size: 1.5rem; text-align: center; margin-bottom: 20px;">🎬 题目：春天的告白</h4>
+                                <pre style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--cyber-dark-100); font-size: 1.1rem; line-height: 2;">
+【镜头1】早晨，阳光透过树叶洒在校园小路上。
+
+【镜头2】穿白衬衫的男孩骑着单车经过，风吹动他的头发。
+
+【镜头3】女孩站在樱花树下，轻轻抬头。
+
+【镜头4】两人对视，镜头缓缓拉近。
+
+【镜头5】花瓣飘落，背景音乐温暖。</pre>
+                                <p style="margin-top: 20px; text-align: center; font-size: 1.1rem;">
+                                    这个脚本可以直接输入到 <span class="neon-text-cyan">Sora 2</span> 中，每个镜头对应一个生成片段，再拼接成完整视频。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、提示词的作用
+                    </button>
+
+                    <!-- Section 2 -->
+                    <button class="nav-item" onclick="courseScrollToSection(2)">
+                        二、提示词基本结构
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        （一）主体
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        （二）主体动作
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        （三）场景
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        （四）镜头语言
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        （五）光影
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(8)">
+                        （六）氛围
+                    </button>
+
+                    <!-- Section 9 -->
+                    <button class="nav-item" onclick="courseScrollToSection(9)">
+                        三、AI视频脚本编写
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">
+                        AI脚本的写作结构
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">
+                        AI脚本的故事结构
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(12)">
+                        关键技巧
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(13)">
+                        示例
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">练习提示词写作与脚本编写</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 基础题 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">（一）基础题 —— 写出 3 条结构完整的提示词</h2>
+
+                                <p style="font-size: 1.2rem; margin-top: 20px; color: var(--cyber-dark-100);">
+                                    根据课堂学到的结构公式：
+                                </p>
+                                <div class="highlight-box" style="margin: 20px 0;">
+                                    <p style="text-align: center; font-size: 1.3rem; color: var(--neon-cyan);">
+                                        主体 + 动作 + 场景 + 镜头语言 + 光影 + 氛围
+                                    </p>
+                                </div>
+
+                                <p style="font-size: 1.2rem; color: var(--cyber-dark-100); margin-top: 20px;">
+                                    请写出 <strong>3 条具有画面感的提示词</strong>。
+                                </p>
+
+                                <h4 style="margin-top: 30px; color: var(--neon-purple);">要求：</h4>
+                                <ul style="font-size: 1.1rem;">
+                                    <li>每条不少于 <strong>20 字</strong></li>
+                                    <li>内容必须包含至少 <strong>4 个要素</strong></li>
+                                    <li>主题自选（如：校园、旅行、宠物、未来城市、街拍、风景等）</li>
+                                </ul>
+
+                                <div class="highlight-box" style="margin-top: 30px;">
+                                    <h4>💡 示例（不要抄）：</h4>
+                                    <p style="font-size: 1.1rem; margin-top: 10px;">
+                                        "一个穿黄色雨衣的小男孩在雨天的街巷奔跑，低角度拍摄，路灯反射出柔和的金色光。"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 进阶题 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">（二）进阶题 —— 完成一段 AI 视频脚本（5 镜头）</h2>
+
+                                <p style="font-size: 1.2rem; margin-top: 20px; color: var(--cyber-dark-100);">
+                                    请写一个<strong>简单的小故事</strong>（不限题材：温馨、励志、情绪、风景都可），并用课堂的格式写出：
+                                </p>
+
+                                <ul style="font-size: 1.1rem; margin: 20px 0;">
+                                    <li><strong>5 个镜头</strong></li>
+                                    <li>每个镜头包含：
+                                        <ul style="margin-left: 20px;">
+                                            <li>① 场景</li>
+                                            <li>② 主体动作</li>
+                                            <li>③ 氛围/光影</li>
+                                            <li>（可加入镜头语言加分）</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+
+                                <div class="highlight-box" style="margin-top: 30px;">
+                                    <h4>📝 脚本格式（必须遵守）：</h4>
+                                    <pre style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; overflow-x: auto; color: var(--neon-cyan); font-size: 1.1rem; line-height: 1.8; margin-top: 15px;">
+【镜头1】（场景）……
+【动作】……
+【氛围】……</pre>
+                                </div>
+
+                                <p style="font-size: 1.1rem; margin-top: 30px; color: var(--neon-purple);">
+                                    <strong>💡 提示：</strong> 尽量保持"起—承—转—合—余韵"的节奏。
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 AI视频创作提示词教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
