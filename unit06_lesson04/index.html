@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四课：让网页动起来——JavaScript 与交互设计入门</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第六单元：个人作品集制作</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>4.让网页动起来</h1>
+                    <p class="subtitle">JavaScript 与交互设计入门 | 第四课</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <!-- 课程回顾 -->
+                        <div class="cyber-card">
+                            <h2 class="section-title neon-text-cyan">📚 课程回顾</h2>
+                            <ul style="margin: 20px 0;">
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">掌握了 CSS 选择器、盒模型、定位与浮动、Flexbox 布局等核心概念</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">学习了颜色搭配、字体设置、边框与阴影、过渡与动画等视觉效果实现方法</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">了解了媒体查询、移动优先设计、弹性布局等响应式网页开发技术</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">通过实际网页设计练习，巩固了理论知识并提升了动手能力</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">学习了调试 CSS 样式、兼容性处理、性能优化等实用技巧</li>
+                            </ul>
+                        </div>
+
+                        <!-- 学习目标 -->
+                        <div class="cyber-card">
+                            <h2 class="section-title neon-text-purple">🎯 学习目标</h2>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">理解 JavaScript 在网页中的作用</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">掌握 JavaScript 基本语法（变量、数据类型、函数）</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">学会使用 DOM 操作网页元素</li>
+                                <li style="font-size: 1.3rem; margin: 15px 0; line-height: 1.8;">理解事件驱动的交互模式</li>
+                            </ol>
+                        </div>
+
+                        <!-- 课程目录 -->
+                        <div class="cyber-card">
+                            <h2 class="section-title neon-text-pink">📑 课程目录</h2>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">JavaScript 简介与基础语法</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">JavaScript 与网页的关系</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">DOM 操作：修改网页内容</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">事件驱动：响应用户行为</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">交互演示：JavaScript交互效果实现</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习 JavaScript 核心知识与 DOM 操作</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 1: JavaScript 基础语法 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 一、JavaScript 基础语法</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin: 0;">
+                                    <strong>💡 核心概念：</strong>JavaScript 是网页的"行为层"，负责实现动态交互效果。它与 HTML（结构）、CSS（样式）共同构成现代网页的三大支柱。
+                                </p>
+                            </div>
+
+                            <h3>（一）变量声明</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                变量就是存储信息的地方，类似于一个盒子，里面可以放入各种信息（如文字、数字、对与错）。我们使用 <code style="color: var(--neon-cyan); background: rgba(6, 182, 212, 0.1); padding: 2px 8px; border-radius: 4px;">let</code> 或 <code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 2px 8px; border-radius: 4px;">const</code> 来定义一个变量：
+                            </p>
+                            <ul style="margin: 15px 0 20px 0;">
+                                <li style="font-size: 1.3rem; margin: 12px 0; line-height: 1.8;"><code style="color: var(--neon-cyan); background: rgba(6, 182, 212, 0.1); padding: 2px 8px; border-radius: 4px;">let</code> 就像一个<strong style="color: var(--neon-cyan);">可重复使用的储物柜</strong>，里面的东西可以换，用来声明可修改的变量</li>
+                                <li style="font-size: 1.3rem; margin: 12px 0; line-height: 1.8;"><code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 2px 8px; border-radius: 4px;">const</code> 就像一个<strong style="color: var(--neon-purple);">保险箱</strong>，一旦锁好里面的东西就不会变，用来声明不可改变的变量</li>
+                            </ul>
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>使用 let 和 const 声明变量</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 15%;">关键字</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 45%;">代码示例</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 40%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); background: rgba(6, 182, 212, 0.1); padding: 4px 8px; border-radius: 4px; font-size: 1.1rem;">let</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">name = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"zhugezhangsan"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                        <br>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">age = </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">18</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        声明<strong style="color: var(--neon-cyan);">可变变量</strong><br>
+                                                        可以存储字符串、数字等类型<br>
+                                                        变量的值可以后续修改
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 4px 8px; border-radius: 4px; font-size: 1.1rem;">const</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">const</code>
+                                                        <code style="color: #fff; font-size: 1rem;">PI = </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">3.14159</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                        <br>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">const</code>
+                                                        <code style="color: #fff; font-size: 1rem;">siteName = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"我的网站"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        声明<strong style="color: var(--neon-purple);">常量</strong><br>
+                                                        一旦赋值后不可修改<br>
+                                                        适用于固定不变的值
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3>（二）数据类型</h3>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-hashtag" style="color: var(--neon-cyan);"></i>
+                                    <h4>Number</h4>
+                                    <p style="font-size: 1.1rem;">42, 3.14</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-quote-left" style="color: var(--neon-purple);"></i>
+                                    <h4>String</h4>
+                                    <p style="font-size: 1.1rem;">"Hello", '世界'</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-check-circle" style="color: var(--cyber-pink);"></i>
+                                    <h4>Boolean</h4>
+                                    <p style="font-size: 1.1rem;">true, false</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-minus-circle" style="color: var(--neon-yellow);"></i>
+                                    <h4>Null / Undefined</h4>
+                                    <p style="font-size: 1.1rem;">null, undefined</p>
+                                </div>
+                            </div>
+
+                            <div class="step-container" style="margin-top: 25px;">
+                                <div class="step-content">
+                                    <h4>数据类型示例</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 20%;">变量名</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 30%;">赋值</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 20%;">数据类型</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 30%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: #fff; font-size: 1rem;">isStudent</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">isStudent = </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">true</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--cyber-pink);">Boolean</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        布尔值：表示是学生
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: #fff; font-size: 1rem;">score</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">score = </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">98</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">Number</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        数字类型
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: #fff; font-size: 1rem;">nickname</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">nickname = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"Sunny"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">String</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        字符串类型
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3>（三）基本运算符</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                我们可以让 JavaScript 做加法、减法、乘法和除法，或者比较两个数是否相等、大小等，就像一个<strong style="color: var(--neon-cyan);">计算器</strong>，也像一个<strong style="color: var(--neon-purple);">判断器</strong>，可以做数学计算，也能做逻辑判断。
+                            </p>
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>运算符示例</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.3), rgba(249, 115, 22, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-yellow); width: 20%;">运算类型</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-yellow); width: 45%;">代码示例</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-yellow); width: 35%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(234, 179, 8, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">加法</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">sum = </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">5</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> + </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">3</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        加法，结果是 <strong style="color: var(--neon-yellow);">8</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(234, 179, 8, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">减法</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">diff = </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">10</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> - </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">4</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        减法，结果是 <strong style="color: var(--neon-yellow);">6</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(234, 179, 8, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--cyber-pink);">相等判断</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">isEqual = (</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">5</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> == </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">5</code>
+                                                        <code style="color: #fff; font-size: 1rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        比较是否相等，结果是 <strong style="color: var(--neon-cyan);">true</strong>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-yellow);">大小比较</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;">isGreater = (</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">8</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> &gt; </code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">10</code>
+                                                        <code style="color: #fff; font-size: 1rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        比较大小，结果是 <strong style="color: var(--cyber-pink);">false</strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3>（四）函数定义</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                函数是一段可以<strong style="color: var(--neon-cyan);">重复使用</strong>的代码，就像一个"工具"或"按钮"，每次调用它，它就会自动执行里面的任务。可以借助<strong style="color: var(--neon-purple);">"自动贩卖机"</strong>来理解：你输入名字（投币），它输出一段话（饮料），我们可以通过它来做一些不需要变化的固定事情。
+                            </p>
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>函数是可重复使用的代码块</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(168, 85, 247, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink); width: 25%;">步骤</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink); width: 50%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink); width: 25%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(244, 63, 94, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">1. 函数定义</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">function</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">greet</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(name) {</code>
+                                                        <br>
+                                                        <code style="color: #fff; font-size: 1rem;">&nbsp;&nbsp;&nbsp;&nbsp;</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">return</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;"> "Hello, "</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> + name;</code>
+                                                        <br>
+                                                        <code style="color: #fff; font-size: 1rem;">}</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        定义一个名为 <code style="color: var(--neon-yellow);">greet</code> 的函数<br>
+                                                        接收一个参数 <code style="color: #fff;">name</code><br>
+                                                        返回拼接后的问候语
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">2. 调用函数</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">console.</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">log</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">greet</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"Alice"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">));</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        调用函数并传入参数 <code style="color: var(--cyber-pink);">"Alice"</code><br>
+                                                        输出结果：<br>
+                                                        <strong style="color: var(--neon-cyan);">Hello, Alice</strong>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: DOM 操作 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔧 二、JavaScript 与网页：DOM 操作</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin: 0 0 15px 0;">
+                                    <strong>💡 什么是 DOM？</strong>
+                                </p>
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li style="font-size: 1.2rem; margin: 10px 0; line-height: 1.8;">DOM（Document Object Model，文档对象模型）像是网页的<strong style="color: var(--neon-cyan);">"骨架"</strong>，它把网页上的每一部分都当成一个可以"触摸、改动"的对象</li>
+                                    <li style="font-size: 1.2rem; margin: 10px 0; line-height: 1.8;">网页上的<strong style="color: var(--neon-purple);">文字、图片、按钮、链接</strong>都可以被看作是一个<strong style="color: var(--neon-purple);">"积木块"</strong>，而 JavaScript 就是用来操作这些"积木"的工具</li>
+                                    <li style="font-size: 1.2rem; margin: 10px 0; line-height: 1.8;">DOM 是网页的"内部骨架"，JavaScript 就像一只<strong style="color: var(--cyber-pink);">"手"</strong>，可以去拿掉、替换、增加这些骨架上的各个骨头</li>
+                                </ul>
+                            </div>
+
+                            <!-- DOM树结构图 -->
+                            <div class="diagram-container" style="margin: 40px 0;">
+                                <h4 style="text-align: center; margin-bottom: 20px; color: var(--neon-cyan);">📊 DOM 树结构示意图</h4>
+                                <svg viewBox="0 0 800 450" style="width: 100%; height: auto; max-width: 800px; margin: 0 auto; display: block;">
+                                    <!-- 定义渐变和发光效果 -->
+                                    <defs>
+                                        <linearGradient id="nodeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+                                        </linearGradient>
+                                        <filter id="glow">
+                                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                            <feMerge>
+                                                <feMergeNode in="coloredBlur"/>
+                                                <feMergeNode in="SourceGraphic"/>
+                                            </feMerge>
+                                        </filter>
+                                    </defs>
+
+                                    <!-- 连接线 -->
+                                    <line x1="400" y1="80" x2="200" y2="160" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="400" y1="80" x2="600" y2="160" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="200" y1="200" x2="100" y2="280" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="200" y1="200" x2="300" y2="280" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="600" y1="200" x2="500" y2="280" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="600" y1="200" x2="700" y2="280" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="500" y1="320" x2="450" y2="380" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+                                    <line x1="500" y1="320" x2="550" y2="380" stroke="#06b6d4" stroke-width="2" opacity="0.6"/>
+
+                                    <!-- document -->
+                                    <rect x="330" y="40" width="140" height="50" rx="8" fill="url(#nodeGradient)" filter="url(#glow)"/>
+                                    <text x="400" y="70" text-anchor="middle" fill="#fff" font-size="18" font-weight="bold">document</text>
+
+                                    <!-- html -->
+                                    <rect x="330" y="160" width="140" height="50" rx="8" fill="#a855f7" opacity="0.9"/>
+                                    <text x="400" y="190" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&lt;html&gt;</text>
+
+                                    <!-- head -->
+                                    <rect x="130" y="160" width="140" height="50" rx="8" fill="#06b6d4" opacity="0.8"/>
+                                    <text x="200" y="190" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&lt;head&gt;</text>
+
+                                    <!-- body -->
+                                    <rect x="530" y="160" width="140" height="50" rx="8" fill="#06b6d4" opacity="0.8"/>
+                                    <text x="600" y="190" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">&lt;body&gt;</text>
+
+                                    <!-- title -->
+                                    <rect x="30" y="280" width="140" height="40" rx="6" fill="#eab308" opacity="0.7"/>
+                                    <text x="100" y="305" text-anchor="middle" fill="#fff" font-size="14">&lt;title&gt;</text>
+
+                                    <!-- meta -->
+                                    <rect x="230" y="280" width="140" height="40" rx="6" fill="#eab308" opacity="0.7"/>
+                                    <text x="300" y="305" text-anchor="middle" fill="#fff" font-size="14">&lt;meta&gt;</text>
+
+                                    <!-- div -->
+                                    <rect x="430" y="280" width="140" height="40" rx="6" fill="#10b981" opacity="0.7"/>
+                                    <text x="500" y="305" text-anchor="middle" fill="#fff" font-size="14">&lt;div&gt;</text>
+
+                                    <!-- p -->
+                                    <rect x="630" y="280" width="140" height="40" rx="6" fill="#10b981" opacity="0.7"/>
+                                    <text x="700" y="305" text-anchor="middle" fill="#fff" font-size="14">&lt;p&gt;</text>
+
+                                    <!-- h1 -->
+                                    <rect x="380" y="380" width="90" height="35" rx="6" fill="#3b82f6" opacity="0.7"/>
+                                    <text x="425" y="402" text-anchor="middle" fill="#fff" font-size="12">&lt;h1&gt;</text>
+
+                                    <!-- span -->
+                                    <rect x="500" y="380" width="90" height="35" rx="6" fill="#3b82f6" opacity="0.7"/>
+                                    <text x="545" y="402" text-anchor="middle" fill="#fff" font-size="12">&lt;span&gt;</text>
+
+                                    <!-- 标注 -->
+                                    <text x="50" y="430" fill="#06b6d4" font-size="12">↑ HTML 元素转化为 DOM 节点对象</text>
+                                    <text x="500" y="430" fill="#f43f5e" font-size="12">↑ JavaScript 可以访问和操作这些节点</text>
+                                </svg>
+                            </div>
+
+                            <h3>（一）获取网页上的内容</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                要操作网页上的某个部分，第一步是<strong style="color: var(--neon-cyan);">找到它</strong>。我们可以使用浏览器提供的"查找命令"来获取内容，<code style="color: var(--neon-cyan); background: rgba(6, 182, 212, 0.1); padding: 2px 8px; border-radius: 4px;">document</code> 就像是整个网页的"地图"，这些方法就像是在说："帮我找到那个地方的那个内容。"
+                            </p>
+
+                            <div style="overflow-x: auto; margin: 20px 0;">
+                                <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                    <thead>
+                                        <tr style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(168, 85, 247, 0.3));">
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink);">方法</th>
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink);">作用</th>
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink);">示例</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                            <td style="padding: 12px;"><code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 4px 8px; border-radius: 4px;">getElementById()</code></td>
+                                            <td style="padding: 12px; color: var(--cyber-dark-200);">根据元素的 <strong style="color: var(--neon-yellow);">id 名称</strong> 找到网页上的内容</td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-cyan); font-size: 1rem;">document.getElementById("header")</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 4px 8px; border-radius: 4px;">querySelector()</code></td>
+                                            <td style="padding: 12px; color: var(--cyber-dark-200);">根据<strong style="color: var(--neon-yellow);">CSS的写法</strong>找到网页上的内容</td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-cyan); font-size: 1rem;">document.querySelector(".title")</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>选择元素示例代码</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 30%;">变量名</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 45%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 25%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: #fff; font-size: 1rem;">header</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> header = document.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">getElementById</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"header"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        找到 <strong style="color: var(--neon-yellow);">id</strong> 是 header 的部分
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <code style="color: #fff; font-size: 1rem;">title</code>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> title = document.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">querySelector</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">".title"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        找到 <strong style="color: var(--neon-purple);">class</strong> 是 title 的标题
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h3>（二）修改元素内容</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                一旦找到网页的内容后，我们可以对它进行修改，比如——<strong style="color: var(--neon-cyan);">改变文字</strong>、<strong style="color: var(--neon-purple);">改变颜色</strong>、甚至让它"动起来"。
+                            </p>
+
+                            <div style="overflow-x: auto; margin: 20px 0;">
+                                <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                    <thead>
+                                        <tr style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3));">
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan);">操作</th>
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan);">属性</th>
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan);">示例</th>
+                                            <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan);">效果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                            <td style="padding: 12px; color: var(--cyber-dark-100);">改文字</td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 4px 8px; border-radius: 4px;">innerText</code></td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-cyan); font-size: 1rem;">title.innerText = "欢迎"</code></td>
+                                            <td style="padding: 12px; color: var(--cyber-dark-200);">修改标题文字内容</td>
+                                        </tr>
+                                        <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                            <td style="padding: 12px; color: var(--cyber-dark-100);">改样式</td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 4px 8px; border-radius: 4px;">style</code></td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-cyan); font-size: 1rem;">header.style.color = "red"</code></td>
+                                            <td style="padding: 12px; color: var(--cyber-dark-200);">修改背景颜色</td>
+                                        </tr>
+                                        <tr>
+                                            <td style="padding: 12px; color: var(--cyber-dark-100);">改图片</td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 4px 8px; border-radius: 4px;">src</code></td>
+                                            <td style="padding: 12px;"><code style="color: var(--neon-cyan); font-size: 1rem;">img.src = "new.jpg"</code></td>
+                                            <td style="padding: 12px; color: var(--cyber-dark-200);">替换图片内容</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>修改元素示例代码</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 20%;">操作类型</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 50%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 30%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">修改文本内容</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">element.</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">innerText</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"新内容"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        将元素的文字修改为"新内容"
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">修改文字颜色</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">element.style.</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">color</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"red"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        将元素的文字颜色改为红色
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--cyber-pink);">修改字体大小</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">element.style.</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">fontSize</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"20px"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        将字体大小设置为 20 像素
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-yellow);">修改图片</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">image.</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">src</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"new-image.jpg"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        替换图片为新的图片文件
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: DOM 修改示例 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">⚙️ 三、DOM 操作：修改网页内容</h2>
+
+                            <h3>（一）添加元素</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                想象网页就像一个<strong style="color: var(--neon-cyan);">房间</strong>，你可以"放进"新的家具。JavaScript 里，我们可以创建新的网页内容（比如文字、图片、按钮等），再把它放进页面。
+                            </p>
+                            <p style="font-size: 1.1rem; margin: 10px 0; color: var(--neon-purple);">
+                                <strong>语法流程：</strong>创建新元素 → 写入内容 → 放入网页
+                            </p>
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>动态创建新元素并添加到页面</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.3), rgba(234, 179, 8, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink); width: 25%;">步骤</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink); width: 50%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--cyber-pink); width: 25%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(244, 63, 94, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">1. 创建元素</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> newDiv = document.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">createElement</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"div"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        创建一个新的 <code style="color: var(--neon-purple);">&lt;div&gt;</code> 区块
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(244, 63, 94, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">2. 写入内容</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">newDiv.</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">innerText</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> = </code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"这是一个新添加的内容"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        向新元素写入文字内容
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-yellow);">3. 添加到页面</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">document.body.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">appendChild</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(newDiv);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        把这个区块放到网页的最后
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p style="margin-top: 15px; color: var(--neon-yellow); font-size: 1.05rem;">
+                                        <strong>效果：</strong>执行后，网页底部就会多出一句"这是一个新添加的内容"
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h3>（二）删除元素</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                如果网页中我们不再需要某个内容，我们可以把它"拿掉"，这就像<strong style="color: var(--neon-purple);">把桌上的便签纸撕掉</strong>一样简单。
+                            </p>
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>从页面中移除不需要的元素</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(244, 63, 94, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 30%;">步骤</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 50%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 20%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">1. 找到元素</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 1rem;">let</code>
+                                                        <code style="color: #fff; font-size: 1rem;"> oldDiv = document.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">getElementById</code>
+                                                        <code style="color: #fff; font-size: 1rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 1rem;">"oldDiv"</code>
+                                                        <code style="color: #fff; font-size: 1rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        找到要删除的元素
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--cyber-pink);">2. 删除元素</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 1rem;">oldDiv.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 1rem;">remove</code>
+                                                        <code style="color: #fff; font-size: 1rem;">();</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        从页面移除
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p style="margin-top: 15px; color: var(--neon-yellow); font-size: 1.05rem;">
+                                        <strong>效果：</strong>网页上名字是 oldDiv 的部分会被移除
+                                    </p>
+                                </div>
+                            </div>
+
+                            <h3>（三）简单的交互示例：点击按钮改变背景颜色</h3>
+                            <p style="font-size: 1.25rem; margin: 15px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                在网页中，点击按钮改变样式是最常见的交互之一，比如：点击"切换主题"改变网页背景色、点击"高亮"让重要内容突出显示、点击"夜间模式"让页面变暗。下面我们通过一个简单的例子来学习如何修改元素的背景颜色和文字内容。
+                            </p>
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>示例：点击按钮，色块在青色和紫色之间切换</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.3), rgba(168, 85, 247, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 20%;">部分</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 55%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-cyan); width: 25%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">HTML 色块</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&lt;div</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 0.95rem;"> id</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">="</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 0.95rem;">colorBox</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">"</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 0.95rem;"> style</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">="..."</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&gt;</code>
+                                                        <br>&nbsp;&nbsp;<code style="color: #fff; font-size: 0.95rem;">这是一个色块</code>
+                                                        <br><code style="color: var(--neon-cyan); font-size: 0.95rem;">&lt;/div&gt;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        展示区域：一个带背景色的色块
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">HTML 按钮</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&lt;button</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 0.95rem;"> id</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">="</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 0.95rem;">changeBtn</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">"</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&gt;</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">改变颜色</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&lt;/button&gt;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        切换按钮
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(6, 182, 212, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--cyber-pink);">JS 获取元素</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">let</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;"> button = document.getElementById("changeBtn");</code>
+                                                        <br>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">let</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;"> box = document.getElementById("colorBox");</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        找到按钮和色块元素
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-yellow);">JS 切换逻辑</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 0.95rem;">button.addEventListener("click", function() {</code>
+                                                        <br>&nbsp;&nbsp;<code style="color: var(--neon-cyan); font-size: 0.95rem;">if</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;"> (条件为青色) {</code>
+                                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;<code style="color: #fff; font-size: 0.95rem;">box.style.backgroundColor = "#a855f7";</code>
+                                                        <br>&nbsp;&nbsp;<code style="color: #fff; font-size: 0.95rem;">} </code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">else</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;"> {</code>
+                                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;<code style="color: #fff; font-size: 0.95rem;">box.style.backgroundColor = "#06b6d4";</code>
+                                                        <br>&nbsp;&nbsp;<code style="color: #fff; font-size: 0.95rem;">}</code>
+                                                        <br><code style="color: #fff; font-size: 0.95rem;">});</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        监听点击事件，在青色和紫色之间切换
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p style="margin-top: 15px; color: var(--neon-yellow); font-size: 1.05rem;">
+                                        <strong>效果说明：</strong>点击按钮，色块会在青色（#06b6d4）和紫色（#a855f7）之间来回切换，同时文字内容也会改变
+                                    </p>
+                                    <p style="margin-top: 10px; color: var(--neon-purple); font-size: 1.05rem;">
+                                        <strong>💡 知识点：</strong>这个例子同时展示了修改样式（style.backgroundColor）和文字（innerText）两个重要的 DOM 操作
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 事件驱动 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎯 四、事件驱动：响应用户行为</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin: 0 0 15px 0;">
+                                    <strong>💡 什么是"事件"？</strong>
+                                </p>
+                                <p style="font-size: 1.2rem; margin: 10px 0; line-height: 1.8;">
+                                    "事件"其实就是<strong style="color: var(--neon-cyan);">用户在网页上做的动作</strong>，比如——点击一个按钮、把鼠标移上去、在输入框里打字、滚动页面。
+                                </p>
+                                <p style="font-size: 1.2rem; margin: 10px 0; line-height: 1.8;">
+                                    当这些动作发生时，JavaScript 就能"听到"，并根据你的指令"做出反应"。
+                                </p>
+                                <p style="font-size: 1.25rem; margin: 10px 0; padding: 15px; background: rgba(168, 85, 247, 0.1); border-left: 3px solid var(--neon-purple); border-radius: 5px; line-height: 1.8;">
+                                    <strong style="color: var(--neon-purple);">举例说明：</strong>网页就像一位"<strong style="color: var(--neon-cyan);">服务员</strong>"，你的一举一动（点击、输入、滑动）都是"事件"，而 JavaScript 就是告诉这位服务生："当客人做了某件事，要怎么回应他"。
+                                </p>
+                            </div>
+
+                            <h3>（一）常见事件类型</h3>
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-mouse-pointer" style="color: var(--neon-cyan);"></i>
+                                    <h4>click</h4>
+                                    <p style="font-size: 1.1rem;">鼠标点击</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-hand-pointer" style="color: var(--neon-purple);"></i>
+                                    <h4>mouseover</h4>
+                                    <p style="font-size: 1.1rem;">鼠标悬停</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-keyboard" style="color: var(--cyber-pink);"></i>
+                                    <h4>keydown</h4>
+                                    <p style="font-size: 1.1rem;">按下键盘</p>
+                                </div>
+                                <div class="icon-card">
+                                    <i class="fas fa-arrows-alt-v" style="color: var(--neon-yellow);"></i>
+                                    <h4>scroll</h4>
+                                    <p style="font-size: 1.1rem;">页面滚动</p>
+                                </div>
+                            </div>
+
+                            <h3>（二）绑定事件监听器</h3>
+
+                            <!-- JavaScript交互流程图 -->
+                            <div class="diagram-container" style="margin: 40px 0;">
+                                <h4 style="text-align: center; margin-bottom: 20px; color: var(--neon-purple);">🔄 JavaScript 交互流程示意图</h4>
+                                <svg viewBox="0 0 800 400" style="width: 100%; height: auto; max-width: 800px; margin: 0 auto; display: block;">
+                                    <!-- 定义箭头标记 -->
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                                            <polygon points="0 0, 10 3, 0 6" fill="#06b6d4" />
+                                        </marker>
+                                        <linearGradient id="flowGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#f43f5e;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+                                        </linearGradient>
+                                        <linearGradient id="flowGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                                        </linearGradient>
+                                        <linearGradient id="flowGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+                                            <stop offset="100%" style="stop-color:#10b981;stop-opacity:1" />
+                                        </linearGradient>
+                                    </defs>
+
+                                    <!-- 步骤1: 用户操作 -->
+                                    <rect x="50" y="150" width="140" height="80" rx="10" fill="url(#flowGradient1)" opacity="0.9"/>
+                                    <text x="120" y="180" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">👆 用户操作</text>
+                                    <text x="120" y="205" text-anchor="middle" fill="#fff" font-size="13">点击按钮</text>
+
+                                    <!-- 箭头1 -->
+                                    <path d="M 190 190 L 240 190" stroke="#06b6d4" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                                    <text x="215" y="180" text-anchor="middle" fill="#eab308" font-size="12">触发</text>
+
+                                    <!-- 步骤2: 浏览器捕获事件 -->
+                                    <rect x="240" y="150" width="140" height="80" rx="10" fill="url(#flowGradient2)" opacity="0.9"/>
+                                    <text x="310" y="180" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">🌐 浏览器</text>
+                                    <text x="310" y="205" text-anchor="middle" fill="#fff" font-size="13">捕获事件</text>
+
+                                    <!-- 箭头2 -->
+                                    <path d="M 380 190 L 430 190" stroke="#06b6d4" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                                    <text x="405" y="180" text-anchor="middle" fill="#eab308" font-size="12">调用</text>
+
+                                    <!-- 步骤3: JavaScript处理 -->
+                                    <rect x="430" y="150" width="140" height="80" rx="10" fill="url(#flowGradient3)" opacity="0.9"/>
+                                    <text x="500" y="180" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">⚡ JavaScript</text>
+                                    <text x="500" y="205" text-anchor="middle" fill="#fff" font-size="13">执行函数</text>
+
+                                    <!-- 箭头3 -->
+                                    <path d="M 570 190 L 620 190" stroke="#06b6d4" stroke-width="3" fill="none" marker-end="url(#arrowhead)"/>
+                                    <text x="595" y="180" text-anchor="middle" fill="#eab308" font-size="12">更新</text>
+
+                                    <!-- 步骤4: 更新页面 -->
+                                    <rect x="620" y="150" width="140" height="80" rx="10" fill="#10b981" opacity="0.9"/>
+                                    <text x="690" y="180" text-anchor="middle" fill="#fff" font-size="16" font-weight="bold">🎨 DOM</text>
+                                    <text x="690" y="205" text-anchor="middle" fill="#fff" font-size="13">更新页面</text>
+
+                                    <!-- 代码示例框 -->
+                                    <rect x="150" y="280" width="500" height="100" rx="8" fill="rgba(10, 10, 10, 0.8)" stroke="#06b6d4" stroke-width="2"/>
+                                    <text x="170" y="310" fill="#06b6d4" font-size="13" font-family="monospace">button.addEventListener("click", function() {</text>
+                                    <text x="190" y="335" fill="#f43f5e" font-size="13" font-family="monospace">element.innerText = "按钮被点击了！";</text>
+                                    <text x="190" y="360" fill="#a855f7" font-size="13" font-family="monospace">element.style.color = "red";</text>
+                                    <text x="170" y="375" fill="#06b6d4" font-size="13" font-family="monospace">});</text>
+
+                                    <!-- 标题 -->
+                                    <text x="400" y="30" text-anchor="middle" fill="#f43f5e" font-size="16" font-weight="bold">从用户操作到页面更新的完整流程</text>
+                                </svg>
+                            </div>
+
+                            <p style="font-size: 1.15rem; margin: 20px 0; line-height: 1.8; color: var(--cyber-dark-200);">
+                                我们用 <code style="color: var(--neon-purple); background: rgba(168, 85, 247, 0.1); padding: 2px 8px; border-radius: 4px;">addEventListener()</code> 这个函数来告诉网页："当某个事件发生时，就要执行另外一件事"。
+                            </p>
+                            <p style="font-size: 1.25rem; margin: 10px 0; padding: 15px; background: rgba(6, 182, 212, 0.1); border-left: 3px solid var(--neon-cyan); border-radius: 5px; line-height: 1.8;">
+                                <strong style="color: var(--neon-cyan);">形象理解：</strong>在酒店门口安排一个<strong style="color: var(--neon-purple);">礼仪人员</strong>（监听器），当"有人走过来"时，礼仪人员就立刻执行"开门"的动作（函数）。
+                            </p>
+
+                            <div style="background: rgba(10, 10, 10, 0.6); padding: 30px 20px; border-radius: 10px; border: 1px solid var(--neon-purple); margin: 20px 0; text-align: center;">
+                                <h4 style="color: var(--neon-yellow); margin-bottom: 20px;">语法格式：</h4>
+                                <div style="display: inline-block; background: rgba(0, 0, 0, 0.5); padding: 20px 40px; border-radius: 8px; text-align: left;">
+                                    <code style="color: var(--neon-cyan); font-size: 1.1rem;">元素</code><code style="color: #fff; font-size: 1.1rem;">.</code><code style="color: var(--neon-yellow); font-size: 1.1rem;">addEventListener</code><code style="color: #fff; font-size: 1.1rem;">(</code><code style="color: var(--cyber-pink); font-size: 1.1rem;">"事件类型"</code><code style="color: #fff; font-size: 1.1rem;">, </code><code style="color: #9ca3af; font-size: 1.1rem;">要执行的操作</code><code style="color: #fff; font-size: 1.1rem;">);</code>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-content">
+                                    <h4>示例：点击按钮后弹出提示</h4>
+                                    <div style="overflow-x: auto; margin: 20px 0;">
+                                        <table style="width: 100%; border-collapse: collapse; background: rgba(10, 10, 10, 0.6); border-radius: 10px; overflow: hidden;">
+                                            <thead>
+                                                <tr style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3));">
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 25%;">步骤</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 55%;">代码</th>
+                                                    <th style="padding: 15px; text-align: left; color: var(--neon-cyan); border-bottom: 2px solid var(--neon-purple); width: 20%;">说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-cyan);">1. HTML 按钮</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&lt;button</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 0.95rem;"> id</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">="</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 0.95rem;">helloBtn</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">"</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&gt;</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">点我一下</code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">&lt;/button&gt;</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        创建按钮
+                                                    </td>
+                                                </tr>
+                                                <tr style="border-bottom: 1.5px solid rgba(168, 85, 247, 0.4);">
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--neon-purple);">2. 获取按钮</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">let</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;"> button = document.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 0.95rem;">getElementById</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 0.95rem;">"helloBtn"</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">);</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        找到按钮元素
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding: 15px; vertical-align: top;">
+                                                        <strong style="color: var(--cyber-pink);">3. 监听事件</strong>
+                                                    </td>
+                                                    <td style="padding: 15px; vertical-align: top; background: rgba(0, 0, 0, 0.3);">
+                                                        <code style="color: #fff; font-size: 0.95rem;">button.</code>
+                                                        <code style="color: var(--neon-yellow); font-size: 0.95rem;">addEventListener</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 0.95rem;">"click"</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">, </code>
+                                                        <code style="color: var(--neon-cyan); font-size: 0.95rem;">function</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">() {</code>
+                                                        <br>&nbsp;&nbsp;&nbsp;&nbsp;<code style="color: var(--neon-yellow); font-size: 0.95rem;">alert</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">(</code>
+                                                        <code style="color: var(--cyber-pink); font-size: 0.95rem;">"你好！按钮被点击了～"</code>
+                                                        <code style="color: #fff; font-size: 0.95rem;">);</code>
+                                                        <br><code style="color: #fff; font-size: 0.95rem;">});</code>
+                                                    </td>
+                                                    <td style="padding: 15px; color: var(--cyber-dark-200); vertical-align: top;">
+                                                        监听点击事件，弹出提示
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p style="margin-top: 15px; color: var(--neon-yellow); font-size: 1.05rem;">
+                                        <strong>效果：</strong>点击按钮后，网页弹出一个小提示框，显示"你好！按钮被点击了～"
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 交互演示 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🎮 五、交互演示</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; margin: 0;">
+                                    <strong>💡 实践体验：</strong>下面通过三个实际例子，让你亲手体验 JavaScript 的交互魔力！
+                                </p>
+                            </div>
+
+                            <h3>（一）灯泡开关演示</h3>
+                            <div class="demo-area" style="text-align: center; padding: 40px; background: rgba(10, 10, 10, 0.5); border-radius: 15px; margin: 30px 0;">
+                                <div style="font-size: 6rem; margin-bottom: 20px; transition: all 0.3s ease;" id="lightBulb">💡</div>
+                                <div style="font-size: 1.3rem; color: var(--cyber-dark-200); margin-bottom: 30px;" id="bulbStatus">灯泡：关闭</div>
+                                <button onclick="toggleLight()" style="padding: 15px 40px; font-size: 1.2rem; background: linear-gradient(135deg, var(--cyber-pink), var(--neon-purple)); border: none; border-radius: 50px; color: #fff; cursor: pointer; box-shadow: 0 0 20px rgba(244, 63, 94, 0.5); transition: all 0.3s ease;" id="toggleButton" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    开灯
+                                </button>
+                            </div>
+
+                            <h3>（二）文字颜色变换</h3>
+                            <div class="demo-area" style="text-align: center; padding: 40px; background: rgba(10, 10, 10, 0.5); border-radius: 15px; margin: 30px 0;">
+                                <div style="font-size: 3rem; margin-bottom: 30px; transition: all 0.3s ease; font-weight: 700;" id="colorText">我的颜色会变化！</div>
+                                <button onclick="changeColor()" style="padding: 15px 40px; font-size: 1.2rem; background: linear-gradient(135deg, var(--neon-purple), var(--neon-cyan)); border: none; border-radius: 50px; color: #fff; cursor: pointer; box-shadow: 0 0 20px rgba(168, 85, 247, 0.5); transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                    改变颜色
+                                </button>
+                            </div>
+
+                            <h3>（三）计数器</h3>
+                            <div class="demo-area" style="text-align: center; padding: 40px; background: rgba(10, 10, 10, 0.5); border-radius: 15px; margin: 30px 0;">
+                                <div style="font-size: 5rem; margin-bottom: 30px; color: var(--neon-cyan); font-weight: 900; font-family: 'Orbitron', sans-serif; text-shadow: 0 0 20px var(--neon-cyan); transition: all 0.2s ease;" id="counterDisplay">0</div>
+                                <div style="display: flex; justify-content: center; gap: 20px;">
+                                    <button onclick="decreaseCounter()" style="padding: 15px 30px; font-size: 1.5rem; background: linear-gradient(135deg, var(--cyber-pink), var(--neon-purple)); border: none; border-radius: 50px; color: #fff; cursor: pointer; box-shadow: 0 0 20px rgba(244, 63, 94, 0.5); transition: all 0.3s ease; min-width: 80px;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                        -
+                                    </button>
+                                    <button onclick="resetCounter()" style="padding: 15px 30px; font-size: 1.2rem; background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3)); border: 1px solid var(--neon-purple); border-radius: 50px; color: #fff; cursor: pointer; transition: all 0.3s ease; min-width: 100px;" onmouseover="this.style.background='linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(6, 182, 212, 0.5))'" onmouseout="this.style.background='linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(6, 182, 212, 0.3))'">
+                                        重置
+                                    </button>
+                                    <button onclick="increaseCounter()" style="padding: 15px 30px; font-size: 1.5rem; background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); border: none; border-radius: 50px; color: #fff; cursor: pointer; box-shadow: 0 0 20px rgba(6, 182, 212, 0.5); transition: all 0.3s ease; min-width: 80px;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+                                        +
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item" onclick="courseScrollToSection(1)">一、基础语法</button>
+                    <button class="nav-item" onclick="courseScrollToSection(2)">二、DOM 操作</button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">三、DOM 修改</button>
+                    <button class="nav-item" onclick="courseScrollToSection(4)">四、事件驱动</button>
+                    <button class="nav-item" onclick="courseScrollToSection(5)">五、交互演示</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后作业</h1>
+                    <p class="subtitle">巩固所学知识，动手实践 JavaScript 交互</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">任务主题：网页交互功能体验与理解</h2>
+
+                                <div class="highlight-box" style="background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(249, 115, 22, 0.15)); border-left-color: var(--neon-yellow); margin-bottom: 30px;">
+                                    <p style="font-size: 1.3rem; margin: 0;">
+                                        <strong>🎯 任务目标：</strong>通过练习课堂示例，熟悉 JavaScript 的基本语法和网页交互逻辑，为下一节课的代码理解与优化打下基础。
+                                    </p>
+                                </div>
+
+                                <h3 style="color: var(--neon-cyan); margin: 30px 0 20px 0;">具体要求：</h3>
+
+                                <div class="grid-2">
+                                    <div class="content-card">
+                                        <h4><i class="fas fa-code" style="color: var(--neon-cyan);"></i> 任务 1：复现课堂示例</h4>
+                                        <p>尝试独立复现课堂中的灯泡开关效果，理解点击按钮、修改文字或背景颜色的逻辑。</p>
+                                        <ul>
+                                            <li>创建 HTML 结构</li>
+                                            <li>编写 CSS 样式</li>
+                                            <li>实现 JavaScript 交互逻辑</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="content-card">
+                                        <h4><i class="fas fa-plus-circle" style="color: var(--neon-purple);"></i> 任务 2：添加新的交互功能</h4>
+                                        <p>尝试添加一个新的交互功能（如"点击切换图片"或"显示隐藏文字"）。</p>
+                                        <ul>
+                                            <li>思考可能的交互方式</li>
+                                            <li>查找相关 API 文档</li>
+                                            <li>实现并测试新功能</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="content-card">
+                                        <h4><i class="fas fa-cogs" style="color: var(--cyber-pink);"></i> 任务 3：修改代码观察效果</h4>
+                                        <p>修改示例代码中的变量名或文字内容，观察代码变化对效果的影响。</p>
+                                        <ul>
+                                            <li>尝试修改变量名</li>
+                                            <li>改变文字内容和颜色</li>
+                                            <li>记录观察到的变化</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="content-card">
+                                        <h4><i class="fas fa-question-circle" style="color: var(--neon-yellow);"></i> 任务 4：向 AI 提问理解代码</h4>
+                                        <p>遇到不理解的代码时，尝试向 AI 助手提问，基本理解每一行代码的作用。</p>
+                                        <ul>
+                                            <li>列出不理解的概念</li>
+                                            <li>准备具体的问题</li>
+                                            <li>通过提问加深理解</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="highlight-box" style="margin-top: 40px;">
+                                    <p style="font-size: 1.3rem; text-align: center; margin: 0;">
+                                        <strong>💡 提示：</strong>善用浏览器开发者工具（F12）调试代码，观察变量变化和控制台输出！
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2025 JavaScript 交互设计入门 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
