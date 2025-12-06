@@ -1,0 +1,2850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV三步搞定，让数据乖乖排队 | AI数据处理教学</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* 性能优化 */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        img {
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* 启用硬件加速 */
+        .navbar,
+        .cyber-card,
+        .content-card,
+        .icon-card,
+        .step-number,
+        .image-container {
+            will-change: transform;
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        :root {
+            --cyber-pink: #f43f5e;
+            --neon-purple: #a855f7;
+            --neon-cyan: #06b6d4;
+            --neon-blue: #3b82f6;
+            --neon-yellow: #eab308;
+            --cyber-dark-900: #0a0a0a;
+            --cyber-dark-800: #171717;
+            --cyber-dark-700: #1f1f1f;
+            --cyber-dark-200: #d4d4d4;
+            --cyber-dark-100: #f5f5f5;
+        }
+
+        body {
+            font-family: 'Rajdhani', 'Orbitron', sans-serif;
+            background: var(--cyber-dark-900);
+            color: var(--cyber-dark-100);
+            overflow-x: hidden;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 尊重用户的动画偏好 */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        /* 隐藏滚动条 */
+        ::-webkit-scrollbar {
+            display: none;
+        }
+        body {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Section滚动容器 */
+        .section-scroll-container {
+            height: 100vh;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            position: relative;
+            scroll-snap-type: y mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .section-scroll-item {
+            min-height: 100vh;
+            max-height: 100vh;
+            height: 100vh;
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            scroll-snap-align: start;
+            scroll-snap-stop: always;
+        }
+
+        /* 课程章节页面的滚动容器显示自定义滚动条 */
+        #page-course .section-scroll-container {
+            scroll-snap-type: none;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(244, 63, 94, 0.8) rgba(23, 23, 23, 0.5);
+        }
+
+        #page-course .section-scroll-item {
+            scroll-snap-align: none;
+            scroll-snap-stop: normal;
+            min-height: auto;
+            max-height: none;
+            height: auto;
+        }
+
+        #page-course .section-scroll-container::-webkit-scrollbar {
+            width: 8px;
+            display: block;
+        }
+
+        #page-course .section-scroll-container::-webkit-scrollbar-track {
+            background: rgba(23, 23, 23, 0.5);
+            border-radius: 4px;
+        }
+
+        #page-course .section-scroll-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--cyber-pink), var(--neon-purple));
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+        }
+
+        #page-course .section-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--neon-purple), var(--neon-cyan));
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+        }
+
+        /* 课后作业页面的滚动容器显示自定义滚动条，允许自由滚动 */
+        #page-homework .section-scroll-container {
+            scroll-snap-type: none;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(234, 179, 8, 0.8) rgba(23, 23, 23, 0.5);
+        }
+
+        #page-homework .section-scroll-item {
+            scroll-snap-align: none;
+            scroll-snap-stop: normal;
+            min-height: auto;
+            max-height: none;
+            height: auto;
+        }
+
+        #page-homework .section-scroll-container::-webkit-scrollbar {
+            width: 8px;
+            display: block;
+        }
+
+        #page-homework .section-scroll-container::-webkit-scrollbar-track {
+            background: rgba(23, 23, 23, 0.5);
+            border-radius: 4px;
+        }
+
+        #page-homework .section-scroll-container::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--neon-yellow), var(--neon-purple));
+            border-radius: 4px;
+            box-shadow: 0 0 10px rgba(234, 179, 8, 0.5);
+        }
+
+        #page-homework .section-scroll-container::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--neon-purple), var(--neon-cyan));
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.6);
+        }
+
+        .section-scroll-item::-webkit-scrollbar {
+            display: none;
+        }
+
+        .section-scroll-item {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        /* 全屏独占section样式 */
+        .section-fullscreen {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 !important;
+            min-height: 100vh !important;
+            max-height: 100vh !important;
+            height: 100vh !important;
+        }
+
+        .section-fullscreen .container {
+            max-width: 1200px;
+            width: 100%;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .section-fullscreen .cyber-card {
+            min-height: auto;
+            padding: 60px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* 赛博朋克背景效果 */
+        .cyberpunk-background {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .base-gradient {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(244, 63, 94, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(168, 85, 247, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 50% 100%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                        linear-gradient(180deg, #0a0a0a 0%, #030712 100%);
+        }
+
+        .neon-grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(244, 63, 94, 0.3) 1px, transparent 1px),
+                            linear-gradient(90deg, rgba(6, 182, 212, 0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: grid-move 20s linear infinite;
+            transform: perspective(500px) rotateX(60deg) translateZ(0);
+            transform-origin: center center;
+            filter: brightness(1.5);
+            mix-blend-mode: screen;
+        }
+
+        @keyframes grid-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 50px 50px; }
+        }
+
+        .data-rain {
+            position: absolute;
+            inset: 0;
+            opacity: 0.6;
+        }
+
+        .data-rain-column {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            font-weight: normal;
+            line-height: 1;
+            letter-spacing: 0px;
+            color: #00ff00;
+            text-shadow: 0 0 8px #ffffff, 0 0 15px #00ff00;
+            animation: rain-fall linear infinite;
+        }
+
+        @keyframes rain-fall {
+            0% { transform: translateY(-50px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(100vh); opacity: 0; }
+        }
+
+        .neon-beams {
+            position: absolute;
+            inset: 0;
+        }
+
+        .neon-beam {
+            position: absolute;
+            height: 1px;
+            width: 200%;
+            left: -50%;
+            animation: beam-move linear infinite;
+        }
+
+        .neon-beam-1 {
+            top: 20%;
+            background: linear-gradient(90deg, transparent, var(--cyber-pink), transparent);
+            filter: blur(2px);
+            box-shadow: 0 0 10px var(--cyber-pink);
+            animation-duration: 10s;
+        }
+
+        .neon-beam-2 {
+            top: 50%;
+            background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+            filter: blur(1px);
+            box-shadow: 0 0 15px var(--neon-purple);
+            animation-duration: 12s;
+            animation-delay: 2.5s;
+        }
+
+        .neon-beam-3 {
+            top: 80%;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            filter: blur(1px);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            animation-duration: 14s;
+            animation-delay: 5s;
+        }
+
+        @keyframes beam-move {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .particle-field {
+            position: absolute;
+            inset: 0;
+        }
+
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: particle-float infinite;
+        }
+
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0); opacity: 0.2; }
+            50% { transform: translateY(-30px); opacity: 1; }
+        }
+
+        .vignette {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center,
+                transparent 20%,
+                rgba(0, 0, 0, 0.3) 40%,
+                rgba(0, 0, 0, 0.6) 70%,
+                rgba(0, 0, 0, 0.9) 100%
+            );
+        }
+
+        .edge-shadow {
+            position: absolute;
+            inset: 0;
+            box-shadow: inset 0 0 200px 50px rgba(0, 0, 0, 0.9);
+        }
+
+        .scan-lines {
+            position: absolute;
+            inset: 0;
+            opacity: 0.3;
+            background-image: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(255, 255, 255, 0.03) 2px,
+                rgba(255, 255, 255, 0.03) 4px
+            );
+            animation: scan 8s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 80px;
+            background: linear-gradient(135deg,
+                rgba(10, 10, 10, 0.95) 0%,
+                rgba(23, 23, 23, 0.95) 100%
+            );
+            backdrop-filter: blur(30px) saturate(180%);
+            -webkit-backdrop-filter: blur(30px) saturate(180%);
+            border-bottom: 1px solid rgba(244, 63, 94, 0.15);
+            box-shadow: 0 2px 30px rgba(0, 0, 0, 0.3),
+                        0 0 50px rgba(244, 63, 94, 0.08),
+                        inset 0 -1px 0 rgba(255, 255, 255, 0.03);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 60px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            height: 70px;
+            background: linear-gradient(135deg,
+                rgba(10, 10, 10, 0.98) 0%,
+                rgba(23, 23, 23, 0.98) 100%
+            );
+            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4),
+                        0 0 60px rgba(244, 63, 94, 0.15);
+        }
+
+        /* Logo样式 */
+        .navbar-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            background: linear-gradient(135deg,
+                var(--cyber-pink) 0%,
+                var(--neon-purple) 50%,
+                var(--neon-cyan) 100%
+            );
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 40px rgba(244, 63, 94, 0.4);
+            letter-spacing: 1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .navbar-logo::before {
+            content: '📊';
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 10px var(--cyber-pink));
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                filter: drop-shadow(0 0 10px var(--cyber-pink));
+                transform: scale(1);
+            }
+            50% {
+                filter: drop-shadow(0 0 20px var(--cyber-pink)) drop-shadow(0 0 30px var(--neon-purple));
+                transform: scale(1.1);
+            }
+        }
+
+        .navbar-logo:hover {
+            filter: brightness(1.3);
+            transform: translateY(-2px);
+        }
+
+        /* 导航菜单容器 */
+        .navbar-menu {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        /* 导航项目 */
+        .navbar-item {
+            position: relative;
+            padding: 12px 24px;
+            color: var(--cyber-dark-100);
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 12px;
+            backdrop-filter: blur(5px);
+            overflow: hidden;
+            letter-spacing: 0.5px;
+        }
+
+        .navbar-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg,
+                rgba(6, 182, 212, 0.1),
+                rgba(168, 85, 247, 0.1)
+            );
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .navbar-item:hover::before {
+            opacity: 1;
+        }
+
+        .navbar-item:hover {
+            color: var(--neon-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(6, 182, 212, 0.2),
+                        inset 0 0 20px rgba(6, 182, 212, 0.05);
+        }
+
+        /* 激活状态 */
+        .navbar-item.active {
+            color: #fff;
+            background: linear-gradient(135deg,
+                rgba(244, 63, 94, 0.3),
+                rgba(168, 85, 247, 0.2)
+            );
+            box-shadow: 0 0 30px rgba(244, 63, 94, 0.4),
+                        0 4px 20px rgba(244, 63, 94, 0.3),
+                        inset 0 0 30px rgba(244, 63, 94, 0.1),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(244, 63, 94, 0.4);
+        }
+
+        .navbar-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--cyber-pink),
+                transparent
+            );
+            box-shadow: 0 0 10px var(--cyber-pink);
+        }
+
+        /* 导航栏扫描线效果 */
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                var(--neon-cyan) 20%,
+                var(--cyber-pink) 40%,
+                var(--neon-purple) 60%,
+                var(--neon-cyan) 80%,
+                transparent 100%
+            );
+            opacity: 0.5;
+            animation: scan-navbar 4s linear infinite;
+        }
+
+        @keyframes scan-navbar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* 移动端汉堡菜单 */
+        .navbar-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle:hover {
+            background: rgba(244, 63, 94, 0.1);
+        }
+
+        .navbar-toggle span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-pink), var(--neon-cyan));
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+        }
+
+        .navbar-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .navbar-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+
+        .navbar-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+
+        /* 内容区域样式 */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* Hero区域 */
+        .hero {
+            min-height: 100vh;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px 80px 20px;
+            box-sizing: border-box;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--cyber-pink), var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(244, 63, 94, 0.5);
+            filter: drop-shadow(0 0 20px rgba(244, 63, 94, 0.3));
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan),
+                        0 0 40px rgba(6, 182, 212, 0.5);
+            font-weight: 600;
+        }
+
+        /* 赛博朋克卡片 */
+        .cyber-card {
+            position: relative;
+            background: linear-gradient(135deg,
+                rgba(10, 10, 10, 0.92) 0%,
+                rgba(23, 23, 23, 0.85) 100%
+            );
+            backdrop-filter: blur(25px) saturate(180%);
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+            border-radius: 24px;
+            padding: 30px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4),
+                        0 0 20px rgba(244, 63, 94, 0.15),
+                        inset 0 0 20px rgba(168, 85, 247, 0.04),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .cyber-card:hover {
+            border-color: rgba(244, 63, 94, 0.5);
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5),
+                        0 0 40px rgba(244, 63, 94, 0.3),
+                        inset 0 0 30px rgba(168, 85, 247, 0.08),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            transform: translateY(-8px) scale(1.01);
+        }
+
+        /* 透明卡片样式 */
+        .transparent-card {
+            background: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+
+        .transparent-card:hover {
+            background: transparent !important;
+            box-shadow: none !important;
+            transform: none !important;
+        }
+
+        /* 自适应高度的section样式 */
+        .section-auto-height {
+            min-height: 100vh !important;
+            max-height: none !important;
+            height: auto !important;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent,
+                var(--cyber-pink),
+                var(--neon-purple),
+                var(--neon-cyan),
+                transparent
+            );
+            animation: scan-card 3s linear infinite;
+        }
+
+        @keyframes scan-card {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* 标题样式 */
+        .section-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+            padding-bottom: 15px;
+            text-shadow: 0 0 20px rgba(244, 63, 94, 0.5),
+                        0 0 40px rgba(168, 85, 247, 0.3);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--cyber-pink), var(--neon-purple), var(--neon-cyan));
+            box-shadow: 0 0 10px var(--cyber-pink),
+                        0 0 20px var(--neon-purple);
+            animation: glow-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                box-shadow: 0 0 10px var(--cyber-pink),
+                            0 0 20px var(--neon-purple);
+            }
+            50% {
+                box-shadow: 0 0 20px var(--cyber-pink),
+                            0 0 40px var(--neon-purple),
+                            0 0 60px var(--neon-cyan);
+            }
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--neon-cyan);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--neon-purple);
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+        }
+
+        h4 {
+            font-size: 1.4rem;
+            color: var(--neon-cyan);
+            margin: 20px 0 10px 0;
+            font-weight: 600;
+        }
+
+        /* 霓虹文字 */
+        .neon-text-pink {
+            color: var(--cyber-pink);
+            text-shadow: 0 0 10px var(--cyber-pink), 0 0 20px var(--cyber-pink);
+        }
+
+        .neon-text-cyan {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+        }
+
+        .neon-text-purple {
+            color: var(--neon-purple);
+            text-shadow: 0 0 10px var(--neon-purple), 0 0 20px var(--neon-purple);
+        }
+
+        /* 内容卡片 */
+        .content-card {
+            background: rgba(23, 23, 23, 0.65);
+            backdrop-filter: blur(15px) saturate(150%);
+            -webkit-backdrop-filter: blur(15px) saturate(150%);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 18px;
+            padding: 28px;
+            margin: 25px 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
+                        0 0 12px rgba(168, 85, 247, 0.08),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .content-card:hover {
+            background: rgba(23, 23, 23, 0.85);
+            border-color: rgba(168, 85, 247, 0.45);
+            transform: translateX(12px) translateY(-4px);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3),
+                        0 0 24px rgba(168, 85, 247, 0.2),
+                        inset 0 0 20px rgba(168, 85, 247, 0.06),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        /* 列表样式 */
+        ul, ol {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+
+        li {
+            color: var(--cyber-dark-200);
+            font-size: 1.1rem;
+            margin: 15px 0;
+            padding-left: 35px;
+            position: relative;
+            line-height: 1.8;
+        }
+
+        li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 5px var(--neon-cyan));
+        }
+
+        #page-overview ol li::before {
+            content: counter(item) "、";
+            counter-increment: item;
+            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        #page-overview ol {
+            counter-reset: item;
+        }
+
+        /* 表格样式 */
+        .table-container {
+            overflow-x: auto;
+            margin: 30px 0;
+            border-radius: 15px;
+            border: 1px solid rgba(244, 63, 94, 0.3);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(10, 10, 10, 0.8);
+        }
+
+        th, td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(244, 63, 94, 0.2);
+        }
+
+        th {
+            background: linear-gradient(135deg,
+                rgba(244, 63, 94, 0.3),
+                rgba(168, 85, 247, 0.3)
+            );
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        td {
+            color: var(--cyber-dark-200);
+            font-size: 1rem;
+        }
+
+        tr:hover {
+            background: rgba(244, 63, 94, 0.1);
+        }
+
+        /* 高亮框 */
+        .highlight-box {
+            background: linear-gradient(135deg,
+                rgba(244, 63, 94, 0.15),
+                rgba(168, 85, 247, 0.15),
+                rgba(6, 182, 212, 0.15)
+            );
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-left: 4px solid var(--cyber-pink);
+            border-radius: 10px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.2),
+                        inset 0 0 30px rgba(244, 63, 94, 0.05);
+        }
+
+        .highlight-box strong {
+            color: var(--cyber-pink);
+            font-size: 1.3rem;
+            text-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+        }
+
+        /* 代码块样式 */
+        .code-block {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            color: var(--neon-cyan);
+            overflow-x: auto;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.1),
+                        inset 0 0 20px rgba(6, 182, 212, 0.05);
+        }
+
+        .code-block code {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+        }
+
+        /* 作业区域 */
+        .homework-section {
+            background: linear-gradient(135deg,
+                rgba(234, 179, 8, 0.2),
+                rgba(249, 115, 22, 0.2)
+            );
+            border: 2px solid rgba(234, 179, 8, 0.5);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 0 30px rgba(234, 179, 8, 0.3);
+        }
+
+        .homework-section h2 {
+            color: var(--neon-yellow);
+            text-shadow: 0 0 15px var(--neon-yellow);
+        }
+
+        /* 底部 */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--cyber-dark-200);
+            font-size: 1rem;
+            border-top: 1px solid rgba(244, 63, 94, 0.2);
+            margin-top: 60px;
+        }
+
+        /* 滚动提示 */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            animation: bounce 2s infinite;
+            text-align: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .scroll-indicator.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .scroll-indicator i {
+            font-size: 3rem;
+            color: var(--cyber-pink);
+            filter: drop-shadow(0 0 15px var(--cyber-pink))
+                    drop-shadow(0 0 30px var(--cyber-pink))
+                    drop-shadow(0 0 45px rgba(244, 63, 94, 0.5));
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                filter: drop-shadow(0 0 15px var(--cyber-pink))
+                        drop-shadow(0 0 30px var(--cyber-pink));
+            }
+            50% {
+                filter: drop-shadow(0 0 25px var(--cyber-pink))
+                        drop-shadow(0 0 50px var(--cyber-pink))
+                        drop-shadow(0 0 75px rgba(244, 63, 94, 0.8));
+            }
+        }
+
+        .scroll-indicator::before {
+            content: '滚动查看下一节';
+            display: block;
+            font-size: 0.9rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan),
+                        0 0 20px rgba(6, 182, 212, 0.5);
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+
+        /* 侧边导航栏样式 */
+        .course-nav {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+            max-height: 85vh;
+            overflow-y: auto;
+            animation: navFadeIn 0.6s ease-out 0.3s both;
+        }
+
+        @keyframes navFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50%) translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(-50%) translateX(0);
+            }
+        }
+
+        .course-nav .cyber-card {
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6),
+                        0 0 40px rgba(244, 63, 94, 0.15),
+                        inset 0 0 20px rgba(168, 85, 247, 0.04);
+        }
+
+        .course-nav::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .course-nav::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--cyber-pink), var(--neon-purple));
+            border-radius: 2px;
+            box-shadow: 0 0 6px rgba(244, 63, 94, 0.5);
+        }
+
+        .course-nav::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(180deg, var(--neon-purple), var(--neon-cyan));
+        }
+
+        .nav-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--cyber-dark-200);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+            letter-spacing: 0.3px;
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(135deg,
+                rgba(6, 182, 212, 0.15) 0%,
+                rgba(139, 92, 246, 0.1) 100%
+            );
+            color: var(--neon-cyan);
+            transform: translateX(-8px);
+            box-shadow: inset 0 0 20px rgba(6, 182, 212, 0.1);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg,
+                rgba(244, 63, 94, 0.25),
+                rgba(168, 85, 247, 0.15)
+            );
+            border-left: 4px solid var(--cyber-pink);
+            padding-left: calc(1rem - 4px);
+            color: var(--cyber-pink);
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3),
+                        inset 0 0 20px rgba(244, 63, 94, 0.1);
+            text-shadow: 0 0 10px rgba(244, 63, 94, 0.5);
+        }
+
+        .nav-item-sub {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 0.65rem 1rem;
+            padding-left: calc(1rem + 1.8em);
+            border-radius: 0.5rem;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--cyber-dark-200);
+            font-size: 0.8rem;
+            line-height: 1.4;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            margin-bottom: 0.25rem;
+            opacity: 0.85;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-weight: 400;
+        }
+
+        .nav-item-sub:hover {
+            background: linear-gradient(135deg,
+                rgba(168, 85, 247, 0.15) 0%,
+                rgba(6, 182, 212, 0.1) 100%
+            );
+            color: var(--neon-purple);
+            transform: translateX(-6px);
+            opacity: 1;
+            box-shadow: inset 0 0 15px rgba(168, 85, 247, 0.08);
+        }
+
+        .nav-item-sub.active {
+            background: linear-gradient(135deg,
+                rgba(168, 85, 247, 0.25),
+                rgba(6, 182, 212, 0.15)
+            );
+            border-left: 3px solid var(--neon-purple);
+            padding-left: calc(1rem + 1.8em - 3px);
+            color: var(--neon-purple);
+            font-weight: 600;
+            opacity: 1;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.25),
+                        inset 0 0 15px rgba(168, 85, 247, 0.08);
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1200px) {
+            .course-nav {
+                display: none;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 20px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0 20px;
+                height: 70px;
+            }
+
+            .navbar.scrolled {
+                height: 65px;
+            }
+
+            .navbar-logo {
+                font-size: 1.3rem;
+            }
+
+            .navbar-logo::before {
+                font-size: 1.5rem;
+            }
+
+            .navbar-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg,
+                    rgba(10, 10, 10, 0.98) 0%,
+                    rgba(23, 23, 23, 0.98) 100%
+                );
+                backdrop-filter: blur(30px) saturate(180%);
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+                max-height: 0;
+                overflow: hidden;
+                opacity: 0;
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                border-bottom: 1px solid rgba(244, 63, 94, 0.15);
+                box-shadow: 0 8px 40px rgba(0, 0, 0, 0.5);
+            }
+
+            .navbar-menu.active {
+                max-height: 400px;
+                opacity: 1;
+                padding: 20px;
+            }
+
+            .navbar-item {
+                width: 100%;
+                text-align: center;
+                padding: 16px 24px;
+                margin: 5px 0;
+            }
+
+            .navbar-toggle {
+                display: flex;
+            }
+
+            .hero {
+                padding: 80px 20px 60px 20px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cyber-card {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            h3 {
+                font-size: 1.5rem;
+            }
+
+            h4 {
+                font-size: 1.2rem;
+            }
+
+            li {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 0 15px;
+            }
+
+            .navbar-logo {
+                font-size: 1.1rem;
+            }
+
+            .navbar-logo::before {
+                font-size: 1.3rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .cyber-card {
+                padding: 15px;
+            }
+        }
+
+        ::selection {
+            background: rgba(244, 63, 94, 0.5);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(244, 63, 94, 0.8);
+        }
+
+        /* 页面加载动画 */
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #171717 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            opacity: 1;
+            transition: opacity 0.6s ease-out;
+        }
+
+        .page-loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-content {
+            text-align: center;
+        }
+
+        .loader-spinner {
+            width: 60px;
+            height: 60px;
+            border: 3px solid rgba(244, 63, 94, 0.2);
+            border-top-color: var(--cyber-pink);
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) infinite;
+            margin: 0 auto 20px;
+            box-shadow: 0 0 20px rgba(244, 63, 94, 0.3);
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loader-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            background: linear-gradient(to right, var(--cyber-pink), var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* 页面内容淡入动画 */
+        .page {
+            animation: fadeInPage 0.8s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 段落样式 */
+        p {
+            color: var(--cyber-dark-200);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin: 15px 0;
+        }
+
+        /* 加粗文字样式 */
+        strong {
+            color: var(--neon-cyan);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- 页面加载动画 -->
+    <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第二单元:AI文本结构与格式化输出</div>
+
+        <!-- 汉堡菜单按钮 -->
+        <div class="navbar-toggle" id="navbarToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>3. CSV三步搞定，让数据乖乖排队</h1>
+                    <p class="subtitle">掌握AI数据处理的基础语言 | 数据思维训练</p>
+                </div>
+                <!-- 滚动提示 -->
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 课程回顾 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">一、课程回顾</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解了 JSON 的概念、特点与在 AI 系统中的重要性，认识到它是 AI 最常用、也最"容易理解"的结构化语言</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">掌握了 JSON 的基础语法规则，包括对象、数组、字符串、数字、布尔与 null 等六大数据类型的使用方法</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解了 JSON 与 Markdown 的区别：Markdown 面向"人类阅读"，JSON 面向"系统理解"，二者共同构建人与 AI 的完整沟通框架</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">学会使用 JSON 来表达结构化信息，并能对比普通文本输出与 JSON 输出在系统可用性上的巨大差异</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解了 AI 喜欢 JSON 的原因：结构化、可交互、可自动化，使 AI 生成的数据能直接被其他系统读取、执行或进一步处理</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: 学习目标 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-purple">二、学习目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解了 CSV 的核心概念，认识到它是一种轻量、通用、兼容性极高的结构化数据格式，是 AI 工程中最基础的数据载体</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">掌握了 CSV 的关键语法规则（分隔符、换行符、编码格式、引号转义），能处理包含逗号、引号、换行的复杂字段</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">了解了 CSV 在实际业务中的广泛应用，包括电商、人力、财务、数据分析、AI 数据集管理等场景</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">学会用 CSV 建立"行=样本、列=特征"的结构化数据思维，理解它是 AI 模型训练、数据清洗、推理输出的核心格式</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: 课程目录 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">三、课程目录</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8; cursor: pointer;" onclick="showPage('course'); scrollTo(0,0);" class="clickable-item">CSV与AI的关系</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8; cursor: pointer;" onclick="showPage('course'); scrollTo(0,0);" class="clickable-item">CSV的关键点</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8; cursor: pointer;" onclick="showPage('course'); scrollTo(0,0);" class="clickable-item">CSV的应用场景</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习 CSV 数据处理核心知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 一、CSV与AI的关系 - 标题 -->
+            <section class="section-scroll-item section-fullscreen" data-section="1">
+                <div class="container">
+                    <div class="cyber-card transparent-card">
+                        <h2 class="section-title">💾 一、CSV与AI的关系</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 3: （一）CSV是什么 -->
+            <section class="section-scroll-item section-auto-height" data-section="2">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(一)CSV是什么</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-file-alt neon-text-cyan"></i> 1. 基本定义</h4>
+                                <p><strong class="neon-text-purple">CSV（Comma-Separated Values）</strong> 中文名为"<strong>逗号分隔值文件</strong>"，是一种<strong>纯文本（Plain Text）格式</strong>，用于以<strong>表格形式</strong>存储数据。</p>
+
+                                <div class="highlight-box">
+                                    <p><strong>纯文本格式：</strong>一种不包含任何格式、样式或排版信息的文本文件，只存储最基础的字符和有限的控制字符，如换行符和空格。</p>
+                                </div>
+
+                                <ul>
+                                    <li>它不是数据库、也不是二进制格式，而是一种<strong>最轻量级的数据表表示方式</strong></li>
+                                    <li>CSV 的核心思想：<strong>"一行代表一条数据，一列代表一个字段"</strong></li>
+                                </ul>
+
+                                <p><strong>示例（最简单的CSV文件内容）：</strong></p>
+                                <div class="code-block">
+                                    <code>name,age,city<br>小明,18,北京<br>小红,20,上海</code>
+                                </div>
+
+                                <p><strong>结构解析：</strong></p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>元素</th>
+                                                <th>含义</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>第一行</td>
+                                                <td>表头（Header），定义列名：name、age、city</td>
+                                            </tr>
+                                            <tr>
+                                                <td>第二行</td>
+                                                <td>第一条数据记录</td>
+                                            </tr>
+                                            <tr>
+                                                <td>第三行</td>
+                                                <td>第二条数据记录</td>
+                                            </tr>
+                                            <tr>
+                                                <td>逗号</td>
+                                                <td>列与列之间的分隔符</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-star neon-text-purple"></i> 2. CSV的本质特征</h4>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>特征</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>纯文本</strong></td>
+                                                <td>CSV文件内部全部是可读字符（没有格式控制符），任何文本编辑器都能打开</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>结构简单</strong></td>
+                                                <td>行列结构明晰，无嵌套、无层级</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>兼容性高</strong></td>
+                                                <td>几乎所有语言、工具、数据库都支持CSV</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>无类型信息</strong></td>
+                                                <td>CSV文件本身不记录"类型"，所有内容都是字符串。数值、布尔、日期都需要程序自行识别</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 4: （二）为什么要学习CSV -->
+            <section class="section-scroll-item section-auto-height" data-section="3">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)为什么要学习CSV</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-brain neon-text-cyan"></i> 1. 几乎所有AI项目都离不开CSV</h4>
+
+                                <p><strong class="neon-text-purple">通用性强</strong></p>
+                                <ul>
+                                    <li><strong>任何工具都能读写</strong>：Excel、Python、R、SQL、Spark 等都支持 CSV</li>
+                                    <li><strong>纯文本可读可传</strong>：不依赖专用软件，易于版本管理、审查与共享</li>
+                                    <li><strong>跨平台兼容</strong>：Windows / Mac / Linux / 云端系统均可直接使用</li>
+                                </ul>
+
+                                <p><strong class="neon-text-pink">应用领域广泛</strong></p>
+                                <ul>
+                                    <li><strong>在电商/零售岗位</strong>
+                                        <ul style="margin-left: 20px;">
+                                            <li>将商品名称、价格、库存填写成 CSV 后，就可以批量导入上架商品</li>
+                                            <li>将每日的订单导出为.csv格式，用于销售报表</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>在人力资源（HR）岗位</strong>
+                                        <ul style="margin-left: 20px;">
+                                            <li>用CSV格式上传员工工号、部门、工资标准等信息，可以批量导入员工信息到考勤/薪资系统</li>
+                                            <li>若是需要社保/公积金的申报，就必须要用到CSV格式。因为大部分地区的社保中心要求 CSV 格式上传</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>在财务岗位</strong>
+                                        <ul style="margin-left: 20px;">
+                                            <li>各银行都支持将流水导出为 CSV格式</li>
+                                            <li>发票系统导出的发票明细常为CSV格式</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-lightbulb neon-text-purple"></i> 2. CSV能训练数据思维</h4>
+                                <ul>
+                                    <li>每一行代表一个<strong>样本</strong>，每一列代表一个<strong>特征</strong>。通过CSV，你能清晰看到数据结构：行、列、类型、缺失、分布。这是AI和数据分析的基础逻辑：<strong>结构化思维</strong></li>
+                                    <li>能快速检查数据质量（重复、缺失、类型错误），用Pandas或Excel完成清洗、聚合、连接操作，形成"结构化观察"习惯——这是AI工程的核心思维</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 5: 二、CSV的关键点 - 标题 -->
+            <section class="section-scroll-item section-fullscreen" data-section="4">
+                <div class="container">
+                    <div class="cyber-card transparent-card">
+                        <h2 class="section-title">🔑 二、CSV的关键点</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 6: （一）分隔符 -->
+            <section class="section-scroll-item section-auto-height" data-section="5">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(一)分隔符</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-code neon-text-cyan"></i> 1. CSV的核心是"分隔符规则"</h4>
+                                <p>简单点来说就是用逗号作为<strong>区分列与列的标志</strong>。每一行是一个"数据记录（record）"，每个逗号后面代表一个"字段（field）"。</p>
+
+                                <p><strong>示例：</strong></p>
+                                <div class="code-block">
+                                    <code>name,age,city<br>王一,25,伦敦<br>李二,30,山东</code>
+                                </div>
+
+                                <p><strong>解析：</strong></p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>元素</th>
+                                                <th>含义</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>第一行</td>
+                                                <td>表头（列名）</td>
+                                            </tr>
+                                            <tr>
+                                                <td>,</td>
+                                                <td>分隔符，用于区分字段</td>
+                                            </tr>
+                                            <tr>
+                                                <td>\n</td>
+                                                <td>换行符，用于区分行</td>
+                                            </tr>
+                                            <tr>
+                                                <td>后续行</td>
+                                                <td>数据记录</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-exclamation-triangle neon-text-pink"></i> 2. 分隔符的"陷阱案例"</h4>
+
+                                <p><strong class="neon-text-pink">错误示例：</strong></p>
+                                <div class="code-block">
+                                    <code>name,age,city<br>张三,25,广东,深圳</code>
+                                </div>
+                                <p><strong>错误点：</strong>本意可能想表达 "city：广东,深圳"，但因为多了一个逗号，程序会把它当成"4列数据"，而表头（第一行）只有三列数据。</p>
+
+                                <p><strong class="neon-text-cyan">正确写法：</strong></p>
+                                <div class="code-block">
+                                    <code>name,age,city<br>张三,25,"广东,深圳"</code>
+                                </div>
+                                <p><strong>解释：</strong>字段内容中有分隔符时，必须加引号。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 7: （二）编码格式 -->
+            <section class="section-scroll-item section-auto-height" data-section="6">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)编码格式</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-language neon-text-cyan"></i> 1. 什么是编码</h4>
+                                <p>编码就是将信息从一种形式转换为另一种形式的过程，通常用于数据存储、传输或压缩。简单来说就是把"人能看懂的文字"变成"计算机能存的数字"的过程。</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-question-circle neon-text-purple"></i> 2. 为什么CSV文件格式要用到编码格式</h4>
+                                <p>CSV 是纯文本文件，而纯文本文件里本质上存的是数字（字节），不是文字。而编码格式就是负责把"字节"翻译成"文字"的规则。</p>
+
+                                <div class="highlight-box">
+                                    <p><strong>举个例子：</strong></p>
+                                    <ul>
+                                        <li>把 CSV 看成一本书，但书里的内容不是文字而是数字，打比是123456789</li>
+                                        <li>而编码格式，就相当于"解读这本书需要使用的语言"。是12代表一个字，还是123代表一个字，还是12分别代表一个字</li>
+                                    </ul>
+                                    <p style="margin-top: 15px;"><strong>所以，编码 = 让计算机知道这些字节应该用什么语言解释</strong></p>
+                                </div>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-info-circle neon-text-cyan"></i> 3. 为什么编码重要？</h4>
+                                <p>CSV 是<strong>纯文本文件</strong>，所以"每个字符"都要有编码方式。</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-list neon-text-purple"></i> 4. 常见编码类型</h4>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>编码类型</th>
+                                                <th>特点</th>
+                                                <th>适用场景</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>UTF-8</td>
+                                                <td>国际标准，支持多语言</td>
+                                                <td>推荐默认编码</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GBK / GB2312</td>
+                                                <td>主要用于中文Windows系统</td>
+                                                <td>中国大陆Excel常见</td>
+                                            </tr>
+                                            <tr>
+                                                <td>ISO-8859-1</td>
+                                                <td>西欧系统默认</td>
+                                                <td>老旧文件可能用</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 8: （三）如何处理文本中包含的逗号/换行 -->
+            <section class="section-scroll-item section-auto-height" data-section="7">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(三)如何处理文本中包含的逗号/换行（面试必考）</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-code neon-text-cyan"></i> 示例1：字段中包含逗号</h4>
+
+                                <p><strong class="neon-text-pink">错误写法：</strong></p>
+                                <div class="code-block">
+                                    <code>name,comment<br>小明,他最喜欢的水果是苹果,香蕉</code>
+                                </div>
+                                <p><strong>错误点：</strong>","没有用""包裹起来，会被当作3列数据。</p>
+
+                                <p><strong class="neon-text-cyan">正确写法：</strong></p>
+                                <div class="code-block">
+                                    <code>name,comment<br>小明,"他最喜欢的水果是苹果,香蕉"</code>
+                                </div>
+                                <p><strong>原因：</strong>CSV读取器会自动识别："苹果,香蕉" 是同一个字段。</p>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-quote-right neon-text-purple"></i> 示例2：字段中包含引号</h4>
+
+                                <p><strong>问题：</strong>字段中本身就有引号，如：</p>
+                                <div class="code-block">
+                                    <code>他说"你好"</code>
+                                </div>
+
+                                <p><strong class="neon-text-cyan">CSV中的写法必须是：</strong></p>
+                                <div class="code-block">
+                                    <code>"他说""你好"""</code>
+                                </div>
+
+                                <p><strong>规则解释：</strong></p>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>内容类型</th>
+                                                <th>CSV写法规则</th>
+                                                <th>举例（实际CSV示例）</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>普通文本</strong></td>
+                                                <td>无需引号</td>
+                                                <td>name,age<br>Tom,25</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>含有逗号</strong></td>
+                                                <td>用引号包裹整个字段</td>
+                                                <td>name,remark<br>Tom,"喜欢苹果,香蕉"</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>含有引号</strong></td>
+                                                <td>用双引号转义（"" 表示一个 "）</td>
+                                                <td>name,remark<br>Tom,"他说""你好"""</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>含有换行符</strong></td>
+                                                <td>用引号包裹整个字段</td>
+                                                <td>name,remark<br>Tom,"这是多行备注\n请注意换行"</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>同时含有逗号与换行</strong></td>
+                                                <td>同时用引号包裹</td>
+                                                <td>name,remark<br>Tom,"我喜欢苹果,也喜欢橙子\n这是一行备注"</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>字段为空</strong></td>
+                                                <td>留空即可</td>
+                                                <td>name,age,city<br>Tom,25,</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-paragraph neon-text-cyan"></i> 示例3：字段中包含换行</h4>
+
+                                <p><strong>例：</strong></p>
+                                <div class="code-block">
+                                    <code>name,remark<br>李四,"这是一段多行<br>的备注内容"</code>
+                                </div>
+                                <p><strong>解释：</strong>用引号包裹整个字段，即使换行，程序仍会认为这是一个字段。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 9: 三、CSV的应用场景 - 标题 -->
+            <section class="section-scroll-item section-fullscreen" data-section="8">
+                <div class="container">
+                    <div class="cyber-card transparent-card">
+                        <h2 class="section-title">🎯 三、CSV的应用场景</h2>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 10: （一）CSV的使用 -->
+            <section class="section-scroll-item section-auto-height" data-section="9">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(一)CSV的使用</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-tools neon-text-cyan"></i> 多种工具可操作CSV</h4>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>工具类型</th>
+                                                <th>工具名称</th>
+                                                <th>操作方式</th>
+                                                <th>适用场景</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>办公软件</strong></td>
+                                                <td>Excel、Numbers、WPS表格</td>
+                                                <td>打开、编辑、导出为CSV</td>
+                                                <td>简单可视化、人工录入</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>文本编辑器</strong></td>
+                                                <td>VS Code、Sublime Text、Notepad++</td>
+                                                <td>查看真实结构（分隔符、换行符）</td>
+                                                <td>格式调试、编码检查</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>编程语言</strong></td>
+                                                <td>Python、R、JavaScript、SQL</td>
+                                                <td>程序化读取与写入</td>
+                                                <td>数据分析、AI训练</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>AI工具</strong></td>
+                                                <td>ChatGPT、ComfyUI、数据标注平台</td>
+                                                <td>上传/导出数据文件</td>
+                                                <td>批量任务、提示管理</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 11: （二）数据处理与数据思维 -->
+            <section class="section-scroll-item section-auto-height" data-section="10">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(二)数据处理与数据思维（进入 AI / 数据分析必学部分）</h3>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-database neon-text-cyan"></i> 1. CSV与数据结构的关系</h4>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>术语</th>
+                                                <th>CSV中对应表现</th>
+                                                <th>含义</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>记录（Record）</strong></td>
+                                                <td>每一行</td>
+                                                <td>一条样本数据</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>字段（Field）</strong></td>
+                                                <td>每一列</td>
+                                                <td>一个特征或属性</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>表头（Header）</strong></td>
+                                                <td>第一行</td>
+                                                <td>列名，用于标识字段</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>数据集（Dataset）</strong></td>
+                                                <td>整个文件</td>
+                                                <td>一组样本集合</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <p><strong>示例：</strong></p>
+                                <div class="code-block">
+                                    <code>id,name,math,english<br>1,小明,85,90<br>2,小红,95,92<br>3,小刚,78,84</code>
+                                </div>
+
+                                <p><strong class="neon-text-purple">AI视角解释：</strong></p>
+                                <ul>
+                                    <li>每一行 → 一个"样本（Sample）"</li>
+                                    <li>每一列 → 一个"特征（Feature）"</li>
+                                    <li>每个数字 → 一个"输入信号（Input Signal）"</li>
+                                </ul>
+                            </div>
+
+                            <div class="content-card">
+                                <h4><i class="fas fa-robot neon-text-purple"></i> 2. 在AI开发中的作用</h4>
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>阶段</th>
+                                                <th>任务</th>
+                                                <th>CSV的作用</th>
+                                                <th>示例</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>数据收集</strong></td>
+                                                <td>标注、整理原始数据</td>
+                                                <td>存储图片路径、文本内容、标签</td>
+                                                <td>image,label</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>数据清洗</strong></td>
+                                                <td>去重、填补缺失值</td>
+                                                <td>导出清洗结果</td>
+                                                <td>cleaned_dataset.csv</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>模型训练</strong></td>
+                                                <td>提供输入与输出字段</td>
+                                                <td>训练集/测试集结构</td>
+                                                <td>train.csv、test.csv</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>模型推理</strong></td>
+                                                <td>批量输入</td>
+                                                <td>输入任务列表</td>
+                                                <td>input_prompts.csv</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>结果导出</strong></td>
+                                                <td>保存预测结果</td>
+                                                <td>输出AI生成结果</td>
+                                                <td>predictions.csv</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 12: （三）小结 -->
+            <section class="section-scroll-item section-auto-height" data-section="11">
+                <div style="padding-top: 100px; padding-bottom: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>(三)小结</h3>
+
+                            <div class="content-card">
+                                <div class="table-container">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>层面</th>
+                                                <th>CSV的价值</th>
+                                                <th>示例</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><strong>工具层</strong></td>
+                                                <td>通用文件格式</td>
+                                                <td>Excel、Python、AI工具都能识别</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>认知层</strong></td>
+                                                <td>建立结构化思维</td>
+                                                <td>行=样本，列=特征</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>工程层</strong></td>
+                                                <td>数据流核心载体</td>
+                                                <td>贯穿采集→训练→输出</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>AI层</strong></td>
+                                                <td>模型与人类之间的"语言"</td>
+                                                <td>Prompt → Response 映射</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>教育层</strong></td>
+                                                <td>最低门槛的"数据科学入门格式"</td>
+                                                <td>入门必修、跨学科通用</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="highlight-box" style="margin-top: 30px;">
+                                    <p><strong>结论：</strong></p>
+                                    <ul>
+                                        <li>学会CSV = 掌握AI最基础的"数据操作语法"</li>
+                                        <li>CSV既是数据的容器，也是思维的训练场</li>
+                                        <li>一切AI项目，最终都要回到数据，而CSV是最原始的"数据语言"</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <!-- Section 0: Hero -->
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+
+                    <!-- Section 1: 一、CSV与AI的关系 -->
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、CSV与AI的关系
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        (一)CSV是什么
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        (二)为什么要学习CSV
+                    </button>
+
+                    <!-- Section 2: 二、CSV的关键点 -->
+                    <button class="nav-item" onclick="courseScrollToSection(4)">
+                        二、CSV的关键点
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">
+                        (一)分隔符
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        (二)编码格式
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(7)">
+                        (三)处理逗号/换行
+                    </button>
+
+                    <!-- Section 3: 三、CSV的应用场景 -->
+                    <button class="nav-item" onclick="courseScrollToSection(8)">
+                        三、CSV的应用场景
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">
+                        (一)CSV的使用
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(10)">
+                        (二)数据处理与思维
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(11)">
+                        (三)小结
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Section 1: Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课后作业</h1>
+                    <p class="subtitle">实践CSV文件操作</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- Section 2: 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">课后作业</h2>
+
+                                <div class="content-card" style="background: rgba(10, 10, 10, 0.5); margin-top: 30px;">
+                                    <h3 class="neon-text-cyan">任务1：手写一个CSV文件</h3>
+                                    <p><strong>要求：</strong></p>
+                                    <ul>
+                                        <li>文件后缀为 .csv</li>
+                                        <li>使用 UTF-8 编码保存</li>
+                                        <li>至少包含一个带逗号字段和一个带引号字段</li>
+                                    </ul>
+                                </div>
+
+                                <div class="content-card" style="background: rgba(10, 10, 10, 0.5); margin-top: 30px;">
+                                    <h3 class="neon-text-purple">任务2：识别与修复"格式错误的CSV"</h3>
+                                    <p><strong>问题文件内容：</strong></p>
+                                    <div class="code-block">
+                                        <code>name,age,remark<br>小明,18,喜欢苹果,香蕉<br>小红,19,她说"你好"<br>小刚,20,这是一段多行<br>的文本内容</code>
+                                    </div>
+
+                                    <p style="margin-top: 20px;"><strong>任务：</strong></p>
+                                    <ul>
+                                        <li>找出导致数据错列、错行的原因</li>
+                                        <li>用正确的引号规则修复，并保存为 students_fixed.csv</li>
+                                    </ul>
+
+                                    <div class="highlight-box" style="margin-top: 20px; border-left-color: var(--neon-cyan);">
+                                        <p><strong class="neon-text-cyan">💡 提示：</strong></p>
+                                        <ul>
+                                            <li>重点观察：引号缺失、逗号未转义、换行符未包裹</li>
+                                            <li>修复后，文件应能被Excel正常分列</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 CSV数据处理教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        // Section滚动系统（与之前相同的JavaScript代码）
+        class SectionScroller {
+            constructor(pageName = 'overview') {
+                this.currentSection = 0;
+                this.isScrolling = false;
+                this.sections = [];
+                this.touchStartY = 0;
+                this.duration = 1000;
+                this.pageName = pageName;
+                this.container = null;
+                this.scrollTimeout = null;
+                this.snapTimeout = null;
+                this.lastScrollTime = 0;
+                this.isAutoScrolling = false;
+                this.lastScrollTop = 0;
+
+                this.blockRanges = [
+                    { start: 0, end: 0 },
+                    { start: 1, end: 1 },
+                    { start: 2, end: 2 },
+                    { start: 3, end: 3 },
+                    { start: 4, end: 4 },
+                    { start: 5, end: 5 },
+                    { start: 6, end: 6 },
+                    { start: 7, end: 7 },
+                    { start: 8, end: 8 },
+                    { start: 9, end: 9 },
+                    { start: 10, end: 10 },
+                    { start: 11, end: 11 }
+                ];
+
+                this.boundHandleScroll = this.handleScroll.bind(this);
+                this.boundHandleWheel = this.handleWheel.bind(this);
+                this.boundHandleTouchStart = this.handleTouchStart.bind(this);
+                this.boundHandleTouchMove = this.handleTouchMove.bind(this);
+                this.boundHandleKeyDown = this.handleKeyDown.bind(this);
+
+                if (pageName === 'overview') {
+                    this.scrollIndicator = document.getElementById('scrollIndicator');
+                } else if (pageName === 'course') {
+                    this.scrollIndicator = document.getElementById('scrollIndicatorCourse');
+                } else if (pageName === 'homework') {
+                    this.scrollIndicator = document.getElementById('scrollIndicatorHomework');
+                }
+
+                this.init();
+            }
+
+            init() {
+                const currentPage = document.getElementById(`page-${this.pageName}`);
+                if (currentPage) {
+                    this.sections = Array.from(currentPage.querySelectorAll('.section-scroll-item'));
+                    this.container = currentPage.querySelector('.section-scroll-container');
+                }
+
+                if ((this.pageName === 'course' || this.pageName === 'homework') && this.container) {
+                    // 课程页面和作业页面只监听滚动事件,让浏览器原生滚动生效
+                    this.container.addEventListener('scroll', this.boundHandleScroll);
+                } else {
+                    window.addEventListener('wheel', this.boundHandleWheel, { passive: false });
+                    window.addEventListener('touchstart', this.boundHandleTouchStart, { passive: false });
+                    window.addEventListener('touchmove', this.boundHandleTouchMove, { passive: false });
+                }
+
+                window.addEventListener('keydown', this.boundHandleKeyDown);
+            }
+
+            destroy() {
+                if (this.snapTimeout) {
+                    clearTimeout(this.snapTimeout);
+                }
+                if (this.scrollTimeout) {
+                    cancelAnimationFrame(this.scrollTimeout);
+                }
+
+                if (this.container) {
+                    this.container.removeEventListener('scroll', this.boundHandleScroll);
+                }
+                window.removeEventListener('wheel', this.boundHandleWheel);
+                window.removeEventListener('touchstart', this.boundHandleTouchStart);
+                window.removeEventListener('touchmove', this.boundHandleTouchMove);
+                window.removeEventListener('keydown', this.boundHandleKeyDown);
+            }
+
+            handleScroll(e) {
+                if (!this.container) return;
+                if (this.isAutoScrolling) return;
+
+                if (this.scrollTimeout) {
+                    return;
+                }
+
+                this.scrollTimeout = requestAnimationFrame(() => {
+                    const containerRect = this.container.getBoundingClientRect();
+                    const currentScrollTop = this.container.scrollTop;
+                    const isScrollingDown = currentScrollTop > this.lastScrollTop;
+
+                    let activeSection = 0;
+                    let maxVisibleArea = 0;
+                    let shouldSnapToNext = false;
+                    let nextBlockStartSection = -1;
+
+                    this.sections.forEach((section, index) => {
+                        const rect = section.getBoundingClientRect();
+                        const visibleTop = Math.max(rect.top, containerRect.top);
+                        const visibleBottom = Math.min(rect.bottom, containerRect.bottom);
+                        const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+
+                        if (visibleHeight > maxVisibleArea) {
+                            maxVisibleArea = visibleHeight;
+                            activeSection = index;
+                        }
+                    });
+
+                    let currentBlockIndex = -1;
+                    for (let i = 0; i < this.blockRanges.length; i++) {
+                        const block = this.blockRanges[i];
+                        if (activeSection >= block.start && activeSection <= block.end) {
+                            currentBlockIndex = i;
+                            break;
+                        }
+                    }
+
+                    if (currentBlockIndex !== -1 && currentBlockIndex < this.blockRanges.length - 1 && isScrollingDown) {
+                        const currentBlock = this.blockRanges[currentBlockIndex];
+                        const lastSectionInBlock = this.sections[currentBlock.end];
+
+                        if (lastSectionInBlock) {
+                            const lastSectionRect = lastSectionInBlock.getBoundingClientRect();
+                            const lastSectionBottom = lastSectionRect.bottom;
+                            const viewportBottom = containerRect.bottom;
+                            const bottomThreshold = 200;
+
+                            if (lastSectionBottom <= viewportBottom &&
+                                lastSectionBottom >= viewportBottom - bottomThreshold) {
+                                shouldSnapToNext = true;
+                                nextBlockStartSection = this.blockRanges[currentBlockIndex + 1].start;
+                            }
+                        }
+                    }
+
+                    if (activeSection !== this.currentSection) {
+                        this.currentSection = activeSection;
+                        this.updateNavigation(activeSection);
+
+                        if (activeSection > 0 && this.scrollIndicator) {
+                            this.scrollIndicator.classList.add('hidden');
+                        } else if (activeSection === 0 && this.scrollIndicator) {
+                            this.scrollIndicator.classList.remove('hidden');
+                        }
+                    }
+
+                    if (shouldSnapToNext && nextBlockStartSection !== -1) {
+                        if (this.snapTimeout) {
+                            clearTimeout(this.snapTimeout);
+                        }
+
+                        this.snapTimeout = setTimeout(() => {
+                            this.smoothScrollToSection(nextBlockStartSection);
+                        }, 150);
+                    }
+
+                    this.lastScrollTop = currentScrollTop;
+                    this.scrollTimeout = null;
+                });
+            }
+
+            smoothScrollToSection(index) {
+                if (index < 0 || index >= this.sections.length || !this.container) {
+                    return;
+                }
+
+                this.isAutoScrolling = true;
+                const targetSection = this.sections[index];
+                const containerRect = this.container.getBoundingClientRect();
+                const sectionRect = targetSection.getBoundingClientRect();
+                const currentScrollTop = this.container.scrollTop;
+                const targetScrollTop = currentScrollTop + (sectionRect.top - containerRect.top);
+
+                this.container.scrollTo({
+                    top: targetScrollTop,
+                    behavior: 'smooth'
+                });
+
+                this.currentSection = index;
+                this.updateNavigation(index);
+
+                setTimeout(() => {
+                    this.isAutoScrolling = false;
+                }, 800);
+            }
+
+            scrollToSection(index) {
+                if (index < 0 || index >= this.sections.length || this.isScrolling) {
+                    return;
+                }
+
+                this.isScrolling = true;
+                const targetSection = this.sections[index];
+
+                if (targetSection) {
+                    if (this.pageName === 'course' && this.container) {
+                        const containerRect = this.container.getBoundingClientRect();
+                        const sectionRect = targetSection.getBoundingClientRect();
+                        const currentScrollTop = this.container.scrollTop;
+                        const targetScrollTop = currentScrollTop + (sectionRect.top - containerRect.top);
+
+                        this.container.scrollTo({
+                            top: targetScrollTop,
+                            behavior: 'smooth'
+                        });
+                    } else {
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+
+                    this.currentSection = index;
+                    this.updateNavigation(index);
+
+                    if (index > 0 && this.scrollIndicator) {
+                        this.scrollIndicator.classList.add('hidden');
+                    } else if (index === 0 && this.scrollIndicator) {
+                        this.scrollIndicator.classList.remove('hidden');
+                    }
+
+                    setTimeout(() => {
+                        this.isScrolling = false;
+                    }, this.duration);
+                }
+            }
+
+            updateNavigation(index) {
+                if (this.pageName !== 'course') return;
+
+                const navItems = document.querySelectorAll('#page-course .nav-item');
+                const navSubItems = document.querySelectorAll('#page-course .nav-item-sub');
+
+                let activeMainNav = -1;
+                let activeSubNav = -1;
+
+                if (index === 0) {
+                    activeMainNav = 0;
+                } else if (index >= 1 && index <= 3) {
+                    activeMainNav = 1;
+                    if (index === 2) activeSubNav = 0;
+                    else if (index === 3) activeSubNav = 1;
+                } else if (index >= 4 && index <= 7) {
+                    activeMainNav = 2;
+                    if (index === 5) activeSubNav = 2;
+                    else if (index === 6) activeSubNav = 3;
+                    else if (index === 7) activeSubNav = 4;
+                } else if (index >= 8) {
+                    activeMainNav = 3;
+                    if (index === 9) activeSubNav = 5;
+                    else if (index === 10) activeSubNav = 6;
+                    else if (index === 11) activeSubNav = 7;
+                }
+
+                navItems.forEach((item, i) => {
+                    if (i === activeMainNav) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+
+                navSubItems.forEach((item, i) => {
+                    if (i === activeSubNav) {
+                        item.classList.add('active');
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            handleWheel(e) {
+                if (this.isScrolling) {
+                    e.preventDefault();
+                    return;
+                }
+
+                e.preventDefault();
+
+                if (e.deltaY > 0) {
+                    if (this.currentSection < this.sections.length - 1) {
+                        this.scrollToSection(this.currentSection + 1);
+                    }
+                } else if (e.deltaY < 0) {
+                    if (this.currentSection > 0) {
+                        this.scrollToSection(this.currentSection - 1);
+                    }
+                }
+            }
+
+            handleTouchStart(e) {
+                if (this.pageName === 'course' || this.pageName === 'homework') return;
+                this.touchStartY = e.touches[0].clientY;
+            }
+
+            handleTouchMove(e) {
+                if (this.pageName === 'course' || this.pageName === 'homework') return;
+
+                if (this.isScrolling) {
+                    e.preventDefault();
+                    return;
+                }
+
+                const touchEndY = e.touches[0].clientY;
+                const deltaY = this.touchStartY - touchEndY;
+
+                if (deltaY > 50) {
+                    if (this.currentSection < this.sections.length - 1) {
+                        e.preventDefault();
+                        this.scrollToSection(this.currentSection + 1);
+                        this.touchStartY = touchEndY;
+                    }
+                } else if (deltaY < -50) {
+                    if (this.currentSection > 0) {
+                        e.preventDefault();
+                        this.scrollToSection(this.currentSection - 1);
+                        this.touchStartY = touchEndY;
+                    }
+                }
+            }
+
+            handleKeyDown(e) {
+                // 课程页面和作业页面使用原生滚动，不拦截键盘事件
+                if (this.pageName === 'course' || this.pageName === 'homework') {
+                    return;
+                }
+
+                if (this.isScrolling) return;
+
+                switch (e.key) {
+                    case 'ArrowDown':
+                    case 'PageDown':
+                        if (this.currentSection < this.sections.length - 1) {
+                            e.preventDefault();
+                            this.scrollToSection(this.currentSection + 1);
+                        }
+                        break;
+                    case 'ArrowUp':
+                    case 'PageUp':
+                        if (this.currentSection > 0) {
+                            e.preventDefault();
+                            this.scrollToSection(this.currentSection - 1);
+                        }
+                        break;
+                    case 'Home':
+                        e.preventDefault();
+                        this.scrollToSection(0);
+                        break;
+                    case 'End':
+                        e.preventDefault();
+                        this.scrollToSection(this.sections.length - 1);
+                        break;
+                }
+            }
+        }
+
+        // 打字机动画
+        function typeWriter(element, text, speed = 80, callback) {
+            if (!element) return;
+
+            element.textContent = '';
+            element.style.opacity = '1';
+            let index = 0;
+
+            function type() {
+                if (index < text.length) {
+                    element.textContent += text.charAt(index);
+                    index++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+
+            type();
+        }
+
+        function triggerPageAnimation(pageName) {
+            const animationMap = {
+                'overview': () => {
+                    const h1 = document.querySelector('#page-overview .hero h1');
+                    const subtitle = document.querySelector('#page-overview .hero .subtitle');
+
+                    if (h1 && subtitle) {
+                        typeWriter(h1, '3. CSV三步搞定，让数据乖乖排队', 100);
+                        typeWriter(subtitle, '掌握AI数据处理的基础语言 | 数据思维训练', 50);
+                    }
+                },
+                'course': () => {
+                    const h1 = document.querySelector('#page-course .hero h1');
+                    const subtitle = document.querySelector('#page-course .hero .subtitle');
+
+                    if (h1 && subtitle) {
+                        typeWriter(h1, '课程章节', 100);
+                        typeWriter(subtitle, '深入学习 CSV 数据处理核心知识', 50);
+                    }
+                },
+                'homework': () => {
+                    const h1 = document.querySelector('#page-homework .hero h1');
+                    const subtitle = document.querySelector('#page-homework .hero .subtitle');
+
+                    if (h1 && subtitle) {
+                        typeWriter(h1, '课后作业', 100);
+                        typeWriter(subtitle, '实践CSV文件操作', 50);
+                    }
+                }
+            };
+
+            if (animationMap[pageName]) {
+                animationMap[pageName]();
+            }
+        }
+
+        // 页面切换功能
+        let sectionScroller = null;
+
+        function courseScrollToSection(index) {
+            if (sectionScroller && sectionScroller.pageName === 'course') {
+                sectionScroller.scrollToSection(index);
+            }
+        }
+
+        function showPage(pageName) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const targetPage = document.getElementById(`page-${pageName}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                triggerPageAnimation(pageName);
+
+                if (pageName === 'overview' || pageName === 'course' || pageName === 'homework') {
+                    setTimeout(() => {
+                        if (sectionScroller) {
+                            sectionScroller.destroy();
+                            sectionScroller = null;
+                        }
+                        sectionScroller = new SectionScroller(pageName);
+
+                        if (pageName === 'course') {
+                            const navItems = document.querySelectorAll('#page-course .nav-item');
+                            const navSubItems = document.querySelectorAll('#page-course .nav-item-sub');
+                            navItems.forEach(item => item.classList.remove('active'));
+                            navSubItems.forEach(item => item.classList.remove('active'));
+                            if (navItems[0]) navItems[0].classList.add('active');
+                        }
+                    }, 100);
+                }
+            }
+
+            document.querySelectorAll('.navbar-item').forEach(item => {
+                item.classList.remove('active');
+            });
+
+            const navItems = document.querySelectorAll('.navbar-item');
+            const pageMap = { 'overview': 0, 'course': 1, 'homework': 2 };
+            if (pageMap[pageName] !== undefined) {
+                navItems[pageMap[pageName]].classList.add('active');
+            }
+        }
+
+        // 数据雨效果
+        function createDataRain() {
+            const dataRain = document.getElementById('dataRain');
+            const columns = 15;
+            const japaneseChars = [
+                'ア', 'イ', 'ウ', 'エ', 'オ', 'カ', 'キ', 'ク', 'ケ', 'コ',
+                'サ', 'シ', 'ス', 'セ', 'ソ', 'タ', 'チ', 'ツ', 'テ', 'ト',
+                '日', '本', '語', '愛', '雨', '桜', '心', '風', '光', '影'
+            ];
+
+            for (let i = 0; i < columns; i++) {
+                const column = document.createElement('div');
+                column.className = 'data-rain-column';
+                column.style.left = `${(i / columns) * 100}%`;
+                column.style.animationDuration = `${12 + Math.random() * 6}s`;
+                column.style.animationDelay = `${Math.random() * 5}s`;
+
+                let chars = '';
+                for (let j = 0; j < 15; j++) {
+                    const char = japaneseChars[Math.floor(Math.random() * japaneseChars.length)];
+                    const opacity = Math.max(0.05, 1 - (j / 15) * 0.95);
+                    chars += `<div style="opacity: ${opacity}">${char}</div>`;
+                }
+                column.innerHTML = chars;
+
+                dataRain.appendChild(column);
+            }
+        }
+
+        // 粒子效果
+        function createParticles() {
+            const particleField = document.getElementById('particleField');
+            const particleCount = 50;
+            const colors = ['#f43f5e', '#a855f7', '#06b6d4'];
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.width = `${Math.random() * 3 + 1}px`;
+                particle.style.height = particle.style.width;
+                particle.style.background = colors[i % 3];
+                particle.style.boxShadow = `0 0 ${parseInt(particle.style.width) * 2}px currentColor`;
+                particle.style.animationDuration = `${3 + Math.random() * 2}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+
+                particleField.appendChild(particle);
+            }
+        }
+
+        // 导航栏交互
+        function initNavbarInteractions() {
+            const navbarToggle = document.getElementById('navbarToggle');
+            const navbarMenu = document.getElementById('navbarMenu');
+            const navbarItems = document.querySelectorAll('.navbar-item');
+
+            if (navbarToggle) {
+                navbarToggle.addEventListener('click', () => {
+                    navbarToggle.classList.toggle('active');
+                    navbarMenu.classList.toggle('active');
+                });
+            }
+
+            navbarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        navbarToggle.classList.remove('active');
+                        navbarMenu.classList.remove('active');
+                    }
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('.navbar')) {
+                    navbarToggle.classList.remove('active');
+                    navbarMenu.classList.remove('active');
+                }
+            });
+        }
+
+        // 页面加载初始化
+        window.addEventListener('load', () => {
+            const pageLoader = document.getElementById('pageLoader');
+            if (pageLoader) {
+                setTimeout(() => {
+                    pageLoader.classList.add('hidden');
+                    setTimeout(() => {
+                        pageLoader.style.display = 'none';
+                    }, 600);
+                }, 300);
+            }
+
+            createDataRain();
+            createParticles();
+
+            const navItems = document.querySelectorAll('.navbar-item');
+            if (navItems.length > 0) {
+                navItems[0].classList.add('active');
+            }
+
+            sectionScroller = new SectionScroller('overview');
+            triggerPageAnimation('overview');
+            initNavbarInteractions();
+        });
+    </script>
+</body>
+</html>

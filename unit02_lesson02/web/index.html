@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI时代的结构化沟通语言（二）：JSON入门教程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第二单元：AI文本结构与格式化输出</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('practice')">课后实践</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>2. AI时代的结构化沟通语言（二）</h1>
+                    <p class="subtitle">JSON入门教程 | 让AI听懂你的数据</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程概述 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">学习目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0;">理解JSON在AI时代的重要性</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0;">掌握JSON的基本语法和数据类型</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0;">学会用JSON表达结构化数据</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0;">理解Markdown与JSON的关系</li>
+                            </ol>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">课程大纲</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem;" onclick="showPage('course'); scrollTo(0,0);">从Markdown到JSON</li>
+                                <li class="clickable-item" style="font-size: 1.2rem;" onclick="showPage('course'); scrollTo(0,0);">认识JSON——AI最懂的语言</li>
+                                <li class="clickable-item" style="font-size: 1.2rem;" onclick="showPage('course'); scrollTo(0,0);">JSON语法入门</li>
+                                <li class="clickable-item" style="font-size: 1.2rem;" onclick="showPage('course'); scrollTo(0,0);">AI结构化输出实践</li>
+                                <li class="clickable-item" style="font-size: 1.2rem;" onclick="showPage('course'); scrollTo(0,0);">课后总结</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习 JSON 的核心知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 板块一：从Markdown到JSON -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 板块一：从Markdown到JSON</h2>
+                            <h3>（一）结构化语言的演进</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                上节课我们学过 <strong class="neon-text-cyan">Markdown</strong> —— 它是一种让文字更整齐、层次更清楚的写作方式。用Markdown，AI能更容易看懂我们想表达的重点和逻辑。
+                            </p>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                不过，当信息要被电脑程序<strong class="neon-text-purple">保存、传送或自动处理</strong>时，只靠Markdown还不够。这时，AI需要一种<strong class="neon-text-pink">更标准、更结构化的表达方式</strong>，让不同系统都能"听懂"同样的数据。这种语言就是 <strong class="neon-text-cyan">JSON</strong>。
+                            </p>
+
+                            <!-- 演进示意图 -->
+                            <div class="diagram-container">
+                                <svg class="evolution-diagram" viewBox="0 0 800 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- Markdown卡片 -->
+                                    <rect x="50" y="100" width="200" height="100" rx="10" class="diagram-card card-markdown"/>
+                                    <text x="150" y="140" text-anchor="middle" class="diagram-title">Markdown</text>
+                                    <text x="150" y="165" text-anchor="middle" class="diagram-subtitle">人类可读</text>
+
+                                    <!-- 箭头 -->
+                                    <defs>
+                                        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                            <polygon points="0 0, 10 3.5, 0 7" fill="#06b6d4" />
+                                        </marker>
+                                        <marker id="arrowhead-purple" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                            <polygon points="0 0, 10 3.5, 0 7" fill="#a855f7" />
+                                        </marker>
+                                    </defs>
+                                    <line x1="250" y1="150" x2="350" y2="150" stroke="#06b6d4" stroke-width="3" marker-end="url(#arrowhead)" class="arrow-pulse"/>
+                                    <text x="300" y="140" text-anchor="middle" class="arrow-text">演进</text>
+
+                                    <!-- JSON卡片 -->
+                                    <rect x="350" y="100" width="200" height="100" rx="10" class="diagram-card card-json"/>
+                                    <text x="450" y="140" text-anchor="middle" class="diagram-title">JSON</text>
+                                    <text x="450" y="165" text-anchor="middle" class="diagram-subtitle">机器可读</text>
+
+                                    <!-- 箭头到AI系统 -->
+                                    <line x1="550" y1="150" x2="585" y2="150" stroke="#a855f7" stroke-width="3" marker-end="url(#arrowhead-purple)" class="arrow-pulse"/>
+                                    <text x="568" y="140" text-anchor="middle" class="arrow-text" style="fill: #a855f7;">连接</text>
+
+                                    <!-- AI系统 -->
+                                    <circle cx="650" cy="150" r="60" class="diagram-card card-ai"/>
+                                    <text x="650" y="155" text-anchor="middle" class="diagram-title">AI 系统</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Markdown与JSON的关系 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）Markdown与JSON的关系</h3>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                Markdown和JSON其实就像是<strong class="neon-text-cyan">AI沟通的两种语言</strong>：
+                            </p>
+
+                            <div class="comparison-grid">
+                                <div class="comparison-card markdown-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    <h4 class="neon-text-cyan">Markdown</h4>
+                                    <p class="subtitle-text">写给"人"看的</p>
+                                    <p>讲究排版清楚、层次分明</p>
+                                    <div class="example-box">
+                                        <code># 今天的计划</code><br>
+                                        <code>**重点复习**</code>
+                                    </div>
+                                </div>
+
+                                <div class="comparison-card json-card">
+                                    <div class="card-icon">
+                                        <i class="fas fa-robot"></i>
+                                    </div>
+                                    <h4 class="neon-text-purple">JSON</h4>
+                                    <p class="subtitle-text">写给"机器"看的</p>
+                                    <p>讲究结构整齐、方便读取</p>
+                                    <div class="example-box">
+                                        <code>{"日期": "2025-11-06",</code><br>
+                                        <code> "任务": ["学习", "运动"]}</code>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 对比表格 -->
+                            <div class="table-container" style="margin-top: 40px;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>对比内容</th>
+                                            <th>Markdown（写给人看）</th>
+                                            <th>JSON（写给机器看）</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>谁在用</td>
+                                            <td>人类读者</td>
+                                            <td>AI或电脑程序</td>
+                                        </tr>
+                                        <tr>
+                                            <td>用来干什么</td>
+                                            <td>整理文字、做笔记、写文档</td>
+                                            <td>存放数据、传递信息</td>
+                                        </tr>
+                                        <tr>
+                                            <td>看起来</td>
+                                            <td>像普通文本</td>
+                                            <td>像一张"数据表"</td>
+                                        </tr>
+                                        <tr>
+                                            <td>优点</td>
+                                            <td>好读、好看</td>
+                                            <td>结构清楚、AI能理解</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; text-align: center;">
+                                    <strong class="neon-text-cyan">Markdown</strong> → 人告诉AI"要做什么"<br>
+                                    <strong class="neon-text-purple">JSON</strong> → AI告诉系统"我做了什么"
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块二：认识JSON -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🔍 板块二：认识JSON——AI最懂的语言</h2>
+                            <h3>（一）JSON的定义与起源</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                <strong class="neon-text-cyan">JSON（JavaScript Object Notation）</strong> 是一种让电脑<strong>看得懂、记得住的文字格式</strong>。它最早是一个叫<strong class="neon-text-purple">Douglas Crockford</strong>的人发明的。
+                            </p>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                你可以把它想成：电脑之间聊天用的"简单语言"。
+                            </p>
+
+                            <!-- JSON示意图 -->
+                            <div class="diagram-container">
+                                <svg class="json-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 中心JSON图标 -->
+                                    <circle cx="400" cy="200" r="80" class="json-center"/>
+                                    <text x="400" y="210" text-anchor="middle" class="json-text">JSON</text>
+
+                                    <!-- AI -->
+                                    <circle cx="200" cy="100" r="50" class="app-circle"/>
+                                    <text x="200" y="110" text-anchor="middle" class="app-text">AI</text>
+                                    <line x1="250" y1="130" x2="340" y2="170" class="connection-line" stroke-dasharray="5,5"/>
+
+                                    <!-- 网站 -->
+                                    <circle cx="600" cy="100" r="50" class="app-circle"/>
+                                    <text x="600" y="110" text-anchor="middle" class="app-text">网站</text>
+                                    <line x1="550" y1="130" x2="460" y2="170" class="connection-line" stroke-dasharray="5,5"/>
+
+                                    <!-- 手机App -->
+                                    <circle cx="600" cy="300" r="50" class="app-circle"/>
+                                    <text x="600" y="310" text-anchor="middle" class="app-text">手机App</text>
+                                    <line x1="550" y1="270" x2="460" y2="230" class="connection-line" stroke-dasharray="5,5"/>
+
+                                    <!-- 数据库 -->
+                                    <circle cx="200" cy="300" r="50" class="app-circle"/>
+                                    <text x="200" y="310" text-anchor="middle" class="app-text">数据库</text>
+                                    <line x1="250" y1="270" x2="340" y2="230" class="connection-line" stroke-dasharray="5,5"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- JSON的核心特点 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（二）JSON的核心特点</h3>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-feather neon-text-cyan"></i>
+                                    </div>
+                                    <h4>轻巧好懂</h4>
+                                    <p>普通文字文件，不需要复杂软件</p>
+                                    <p>写法简单、结构清晰</p>
+                                </div>
+
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-list-alt neon-text-purple"></i>
+                                    </div>
+                                    <h4>有条理且有结构</h4>
+                                    <p>像一张信息表格</p>
+                                    <p>每条信息都有"名字"和"内容"</p>
+                                </div>
+
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-globe neon-text-pink"></i>
+                                    </div>
+                                    <h4>到处都能用</h4>
+                                    <p>跨平台、跨语言</p>
+                                    <p>电脑、网页、手机都支持</p>
+                                </div>
+
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-eye neon-text-cyan"></i>
+                                    </div>
+                                    <h4>内容清楚明白</h4>
+                                    <p>每条数据都有名字说明</p>
+                                    <p>不用猜，一目了然</p>
+                                </div>
+
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-rocket neon-text-purple"></i>
+                                    </div>
+                                    <h4>用途广泛</h4>
+                                    <p>网站传数据、App设置</p>
+                                    <p>AI模型结果输出</p>
+                                </div>
+                            </div>
+
+                            <!-- 学生信息示例 -->
+                            <div class="code-example-container">
+                                <h4 class="neon-text-cyan">示例：记录学生信息</h4>
+                                <pre class="code-block"><code>{
+  "姓名": "小明",
+  "年龄": 18,
+  "成绩": 95
+}</code></pre>
+                                <p style="margin-top: 15px; font-size: 1.1rem;">
+                                    这里一共三行，每一行：<br>
+                                    • 左列是"名称"（比如 姓名、年龄、成绩）<br>
+                                    • 右列是"内容"（比如 小明、18、95）
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- AI为什么离不开JSON -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3>（三）AI为什么离不开JSON</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                在人工智能工作时，电脑需要不断<strong class="neon-text-cyan">接收信息、处理信息、再输出结果</strong>。如果每个系统说的"数据语言"都不一样，电脑之间就会听不懂、对不上。
+                            </p>
+
+                            <!-- AI数据流程图 -->
+                            <div class="diagram-container">
+                                <svg class="flow-diagram" viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 输入 -->
+                                    <rect x="50" y="100" width="150" height="100" rx="10" class="flow-box input-box"/>
+                                    <text x="125" y="140" text-anchor="middle" class="flow-title">输入数据</text>
+                                    <text x="125" y="165" text-anchor="middle" class="flow-subtitle">JSON格式</text>
+
+                                    <!-- 箭头1 -->
+                                    <line x1="200" y1="150" x2="280" y2="150" class="flow-arrow" marker-end="url(#arrowhead)"/>
+                                    <text x="240" y="140" text-anchor="middle" class="arrow-label">结构化</text>
+
+                                    <!-- AI处理 -->
+                                    <rect x="280" y="100" width="150" height="100" rx="10" class="flow-box process-box"/>
+                                    <text x="355" y="140" text-anchor="middle" class="flow-title">AI处理</text>
+                                    <text x="355" y="165" text-anchor="middle" class="flow-subtitle">分析&计算</text>
+
+                                    <!-- 箭头2 -->
+                                    <line x1="430" y1="150" x2="510" y2="150" class="flow-arrow" marker-end="url(#arrowhead)"/>
+                                    <text x="470" y="140" text-anchor="middle" class="arrow-label">输出</text>
+
+                                    <!-- 输出 -->
+                                    <rect x="510" y="100" width="150" height="100" rx="10" class="flow-box output-box"/>
+                                    <text x="585" y="140" text-anchor="middle" class="flow-title">输出结果</text>
+                                    <text x="585" y="165" text-anchor="middle" class="flow-subtitle">JSON格式</text>
+
+                                    <!-- 箭头3 -->
+                                    <line x1="660" y1="150" x2="740" y2="150" class="flow-arrow" marker-end="url(#arrowhead)"/>
+                                    <text x="700" y="140" text-anchor="middle" class="arrow-label">应用</text>
+
+                                    <!-- 应用系统 -->
+                                    <rect x="740" y="100" width="150" height="100" rx="10" class="flow-box app-box"/>
+                                    <text x="815" y="140" text-anchor="middle" class="flow-title">应用系统</text>
+                                    <text x="815" y="165" text-anchor="middle" class="flow-subtitle">自动执行</text>
+                                </svg>
+                            </div>
+
+                            <!-- 新闻摘要示例 -->
+                            <div class="code-example-container" style="margin-top: 40px;">
+                                <h4 class="neon-text-purple">示例：AI生成新闻摘要</h4>
+                                <pre class="code-block"><code>{
+  "标题": "人工智能正在改变教育",
+  "摘要": "AI帮助学生更高效学习，也让教学更有针对性。",
+  "关键词": ["人工智能", "教育", "学习"]
+}</code></pre>
+                                <div class="highlight-box" style="margin-top: 20px;">
+                                    <p><strong>新闻网站可以：</strong></p>
+                                    <ul style="list-style: none; padding: 0;">
+                                        <li>✓ 自动把"标题"当作新闻题目</li>
+                                        <li>✓ 把"摘要"放到正文里</li>
+                                        <li>✓ 用"关键词"来做分类或搜索</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块三：JSON语法入门 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">💻 板块三：JSON语法入门</h2>
+                            <h3>JSON的结构规则与数据类型</h3>
+
+                            <!-- 对象 Object -->
+                            <div class="syntax-section">
+                                <div class="syntax-header">
+                                    <span class="syntax-number">1</span>
+                                    <h4>对象（Object）</h4>
+                                </div>
+                                <div class="syntax-content">
+                                    <ul class="syntax-rules">
+                                        <li>用花括号 <code>{}</code> 表示</li>
+                                        <li>内部由若干"键–值对"组成</li>
+                                        <li>键与值之间用冒号 <code>:</code> 连接</li>
+                                        <li>每组信息之间用逗号 <code>,</code> 隔开</li>
+                                    </ul>
+                                    <pre class="code-block"><code>{
+  "名字": "小明",       // 用{}包起来的是对象
+  "年龄": 20,           // "名字"和"年龄"是"键"
+  "爱好": ["音乐", "运动", "游戏"]  // 值可以是各种类型
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <!-- 键 Key -->
+                            <div class="syntax-section">
+                                <div class="syntax-header">
+                                    <span class="syntax-number">2</span>
+                                    <h4>键（Key）</h4>
+                                </div>
+                                <div class="syntax-content">
+                                    <ul class="syntax-rules">
+                                        <li>键是"信息的名字"，必须用双引号 <code>" "</code> 包起来</li>
+                                        <li>例如 <code>"名字"</code>、<code>"年龄"</code></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- 值 Value -->
+                            <div class="syntax-section">
+                                <div class="syntax-header">
+                                    <span class="syntax-number">3</span>
+                                    <h4>值（Value）</h4>
+                                </div>
+                                <div class="syntax-content">
+                                    <p style="margin-bottom: 15px;">值是"具体的内容"，可以是：</p>
+
+                                    <div class="value-types-grid">
+                                        <div class="value-type-card">
+                                            <div class="type-icon"><i class="fas fa-font"></i></div>
+                                            <h5 class="neon-text-cyan">字符串</h5>
+                                            <code>"小明"</code>
+                                            <p>文字内容，用双引号包起来</p>
+                                        </div>
+
+                                        <div class="value-type-card">
+                                            <div class="type-icon"><i class="fas fa-calculator"></i></div>
+                                            <h5 class="neon-text-purple">数字</h5>
+                                            <code>20</code>
+                                            <p>不用加引号</p>
+                                        </div>
+
+                                        <div class="value-type-card">
+                                            <div class="type-icon"><i class="fas fa-check-circle"></i></div>
+                                            <h5 class="neon-text-pink">布尔值</h5>
+                                            <code>true / false</code>
+                                            <p>表示"是"或"否"</p>
+                                        </div>
+
+                                        <div class="value-type-card">
+                                            <div class="type-icon"><i class="fas fa-list"></i></div>
+                                            <h5 class="neon-text-cyan">数组</h5>
+                                            <code>["音乐","运动"]</code>
+                                            <p>一组内容，用[]包起来</p>
+                                        </div>
+
+                                        <div class="value-type-card">
+                                            <div class="type-icon"><i class="fas fa-cube"></i></div>
+                                            <h5 class="neon-text-purple">对象</h5>
+                                            <code>{ }</code>
+                                            <p>嵌套的对象</p>
+                                        </div>
+
+                                        <div class="value-type-card">
+                                            <div class="type-icon"><i class="fas fa-ban"></i></div>
+                                            <h5 class="neon-text-pink">空值</h5>
+                                            <code>null</code>
+                                            <p>表示"暂时没有内容"</p>
+                                        </div>
+                                    </div>
+
+                                    <!-- 综合示例 -->
+                                    <pre class="code-block" style="margin-top: 20px;"><code>{
+  "名字": "小明",                  // 字符串：文字内容
+  "年龄": 20,                     // 数字：不用加引号
+  "是否学生": true,               // 布尔值：true表示"是"
+  "爱好": ["音乐", "运动", "游戏"], // 数组：一组内容
+  "家庭": {                       // 对象：嵌套的信息
+    "父亲": "小王",
+    "母亲": "小李"
+  },
+  "电话": null                    // 空值：暂时没有内容
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 数组和逗号规则 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <!-- 数组 -->
+                            <div class="syntax-section">
+                                <div class="syntax-header">
+                                    <span class="syntax-number">4</span>
+                                    <h4>数组（Array）</h4>
+                                </div>
+                                <div class="syntax-content">
+                                    <ul class="syntax-rules">
+                                        <li>用方括号 <code>[ ]</code> 包起来</li>
+                                        <li>表示一组内容，比如一串爱好、朋友名单等</li>
+                                    </ul>
+                                    <pre class="code-block"><code>"爱好": ["音乐", "运动", "游戏"]</code></pre>
+                                    <p style="margin-top: 10px;">表示"爱好"这一项有三个内容</p>
+                                </div>
+                            </div>
+
+                            <!-- 逗号规则 -->
+                            <div class="syntax-section">
+                                <div class="syntax-header">
+                                    <span class="syntax-number">5</span>
+                                    <h4>逗号规则</h4>
+                                </div>
+                                <div class="syntax-content">
+                                    <ul class="syntax-rules">
+                                        <li>每组内容之间要用逗号 <code>,</code></li>
+                                        <li>最后一组后面<strong class="neon-text-pink">不能加逗号</strong></li>
+                                    </ul>
+
+                                    <div class="comparison-examples">
+                                        <div class="example-wrong">
+                                            <h5><i class="fas fa-times-circle"></i> 错误示例</h5>
+                                            <pre class="code-block"><code>{
+  "名字": "小明",
+  "年龄": 20,   ← 最后一行不能有逗号
+}</code></pre>
+                                        </div>
+
+                                        <div class="example-correct">
+                                            <h5><i class="fas fa-check-circle"></i> 正确示例</h5>
+                                            <pre class="code-block"><code>{
+  "名字": "小明",
+  "年龄": 20    ← 最后一行不加逗号
+}</code></pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- JSON结构可视化 -->
+                            <div class="diagram-container" style="margin-top: 40px;">
+                                <h4 class="neon-text-cyan" style="text-align: center; margin-bottom: 20px;">JSON结构可视化</h4>
+                                <svg class="json-structure-diagram" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                                    <!-- 对象 -->
+                                    <rect x="300" y="50" width="200" height="60" rx="5" class="structure-box object-box"/>
+                                    <text x="400" y="85" text-anchor="middle" class="structure-text">对象 { }</text>
+
+                                    <!-- 键值对1 -->
+                                    <line x1="350" y1="110" x2="250" y2="180" class="structure-line"/>
+                                    <rect x="150" y="180" width="200" height="50" rx="5" class="structure-box key-value-box"/>
+                                    <text x="250" y="210" text-anchor="middle" class="structure-text">"键": "值"</text>
+
+                                    <!-- 键值对2 (数组) -->
+                                    <line x1="400" y1="110" x2="400" y2="180" class="structure-line"/>
+                                    <rect x="300" y="180" width="200" height="50" rx="5" class="structure-box key-value-box"/>
+                                    <text x="400" y="210" text-anchor="middle" class="structure-text">"键": [ ]</text>
+
+                                    <!-- 数组元素 -->
+                                    <line x1="400" y1="230" x2="400" y2="280" class="structure-line"/>
+                                    <rect x="300" y="280" width="200" height="80" rx="5" class="structure-box array-box"/>
+                                    <text x="400" y="310" text-anchor="middle" class="structure-text">数组元素</text>
+                                    <text x="400" y="335" text-anchor="middle" class="structure-small-text">["值1", "值2", "值3"]</text>
+
+                                    <!-- 键值对3 (对象) -->
+                                    <line x1="450" y1="110" x2="550" y2="180" class="structure-line"/>
+                                    <rect x="450" y="180" width="200" height="50" rx="5" class="structure-box key-value-box"/>
+                                    <text x="550" y="210" text-anchor="middle" class="structure-text">"键": { }</text>
+
+                                    <!-- 嵌套对象 -->
+                                    <line x1="550" y1="230" x2="550" y2="280" class="structure-line"/>
+                                    <rect x="450" y="280" width="200" height="80" rx="5" class="structure-box nested-box"/>
+                                    <text x="550" y="310" text-anchor="middle" class="structure-text">嵌套对象</text>
+                                    <text x="550" y="335" text-anchor="middle" class="structure-small-text">{"子键": "子值"}</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块四：AI结构化输出实践 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🤖 板块四：AI结构化输出实践</h2>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                结构化输出是AI实用化的重要特征。
+                            </p>
+
+                            <div class="practice-example">
+                                <div class="example-input">
+                                    <h4><i class="fas fa-sign-in-alt neon-text-cyan"></i> AI输入内容</h4>
+                                    <p style="margin: 15px 0;">请把下面的JSON转成表格形式</p>
+                                    <pre class="code-block"><code>{
+  "星期一": ["语文", "数学", "英语"],
+  "星期二": ["物理", "化学", "生物"],
+  "星期三": ["历史", "地理", "政治"]
+}</code></pre>
+                                </div>
+
+                                <div class="example-arrow">
+                                    <i class="fas fa-arrow-down"></i>
+                                </div>
+
+                                <div class="example-output">
+                                    <h4><i class="fas fa-sign-out-alt neon-text-purple"></i> AI输出结果</h4>
+                                    <div class="table-container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>星期</th>
+                                                    <th>科目</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>星期一</td>
+                                                    <td>语文、数学、英语</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>星期二</td>
+                                                    <td>物理、化学、生物</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>星期三</td>
+                                                    <td>历史、地理、政治</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.1rem;">
+                                    此时AI可自动识别表格中的字段结构，如"星期"和"科目"，实现对课程数据的<strong class="neon-text-cyan">分类、统计与扩展应用</strong>，例如生成课程表、安排提醒或分析学习频率。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块五：课后总结 -->
+            <section class="section-scroll-item" data-section="9">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📝 板块五：课后总结</h2>
+
+                            <h3>（一）核心回顾</h3>
+                            <div class="summary-grid">
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-file-alt"></i>
+                                    </div>
+                                    <h4 class="neon-text-cyan">Markdown</h4>
+                                    <p>AI理解人类需求的指令语言</p>
+                                </div>
+
+                                <div class="summary-card">
+                                    <div class="summary-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <h4 class="neon-text-purple">JSON</h4>
+                                    <p>AI与机器之间的数据语言</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    掌握两者，意味着能够完成从<br>
+                                    <strong class="neon-text-cyan">"意图表达"</strong> 到 <strong class="neon-text-purple">"结构执行"</strong><br>
+                                    的完整链路
+                                </p>
+                            </div>
+
+                            <h3 style="margin-top: 40px;">（二）为什么AI更喜欢结构化</h3>
+
+                            <div class="reason-list">
+                                <div class="reason-item">
+                                    <div class="reason-number">1</div>
+                                    <div class="reason-content">
+                                        <h4 class="neon-text-cyan">AI理解语义的方式不同</h4>
+                                        <p>人类依靠语言语境，AI依靠数据结构。JSON让AI以更高精度理解和操作信息。</p>
+                                    </div>
+                                </div>
+
+                                <div class="reason-item">
+                                    <div class="reason-number">2</div>
+                                    <div class="reason-content">
+                                        <h4 class="neon-text-purple">结构化让AI结果可控</h4>
+                                        <p>非结构化文字仅"看起来正确"；结构化数据才能被"自动化使用"。</p>
+                                        <div class="example-flow">
+                                            <span class="flow-step">ChatGPT</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                            <span class="flow-step">输出JSON</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                            <span class="flow-step">自动生成PPT</span>
+                                            <i class="fas fa-arrow-right"></i>
+                                            <span class="flow-step">自动发送邮件</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="reason-item">
+                                    <div class="reason-number">3</div>
+                                    <div class="reason-content">
+                                        <h4 class="neon-text-pink">从"对话"到"编排"</h4>
+                                        <p>Markdown负责表达意图，JSON负责执行逻辑。这两种语言共同构成了AI应用的语义底座。</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">课程概览</button>
+
+                    <button class="nav-item" onclick="courseScrollToSection(1)">板块一：从Markdown到JSON</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">（一）结构化语言的演进</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">（二）Markdown与JSON的关系</button>
+
+                    <button class="nav-item" onclick="courseScrollToSection(3)">板块二：认识JSON</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">（一）JSON的定义与起源</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">（二）JSON的核心特点</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(5)">（三）AI为什么离不开JSON</button>
+
+                    <button class="nav-item" onclick="courseScrollToSection(6)">板块三：JSON语法入门</button>
+
+                    <button class="nav-item" onclick="courseScrollToSection(8)">板块四：AI结构化输出</button>
+
+                    <button class="nav-item" onclick="courseScrollToSection(9)">板块五：课后总结</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">（一）核心回顾</button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(9)">（二）为什么AI更喜欢结构化</button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后实践页面 -->
+    <div class="page" id="page-practice">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 课后实践</h1>
+                    <p class="subtitle">动手练习 JSON，巩固所学知识</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorPractice">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 任务一 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">任务一：编写个人JSON记录</h2>
+
+                            <p style="font-size: 1.2rem; margin: 20px 0;">
+                                请根据下面的提示，用<strong class="neon-text-cyan">中文键名</strong>填写属于你自己的信息，完成一个个人小档案。
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>信息项</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>姓名</td>
+                                            <td>你的名字或昵称</td>
+                                        </tr>
+                                        <tr>
+                                            <td>日期</td>
+                                            <td>今天的日期</td>
+                                        </tr>
+                                        <tr>
+                                            <td>心情</td>
+                                            <td>今天的心情（开心、生气、平静……）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>行动</td>
+                                            <td>今天做的几件事</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">在下方的JSON模板中填写内容：</h4>
+                            <pre class="code-block"><code>{
+  "姓名": "小明",
+  "日期": "2025-11-04",
+  "心情": "开心",
+  "行动": ["上课", "学习AI", "剪视频"]
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 任务二 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">任务二：让AI帮你生成文字说明</h2>
+
+                            <div class="step-container">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <h4>复制你写好的JSON内容</h4>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <h4>在AI对话框中输入以下提示词</h4>
+                                    <div class="highlight-box">
+                                        <p style="font-size: 1.1rem;">
+                                            请根据我提供的JSON内容，帮我写一段"今日学习总结"：
+                                        </p>
+                                        <pre class="code-block" style="margin-top: 10px;"><code>{
+  "姓名": "小明",
+  "日期": "2025-11-04",
+  "心情": "开心",
+  "行动": ["上课", "学习AI", "剪视频"]
+}</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="step-container">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <h4>观察AI生成的文字</h4>
+                                    <p>检查是否包含你的姓名、日期、心情和行动。</p>
+
+                                    <div class="example-output" style="margin-top: 20px;">
+                                        <h5 class="neon-text-cyan">输出示例（AI可能会这样写）：</h5>
+                                        <div class="quote-box">
+                                            <p>今天（2025-11-04），小明度过了充实的一天。</p>
+                                            <p>他心情开心，完成了上课、学习AI和剪视频等任务。</p>
+                                            <p>看来学习进展顺利，保持这样的状态很棒！</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2025 JSON入门教程 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

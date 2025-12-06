@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown在AI中的应用 | AI时代的标准沟通语言</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 赛博朋克背景效果 -->
+    <div class="cyberpunk-background">
+        <div class="base-gradient"></div>
+        <div class="neon-grid"></div>
+        <div class="data-rain" id="dataRain"></div>
+        <div class="neon-beams">
+            <div class="neon-beam neon-beam-1"></div>
+            <div class="neon-beam neon-beam-2"></div>
+            <div class="neon-beam neon-beam-3"></div>
+        </div>
+        <div class="particle-field" id="particleField"></div>
+        <div class="vignette"></div>
+        <div class="edge-shadow"></div>
+        <div class="scan-lines"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-logo" onclick="showPage('overview')">第二单元：AI文本结构与格式化输出</div>
+        <div class="navbar-menu" id="navbarMenu">
+            <div class="navbar-item active" onclick="showPage('overview')">课程概述</div>
+            <div class="navbar-item" onclick="showPage('course')">课程章节</div>
+            <div class="navbar-item" onclick="showPage('homework')">课后作业</div>
+        </div>
+    </nav>
+
+    <!-- 课程概述页面 -->
+    <div class="page active" id="page-overview">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>1. Markdown在AI中的应用</h1>
+                    <p class="subtitle">AI时代的标准沟通语言（一）</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicator">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 课程概述内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📚 课程概述</h2>
+
+                            <h3 class="neon-text-cyan" style="font-size: 1.5rem;">课程目标</h3>
+                            <ol style="margin: 20px 0;">
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">理解Markdown的核心概念与设计理念</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">掌握Markdown在AI交互中的结构化应用</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">学会使用Markdown编写高质量AI提示词</li>
+                                <li style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;">提升AI输出内容的可复用性与一致性</li>
+                            </ol>
+
+                            <h3 class="neon-text-purple" style="margin-top: 35px; font-size: 1.5rem;">课程章节</h3>
+                            <ol style="margin: 20px 0;">
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">板块一：Markdown是什么</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">板块二：Markdown在AI提示词中的结构化作用</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">板块三：课堂总结</li>
+                                <li class="clickable-item" style="font-size: 1.2rem; margin: 15px 0; line-height: 1.8;" onclick="showPage('course'); scrollTo(0,0);">板块四：课后作业</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 课程章节页面 -->
+    <div class="page" id="page-course">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>课程章节</h1>
+                    <p class="subtitle">深入学习 Markdown 在 AI 时代的应用</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorCourse">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 板块一：Markdown是什么 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📖 板块一：Markdown是什么</h2>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.3rem; line-height: 1.8;">
+                                    Markdown是一种用于文本排版与结构表达的<strong class="neon-text-pink">轻量级标记语言</strong>。
+                                    它通过极少量的符号标记（如 <code>#</code>、<code>-</code>、<code>*</code>、<code>```</code>）实现文档的层次划分与样式控制，
+                                    使文字内容既能保持纯文本的可读性，又能在多种系统与平台上实现一致的展示效果。
+                                </p>
+                            </div>
+
+                            <h3 class="neon-text-cyan">设计理念</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                Markdown 是由 John Gruber 和 Aaron Swartz 在 2004 年一起设计的。它的目的，是让我们写的普通文字，能快速变成排版整齐的网页内容。
+                                这就意味着，我们只要用几个简单符号，就能轻松写出<strong>标题、列表、引用</strong>等格式，而不需要自己写复杂的代码。
+                            </p>
+
+                            <h3 class="neon-text-purple">示例语法</h3>
+                            <div class="code-container">
+                                <pre><code># 我第一次学习 Markdown
+## 什么是 Markdown？
+Markdown 是一种**简单又实用的排版语言**，非常适合新手使用。
+- Markdown 语法简单
+- 可以轻松生成漂亮的文档
+> 学习 Markdown，不是记语法，而是学会用简单的方式表达复杂内容。</code></pre>
+                            </div>
+
+                            <h3 class="neon-text-cyan">示例效果</h3>
+                            <div class="content-card">
+                                <img src="../图片/image.png" alt="Markdown示例效果" class="clickable-image" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; box-shadow: 0 4px 20px rgba(6, 182, 212, 0.3); margin: 20px auto; display: block; cursor: pointer;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Markdown核心价值 -->
+            <section class="section-scroll-item" data-section="2">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">核心价值</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                这种语言的核心价值在于"<strong class="neon-text-pink">结构化表达</strong>"，标题清晰、层级分明、视觉整齐。
+                                Markdown不依赖复杂的排版系统，而是以极简的语法实现格式化结果。
+                                对AI而言，这种结构化文本恰好符合其"模式识别"与"语义解析"的逻辑，因此Markdown成为AI交互中的天然伙伴。
+                            </p>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;">
+                                    <i class="fas fa-info-circle neon-text-cyan"></i>
+                                    Markdown 文件一般以 <strong>.md</strong> 或 <strong>.markdown</strong> 结尾，它就是一种普通文字文件。
+                                    这意味着不管你用什么电脑系统都可以打开它。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块二：Markdown在AI提示词中的结构化作用 -->
+            <section class="section-scroll-item" data-section="3">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">🤖 板块二：Markdown在AI提示词中的结构化作用</h2>
+
+                            <h3 class="neon-text-cyan">（一）Markdown能让AI理解"层级结构"</h3>
+
+                            <h4>为什么提示词要用Markdown编写</h4>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                AI的理解过程不仅依赖语义内容，更依赖<strong class="neon-text-pink">文本结构</strong>。
+                                当输入内容杂乱、层次不清时，AI难以准确识别不同指令之间的逻辑关系，从而导致输出混乱。
+                                Markdown通过其简洁明了的层级标记，能显著提升提示词的结构化程度。
+                            </p>
+
+                            <h4>常见的层级标识及其语义</h4>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>功能</th>
+                                            <th>语法</th>
+                                            <th>示例效果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>标题</strong></td>
+                                            <td><code># 一级标题</code></td>
+                                            <td><span style="font-size: 1.3rem; font-weight: bold;">一级标题</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>说明</strong></td>
+                                            <td><code>:</code></td>
+                                            <td>：</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>加粗</strong></td>
+                                            <td><code>**加粗**</code></td>
+                                            <td><strong>加粗</strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>斜体</strong></td>
+                                            <td><code>*斜体*</code></td>
+                                            <td><em>斜体</em></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>列表</strong></td>
+                                            <td><code>- 列表项</code></td>
+                                            <td>• 列表项</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>引用</strong></td>
+                                            <td><code>&gt; 引用文字</code></td>
+                                            <td><span style="border-left: 3px solid var(--neon-purple); padding-left: 10px;">引用文字</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>代码块</strong></td>
+                                            <td><code>`代码`</code></td>
+                                            <td><code>代码</code></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h4 class="neon-text-purple" style="margin-top: 30px;">效果图</h4>
+                            <div class="content-card">
+                                <img src="../图片/image 1.png" alt="Markdown层级标识效果图" class="clickable-image" style="width: 100%; max-width: 800px; height: auto; border-radius: 10px; box-shadow: 0 4px 20px rgba(168, 85, 247, 0.3); margin: 20px auto; display: block; cursor: pointer;">
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem;">
+                                    <i class="fas fa-lightbulb neon-text-yellow"></i>
+                                    在AI交互中，如果提示词使用Markdown层级结构，模型会根据这些符号推断任务逻辑，从而生成更符合预期的内容。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 示例演示 -->
+            <section class="section-scroll-item" data-section="4">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">（二）示例演示：Markdown让AI输出更清晰</h3>
+
+                            <div class="highlight-box">
+                                <p style="font-size: 1.2rem;">
+                                    <strong>任务内容</strong>：以"人工智能对学习的影响"为主题，比较AI在普通请求与Markdown请求下的输出效果。
+                                </p>
+                            </div>
+
+                            <h4 class="neon-text-purple">输入文本</h4>
+                            <blockquote style="border-left: 4px solid var(--neon-cyan); padding-left: 20px; margin: 20px 0; font-size: 1.1rem; line-height: 1.8;">
+                                人工智能的发展正在深刻影响学习方式。
+                                学生可以使用AI工具进行笔记整理、知识检索和个性化学习。
+                                教师可以通过AI辅助教学设计，提高课程互动性。
+                                未来，AI与教育的融合将使学习更加高效和智能化。
+                            </blockquote>
+
+                            <h4 class="neon-text-pink">输入普通请求（无格式要求）</h4>
+                            <div class="content-card">
+                                <p style="margin-bottom: 15px;"><strong>AI输入内容：</strong></p>
+                                <blockquote style="border-left: 4px solid var(--neon-purple); padding-left: 20px;">
+                                    请帮我总结这段文字的主要内容。
+                                </blockquote>
+
+                                <p style="margin: 20px 0;"><strong>AI输出结果：</strong></p>
+                                <div class="code-container">
+                                    <pre><code>人工智能改变了学习方式，学生可以利用AI提高学习效率，教师也能通过AI提升教学质量，未来AI将让教育更智能。</code></pre>
+                                </div>
+
+                                <p style="margin-top: 20px;"><strong class="neon-text-cyan">特点分析：</strong></p>
+                                <ul>
+                                    <li>输出结果为一段自然语言描述</li>
+                                    <li>逻辑完整但无层次结构</li>
+                                    <li>不利于后续加工、排版或直接发布</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Markdown请求示例 -->
+            <section class="section-scroll-item" data-section="5">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h4 class="neon-text-pink">输入Markdown请求（有格式要求）</h4>
+                            <div class="content-card">
+                                <p style="margin-bottom: 15px;"><strong>AI输入内容：</strong></p>
+                                <blockquote style="border-left: 4px solid var(--neon-purple); padding-left: 20px; margin-bottom: 15px;">
+                                    请帮我<strong>总结下面这段文字的主要内容</strong>，并用 <strong>Markdown 格式</strong> 输出。
+                                </blockquote>
+
+                                <p style="margin-bottom: 10px;">要求如下：</p>
+                                <ol style="padding-left: 20px;">
+                                    <li>生成一个清晰的 <strong>标题</strong></li>
+                                    <li>用三个分点说明：<strong>学生层面、教师层面、未来展望</strong></li>
+                                    <li>每个分点下写出<strong>简短的小结或要点</strong>（用列表形式）</li>
+                                    <li>在最后加入一段<strong>总结性引用语句</strong>（使用 <code>&gt;</code> 引用格式）</li>
+                                </ol>
+
+                                <p style="margin: 20px 0;"><strong>AI输出结果：</strong></p>
+                                <div class="code-container">
+                                    <pre><code># 人工智能对学习的影响
+
+## 学生层面
+- 使用AI进行笔记整理与知识检索
+- 获得个性化学习路径与推荐
+
+## 教师层面
+- 借助AI辅助教学设计
+- 提升课堂互动性与教学效率
+
+## 未来展望
+&gt; AI将与教育深度融合，让学习更加智能与高效。</code></pre>
+                                </div>
+
+                                <p style="margin-top: 20px;"><strong class="neon-text-cyan">特点分析：</strong></p>
+                                <ul>
+                                    <li>具有标题与分层结构</li>
+                                    <li>可直接用于报告、讲稿、演示文档</li>
+                                    <li>信息组织清晰，语义边界明确</li>
+                                </ul>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem; text-align: center;">
+                                    <strong class="neon-text-pink">💡 核心价值</strong><br>
+                                    Markdown能让AI输出"更像人写的结构化文本"，而非"机器式段落堆砌"。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 可复用性 -->
+            <section class="section-scroll-item" data-section="6">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">（三）提升输出的可复用性与一致性</h3>
+
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                使用Markdown结构提示词的另一个优势是<strong class="neon-text-pink">可复用性</strong>。
+                                教育、内容创作、产品文档、研究报告等领域的AI工作流程往往需要反复生成类似格式的内容。
+                                通过Markdown模板化结构，可以实现统一格式的批量输出。
+                            </p>
+
+                            <h4 class="neon-text-purple">示例：周学习计划模板（Markdown版）</h4>
+                            <div class="code-container">
+                                <pre><code># 本周学习计划
+
+## 学习目标
+- 复习上周的课程内容
+- 完成AI课程学习任务
+- 提前预习下周的新知识
+
+## 每日安排
+1. **周一**：整理笔记、复习AI课程知识点
+2. **周二**：完成AI课程作业
+3. **周三**：观看教学视频并做练习
+4. **周四**：小组讨论项目内容
+5. **周五**：提交实训报告
+
+## 总结
+&gt; 每周都用这个模板填写计划，可以保持学习节奏，内容也更整齐一致。</code></pre>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.2rem;">
+                                    <i class="fas fa-check-circle neon-text-cyan"></i>
+                                    这种方式让AI在多次生成时保持统一的内容结构，避免随机化表达。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 板块三：课堂总结 -->
+            <section class="section-scroll-item" data-section="7">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h2 class="section-title">📝 板块三：课堂总结</h2>
+
+                            <h3 class="neon-text-cyan">（一）核心内容回顾</h3>
+                            <p style="font-size: 1.2rem; line-height: 1.8; margin: 20px 0;">
+                                本课程从"语言结构化"视角系统解析了Markdown在AI时代的应用逻辑。
+                            </p>
+
+                            <div class="grid">
+                                <div class="icon-card">
+                                    <i class="fas fa-language neon-text-cyan"></i>
+                                    <h4>轻量级语言</h4>
+                                    <p>Markdown是一种让文字表达更高效、更清晰的轻量级标记语言</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-robot neon-text-purple"></i>
+                                    <h4>AI原生支持</h4>
+                                    <p>AI模型在输出时普遍使用Markdown结构，以保持语义清晰与内容层级</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-chart-line neon-text-pink"></i>
+                                    <h4>提升输出质量</h4>
+                                    <p>使用Markdown编写提示词能显著提升AI的理解力与输出质量</p>
+                                </div>
+
+                                <div class="icon-card">
+                                    <i class="fas fa-file-alt" style="color: var(--neon-yellow);"></i>
+                                    <h4>文档化应用</h4>
+                                    <p>Markdown的结构化表达有助于将AI生成内容直接用于报告、课程讲稿、项目计划等文档</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box" style="margin-top: 30px;">
+                                <p style="font-size: 1.3rem; text-align: center; margin-bottom: 20px;">
+                                    <strong class="neon-text-pink">💡 核心结论</strong>
+                                </p>
+                                <ul style="font-size: 1.1rem;">
+                                    <li><strong>普通文本请求</strong> → 输出平面化、缺乏层次</li>
+                                    <li><strong>Markdown结构请求</strong> → 输出逻辑分明、格式专业</li>
+                                </ul>
+                                <p style="font-size: 1.2rem; margin-top: 20px; text-align: center;">
+                                    Markdown已成为AI交互的"<strong class="neon-text-cyan">结构化沟通桥梁</strong>"，是人与AI之间高效理解的共同语言。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 实际应用方向 -->
+            <section class="section-scroll-item" data-section="8">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <h3 class="neon-text-cyan">（二）实际应用方向</h3>
+                            <p style="font-size: 1.2rem; margin-bottom: 20px;">
+                                Markdown不仅适用于AI交互，也适用于以下实际场景：
+                            </p>
+
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>应用场景</th>
+                                            <th>Markdown使用方式</th>
+                                            <th>效果</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>学习笔记</strong></td>
+                                            <td>使用标题与列表记录要点</td>
+                                            <td>内容结构清晰，便于复习</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>报告写作</strong></td>
+                                            <td>用代码块与表格整理数据</td>
+                                            <td>格式统一，排版高效</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>项目管理</strong></td>
+                                            <td>以分级标题组织任务</td>
+                                            <td>任务结构明确</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>AI提示词工程</strong></td>
+                                            <td>用Markdown定义角色与任务</td>
+                                            <td>输出可控、逻辑一致</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>知识管理系统</strong></td>
+                                            <td>用Markdown文件构建知识库</td>
+                                            <td>可移植性强、兼容性高</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- 侧边导航栏 -->
+        <nav class="course-nav">
+            <div class="cyber-card" style="padding: 1.5rem; width: 220px;">
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    <button class="nav-item active" onclick="courseScrollToSection(0)">
+                        课程概览
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(1)">
+                        一、Markdown是什么
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(1)">
+                        1.1 基本概念
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(2)">
+                        1.2 核心价值
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(3)">
+                        二、AI提示词应用
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(3)">
+                        2.1 层级结构
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(4)">
+                        2.2 示例演示
+                    </button>
+                    <button class="nav-item-sub" onclick="courseScrollToSection(6)">
+                        2.3 可复用性
+                    </button>
+                    <button class="nav-item" onclick="courseScrollToSection(7)">
+                        三、课堂总结
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 课后作业页面 -->
+    <div class="page" id="page-homework">
+        <div class="section-scroll-container">
+            <!-- Hero区域 -->
+            <section class="section-scroll-item" data-section="0">
+                <div class="hero">
+                    <h1>📝 板块四：课后作业</h1>
+                    <p class="subtitle">让AI帮你生成一份 Markdown 课程总结</p>
+                </div>
+                <div class="scroll-indicator" id="scrollIndicatorHomework">
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+            </section>
+
+            <!-- 作业内容 -->
+            <section class="section-scroll-item" data-section="1">
+                <div style="padding-top: 100px;">
+                    <div class="container">
+                        <div class="cyber-card">
+                            <div class="homework-section">
+                                <h2 class="section-title" style="color: var(--neon-yellow);">作业要求</h2>
+
+                                <h3 class="neon-text-cyan" style="margin-top: 30px;">任务说明</h3>
+                                <p style="font-size: 1.2rem; margin: 20px 0; line-height: 1.8;">
+                                    学生自行填写下面几个板块的内容，并用markdown的格式展现出来：
+                                </p>
+
+                                <div class="content-card" style="margin: 30px 0;">
+                                    <h4 class="neon-text-purple">需要包含的内容：</h4>
+                                    <ul style="font-size: 1.1rem; line-height: 2;">
+                                        <li><strong>课程标题</strong>（一级标题）</li>
+                                        <li><strong>学习内容</strong>（二级标题）
+                                            <ul style="margin-top: 10px;">
+                                                <li>用一句话总结我学到了什么（使用列表项，关键词加粗）</li>
+                                            </ul>
+                                        </li>
+                                        <li><strong>学习感想</strong>（二级标题）
+                                            <ul style="margin-top: 10px;">
+                                                <li>用2-3句话写下今天的收获或感受，每句话一个小点（使用列表项，关键词加粗）</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <h3 class="neon-text-cyan">参考格式</h3>
+                                <div class="code-container">
+                                    <pre><code># 课程标题
+
+## 学习内容
+- 用一句话总结我**学到了什么**
+
+## 学习感想
+> 用2-3句话写下今天的收获或感受</code></pre>
+                                </div>
+
+                                <h3 class="neon-text-purple" style="margin-top: 30px;">完成步骤</h3>
+                                <ol style="font-size: 1.1rem; line-height: 2; padding-left: 30px;">
+                                    <li>观察Markdown 层级结构（看看标题、列表、引用的格式）</li>
+                                    <li>将内容复制到 Markdown 编辑器或文档中查看排版效果</li>
+                                </ol>
+
+                                <div class="highlight-box" style="margin-top: 30px;">
+                                    <p style="font-size: 1.2rem; text-align: center;">
+                                        <i class="fas fa-lightbulb neon-text-yellow"></i>
+                                        通过完成这个作业，你将掌握 Markdown 的基本语法，并学会用结构化的方式表达学习内容。
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="footer">
+                            <p>© 2024 Markdown AI 教学 | 赛博朋克风格界面</p>
+                            <p style="margin-top: 10px;">Powered by Cyberpunk Design System</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 图片放大弹窗 -->
+    <div id="imageModal" class="image-modal">
+        <span class="image-modal-close">&times;</span>
+        <img class="image-modal-content" id="modalImage">
+        <div class="image-modal-caption"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
