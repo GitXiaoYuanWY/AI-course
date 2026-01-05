@@ -392,8 +392,10 @@ class SectionScroller {
                 // 绑定导航按钮点击事件
                 this.navButtons.forEach(button => {
                     button.addEventListener('click', () => {
-                        const sectionIndex = parseInt(button.getAttribute('data-section'));
-                        this.scrollToSection(sectionIndex);
+                        const sectionIndex = this.getSectionIndex(parseInt(button.getAttribute('data-section')));
+                        if (sectionIndex !== -1) {
+                            this.scrollToSection(sectionIndex);
+                        }
                     });
                 });
             }
@@ -404,9 +406,11 @@ class SectionScroller {
             const firstSection = this.sections[0];
             firstSection.addEventListener('scroll', () => {
                 if (this.currentSection === 0 && this.scrollIndicator) {
-                    if (firstSection.scrollTop > 50) {
+                    // 当在第一个section滚动时，立即隐藏滚动指示器
+                    if (firstSection.scrollTop > 0) {
                         this.scrollIndicator.classList.add('hidden');
                     } else {
+                        // 只有当滚动回到顶部时才显示滚动指示器
                         this.scrollIndicator.classList.remove('hidden');
                     }
                 }
@@ -422,14 +426,31 @@ class SectionScroller {
 
     updateNavigation(index) {
         // 更新导航栏高亮状态
+        const currentSection = this.sections[index];
+        if (!currentSection) return;
+        
+        const currentSectionDataSection = parseInt(currentSection.getAttribute('data-section'));
+        
         this.navButtons.forEach(button => {
             const btnSection = parseInt(button.getAttribute('data-section'));
-            if (btnSection === index) {
+            if (btnSection === currentSectionDataSection) {
                 button.classList.add('active');
             } else {
                 button.classList.remove('active');
             }
         });
+    }
+
+    // 根据data-section属性值获取对应的section索引
+    getSectionIndex(dataSectionValue) {
+        for (let i = 0; i < this.sections.length; i++) {
+            const section = this.sections[i];
+            const sectionDataSection = parseInt(section.getAttribute('data-section'));
+            if (sectionDataSection === dataSectionValue) {
+                return i;
+            }
+        }
+        return -1; // 未找到对应的section
     }
 
     scrollToSection(index) {
@@ -441,6 +462,11 @@ class SectionScroller {
         const targetSection = this.sections[index];
 
         if (targetSection) {
+            // 如果是回到第一个section，重置其滚动位置到顶部
+            if (index === 0) {
+                targetSection.scrollTop = 0;
+            }
+            
             targetSection.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
@@ -453,11 +479,15 @@ class SectionScroller {
                 this.updateNavigation(index);
             }
 
-            // 隐藏滚动指示器
-            if (index > 0 && this.scrollIndicator) {
-                this.scrollIndicator.classList.add('hidden');
-            } else if (index === 0 && this.scrollIndicator) {
-                this.scrollIndicator.classList.remove('hidden');
+            // 控制滚动指示器的显示和隐藏
+            if (this.scrollIndicator) {
+                if (index === 0) {
+                    // 只有在第一个section且滚动到顶部时才显示滚动指示器
+                    this.scrollIndicator.classList.remove('hidden');
+                } else {
+                    // 在任何其他section都隐藏滚动指示器
+                    this.scrollIndicator.classList.add('hidden');
+                }
             }
 
             setTimeout(() => {
